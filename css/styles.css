@@ -79,62 +79,6 @@ main {
 }
 
 /* =============================
-   ARTÍCULOS
-============================= */
-.articulo {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column; /* columna en móviles */
-  transition: transform 0.2s;
-}
-
-.articulo:hover {
-  transform: translateY(-3px);
-}
-
-.articulo img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.contenido {
-  padding: 15px;
-}
-
-.contenido h2, .contenido h3 {
-  margin-top: 0;
-  color: #1a1a1a;
-}
-
-.summary {
-  font-style: italic;
-  background-color: #fffae6;
-  padding: 10px 15px;
-  border-left: 4px solid #ff6600;
-  margin-bottom: 15px;
-}
-
-.btn-leer-mas {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff6600;
-  color: #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-
-.btn-leer-mas:hover {
-  background-color: #e05500;
-}
-
-/* =============================
    TIPOGRAFÍA Y ENLACES GENERALES
 ============================= */
 h1, h2, h3 {
@@ -152,6 +96,92 @@ a:hover {
 }
 
 /* =============================
+   ARTÍCULOS
+============================= */
+
+/* Estilo base: columna en móviles */
+.articulo {
+  display: flex;
+  flex-direction: column; /* imagen arriba, texto abajo en móvil */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.articulo:hover {
+  transform: translateY(-3px);
+}
+
+/* Imagen de artículo */
+.articulo img {
+  width: 30%;
+  height: 300px;      /* altura fija */
+  object-fit: contain;   /* recorta proporcionalmente */
+  border-radius: 10px 0 0 10px;
+  margin: 0 auto;
+  border-radius: 10px 10px 0 0; /* bordes redondeados arriba */
+}
+
+/* Contenido del artículo */
+.contenido {
+  padding: 15px;
+}
+
+/* Títulos y resumen */
+.contenido h2, .contenido h3 {
+  margin-top: 0;
+  color: #1a1a1a;
+}
+
+.summary {
+  font-style: italic;
+  background-color: #fffae6;
+  padding: 10px 15px;
+  border-left: 4px solid #ff6600;
+  margin-bottom: 15px;
+}
+
+/* Botón leer más */
+.btn-leer-mas {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff6600;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-leer-mas:hover {
+  background-color: #e05500;
+}
+
+/* =============================
+   MEDIA QUERY: tablet y desktop
+============================= */
+@media (min-width: 768px) {
+  .articulo {
+    flex-direction: row; /* fila: imagen a la izquierda, texto a la derecha */
+    align-items: flex-start;
+  }
+
+  .articulo img {
+    width: 40%;  /* imagen ocupa 40% del artículo */
+    margin: 0;   /* quita centrado de móvil */
+    border-radius: 10px 0 0 10px; /* bordes redondeados solo a la izquierda */
+  }
+
+  .contenido {
+    width: 60%;  /* texto ocupa 60% del artículo */
+    padding-left: 20px; /* espacio entre imagen y texto */
+  }
+}
+
+/* =============================
    FOOTER
 ============================= */
 footer {
@@ -162,54 +192,4 @@ footer {
   background-color: #fff;
 }
 
-/* =============================
-   MEDIA QUERIES
-============================= */
-@media (min-width: 480px) {
-  .header-index .overlay h1 {
-    font-size: 4rem;
-  }
-  .header-index .overlay p {
-    font-size: 1.5rem;
-  }
-  .header-index nav a {
-    font-size: 1.2rem;
-    display: inline-block;
-    margin: 0 10px;
-  }
-}
 
-@media (min-width: 768px) {
-  /* Artículos en fila */
-  .articulo {
-    flex-direction: row;
-  }
-
-  .articulo img {
-    width: 40%;
-    height: auto;
-  }
-
-  .contenido {
-    width: 60%;
-  }
-
-  /* Header más grande */
-  .header-index .overlay h1 {
-    font-size: 3rem;
-  }
-
-  .header-index .overlay p {
-    font-size: 1.2rem;
-  }
-
-  .header-index nav a {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  main {
-    width: 70%;
-  }
-}
