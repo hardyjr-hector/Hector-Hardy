@@ -12,6 +12,12 @@ body {
 
 section {
   position: relative;
+  margin-bottom: 4rem;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 /* =============================
@@ -64,12 +70,14 @@ section {
   font-size: 6vw; /* se adapta al ancho de pantalla */
   color: #fff;
   margin: 0;
+  font-weight: 700;
 }
 
 .header-index .overlay p {
   font-size: 3vw;
   color: #fff;
   margin-top: 10px;
+  opacity: 0.9;
 }
 
 .header-index nav {
@@ -93,10 +101,10 @@ section {
    MAIN
 ============================= */
 main {
-  max-width: 720px;
+  max-width: 900px;
   width: 90%; /* ocupa 90% de la pantalla en móvil */
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 4rem 1rem;
 }
 
 /* =============================
@@ -127,16 +135,6 @@ h1, h2, h3 {
 
 h2 {
   margin-top: 3rem;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-.hero p {
-  font-size: 1.3rem;
-  opacity: 0.9;
 }
 
 section h2 {
