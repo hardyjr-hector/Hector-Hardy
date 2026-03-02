@@ -1,81 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>La Pizarra</title>
-  <meta name="description" content="La Pizarra: Fútbol. Análisis y opinión. Partidos y protagonistas. Fútbol contado con criterio.">
-  <link rel="stylesheet" href="css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Análisis deportivo y proyectos digitales de Hector Hardy.">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="JavaScript/script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<header class="header-index">
-  <div class="overlay">
-   <h1>La Pizarra</h1>
-     <p class="manifiesto">Primero siento el fútbol. Luego lo pienso.</p>
-     <p class="tagline">Análisis y opinión.</p>
-  </div>
-</header>
-
-<main>
-  <section>
+  <header class="navbar">
+    <div class="logo">LP</div>
     <nav>
-      <a href="#sobre-mi">Quién soy</a> 
+      <a href="#about">Sobre mi</a>
+      <a href="#projects">Proyectos</a>
+      <a href="#articles">Artículos</a>
     </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Análisis deportivo<br>Construido con calma y criterio.</h1>
+    <p>Desgloses tácticos, contexto y experimentos digitales alrededor del juego.</p>
+    <div class="hero-buttons">
+      <a href="#articles" class="btn">Leer artículos</a>
+      <a href="#projects" class="btn-outline">Ver proyectos</a>
+    </div>
   </section>
-  
-  <section>
-    <nav>      
-      <a href="articulos.html">Artículos</a>
-    </nav>
+
+  <section id="about" class="about">
+    <h2>Sobre mi</h2>
+    <p>Soy Hector Hardy. Estudiante de programación y comunicación. Apasionado a los deportes. Creador de este espacio
+      de análisis y opinión.</p>
   </section>
 
-  <section>
-    <p>Bienvenido a La Pizarra. Aquí analizo el fútbol con calma y criterio.</p>
+  <section id="projects" class="projects">
+    <h2>Proyectos</h2>
+    <div class="project-card">
+      <h3>La Pizarra</h3>
+      <p>Plataforma creada con HTML, CSS & JavaScript.</p>
+    </div>
   </section>
 
-<section id="sobre-mi" class="sobre-mi">
-  <h2>Quién soy</h2>
+  <section id="articles" class="articles">
+    <h2>Artículos</h2>
 
-  <p>
-    Soy Hector Hardy. Analizo el fútbol desde la táctica, el contexto y la emoción,
-    intentando entender <strong>por qué pasan las cosas dentro del campo</strong> y no solo qué pasó.
-  </p>
+    <div class="article-card">
+      <h3>Florentino: el problema no es el entrenador</h3>
+      <p>El Albacete hizo historia eliminando al Real Madrid con fútbol, orden y convicción. El problema en el Madrid ya
+        no es el entrenador. Y la pregunta empieza a ser incómoda para Florentino.</p>
+      <a href="https://medium.com/@hardyjr.hector/florentino-el-problema-no-es-el-entrenador-77123bb6d7fa">Leer más
+        →</a>
+    </div>
 
-  <p>
-    <strong>La Pizarra</strong> nace como un espacio de análisis y opinión. Donde el fútbol se piensa, se observa y se explica.
-  </p>
-</section>
-  
-  <section>
-    <h2>Últimos artículos</h2>
-   
-    <article>
-        <h3>Florentino: el problema no es el entrenador</h3>
-        <p>El Albacete Balompié derrota por primera vez en su historia al Real Madrid. El partido acabó 3-2 en el Carlos Belmonte.</p>
-<a href="https://medium.com/@hardyjr.hector/florentino-el-problema-no-es-el-entrenador-77123bb6d7fa">Lee mi artículo completo aquí</a>
-    </article>
+    <div class="article-card">
+      <h3>Xabi Alonso no pudo ser Xabi Alonso</h3>
+      <p>El técnico dejó el Real Madrid tras no poder imponer su idea en un vestuario
+        lleno de estrellas. La Supercopa fue el último termómetro de un proyecto
+        que nunca terminó de despegar.</p>
+      <a
+        href="https://medium.com/@hardyjr.hector/xabi-alonso-no-pudo-ser-xabi-alonso-cuando-la-idea-no-alcanza-f071371e459b">Leer
+        más →</a>
+    </div>
 
-    <article>
-        <h3>Xabi Alonso no pudo ser Xabi Alonso: cuando la idea no alcanza</h3>
-       <p>Xabi Alonso dejó el Real Madrid tras no poder imponer su idea de juego, la misma con la que triunfó en el Bayer Leverkusen. En un vestuario complejo y lleno de estrellas, su propuesta de presión y juego asociativo encontró límites difíciles de superar. La Supercopa de España fue el último escenario antes de una salida que deja la sensación de una oportunidad incompleta.</p>
-<a href="https://medium.com/@hardyjr.hector/xabi-alonso-no-pudo-ser-xabi-alonso-cuando-la-idea-no-alcanza-f071371e459b">Lee mi artículo completo aquí</a>
-      </article>
+    <div class="article-card">
+      <h3>¿Es Raphinha el mejor del mundo?</h3>
+      <p>El brasileño es el alma de este Barça, el auténtico escudero de Flick. ¡Cuánto lo echaba de menos el
+        barcelonismo! Además de clase, que le sobra, aporta dinamismo, intensidad y contagia al equipo de garra y
+        entrega. Una gran noticia su regreso a este nivel tras superar la lesión.</p>
+      <a href="https://medium.com/@hardyjr.hector/es-raphinha-el-mejor-del-mundo-1c0b75eb5f61">Leer más →</a>
+    </div>
 
-    <article>
-        <h3>VILLARREAL 0 - 2 FC BARCELONA</h3>
-        <p>Analizo el partido entre Villarreal y Barça en La Cerámica, donde el rendimiento del equipo azulgrana volvió a mostrar solidez defensiva y equilibrio en el mediocampo. En ese contexto, Raphinha aparece como una pieza clave del juego culé: su dinamismo, entrega e influencia tanto ofensiva como defensiva lo hacen indispensable para el estilo de Hansi Flick. Aunque no todos lo consideran “el mejor del mundo” de manera literal, su rendimiento reciente lo sitúa entre los jugadores más importantes del Barça y uno de los más determinantes de la temporada.</p>
-        <a href="https://medium.com/@hardyjr.hector/es-raphinha-el-mejor-del-mundo-1c0b75eb5f61">Lee mi artículo completo aquí</a>
-      </article>
-  
-    </section>
+    <!--
+    <div class="article-card">
+      <h3>Article Title</h3>
+      <p>Short description of the article.</p>
+      <a href="#">Read more →</a>
+    </div>
+    -->
 
+  </section>
 
-</main>
-
-<footer>
-  <p>© 2025 La Pizarra by Hector Hardy</p>
-  <p>Antes de opinar, hay que mirar.</p>
-</footer>
+  <footer>
+    <p>Hector Hardy © 2026</p>
+    <p>Built with HTML, CSS & JavaScript</p>
+    <p>
+      <a href="https://github.com/TUUSUARIO" target="_blank">GitHub</a> |
+      <a href="https://linkedin.com/in/TUUSUARIO" target="_blank">LinkedIn</a>
+    </p>
+  </footer>
 
 </body>
+
 </html>

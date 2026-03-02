@@ -1,256 +1,179 @@
-/* =============================
-   RESET Y BODY
-============================= */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+/* ===== RESET ===== */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
-  color: #333;
+  box-sizing: border-box;
 }
 
-section {
-  position: relative;
-  margin-bottom: 4rem;
+/* ===== VARIABLES ===== */
+:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #f5f5f5;
+  --text-secondary: #aaa;
+  --accent: #ffffff;
+  --transition: 0.3s ease;
 }
 
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-/* =============================
-   MANIFIESTO
-============================= */
-.manifiesto {
-  font-size: 2.8vw;
-  color: #ffffff;
-  font-style: italic;
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
-.tagline {
-  font-size: 2.5vw;
-  color: #dddddd;
-  margin-top: 0;
-}
-
-/* =============================
-   HEADER
-============================= */
-.header-index {
-  width: 100%;
-  height: 40vh; /* altura relativa al viewport */
-  background-image: url('../assets/images/camisetas.jpg'); /* tu ilustración */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.header-index .overlay {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4); /* filtro semitransparente */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.header-index .overlay h1 {
-  font-size: 6vw; /* se adapta al ancho de pantalla */
-  color: #fff;
-  margin: 0;
-  font-weight: 700;
-}
-
-.header-index .overlay p {
-  font-size: 3vw;
-  color: #fff;
-  margin-top: 10px;
-  opacity: 0.9;
-}
-
-.header-index nav {
-  margin-top: 10px;
-}
-
-.header-index nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 4vw;
-  display: block;
-  margin: 5px 0;
-}
-
-.header-index nav a:hover {
-  color: #ff9900;
-}
-
-/* =============================
-   MAIN
-============================= */
-main {
-  max-width: 900px;
-  width: 90%; /* ocupa 90% de la pantalla en móvil */
-  margin: 0 auto;
-  padding: 4rem 1rem;
-}
-
-/* =============================
-   SOBRE MÍ
-============================= */
-.sobre-mi {
-  background-color: #ffffff;
-  padding: 20px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-.sobre-mi h2 {
-  margin-top: 0;
-}
-
-.sobre-mi p {
-  margin-bottom: 10px;
-}
-
-/* =============================
-   TIPOGRAFÍA Y ENLACES GENERALES
-============================= */
-h1, h2, h3 {
-  line-height: 1.3;
-}
-
-h2 {
-  margin-top: 3rem;
-}
-
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-p {
+/* ===== GLOBAL ===== */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
 a {
-  color: #000; /* enlaces normales */
   text-decoration: none;
-  border-bottom: 1px solid #000;
+  color: inherit;
 }
 
-a:hover {
-  opacity: 0.7;
+section {
+  padding: 80px 10%;
 }
 
-/* =============================
-   ARTÍCULOS
-============================= */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
 
-/* Estilo base: columna en móviles */
-.articulo {
+/* ===== NAVBAR ===== */
+.navbar {
   display: flex;
-  flex-direction: column; /* imagen arriba, texto abajo en móvil */
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-  overflow: hidden;
-  transition: transform 0.2s;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 10%;
+  position: sticky;
+  top: 0;
+  background: var(--bg-primary);
+  z-index: 1000;
+  transition: var(--transition);
 }
 
-.articulo:hover {
-  transform: translateY(-3px);
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-/* Imagen de artículo */
-.articulo img {
-  width: 30%;
-  height: 300px;      /* altura fija */
-  object-fit: contain;   /* recorta proporcionalmente */
-  border-radius: 10px 0 0 10px;
-  margin: 0 auto;
-  border-radius: 10px 10px 0 0; /* bordes redondeados arriba */
-}
-
-/* Contenido del artículo */
-.contenido {
-  padding: 15px;
-}
-
-/* Títulos y resumen */
-.contenido h2, .contenido h3 {
-  margin-top: 0;
-  color: #1a1a1a;
-}
-
-.summary {
-  font-style: italic;
-  background-color: #fffae6;
-  padding: 10px 15px;
-  border-left: 4px solid #ff6600;
-  margin-bottom: 15px;
-}
-
-/* Botón leer más */
-.btn-leer-mas {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ff6600;
-  color: #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-
-.btn-leer-mas:hover {
-  background-color: #e05500;
-}
-
-/* =============================
-   MEDIA QUERY: tablet y desktop
-============================= */
-@media (min-width: 768px) {
-  .articulo {
-    flex-direction: row; /* fila: imagen a la izquierda, texto a la derecha */
-    align-items: flex-start;
-  }
-
-  .articulo img {
-    width: 40%;  /* imagen ocupa 40% del artículo */
-    margin: 0;   /* quita centrado de móvil */
-    border-radius: 10px 0 0 10px; /* bordes redondeados solo a la izquierda */
-  }
-
-  .contenido {
-    width: 60%;  /* texto ocupa 60% del artículo */
-    padding-left: 20px; /* espacio entre imagen y texto */
-  }
-}
-
-/* =============================
-   FOOTER
-============================= */
-footer {
-  padding: 1rem;
-  text-align: center;
+nav a {
+  margin-left: 30px;
   font-size: 0.9rem;
-  color: #666;
-  background-color: #fff;
+  opacity: 0.8;
+  transition: var(--transition);
 }
 
+nav a:hover {
+  opacity: 1;
+}
 
+/* ===== HERO ===== */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+.hero p {
+  max-width: 500px;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* ===== BUTTONS ===== */
+.btn,
+.btn-outline {
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-right: 15px;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.btn {
+  background: var(--accent);
+  color: #000;
+}
+
+.btn:hover {
+  background: #ddd;
+}
+
+.btn-outline {
+  border: 1px solid var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* ===== CARDS ===== */
+.project-card,
+.article-card {
+  background: var(--bg-secondary);
+  padding: 30px;
+  margin-top: 30px;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.project-card:hover,
+.article-card:hover {
+  background: #222;
+  transform: translateY(-5px);
+}
+
+.article-card a {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.article-card a:hover {
+  opacity: 1;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 6%;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  nav a {
+    margin-left: 15px;
+  }
+}
