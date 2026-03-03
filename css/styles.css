@@ -21,7 +21,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  padding-top: 90px;
 }
 
 a {
@@ -211,4 +210,7 @@ footer {
     height: 40px;
   }
 
+  .navbar {
+    padding: 15px 6%;
+  }
 }
