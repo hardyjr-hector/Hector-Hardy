@@ -2,16 +2,13 @@
 
 const navbar = document.querySelector('.navbar');
 
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.backgroundColor = '#000';
-        } else {
-            navbar.style.backgroundColor = '#0f0f0f';
-        }
-    });
-}
-
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 
 // ===== FADE-IN ANIMATION ON SCROLL =====
 

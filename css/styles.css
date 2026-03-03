@@ -51,8 +51,37 @@ h2 {
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.5rem;
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  position: absolute;
+  transition: all 0.4s ease;
+}
+
+/* Estado inicial */
+.logo-full {
+  height: 60px;
+  opacity: 1;
+}
+
+.logo-icon {
+  height: 40px;
+  opacity: 0;
+}
+
+/* Cuando haces scroll */
+.navbar.scrolled .logo-full {
+  opacity: 0;
+  transform: translateY(-5px) scale(0.9);
+}
+
+.navbar.scrolled .logo-icon {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 nav a {
