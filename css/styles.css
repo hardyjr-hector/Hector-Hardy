@@ -40,21 +40,20 @@ h2 {
 /* ===== NAVBAR ===== */
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  /* importante */
   align-items: center;
   padding: 25px 10%;
   position: sticky;
   top: 0;
   background: var(--bg-primary);
   z-index: 1000;
-  transition: var(--transition);
-  min-height: 90px;
 }
 
 .logo {
   position: relative;
   width: 160px;
-  /* ajusta según tu logo */
+  /* ajusta al tamaño real */
   height: 60px;
 }
 
