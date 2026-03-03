@@ -4,164 +4,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hector Hardy | Análisis Deportivo</title>
 
-  <meta name="description" content="Análisis táctico, contexto deportivo y experimentación digital.">
+  <title>Hector Hardy | La Pizarra</title>
 
+  <meta name="description" content="Análisis deportivo, fútbol, tácticas y contenido digital">
+
+  <!-- FAVICON -->
   <link rel="icon" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/favicon.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
   <header class="navbar">
-    <div class="container nav-container">
 
-      <div class="logo">
-        <span>LA PIZARRA</span>
-      </div>
-
-      <button class="nav-toggle" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="nav-links">
-        <a href="#about">Sobre mí</a>
-        <a href="#articles">Artículos</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#other-sports">Otros deportes</a>
-        <a href="#jerseys">Camisetas</a>
-      </nav>
-
+    <div class="logo">
+      <img src="assets/images/logo_horizontal.svg" class="logo-full" alt="La Pizarra">
+      <img src="assets/images/logo.svg" class="logo-icon" alt="LP">
     </div>
+
+    <button class="nav-toggle" aria-label="Menu">
+      ☰
+    </button>
+
+    <nav class="nav-links">
+      <a href="#about">Sobre mí</a>
+      <a href="#projects">Proyectos</a>
+      <a href="#articles">Artículos</a>
+      <a href="#other-sports">Otros deportes</a>
+      <a href="#jerseys">Camisetas</a>
+    </nav>
+
   </header>
 
   <!-- HERO -->
-
   <section class="hero">
-    <div class="container hero-content">
+    <h1>Análisis deportivo.<br>Construido con calma y criterio.</h1>
+    <p>Desgloses tácticos, contexto y experimentación digital sobre el deporte.</p>
 
-      <h1>
-        Análisis deportivo con<br>
-        <span>criterio y profundidad.</span>
-      </h1>
-
-      <p>
-        Fútbol, contexto y tecnología aplicados al juego.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#articles" class="btn-primary">Leer artículos</a>
-        <a href="#projects" class="btn-secondary">Ver proyectos</a>
-      </div>
-
+    <div class="hero-buttons">
+      <a class="btn" href="#articles">Leer artículos</a>
+      <a class="btn-outline" href="#projects">Ver proyectos</a>
     </div>
   </section>
 
   <!-- ABOUT -->
-
-  <section id="about" class="section">
-    <div class="container narrow">
-      <h2>Sobre mí</h2>
-      <p>
-        Soy Hector Hardy. Estudiante de Ingeniería Informática y creador de contenido deportivo.
-        Mi objetivo es unir análisis, datos y comunicación para construir una voz propia en el deporte.
-      </p>
-    </div>
-  </section>
-
-  <!-- ARTICLES -->
-
-  <section id="articles" class="section">
-    <div class="container">
-      <h2>Artículos</h2>
-
-      <div class="grid">
-
-        <article class="card">
-          <h3>Florentino: el problema no es el entrenador</h3>
-          <p>Análisis estructural del Real Madrid más allá del banquillo.</p>
-          <a href="#">Leer más →</a>
-        </article>
-
-        <article class="card">
-          <h3>Xabi Alonso no pudo ser Xabi Alonso</h3>
-          <p>Cuando la idea no encuentra espacio en el vestuario.</p>
-          <a href="#">Leer más →</a>
-        </article>
-
-        <article class="card">
-          <h3>¿Es Raphinha el mejor del mundo?</h3>
-          <p>Impacto, contexto y narrativa.</p>
-          <a href="#">Leer más →</a>
-        </article>
-
-      </div>
-    </div>
+  <section id="about">
+    <h2>Sobre mí</h2>
+    <p>Soy Hector Hardy. Estudiante de programación y apasionado del análisis deportivo.</p>
   </section>
 
   <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Proyectos</h2>
 
-  <section id="projects" class="section section-dark">
-    <div class="container">
-      <h2>Proyectos digitales</h2>
+    <div class="project-card">
+      <h3>La Pizarra</h3>
+      <p>Plataforma de análisis deportivo construida con HTML, CSS y JavaScript.</p>
+    </div>
 
-      <div class="grid">
+  </section>
 
-        <div class="card">
-          <h3>La Pizarra</h3>
-          <p>Plataforma desarrollada con HTML, CSS y JavaScript.</p>
-        </div>
+  <!-- ARTICLES -->
+  <section id="articles" class="articles">
 
-        <div class="card">
-          <h3>Sports Data Lab</h3>
-          <p>Próximamente: análisis de datos deportivos con Python.</p>
-        </div>
+    <h2>Artículos</h2>
 
+    <div class="article-card">
+      <h3>Florentino: el problema no es el entrenador</h3>
+      <p>El Madrid mostró problemas estructurales más allá del banquillo.</p>
+      <a href="#">Leer más →</a>
+    </div>
+
+    <div class="article-card">
+      <h3>Xabi Alonso no pudo ser Xabi Alonso</h3>
+      <p>La idea no siempre alcanza para competir en élite.</p>
+      <a href="#">Leer más →</a>
+    </div>
+
+    <div class="article-card">
+      <h3>¿Es Raphinha el mejor del mundo?</h3>
+      <p>Un análisis sobre su impacto en el Barça.</p>
+      <a href="#">Leer más →</a>
+    </div>
+
+  </section>
+
+  <!-- JERSEYS -->
+  <section id="jerseys">
+    <h2>Camisetas de fútbol</h2>
+
+    <div class="jersey-container">
+
+      <div class="jersey-card">
+        <img src="assets/images/jersey1.jpg" loading="lazy">
+        <h3>FC Barcelona</h3>
+        <p>Temporada 2025/26</p>
       </div>
+
+      <div class="jersey-card">
+        <img src="assets/images/jersey2.jpg" loading="lazy">
+        <h3>Real Madrid</h3>
+        <p>Edición visitante</p>
+      </div>
+
+      <div class="jersey-card">
+        <img src="assets/images/jersey3.jpg" loading="lazy">
+        <h3>Atlético de Madrid</h3>
+        <p>Edición especial</p>
+      </div>
+
     </div>
   </section>
 
   <!-- OTHER SPORTS -->
+  <section id="other-sports">
 
-  <section id="other-sports" class="section">
-    <div class="container">
-      <h2>Otros deportes</h2>
+    <h2>Otros deportes</h2>
 
-      <div class="sports-grid">
+    <div class="sports-columns">
 
-        <div class="sport">
-          <span>🏎️</span>
-          <h3>F1</h3>
-        </div>
-
-        <div class="sport">
-          <span>🏀</span>
-          <h3>NBA</h3>
-        </div>
-
-        <div class="sport">
-          <span>⚾</span>
-          <h3>MLB</h3>
-        </div>
-
+      <div class="sport-column">
+        <div class="icon-circle">🏎️</div>
+        <h3>F1</h3>
+        <ul>
+          <li><a href="#">Resumen GP</a></li>
+        </ul>
       </div>
+
+      <div class="sport-column">
+        <div class="icon-circle">🏀</div>
+        <h3>NBA</h3>
+        <ul>
+          <li><a href="#">Playoffs</a></li>
+        </ul>
+      </div>
+
+      <div class="sport-column">
+        <div class="icon-circle">⚾</div>
+        <h3>MLB</h3>
+        <ul>
+          <li><a href="#">Temporada</a></li>
+        </ul>
+      </div>
+
     </div>
+
   </section>
 
-  <!-- FOOTER -->
-
   <footer>
-    <div class="container">
-      <p>Hector Hardy © 2026</p>
-    </div>
+    <p>Hector Hardy © 2026</p>
+    <p>Built with HTML, CSS & JavaScript</p>
+    <p><a href="https://github.com/hardyjr-hector" target="_blank">GitHub</a></p>
   </footer>
 
   <script src="JavaScript/script.js" defer></script>
+
 </body>
 
 </html>
