@@ -40,7 +40,7 @@ h2 {
 /* ===== NAVBAR ===== */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 25px 10%;
   position: sticky;
