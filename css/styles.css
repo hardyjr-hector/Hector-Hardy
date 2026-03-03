@@ -172,6 +172,12 @@ nav a:hover {
   opacity: 1;
 }
 
+.articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
