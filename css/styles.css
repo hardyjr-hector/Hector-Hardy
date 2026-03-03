@@ -21,6 +21,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  padding-top: 90px;
 }
 
 a {
@@ -101,6 +102,7 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top: 120px;
 }
 
 .hero h1 {
@@ -204,5 +206,13 @@ footer {
 
   nav a {
     margin-left: 15px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .navbar {
+    padding: 15px 6%;
   }
 }
