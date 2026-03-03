@@ -1,5 +1,4 @@
-// ===== NAVBAR BACKGROUND ON SCROLL =====
-
+// Navbar scroll effect
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
@@ -10,9 +9,16 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ===== FADE-IN ANIMATION ON SCROLL =====
+// Menu desplegable móvil
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-const elementsToFade = document.querySelectorAll('.project-card, .article-card');
+navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
+
+// Fade-in animation
+const elementsToFade = document.querySelectorAll('.project-card, .article-card, .jersey-card');
 
 const observerOptions = {
     threshold: 0.2
@@ -22,7 +28,7 @@ const fadeObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // stop observing after animation
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
