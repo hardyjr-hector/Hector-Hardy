@@ -231,31 +231,93 @@ footer {
   transform: translateY(0);
 }
 
+/* ===== Otros deportes estilo columnas ===== */
 .other-sports {
   padding: 80px 10%;
 }
 
 .other-sports h2 {
   font-size: 1.8rem;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  color: var(--text-primary);
+  text-align: center;
 }
 
-.other-sports ul {
-  list-style: none;
+/* Contenedor de columnas */
+.sports-columns {
   display: flex;
-  gap: 30px;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
-.other-sports ul li a {
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-decoration: underline;
+/* Cada columna */
+.sport-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 250px;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.other-sports ul li a:hover {
+.sport-column:hover {
+  transform: translateY(-5px);
+}
+
+/* Iconos circulares */
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  transition: background 0.3s ease;
+}
+
+.sport-column:hover .icon-circle {
+  background: #222;
+}
+
+/* Título de cada deporte */
+.sport-column h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+/* Lista de artículos */
+.sport-articles {
+  list-style: none;
+  padding: 0;
+}
+
+.sport-articles li {
+  margin-bottom: 8px;
+}
+
+.sport-articles li a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.sport-articles li a:hover {
   color: #ddd;
+}
+
+/* Responsive: columna única en móviles */
+@media (max-width: 768px) {
+  .sports-columns {
+    flex-direction: column;
+    gap: 30px;
+  }
 }
 
 .jerseys {
