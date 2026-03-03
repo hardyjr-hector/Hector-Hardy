@@ -37,3 +37,5 @@ elementsToFade.forEach(element => {
     element.classList.add('fade-in');
     fadeObserver.observe(element);
 });
+
+element.classList.add('fade-in');
