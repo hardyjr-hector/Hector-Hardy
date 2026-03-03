@@ -32,6 +32,12 @@ section {
   padding: 80px 10%;
 }
 
+@media (max-width: 768px) {
+  section {
+    padding: 60px 6%;
+  }
+}
+
 h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
@@ -60,7 +66,6 @@ h2 {
 .logo {
   position: relative;
   width: 160px;
-  /* Ajusta según tamaño real */
   height: 60px;
 }
 
@@ -164,11 +169,11 @@ nav a:hover {
 .article-card {
   background: var(--bg-secondary);
   padding: 30px;
-  margin-top: 30px;
   border-radius: 8px;
   transition: var(--transition);
 }
 
+/* Quitamos margin-top para usar solo gap en grid */
 .project-card:hover,
 .article-card:hover {
   background: #222;
@@ -194,6 +199,12 @@ nav a:hover {
   gap: 30px;
 }
 
+@media (min-width: 768px) {
+  .articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
@@ -216,14 +227,6 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  section {
-    padding: 60px 6%;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
   nav {
     gap: 15px;
   }
@@ -249,7 +252,7 @@ footer {
     height: 35px;
   }
 
-  .articles {
-    grid-template-columns: repeat(2, 1fr);
+  .hero h1 {
+    font-size: 2.2rem;
   }
 }
