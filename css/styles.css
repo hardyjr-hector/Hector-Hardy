@@ -55,7 +55,6 @@ h2 {
   height: 60px;
   display: flex;
   align-items: center;
-  size-adjust: initial;
 }
 
 .logo img {
