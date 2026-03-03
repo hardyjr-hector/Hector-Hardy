@@ -231,6 +231,106 @@ footer {
   transform: translateY(0);
 }
 
+.other-sports {
+  padding: 80px 10%;
+}
+
+.other-sports h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.other-sports ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.other-sports ul li a {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.other-sports ul li a:hover {
+  color: #ddd;
+}
+
+.jerseys {
+  padding: 80px 10%;
+}
+
+.jerseys h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+/* Contenedor con scroll horizontal */
+.jersey-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  /* scroll suave en iOS */
+  scrollbar-width: thin;
+  /* scrollbar delgado Firefox */
+  padding-bottom: 10px;
+  /* espacio para scrollbar */
+}
+
+/* Ocultar scrollbar en Webkit */
+.jersey-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.jersey-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.jersey-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.jersey-card {
+  flex: 0 0 auto;
+  width: 250px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  scroll-snap-align: start;
+}
+
+.jersey-card:hover {
+  background: #222;
+  transform: translateY(-5px);
+}
+
+.jersey-card img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  height: 150px;
+}
+
+.jersey-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.jersey-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   nav {
