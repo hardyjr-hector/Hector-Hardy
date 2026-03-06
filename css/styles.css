@@ -115,6 +115,11 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100vh;
+  background-image: url("assets/images/hero.svg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .hero h1 {
@@ -196,6 +201,44 @@ nav a:hover {
   .articles {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* ===== ANALISIS ===== */
+.analisis {
+  padding: 80px 10%;
+  background: #0f0f0f;
+  color: white;
+}
+
+.analisis h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2rem;
+}
+
+.analisis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.analisis-card {
+  background: #1a1a1a;
+  padding: 25px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.analisis-card:hover {
+  transform: translateY(-5px);
+}
+
+.analisis-card h3 {
+  margin-bottom: 10px;
+}
+
+.analisis-card p {
+  color: #aaa;
 }
 
 /* ===== FOOTER ===== */

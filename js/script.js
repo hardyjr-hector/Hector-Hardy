@@ -12,9 +12,25 @@ window.addEventListener('scroll', () => {
 // Menu desplegable móvil
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+const navItems = document.querySelectorAll('.nav-links a');
 
+// Abrir / cerrar menú
 navToggle.addEventListener('click', () => {
     navLinks.classList.toggle('show');
+});
+
+// Cerrar menú cuando se hace click en un enlace
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+    });
+});
+
+// Cerrar menú cuando se hace click fuera del menú
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+        navLinks.classList.remove('show');
+    }
 });
 
 // Fade-in animation
@@ -37,5 +53,3 @@ elementsToFade.forEach(element => {
     element.classList.add('fade-in');
     fadeObserver.observe(element);
 });
-
-element.classList.add('fade-in');
