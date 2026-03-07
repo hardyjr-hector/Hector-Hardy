@@ -53,3 +53,30 @@ elementsToFade.forEach(element => {
     element.classList.add('fade-in');
     fadeObserver.observe(element);
 });
+
+// Camisetas de fútbol
+const jerseys = [
+    {
+        team: "AC MILAN",
+        year: "2024/2025",
+        competition: "Serie A",
+        img: "../assets/images/acmilan1.jpg",
+        desc: "Primera equipación AC MILAN 2024/2025"
+    }
+
+    {
+        team: "AC MILAN",
+        year: "2024/2025",
+        competition: "Serie A",
+        img: "../assets/images/acmilan3.jpg",
+        desc: "Segunda equipación AC MILAN 2024/2025"
+    }
+
+    {
+        team: "AC MILAN",
+        year: "2008/2009",
+        competition: "Serie A",
+        img: "../assets/images/acmilan2.jpg",
+        desc: "Primera equipación AC MILAN 2008/2009"
+    }
+];
