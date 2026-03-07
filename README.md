@@ -1,8 +1,4 @@
-La Pizarra
-Proyecto personal de análisis deportivo y desarrollo web enfocado en la construcción de producto digital.
-
-Contexto
-La Pizarra es un proyecto personal desarrollado como parte de mi transición profesional hacia el sector tecnológico.
+Esta web es un proyecto personal desarrollado como parte de mi transición profesional hacia el sector tecnológico.
 Combina:
 Análisis deportivo.
 Desarrollo front-end.
@@ -18,7 +14,7 @@ Animaciones basadas en scroll con Intersection Observer.
 Navbar fija (sticky navigation).
 Manipulación del DOM con JavaScript.
 
-Lo que aprendí construyendo este proyecto
+Lo que aprendo construyendo este proyecto
 Organización estructurada de archivos en un proyecto real.
 Separación de responsabilidades (HTML / CSS / JS).
 Uso eficiente del DOM.
