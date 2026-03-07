@@ -120,6 +120,7 @@ nav a:hover {
   background-size: cover;
   background-position: center;
   position: relative;
+  padding: 0 10%;
 }
 
 .hero h1 {
