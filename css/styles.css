@@ -116,7 +116,7 @@ nav a:hover {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  background-image: url("assets/images/hero.jpg");
+  background-image: url("../assets/images/hero.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
