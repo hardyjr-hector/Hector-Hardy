@@ -60,23 +60,40 @@ const jerseys = [
         team: "AC MILAN",
         year: "2024/2025",
         competition: "Serie A",
-        img: "../assets/images/acmilan1.jpg",
+        img: "assets/images/acmilan1.jpg",
         desc: "Primera equipación AC MILAN 2024/2025"
-    }
+    },
 
     {
         team: "AC MILAN",
         year: "2024/2025",
         competition: "Serie A",
-        img: "../assets/images/acmilan3.jpg",
+        img: "assets/images/acmilan3.jpg",
         desc: "Segunda equipación AC MILAN 2024/2025"
-    }
+    },
 
     {
         team: "AC MILAN",
         year: "2008/2009",
         competition: "Serie A",
-        img: "../assets/images/acmilan2.jpg",
+        img: "assets/images/acmilan2.jpg",
         desc: "Primera equipación AC MILAN 2008/2009"
     }
 ];
+
+const container = document.getElementById("jersey-container");
+
+jerseys.forEach(jersey => {
+
+    const card = document.createElement("div");
+    card.classList.add("jersey-card");
+
+    card.innerHTML = `
+    <img src="${jersey.img}" alt="${jersey.team}">
+    <h3>${jersey.team}</h3>
+    <p>${jersey.desc}</p>
+  `;
+
+    container.appendChild(card);
+
+});
