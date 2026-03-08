@@ -57,7 +57,7 @@ elementsToFade.forEach(element => {
 // Camisetas de fútbol
 const jerseys = [
     {
-        team: "AC MILAN",
+        team: "AC Milan",
         year: "2024/2025",
         competition: "Serie A",
         img: "assets/images/acmilan1.jpg",
@@ -65,7 +65,7 @@ const jerseys = [
     },
 
     {
-        team: "AC MILAN",
+        team: "AC Milan",
         year: "2024/2025",
         competition: "Serie A",
         img: "assets/images/acmilan3.jpg",
@@ -73,12 +73,100 @@ const jerseys = [
     },
 
     {
-        team: "AC MILAN",
+        team: "AC Milan",
         year: "2008/2009",
         competition: "Serie A",
         img: "assets/images/acmilan2.jpg",
         desc: "Primera equipación AC MILAN 2008/2009"
-    }
+    },
+
+    {
+        team: "Alemania",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/alemania.jpg",
+        desc: "Primera equipación Alemania Eurocopa 2024"
+    },
+
+    {
+        team: "Argentina",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/argentina1.jpg",
+        desc: "Segunda equipación Argentina 2024"
+    },
+
+    {
+        team: "Argentina",
+        year: "1994",
+        competition: "Selecciones",
+        img: "assets/images/argentina2.jpg",
+        desc: "Segunda equipación Argentina Mundial 1994"
+    },
+
+    {
+        team: "Argentina",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/argentina3.jpg",
+        desc: "Primera equipación Argentina 2024"
+    },
+
+    {
+        team: "Argentina",
+        year: "2022",
+        competition: "Selecciones",
+        img: "assets/images/argentina4.jpg",
+        desc: "Primera equipación Argentina Mundial 2022"
+    },
+
+    {
+        team: "Argentina",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/argentina5.jpg",
+        desc: "Edición especial de estilo lifestyle 2024"
+    },
+
+    {
+        team: "Argentina",
+        year: "2023",
+        competition: "Selecciones",
+        img: "assets/images/argentina6.jpg",
+        desc: "Segunda equipación Argentina 2023"
+    },
+
+    {
+        team: "Arsenal",
+        year: "2006/2007",
+        competition: "Premier League",
+        img: "assets/images/arsenal.jpg",
+        desc: "Primera equipación Arsenal 2006/2007"
+    },
+
+    {
+        team: "AS Roma",
+        year: "2024/2025",
+        competition: "Serie A",
+        img: "assets/images/asroma.jpg",
+        desc: "Segunda equipación AS Roma 2024/2025"
+    },
+
+    {
+        team: "Atlético de Madrid",
+        year: "2024/2025",
+        competition: "La Liga",
+        img: "assets/images/atletico_madrid.jpg",
+        desc: "Primera equipación Atlético de Madrid 2024/2025"
+    },
+
+    {
+        team: "Barcelona SC",
+        year: "2015/2016",
+        competition: "Liga Pro Ecuador",
+        img: "assets/images/barcelona_guayaquil.jpg",
+        desc: "Primera equipación Barcelona SC 2015/2016"
+    },
 ];
 
 const container = document.getElementById("jersey-container");
