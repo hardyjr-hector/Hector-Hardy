@@ -167,6 +167,38 @@ const jerseys = [
         img: "assets/images/barcelona_guayaquil.jpg",
         desc: "Primera equipación Barcelona SC 2015/2016"
     },
+
+    {
+        team: "Bayer Leverkusen",
+        year: "2024/2025",
+        competition: "Bundesliga",
+        img: "assets/images/bayer_leverkusen.jpg",
+        desc: "Primera equipación Bayer Leverkusen 2024/2025"
+    },
+
+    {
+        team: "Benfica",
+        year: "1998/1999",
+        competition: "Bundesliga",
+        img: "assets/images/benfica.jpg",
+        desc: "Segunda equipación Benfica 1998/1999"
+    },
+
+    {
+        team: "Boca Juniors",
+        year: "2023/2024",
+        competition: "Primera División Argentina",
+        img: "assets/images/boca_juniors1.jpg",
+        desc: "Primera equipación Boca Juniors 2023/2024"
+    },
+
+    {
+        team: "Boca Juniors",
+        year: "2005",
+        competition: "Primera División Argentina",
+        img: "assets/images/boca_juniors2.jpg",
+        desc: "Reedición moderna de primera equipación Boca Juniors 2005"
+    },
 ];
 
 const container = document.getElementById("jersey-container");
