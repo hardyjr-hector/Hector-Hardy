@@ -199,6 +199,54 @@ const jerseys = [
         img: "assets/images/boca_juniors2.jpg",
         desc: "Reedición moderna de primera equipación Boca Juniors 2005"
     },
+
+    {
+        team: "Borussia Dortmund",
+        year: "2024/2025",
+        competition: "Bundesliga",
+        img: "assets/images/borussia_dortmund.jpg",
+        desc: "Primera equipación Borussia Dortmund 2024/2025"
+    },
+
+    {
+        team: "Brasil",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/brasil.jpg",
+        desc: "Primera equipación Brasil Copa América 2024"
+    },
+
+    {
+        team: "Chelsea",
+        year: "2024/2025",
+        competition: "Premier League",
+        img: "assets/images/chelsea.jpg",
+        desc: "Primera equipación Chelsea 2024/2025"
+    },
+
+    {
+        team: "Corinthians",
+        year: "2024/2025",
+        competition: "Brasileirao",
+        img: "assets/images/corintians.jpg",
+        desc: "Primera equipación Corinthians 2024/2025"
+    },
+
+    {
+        team: "Ecuador",
+        year: "2015",
+        competition: "Selecciones",
+        img: "assets/images/ecuador.jpg",
+        desc: "Primera equipación Ecuador"
+    },
+
+    {
+        team: "España",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/españa.jpg",
+        desc: "Primera equipación España Eurocopa 2024"
+    },
 ];
 
 const container = document.getElementById("jersey-container");
