@@ -1,61 +1,80 @@
-// Navbar scroll effect
-const navbar = document.querySelector('.navbar');
+// ==========================
+// NAVBAR SCROLL EFFECT
+// ==========================
 
-window.addEventListener('scroll', () => {
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
     if (window.scrollY > 80) {
-        navbar.classList.add('scrolled');
+        navbar.classList.add("scrolled");
     } else {
-        navbar.classList.remove('scrolled');
+        navbar.classList.remove("scrolled");
     }
 });
 
-// Menu desplegable móvil
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-const navItems = document.querySelectorAll('.nav-links a');
 
-// Abrir / cerrar menú
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
+// ==========================
+// MENU MOVIL
+// ==========================
+
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks = document.querySelector(".nav-links");
+const navItems = document.querySelectorAll(".nav-links a");
+
+navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
 });
 
-// Cerrar menú cuando se hace click en un enlace
 navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        navLinks.classList.remove('show');
+    item.addEventListener("click", () => {
+        navLinks.classList.remove("show");
     });
 });
 
-// Cerrar menú cuando se hace click fuera del menú
-document.addEventListener('click', (e) => {
+document.addEventListener("click", (e) => {
     if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-        navLinks.classList.remove('show');
+        navLinks.classList.remove("show");
     }
 });
 
-// Fade-in animation
-const elementsToFade = document.querySelectorAll('.project-card, .article-card, .jersey-card');
+
+// ==========================
+// FADE IN ANIMATION
+// ==========================
 
 const observerOptions = {
     threshold: 0.2
 };
 
 const fadeObserver = new IntersectionObserver((entries, observer) => {
+
     entries.forEach(entry => {
+
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add("visible");
             observer.unobserve(entry.target);
         }
+
     });
+
 }, observerOptions);
 
-elementsToFade.forEach(element => {
-    element.classList.add('fade-in');
-    fadeObserver.observe(element);
+
+// animar elementos existentes
+const elementsToFade = document.querySelectorAll(".project-card, .article-card");
+
+elementsToFade.forEach(el => {
+    el.classList.add("fade-in");
+    fadeObserver.observe(el);
 });
 
-// Camisetas de fútbol
+
+// ==========================
+// CAMISETAS
+// ==========================
+
 const jerseys = [
+
     {
         team: "AC Milan",
         year: "2024/2025",
@@ -481,7 +500,7 @@ const jerseys = [
     },
 
     {
-        team: "Culb Atlético River Plate",
+        team: "Club Atlético River Plate",
         year: "2024/2025",
         competition: "Primera División Argentina",
         img: "assets/images/river_plate.jpg",
@@ -489,7 +508,7 @@ const jerseys = [
     },
 
     {
-        team: "Santos Futebal Clube",
+        team: "Santos Futebol Clube",
         year: "2024/2025",
         competition: "Brasileirao",
         img: "assets/images/santos1.jpg",
@@ -497,7 +516,7 @@ const jerseys = [
     },
 
     {
-        team: "Santos Futebal Clube",
+        team: "Santos Futebol Clube",
         year: "2011/2012",
         competition: "Brasileirao",
         img: "assets/images/santos2.jpg",
@@ -520,9 +539,9 @@ const jerseys = [
         desc: "Primera equipación Venezuela 2022/2023"
     },
 
-];
-
-// SISTEMA DE RENDER
+// ==========================
+// VARIABLES RENDER
+// ==========================
 
 const container = document.getElementById("jersey-container");
 
@@ -531,26 +550,33 @@ let currentIndex = 0;
 let currentList = [];
 
 
+// ==========================
 // CREAR CARD
+// ==========================
 
 function createCard(jersey) {
 
     const card = document.createElement("div");
 
-    card.classList.add("jersey-card");
+    card.classList.add("jersey-card", "fade-in");
 
     card.innerHTML = `
-        <img src="${jersey.img}" alt="${jersey.team}">
-        <h3>${jersey.team}</h3>
-        <p>${jersey.desc}</p>
-    `;
+<img loading="lazy" src="${jersey.img}" alt="${jersey.team}">
+<h3>${jersey.team}</h3>
+<p>${jersey.desc}</p>
+`;
 
     container.appendChild(card);
+
+    // activar animacion
+    fadeObserver.observe(card);
 
 }
 
 
+// ==========================
 // CARGA PROGRESIVA
+// ==========================
 
 function loadJerseys() {
 
@@ -565,7 +591,9 @@ function loadJerseys() {
 }
 
 
-// RENDER INICIAL
+// ==========================
+// RENDER
+// ==========================
 
 function renderInitial(list) {
 
@@ -580,7 +608,9 @@ function renderInitial(list) {
 }
 
 
+// ==========================
 // SCROLL INFINITO
+// ==========================
 
 container.addEventListener("scroll", () => {
 
@@ -593,7 +623,9 @@ container.addEventListener("scroll", () => {
 });
 
 
-// BUSCADOR
+// ==========================
+// FILTROS
+// ==========================
 
 const searchTeam = document.getElementById("searchTeam");
 const searchCompetition = document.getElementById("searchCompetition");
@@ -602,9 +634,9 @@ const searchYear = document.getElementById("searchYear");
 
 function filterJerseys() {
 
-    const team = searchTeam.value.toLowerCase();
-    const competition = searchCompetition.value;
-    const year = searchYear.value;
+    const team = searchTeam ? searchTeam.value.toLowerCase() : "";
+    const competition = searchCompetition ? searchCompetition.value : "";
+    const year = searchYear ? searchYear.value : "";
 
     const filtered = jerseys.filter(jersey => {
 
@@ -623,14 +655,20 @@ function filterJerseys() {
 }
 
 
-searchTeam.addEventListener("input", filterJerseys);
-searchCompetition.addEventListener("change", filterJerseys);
-searchYear.addEventListener("input", filterJerseys);
+// listeners seguros
+
+if (searchTeam) searchTeam.addEventListener("input", filterJerseys);
+if (searchCompetition) searchCompetition.addEventListener("change", filterJerseys);
+if (searchYear) searchYear.addEventListener("input", filterJerseys);
 
 
-// GENERAR FILTRO DE LIGAS AUTOMATICO
+// ==========================
+// GENERAR FILTRO LIGAS
+// ==========================
 
 function generateCompetitionFilter() {
+
+    if (!searchCompetition) return;
 
     const competitions = [...new Set(jerseys.map(j => j.competition))];
 
@@ -650,7 +688,9 @@ function generateCompetitionFilter() {
 }
 
 
+// ==========================
 // INICIAR WEB
+// ==========================
 
 generateCompetitionFilter();
 renderInitial(jerseys);
