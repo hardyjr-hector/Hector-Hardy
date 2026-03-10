@@ -185,7 +185,7 @@ const jerseys = [
     },
 
     {
-        team: "Boca Juniors",
+        team: "Club Atlético Boca Juniors",
         year: "2023/2024",
         competition: "Primera División Argentina",
         img: "assets/images/boca_juniors1.jpg",
@@ -481,11 +481,43 @@ const jerseys = [
     },
 
     {
-        team: "River Plate",
+        team: "Culb Atlético River Plate",
         year: "2024/2025",
         competition: "Primera División Argentina",
         img: "assets/images/river_plate.jpg",
         desc: "Primera equipación River Plate 2024/2025"
+    },
+
+    {
+        team: "Santos Futebal Clube",
+        year: "2024/2025",
+        competition: "Brasileirao",
+        img: "assets/images/santos1.jpg",
+        desc: "Primera equipación Santos 2024/2025"
+    },
+
+    {
+        team: "Santos Futebal Clube",
+        year: "2011/2012",
+        competition: "Brasileirao",
+        img: "assets/images/santos2.jpg",
+        desc: "Primera equipación Santos 2011/2012"
+    },
+
+    {
+        team: "Sporting Clube de Portugal",
+        year: "2024/2025",
+        competition: "Primeira Liga",
+        img: "assets/images/sporting_lisboa.jpg",
+        desc: "Primera equipación Sporting de Lisboa 2024/2025"
+    },
+
+    {
+        team: "Venezuela",
+        year: "2022/2023",
+        competition: "Venezuela",
+        img: "assets/images/venezuela.jpg",
+        desc: "Primera equipación Venezuela 2022/2023"
     },
 
 ];
