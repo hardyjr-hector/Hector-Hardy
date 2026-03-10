@@ -198,7 +198,7 @@ const jerseys = [
     {
         team: "Benfica",
         year: "1998/1999",
-        competition: "Bundesliga",
+        competition: "Primeira Liga",
         img: "assets/images/benfica.jpg",
         desc: "Segunda equipación Benfica 1998/1999"
     },
@@ -534,7 +534,7 @@ const jerseys = [
     {
         team: "Venezuela",
         year: "2022/2023",
-        competition: "Venezuela",
+        competition: "Selecciones",
         img: "assets/images/venezuela.jpg",
         desc: "Primera equipación Venezuela 2022/2023"
     },
@@ -686,7 +686,7 @@ function generateCompetitionFilter() {
 
     });
 
-};
+}
 
 // CONTADOR DE CAMISETAS
 const jerseysTitle = document.querySelector(".jerseys h2");
