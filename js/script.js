@@ -538,6 +538,7 @@ const jerseys = [
         img: "assets/images/venezuela.jpg",
         desc: "Primera equipación Venezuela 2022/2023"
     },
+]
 
 // ==========================
 // VARIABLES RENDER
