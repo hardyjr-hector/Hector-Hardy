@@ -420,7 +420,7 @@ const jerseys = [
         team: "SSC Napoli",
         year: "2024/2025",
         competition: "Serie A",
-        img: "assets/images/napoli.jpg",
+        img: "assets/images/napoles.jpg",
         desc: "Primera equipación Napoli 2024/2025"
     },
 
