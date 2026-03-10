@@ -323,6 +323,23 @@ footer {
   color: var(--text-secondary);
 }
 
+.jersey-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.jersey-search input,
+.jersey-search select {
+  padding: 8px 10px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
 /* ===== OTROS DEPORTES ===== */
 .other-sports h2 {
   font-size: 1.8rem;

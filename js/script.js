@@ -524,17 +524,74 @@ const jerseys = [
 
 const container = document.getElementById("jersey-container");
 
-jerseys.forEach(jersey => {
+let visible = 8;
 
-    const card = document.createElement("div");
-    card.classList.add("jersey-card");
+function renderJerseys(list) {
 
-    card.innerHTML = `
-    <img src="${jersey.img}" alt="${jersey.team}">
-    <h3>${jersey.team}</h3>
-    <p>${jersey.desc}</p>
-  `;
+    container.innerHTML = "";
 
-    container.appendChild(card);
+    list.slice(0, visible).forEach(jersey => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("jersey-card");
+
+        card.innerHTML = `
+
+<img src="${jersey.img}" alt="${jersey.team}">
+<h3>${jersey.team}</h3>
+<p>${jersey.desc}</p>
+
+`;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+renderJerseys(jerseys);
+
+container.addEventListener("scroll", () => {
+
+    if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
+
+        visible += 4;
+
+        renderJerseys(jerseys);
+
+    }
 
 });
+
+const searchTeam = document.getElementById("searchTeam");
+const searchCompetition = document.getElementById("searchCompetition");
+const searchYear = document.getElementById("searchYear");
+
+function filterJerseys() {
+
+    const team = searchTeam.value.toLowerCase();
+    const competition = searchCompetition.value;
+    const year = searchYear.value;
+
+    const filtered = jerseys.filter(jersey => {
+
+        return (
+
+            jersey.team.toLowerCase().includes(team) &&
+            (competition === "" || jersey.competition === competition) &&
+            (year === "" || jersey.year.includes(year))
+
+        );
+
+    });
+
+    visible = filtered.length;
+
+    renderJerseys(filtered);
+
+}
+
+searchTeam.addEventListener("input", filterJerseys);
+searchCompetition.addEventListener("change", filterJerseys);
+searchYear.addEventListener("input", filterJerseys);
