@@ -668,24 +668,18 @@ if (searchYear) searchYear.addEventListener("input", filterJerseys);
 // ==========================
 
 function generateCompetitionFilter() {
-
     if (!searchCompetition) return;
 
+    // Obtenemos las competiciones únicas
     const competitions = [...new Set(jerseys.map(j => j.competition))];
-
     competitions.sort();
 
     competitions.forEach(comp => {
-
         const option = document.createElement("option");
-
         option.value = comp;
         option.textContent = comp;
-
         searchCompetition.appendChild(option);
-
     });
-
 }
 
 // CONTADOR DE CAMISETAS
