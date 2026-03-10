@@ -686,7 +686,7 @@ function generateCompetitionFilter() {
 
     });
 
-}
+};
 
 // CONTADOR DE CAMISETAS
 const jerseysTitle = document.querySelector(".jerseys h2");
