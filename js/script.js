@@ -423,7 +423,7 @@ const jerseys = [
         team: "Manchester United",
         year: "2023/2024",
         competition: "Premier League",
-        img: "assets/images/man_united1.jpg",
+        img: "assets/images/man_united2.jpg",
         desc: "Segunda equipación Manchester United 2023/2024"
     },
 
@@ -431,7 +431,7 @@ const jerseys = [
         team: "Manchester United",
         year: "2024/2025",
         competition: "Premier League",
-        img: "assets/images/man_united2.jpg",
+        img: "assets/images/man_united1.jpg",
         desc: "Primera equipación Manchester United 2024/2025"
     },
 
