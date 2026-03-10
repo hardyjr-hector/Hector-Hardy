@@ -262,6 +262,54 @@ footer {
   color: #777;
 }
 
+.footer-contacto {
+  background-color: #1a1a1a;
+  /* Un tono oscuro elegante */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 2px solid #333;
+}
+
+.contacto-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.btn-contacto,
+.btn-cv {
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.btn-contacto:hover {
+  background-color: #333;
+}
+
+.btn-cv {
+  background-color: #007bff;
+  /* Azul para resaltar el CV */
+  border-color: #007bff;
+  font-weight: bold;
+}
+
+.btn-cv:hover {
+  background-color: #0056b3;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 30px;
+}
+
 /* ===== JERSEYS ===== */
 .jerseys h2 {
   font-size: 1.8rem;
