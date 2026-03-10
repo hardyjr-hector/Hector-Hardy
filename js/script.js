@@ -247,6 +247,247 @@ const jerseys = [
         img: "assets/images/españa.jpg",
         desc: "Primera equipación España Eurocopa 2024"
     },
+
+    {
+        team: "FC Barcelona",
+        year: "2022/2023",
+        competition: "La Liga",
+        img: "assets/images/fcb1.jpg",
+        desc: "Tercera equipación FC Barcelona 2022/2023"
+    },
+
+    {
+        team: "FC Barcelona",
+        year: "2004/2005",
+        competition: "La Liga",
+        img: "assets/images/fcb2.jpg",
+        desc: "Segunda equipación FC Barcelona 2004/2005"
+    },
+
+    {
+        team: "FC Barcelona",
+        year: "2024/2025",
+        competition: "La Liga",
+        img: "assets/images/fcb3.jpg",
+        desc: "Tercera equipación FC Barcelona 2024/2025"
+    },
+
+    {
+        team: "FC Barcelona",
+        year: "2024/2025",
+        competition: "La Liga",
+        img: "assets/images/fcb4.jpg",
+        desc: "Segunda equipación FC Barcelona 2024/2025"
+    },
+
+    {
+        team: "FC Barcelona",
+        year: "1998/1999",
+        competition: "La Liga",
+        img: "assets/images/fcb5.jpg",
+        desc: "Primera equipación FC Barcelona 1998/1999. Edición centenario"
+    },
+
+    {
+        team: "FC Barcelona",
+        year: "2024/2025",
+        competition: "La Liga",
+        img: "assets/images/fcb6.jpg",
+        desc: "Primera equipación FC Barcelona 2024/2025"
+    },
+
+    {
+        team: "FC Barcelona",
+        year: "2009/2010",
+        competition: "La Liga",
+        img: "assets/images/fcb7.jpg",
+        desc: "Primera equipación FC Barcelona 2009/2010"
+    },
+
+    {
+        team: "ACF Fiorentina",
+        year: "1998/1999",
+        competition: "Serie A",
+        img: "assets/images/fiorentina.jpg",
+        desc: "Primera equipación Fiorentina 1998/1999"
+    },
+
+    {
+        team: "Francia",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/francia1.jpg",
+        desc: "Segunda equipación Francia Eurocopa 2024"
+    },
+
+    {
+        team: "Francia",
+        year: "2006",
+        competition: "Selecciones",
+        img: "assets/images/francia2.jpg",
+        desc: "Segunda equipación Francia Mundial 2006"
+    },
+
+    {
+        team: "Holanda",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/holanda.jpg",
+        desc: "Primera equipación Holanda Eurocopa 2024"
+    },
+
+    {
+        team: "Inglaterra",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/inglaterra1.jpg",
+        desc: "Primera equipación Inglaterra Eurocopa 2024"
+    },
+
+    {
+        team: "Inglaterra",
+        year: "2006",
+        competition: "Selecciones",
+        img: "assets/images/inglaterra2.jpg",
+        desc: "Primera equipación Inglaterra Mundial 2006"
+    },
+
+    {
+        team: "Inter Miami",
+        year: "2024/2025",
+        competition: "MLS",
+        img: "assets/images/inter_miami1.jpg",
+        desc: "Segunda equipación Inter Miami 2024/2025"
+    },
+
+    {
+        team: "Inter Miami",
+        year: "2023/2024",
+        competition: "MLS",
+        img: "assets/images/inter_miami2.jpg",
+        desc: "Primera equipación Inter Miami 2023/2024"
+    },
+
+    {
+        team: "FC Inter Milan",
+        year: "2024/2025",
+        competition: "Serie A",
+        img: "assets/images/inter_milan.jpg",
+        desc: "Segunda equipación Inter Milan 2024/2025"
+    },
+
+    {
+        team: "Italia",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/italia.jpg",
+        desc: "Primera equipación Italia Eurocopa 2024"
+    },
+
+    {
+        team: "Manchester City",
+        year: "2023/2024",
+        competition: "Premier League",
+        img: "assets/images/man_city1.jpg",
+        desc: "Primera equipación Manchester City 2023/2024"
+    },
+
+    {
+        team: "Manchester City",
+        year: "2024/2025",
+        competition: "Premier League",
+        img: "assets/images/man_city2.jpg",
+        desc: "Segunda equipación Manchester City 2024/2025"
+    },
+
+    {
+        team: "Manchester United",
+        year: "2023/2024",
+        competition: "Premier League",
+        img: "assets/images/man_united1.jpg",
+        desc: "Segunda equipación Manchester United 2023/2024"
+    },
+
+    {
+        team: "Manchester United",
+        year: "2024/2025",
+        competition: "Premier League",
+        img: "assets/images/man_united2.jpg",
+        desc: "Primera equipación Manchester United 2024/2025"
+    },
+
+    {
+        team: "SSC Napoli",
+        year: "2024/2025",
+        competition: "Serie A",
+        img: "assets/images/napoli.jpg",
+        desc: "Primera equipación Napoli 2024/2025"
+    },
+
+    {
+        team: "Portugal",
+        year: "2024",
+        competition: "Selecciones",
+        img: "assets/images/portugal.jpg",
+        desc: "Primera equipación Portugal Eurocopa 2024"
+    },
+
+    {
+        team: "Paris Saint Germain FC",
+        year: "2021/2022",
+        competition: "Ligue 1",
+        img: "assets/images/psg1.jpg",
+        desc: "Primera equipación PSG 2021/2022"
+    },
+
+    {
+        team: "Paris Saint Germain FC",
+        year: "2003/2004",
+        competition: "Ligue 1",
+        img: "assets/images/psg2.jpg",
+        desc: "Primera equipación PSG 2003/2004"
+    },
+
+    {
+        team: "Paris Saint Germain FC",
+        year: "2024/2025",
+        competition: "Ligue 1",
+        img: "assets/images/psg3.jpg",
+        desc: "Tercera equipación PSG 2024/2025"
+    },
+
+    {
+        team: "Real Betis Balompié",
+        year: "2025/2026",
+        competition: "La Liga",
+        img: "assets/images/real_betis1.jpg",
+        desc: "Edición especial Betis 2025/2026"
+    },
+
+    {
+        team: "Real Betis Balompié",
+        year: "1987/1988",
+        competition: "La Liga",
+        img: "assets/images/real_betis2.jpg",
+        desc: "Primera equipación Betis 1987/1988"
+    },
+
+    {
+        team: "Real Madrid CF",
+        year: "2024/2025",
+        competition: "La Liga",
+        img: "assets/images/real_madrid.jpg",
+        desc: "Primera equipación Real Madrid 2024/2025"
+    },
+
+    {
+        team: "River Plate",
+        year: "2024/2025",
+        competition: "Primera División Argentina",
+        img: "assets/images/river_plate.jpg",
+        desc: "Primera equipación River Plate 2024/2025"
+    },
+
 ];
 
 const container = document.getElementById("jersey-container");
