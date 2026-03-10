@@ -193,7 +193,7 @@ const jerseys = [
     },
 
     {
-        team: "Boca Juniors",
+        team: "Club Atlético Boca Juniors",
         year: "2005",
         competition: "Primera División Argentina",
         img: "assets/images/boca_juniors2.jpg",
