@@ -522,12 +522,17 @@ const jerseys = [
 
 ];
 
+// SISTEMA DE RENDER
+
 const container = document.getElementById("jersey-container");
 
 let visible = 8;
 let currentIndex = 0;
+let currentList = [];
 
-// Crear tarjeta
+
+// CREAR CARD
+
 function createCard(jersey) {
 
     const card = document.createElement("div");
@@ -541,39 +546,59 @@ function createCard(jersey) {
     `;
 
     container.appendChild(card);
+
 }
 
 
-// Cargar camisetas progresivamente
-function loadJerseys(list) {
+// CARGA PROGRESIVA
 
-    if (currentIndex >= list.length) return;
+function loadJerseys() {
 
-    const next = list.slice(currentIndex, currentIndex + visible);
+    if (currentIndex >= currentList.length) return;
+
+    const next = currentList.slice(currentIndex, currentIndex + visible);
 
     next.forEach(jersey => createCard(jersey));
 
     currentIndex += visible;
+
 }
 
 
-// Cargar primeras camisetas
-loadJerseys(jerseys);
+// RENDER INICIAL
+
+function renderInitial(list) {
+
+    container.innerHTML = "";
+
+    currentIndex = 0;
+
+    currentList = list;
+
+    loadJerseys();
+
+}
 
 
-// Scroll infinito horizontal
+// SCROLL INFINITO
+
 container.addEventListener("scroll", () => {
 
     if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
 
-        loadJerseys(jerseys);
+        loadJerseys();
 
     }
 
 });
+
+
+// BUSCADOR
+
 const searchTeam = document.getElementById("searchTeam");
 const searchCompetition = document.getElementById("searchCompetition");
 const searchYear = document.getElementById("searchYear");
+
 
 function filterJerseys() {
 
@@ -593,12 +618,39 @@ function filterJerseys() {
 
     });
 
-    visible = filtered.length;
-
-    renderJerseys(filtered);
+    renderInitial(filtered);
 
 }
+
 
 searchTeam.addEventListener("input", filterJerseys);
 searchCompetition.addEventListener("change", filterJerseys);
 searchYear.addEventListener("input", filterJerseys);
+
+
+// GENERAR FILTRO DE LIGAS AUTOMATICO
+
+function generateCompetitionFilter() {
+
+    const competitions = [...new Set(jerseys.map(j => j.competition))];
+
+    competitions.sort();
+
+    competitions.forEach(comp => {
+
+        const option = document.createElement("option");
+
+        option.value = comp;
+        option.textContent = comp;
+
+        searchCompetition.appendChild(option);
+
+    });
+
+}
+
+
+// INICIAR WEB
+
+generateCompetitionFilter();
+renderInitial(jerseys);
