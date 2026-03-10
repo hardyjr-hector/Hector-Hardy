@@ -687,6 +687,9 @@ function generateCompetitionFilter() {
 
 }
 
+// CONTADOR DE CAMISETAS
+const jerseysTitle = document.querySelector(".jerseys h2");
+jerseysTitle.textContent = `Camisetas de fútbol (${jerseys.length})`;
 
 // ==========================
 // INICIAR WEB
