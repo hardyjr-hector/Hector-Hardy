@@ -525,45 +525,52 @@ const jerseys = [
 const container = document.getElementById("jersey-container");
 
 let visible = 8;
+let currentIndex = 0;
 
-function renderJerseys(list) {
+// Crear tarjeta
+function createCard(jersey) {
 
-    container.innerHTML = "";
+    const card = document.createElement("div");
 
-    list.slice(0, visible).forEach(jersey => {
+    card.classList.add("jersey-card");
 
-        const card = document.createElement("div");
+    card.innerHTML = `
+        <img src="${jersey.img}" alt="${jersey.team}">
+        <h3>${jersey.team}</h3>
+        <p>${jersey.desc}</p>
+    `;
 
-        card.classList.add("jersey-card");
-
-        card.innerHTML = `
-
-<img src="${jersey.img}" alt="${jersey.team}">
-<h3>${jersey.team}</h3>
-<p>${jersey.desc}</p>
-
-`;
-
-        container.appendChild(card);
-
-    });
-
+    container.appendChild(card);
 }
 
-renderJerseys(jerseys);
 
+// Cargar camisetas progresivamente
+function loadJerseys(list) {
+
+    if (currentIndex >= list.length) return;
+
+    const next = list.slice(currentIndex, currentIndex + visible);
+
+    next.forEach(jersey => createCard(jersey));
+
+    currentIndex += visible;
+}
+
+
+// Cargar primeras camisetas
+loadJerseys(jerseys);
+
+
+// Scroll infinito horizontal
 container.addEventListener("scroll", () => {
 
     if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
 
-        visible += 4;
-
-        renderJerseys(jerseys);
+        loadJerseys(jerseys);
 
     }
 
 });
-
 const searchTeam = document.getElementById("searchTeam");
 const searchCompetition = document.getElementById("searchCompetition");
 const searchYear = document.getElementById("searchYear");
