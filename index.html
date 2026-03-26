@@ -38,7 +38,7 @@
       <!--<a href="#projects">Proyectos</a>-->
       <a href="#articles">Artículos</a>
       <a href="#jerseys">Colección de camisetas</a>
-      <a href="#other-sports">Otros deportes</a>
+      <!--<a href="#other-sports">Otros deportes</a>-->
     </nav>
   </header>
 
@@ -112,13 +112,18 @@
   </section>
 
   <section id="analisis" class="analisis">
-    <h2>Datos y análisis (Próximamente)</h2>
+    <h2>Datos y análisis</h2>
 
     <div class="analisis-grid">
 
-      <div class="analisis-card">
+      <div class="analisis-card" onclick="loadShotMap()">
         <h3>Mapa de tiros</h3>
-        <p>Análisis visual de los disparos en partidos de fútbol usando datos y programación.</p>
+        <p>Visualización interactiva de disparos en partidos reales.</p>
+      </div>
+
+      <div id="shotmap-section" style="display:none; margin-top:50px;">
+        <h3>Mapa de tiros</h3>
+        <canvas id="pitch" width="600" height="400"></canvas>
       </div>
 
       <div class="analisis-card">
@@ -135,7 +140,7 @@
   </section>
 
   <section id="jerseys" class="jerseys">
-    <h2>Camisetas de fútbol</h2>
+    <h2>Colección de camisetas de fútbol</h2>
     <div class="jersey-search">
       <input type="text" id="searchTeam" placeholder="Equipo">
       <select id="searchCompetition">
@@ -147,7 +152,7 @@
     </div>
   </section>
 
-  <section id="other-sports" class="other-sports">
+  <!--<section id="other-sports" class="other-sports">
     <h2>Otros deportes</h2>
     <div class="sports-columns">
 
@@ -161,7 +166,7 @@
       </div>
 
     </div>
-  </section>
+  </section>-->
 
   <footer class="footer-contacto">
     <div class="footer-content">

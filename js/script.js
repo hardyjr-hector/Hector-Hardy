@@ -692,3 +692,45 @@ jerseysTitle.textContent = `Camisetas de fútbol (${jerseys.length})`;
 
 generateCompetitionFilter();
 renderInitial(jerseys);
+
+// ==========================
+// ANÁLISIS
+// ==========================
+
+async function loadShotMap() {
+
+    document.getElementById("shotmap-section").style.display = "block";
+
+    const res = await fetch("data/match.json");
+    const data = await res.json();
+
+    const shots = data.events.filter(e => e.type.name === "Shot");
+
+    drawPitch(shots);
+}
+
+function drawPitch(shots) {
+
+    const canvas = document.getElementById("pitch");
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar campo simple
+    ctx.strokeStyle = "white";
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+    shots.forEach(shot => {
+
+        const x = (shot.location[0] / 120) * canvas.width;
+        const y = (shot.location[1] / 80) * canvas.height;
+
+        const isGoal = shot.shot.outcome.name === "Goal";
+
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+
+        ctx.fillStyle = isGoal ? "lime" : "red";
+        ctx.fill();
+    });
+}
