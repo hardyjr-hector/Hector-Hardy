@@ -697,40 +697,66 @@ renderInitial(jerseys);
 // ANÁLISIS
 // ==========================
 
-async function loadShotMap() {
+const API_KEY = "86b2d94f46e74c138999572201fab55d";
+const BASE_URL = "https://api.football-data.org/v4";
 
-    document.getElementById("shotmap-section").style.display = "block";
-
-    const res = await fetch("data/match.json");
-    const data = await res.json();
-
-    const shots = data.events.filter(e => e.type.name === "Shot");
-
-    drawPitch(shots);
-}
-
-function drawPitch(shots) {
-
-    const canvas = document.getElementById("pitch");
-    const ctx = canvas.getContext("2d");
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Dibujar campo simple
-    ctx.strokeStyle = "white";
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-    shots.forEach(shot => {
-
-        const x = (shot.location[0] / 120) * canvas.width;
-        const y = (shot.location[1] / 80) * canvas.height;
-
-        const isGoal = shot.shot.outcome.name === "Goal";
-
-        ctx.beginPath();
-        ctx.arc(x, y, 5, 0, Math.PI * 2);
-
-        ctx.fillStyle = isGoal ? "lime" : "red";
-        ctx.fill();
+// FUNCIONES API
+async function getStandings(league) {
+    const res = await fetch(`${BASE_URL}/competitions/${league}/standings`, {
+        headers: { "X-Auth-Token": API_KEY }
     });
+
+    const data = await res.json();
+    return data.standings[0].table;
 }
+
+async function getScorers(league) {
+    const res = await fetch(`${BASE_URL}/competitions/${league}/scorers`, {
+        headers: { "X-Auth-Token": API_KEY }
+    });
+
+    const data = await res.json();
+    return data.scorers;
+}
+
+const standingsEl = document.getElementById("standings");
+const scorersEl = document.getElementById("scorers");
+const leagueSelect = document.getElementById("leagueSelect");
+
+async function loadData(league) {
+
+    standingsEl.innerHTML = "Cargando...";
+    scorersEl.innerHTML = "Cargando...";
+
+    try {
+        const standings = await getStandings(league);
+        const scorers = await getScorers(league);
+
+        // CLASIFICACIÓN
+        standingsEl.innerHTML = "";
+        standings.forEach(team => {
+            const li = document.createElement("li");
+            li.textContent = `${team.position}. ${team.team.name} - ${team.points} pts`;
+            standingsEl.appendChild(li);
+        });
+
+        // GOLEADORES
+        scorersEl.innerHTML = "";
+        scorers.slice(0, 10).forEach(player => {
+            const li = document.createElement("li");
+            li.textContent = `${player.player.name} (${player.team.name}) - ${player.goals}`;
+            scorersEl.appendChild(li);
+        });
+
+    } catch (error) {
+        standingsEl.innerHTML = "Error cargando datos";
+        scorersEl.innerHTML = "Error cargando datos";
+        console.error(error);
+    }
+}
+
+leagueSelect.addEventListener("change", () => {
+    loadData(leagueSelect.value);
+});
+
+loadData("PD"); // La Liga por defecto

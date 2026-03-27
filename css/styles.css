@@ -262,6 +262,42 @@ nav a:hover {
   max-width: 600px;
 }
 
+.league-selector {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.league-selector select {
+  padding: 10px;
+  background: #1a1a1a;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.data-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.data-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.data-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.9rem;
+}
+
 /* ===== FOOTER ===== */
 footer {
   text-align: center;

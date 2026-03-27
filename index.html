@@ -114,26 +114,27 @@
   <section id="analisis" class="analisis">
     <h2>Datos y análisis</h2>
 
-    <div class="analisis-grid">
+    <div class="league-selector">
+      <select id="leagueSelect">
+        <option value="PD">La Liga</option>
+        <option value="PL">Premier League</option>
+        <option value="SA">Serie A</option>
+        <option value="BL1">Bundesliga</option>
+        <option value="FL1">Ligue 1</option>
+        <option value="CL">Champions League</option>
+      </select>
+    </div>
 
-      <div class="analisis-card" onclick="loadShotMap()">
-        <h3>Mapa de tiros</h3>
-        <p>Visualización interactiva de disparos en partidos reales.</p>
+    <div class="data-grid">
+
+      <div class="data-card">
+        <h3>Clasificación</h3>
+        <ul id="standings"></ul>
       </div>
 
-      <div id="shotmap-section" style="display:none; margin-top:50px;">
-        <h3>Mapa de tiros</h3>
-        <canvas id="pitch" width="600" height="400"></canvas>
-      </div>
-
-      <div class="analisis-card">
-        <h3>Posesión y presión</h3>
-        <p>Exploración de patrones de posesión y presión alta en equipos de élite.</p>
-      </div>
-
-      <div class="analisis-card">
-        <h3>Estadísticas avanzadas</h3>
-        <p>Uso de métricas como xG, xA y modelos de probabilidad para analizar rendimiento.</p>
+      <div class="data-card">
+        <h3>Goleadores</h3>
+        <ul id="scorers"></ul>
       </div>
 
     </div>
