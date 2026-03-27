@@ -697,8 +697,7 @@ renderInitial(jerseys);
 // ANÁLISIS
 // ==========================
 
-const API_KEY = "86b2d94f46e74c138999572201fab55d";
-const BASE_URL = "https://api.football-data.org/v4";
+const BASE_URL = "/api";
 
 // FUNCIONES API
 const API_KEY = "TU_API_KEY_AQUI";
@@ -720,8 +719,8 @@ async function fetchAPI(endpoint) {
 
 // DATOS
 async function getData(league) {
-    const standings = await fetchAPI(`/competitions/${league}/standings`);
-    const scorers = await fetchAPI(`/competitions/${league}/scorers`);
+    const standings = await fetch(`${BASE_URL}/standings?league=${league}`);
+    const scorers = await fetch(`${BASE_URL}/scorers?league=${league}`);
 
     return {
         table: standings.standings[0].table,
@@ -806,3 +805,5 @@ export default async function handler(req, res) {
     const data = await response.json();
     res.status(200).json(data);
 }
+
+fetch(`/api/data?league=${league}`)
