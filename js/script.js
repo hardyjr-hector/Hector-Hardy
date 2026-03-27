@@ -701,62 +701,108 @@ const API_KEY = "86b2d94f46e74c138999572201fab55d";
 const BASE_URL = "https://api.football-data.org/v4";
 
 // FUNCIONES API
-async function getStandings(league) {
-    const res = await fetch(`${BASE_URL}/competitions/${league}/standings`, {
-        headers: { "X-Auth-Token": API_KEY }
-    });
+const API_KEY = "TU_API_KEY_AQUI";
+const BASE_URL = "https://api.football-data.org/v4";
 
-    const data = await res.json();
-    return data.standings[0].table;
-}
-
-async function getScorers(league) {
-    const res = await fetch(`${BASE_URL}/competitions/${league}/scorers`, {
-        headers: { "X-Auth-Token": API_KEY }
-    });
-
-    const data = await res.json();
-    return data.scorers;
-}
-
-const standingsEl = document.getElementById("standings");
-const scorersEl = document.getElementById("scorers");
 const leagueSelect = document.getElementById("leagueSelect");
+const viewSelect = document.getElementById("viewSelect");
+const output = document.getElementById("dataOutput");
 
-async function loadData(league) {
+// FETCH BASE
+async function fetchAPI(endpoint) {
+    const res = await fetch(`${BASE_URL}${endpoint}`, {
+        headers: { "X-Auth-Token": API_KEY }
+    });
 
-    standingsEl.innerHTML = "Cargando...";
-    scorersEl.innerHTML = "Cargando...";
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+}
 
-    try {
-        const standings = await getStandings(league);
-        const scorers = await getScorers(league);
+// DATOS
+async function getData(league) {
+    const standings = await fetchAPI(`/competitions/${league}/standings`);
+    const scorers = await fetchAPI(`/competitions/${league}/scorers`);
 
-        // CLASIFICACIÓN
-        standingsEl.innerHTML = "";
-        standings.forEach(team => {
-            const li = document.createElement("li");
-            li.textContent = `${team.position}. ${team.team.name} - ${team.points} pts`;
-            standingsEl.appendChild(li);
+    return {
+        table: standings.standings[0].table,
+        scorers: scorers.scorers
+    };
+}
+
+// RENDER
+function render(view, data) {
+    output.innerHTML = "";
+
+    if (view === "table") {
+        data.table.forEach(t => {
+            addRow(`${t.position}. ${t.team.name}`, `${t.points} pts`);
         });
+    }
 
-        // GOLEADORES
-        scorersEl.innerHTML = "";
-        scorers.slice(0, 10).forEach(player => {
-            const li = document.createElement("li");
-            li.textContent = `${player.player.name} (${player.team.name}) - ${player.goals}`;
-            scorersEl.appendChild(li);
+    if (view === "attack") {
+        const sorted = [...data.table].sort((a, b) => b.goalsFor - a.goalsFor);
+        sorted.slice(0, 10).forEach(t => {
+            addRow(t.team.name, `${t.goalsFor} goles`);
         });
+    }
 
-    } catch (error) {
-        standingsEl.innerHTML = "Error cargando datos";
-        scorersEl.innerHTML = "Error cargando datos";
-        console.error(error);
+    if (view === "defense") {
+        const sorted = [...data.table].sort((a, b) => a.goalsAgainst - b.goalsAgainst);
+        sorted.slice(0, 10).forEach(t => {
+            addRow(t.team.name, `${t.goalsAgainst} encajados`);
+        });
+    }
+
+    if (view === "form") {
+        data.table.forEach(t => {
+            addRow(t.team.name, t.form || "N/A");
+        });
+    }
+
+    if (view === "scorers") {
+        data.scorers.slice(0, 10).forEach(p => {
+            addRow(p.player.name, `${p.goals} goles`);
+        });
+    }
+
+    if (view === "assists") {
+        const sorted = [...data.scorers].sort((a, b) => b.assists - a.assists);
+        sorted.slice(0, 10).forEach(p => {
+            addRow(p.player.name, `${p.assists} asistencias`);
+        });
     }
 }
 
-leagueSelect.addEventListener("change", () => {
-    loadData(leagueSelect.value);
-});
+// UTIL
+function addRow(left, right) {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${left}</span><span>${right}</span>`;
+    output.appendChild(li);
+}
 
-loadData("PD"); // La Liga por defecto
+// LOAD
+async function load() {
+    output.innerHTML = "Cargando...";
+
+    try {
+        const data = await getData(leagueSelect.value);
+        render(viewSelect.value, data);
+    } catch (e) {
+        output.innerHTML = "Error cargando datos";
+        console.error(e);
+    }
+}
+
+leagueSelect.addEventListener("change", load);
+viewSelect.addEventListener("change", load);
+
+load();
+
+export default async function handler(req, res) {
+    const response = await fetch("https://api.football-data.org/v4/competitions/PD/standings", {
+        headers: { "X-Auth-Token": process.env.API_KEY }
+    });
+
+    const data = await response.json();
+    res.status(200).json(data);
+}

@@ -114,7 +114,7 @@
   <section id="analisis" class="analisis">
     <h2>Datos y análisis</h2>
 
-    <div class="league-selector">
+    <div class="controls">
       <select id="leagueSelect">
         <option value="PD">La Liga</option>
         <option value="PL">Premier League</option>
@@ -123,20 +123,19 @@
         <option value="FL1">Ligue 1</option>
         <option value="CL">Champions League</option>
       </select>
+
+      <select id="viewSelect">
+        <option value="table">Clasificación</option>
+        <option value="attack">Ataque</option>
+        <option value="defense">Defensa</option>
+        <option value="form">Forma</option>
+        <option value="scorers">Goleadores</option>
+        <option value="assists">Asistencias</option>
+      </select>
     </div>
 
-    <div class="data-grid">
-
-      <div class="data-card">
-        <h3>Clasificación</h3>
-        <ul id="standings"></ul>
-      </div>
-
-      <div class="data-card">
-        <h3>Goleadores</h3>
-        <ul id="scorers"></ul>
-      </div>
-
+    <div class="data-card">
+      <ul id="dataOutput"></ul>
     </div>
   </section>
 
