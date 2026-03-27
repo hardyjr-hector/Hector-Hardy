@@ -694,95 +694,50 @@ generateCompetitionFilter();
 renderInitial(jerseys);
 
 // ==========================
-// ANÁLISIS
+// ANÁLISIS - FRONTEND
 // ==========================
-
-const BASE_URL = "/api";
-
-// FUNCIONES API
-const API_KEY = "TU_API_KEY_AQUI";
-const BASE_URL = "https://api.football-data.org/v4";
-
 const leagueSelect = document.getElementById("leagueSelect");
 const viewSelect = document.getElementById("viewSelect");
 const output = document.getElementById("dataOutput");
 
-// FETCH BASE
-async function fetchAPI(endpoint) {
-    const res = await fetch(`${BASE_URL}${endpoint}`, {
-        headers: { "X-Auth-Token": API_KEY }
-    });
-
-    if (!res.ok) throw new Error(res.status);
-    return await res.json();
-}
-
-// DATOS
+// Obtener datos desde el backend
 async function getData(league) {
-    const standings = await fetch(`${BASE_URL}/standings?league=${league}`);
-    const scorers = await fetch(`${BASE_URL}/scorers?league=${league}`);
-
-    return {
-        table: standings.standings[0].table,
-        scorers: scorers.scorers
-    };
+    const standingsRes = await fetch(`/api/standings?league=${league}`);
+    const scorersRes = await fetch(`/api/scorers?league=${league}`);
+    const standings = await standingsRes.json();
+    const scorers = await scorersRes.json();
+    return { table: standings.standings[0].table, scorers: scorers.scorers };
 }
 
-// RENDER
+// Renderizar
 function render(view, data) {
     output.innerHTML = "";
+    if (!data) return;
 
-    if (view === "table") {
-        data.table.forEach(t => {
-            addRow(`${t.position}. ${t.team.name}`, `${t.points} pts`);
-        });
-    }
-
-    if (view === "attack") {
-        const sorted = [...data.table].sort((a, b) => b.goalsFor - a.goalsFor);
-        sorted.slice(0, 10).forEach(t => {
-            addRow(t.team.name, `${t.goalsFor} goles`);
-        });
-    }
-
-    if (view === "defense") {
-        const sorted = [...data.table].sort((a, b) => a.goalsAgainst - b.goalsAgainst);
-        sorted.slice(0, 10).forEach(t => {
-            addRow(t.team.name, `${t.goalsAgainst} encajados`);
-        });
-    }
-
-    if (view === "form") {
-        data.table.forEach(t => {
-            addRow(t.team.name, t.form || "N/A");
-        });
-    }
-
-    if (view === "scorers") {
-        data.scorers.slice(0, 10).forEach(p => {
-            addRow(p.player.name, `${p.goals} goles`);
-        });
-    }
-
-    if (view === "assists") {
-        const sorted = [...data.scorers].sort((a, b) => b.assists - a.assists);
-        sorted.slice(0, 10).forEach(p => {
-            addRow(p.player.name, `${p.assists} asistencias`);
-        });
-    }
+    if (view === "table") data.table.forEach(t => addRow(`${t.position}. ${t.team.name}`, `${t.points} pts`));
+    if (view === "attack") data.table
+        .sort((a, b) => b.goalsFor - a.goalsFor).slice(0, 10)
+        .forEach(t => addRow(t.team.name, `${t.goalsFor} goles`));
+    if (view === "defense") data.table
+        .sort((a, b) => a.goalsAgainst - b.goalsAgainst).slice(0, 10)
+        .forEach(t => addRow(t.team.name, `${t.goalsAgainst} encajados`));
+    if (view === "form") data.table.forEach(t => addRow(t.team.name, t.form || "N/A"));
+    if (view === "scorers") data.scorers.slice(0, 10).forEach(p => addRow(p.player.name, `${p.goals} goles`));
+    if (view === "assists") data.scorers
+        .sort((a, b) => (b.assists || 0) - (a.assists || 0)).slice(0, 10)
+        .forEach(p => addRow(p.player.name, `${p.assists || 0} asistencias`));
 }
 
-// UTIL
+// Añadir fila
 function addRow(left, right) {
     const li = document.createElement("li");
     li.innerHTML = `<span>${left}</span><span>${right}</span>`;
     output.appendChild(li);
 }
 
-// LOAD
+// Cargar y renderizar
 async function load() {
     output.innerHTML = "Cargando...";
-
     try {
         const data = await getData(leagueSelect.value);
         render(viewSelect.value, data);
@@ -794,16 +749,4 @@ async function load() {
 
 leagueSelect.addEventListener("change", load);
 viewSelect.addEventListener("change", load);
-
 load();
-
-export default async function handler(req, res) {
-    const response = await fetch("https://api.football-data.org/v4/competitions/PD/standings", {
-        headers: { "X-Auth-Token": process.env.API_KEY }
-    });
-
-    const data = await response.json();
-    res.status(200).json(data);
-}
-
-fetch(`/api/data?league=${league}`)
