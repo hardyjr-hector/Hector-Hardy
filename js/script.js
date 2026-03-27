@@ -702,11 +702,18 @@ const output = document.getElementById("dataOutput");
 
 // Obtener datos desde el backend
 async function getData(league) {
-    const standingsRes = await fetch(`/api/standings?league=${league}`);
-    const scorersRes = await fetch(`/api/scorers?league=${league}`);
-    const standings = await standingsRes.json();
-    const scorers = await scorersRes.json();
-    return { table: standings.standings[0].table, scorers: scorers.scorers };
+    const [standingsRes, scorersRes] = await Promise.all([
+        fetch(`/api/standings?league=${league}`),
+        fetch(`/api/scorers?league=${league}`)
+    ]);
+
+    const standingsData = await standingsRes.json();
+    const scorersData = await scorersRes.json();
+
+    return {
+        table: standingsData.standings[0].table,
+        scorers: scorersData.scorers
+    };
 }
 
 // Renderizar
