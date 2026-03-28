@@ -1,78 +1,6 @@
 // ==========================
-// NAVBAR SCROLL EFFECT
+// DATA
 // ==========================
-
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 80) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
-
-
-// ==========================
-// MENU MOVIL
-// ==========================
-
-const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.querySelector(".nav-links");
-const navItems = document.querySelectorAll(".nav-links a");
-
-navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-});
-
-navItems.forEach(item => {
-    item.addEventListener("click", () => {
-        navLinks.classList.remove("show");
-    });
-});
-
-document.addEventListener("click", (e) => {
-    if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-        navLinks.classList.remove("show");
-    }
-});
-
-
-// ==========================
-// FADE IN ANIMATION
-// ==========================
-
-const observerOptions = {
-    threshold: 0.2
-};
-
-const fadeObserver = new IntersectionObserver((entries, observer) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-        }
-
-    });
-
-}, observerOptions);
-
-
-// animar elementos existentes
-const elementsToFade = document.querySelectorAll(".project-card, .article-card");
-
-elementsToFade.forEach(el => {
-    el.classList.add("fade-in");
-    fadeObserver.observe(el);
-});
-
-
-// ==========================
-// CAMISETAS
-// ==========================
-
 const jerseys = [
 
     {
@@ -538,222 +466,121 @@ const jerseys = [
         img: "assets/images/venezuela.jpg",
         desc: "Primera equipación Venezuela 2022/2023"
     },
-]
+];
 
 // ==========================
-// VARIABLES RENDER
+// INIT
 // ==========================
+export function initJerseys() {
 
-const container = document.getElementById("jersey-container");
+    const container = document.getElementById("jersey-container");
+    if (!container) return;
 
-let visible = 8;
-let currentIndex = 0;
-let currentList = [];
+    const searchTeam = document.getElementById("searchTeam");
+    const searchCompetition = document.getElementById("searchCompetition");
+    const searchYear = document.getElementById("searchYear");
 
+    let visible = 8;
+    let currentIndex = 0;
+    let currentList = jerseys;
 
-// ==========================
-// CREAR CARD
-// ==========================
-
-function createCard(jersey) {
-
-    const card = document.createElement("div");
-
-    card.classList.add("jersey-card", "fade-in");
-
-    card.innerHTML = `
-<img loading="lazy" src="${jersey.img}" alt="${jersey.team}">
-<h3>${jersey.team}</h3>
-<p>${jersey.desc}</p>
-`;
-
-    container.appendChild(card);
-
-    // activar animacion
-    fadeObserver.observe(card);
-
-}
-
-
-// ==========================
-// CARGA PROGRESIVA
-// ==========================
-
-function loadJerseys() {
-
-    if (currentIndex >= currentList.length) return;
-
-    const next = currentList.slice(currentIndex, currentIndex + visible);
-
-    next.forEach(jersey => createCard(jersey));
-
-    currentIndex += visible;
-
-}
-
-
-// ==========================
-// RENDER
-// ==========================
-
-function renderInitial(list) {
-
-    container.innerHTML = "";
-
-    currentIndex = 0;
-
-    currentList = list;
-
-    loadJerseys();
-
-}
-
-
-// ==========================
-// SCROLL INFINITO
-// ==========================
-
-container.addEventListener("scroll", () => {
-
-    if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
-
-        loadJerseys();
-
+    // ==========================
+    // TITLE
+    // ==========================
+    const title = document.querySelector(".jerseys h2");
+    if (title) {
+        title.textContent = `Camisetas de fútbol (${jerseys.length})`;
     }
 
-});
+    // ==========================
+    // CREAR CARD
+    // ==========================
+    function createCard(jersey) {
+        const card = document.createElement("div");
+        card.className = "jersey-card fade-in";
 
+        card.innerHTML = `
+            <img loading="lazy" src="${jersey.img}" alt="${jersey.team}">
+            <h3>${jersey.team}</h3>
+            <p>${jersey.desc}</p>
+        `;
 
-// ==========================
-// FILTROS
-// ==========================
-
-const searchTeam = document.getElementById("searchTeam");
-const searchCompetition = document.getElementById("searchCompetition");
-const searchYear = document.getElementById("searchYear");
-
-
-function filterJerseys() {
-
-    const team = searchTeam ? searchTeam.value.toLowerCase() : "";
-    const competition = searchCompetition ? searchCompetition.value : "";
-    const year = searchYear ? searchYear.value : "";
-
-    const filtered = jerseys.filter(jersey => {
-
-        return (
-
-            jersey.team.toLowerCase().includes(team) &&
-            (competition === "" || jersey.competition === competition) &&
-            (year === "" || jersey.year.includes(year))
-
-        );
-
-    });
-
-    renderInitial(filtered);
-
-}
-
-
-// listeners seguros
-
-if (searchTeam) searchTeam.addEventListener("input", filterJerseys);
-if (searchCompetition) searchCompetition.addEventListener("change", filterJerseys);
-if (searchYear) searchYear.addEventListener("input", filterJerseys);
-
-
-// ==========================
-// GENERAR FILTRO LIGAS
-// ==========================
-
-function generateCompetitionFilter() {
-    if (!searchCompetition) return;
-
-    // Obtenemos las competiciones únicas
-    const competitions = [...new Set(jerseys.map(j => j.competition))];
-    competitions.sort();
-
-    competitions.forEach(comp => {
-        const option = document.createElement("option");
-        option.value = comp;
-        option.textContent = comp;
-        searchCompetition.appendChild(option);
-    });
-}
-
-// CONTADOR DE CAMISETAS
-const jerseysTitle = document.querySelector(".jerseys h2");
-jerseysTitle.textContent = `Camisetas de fútbol (${jerseys.length})`;
-
-// ==========================
-// INICIAR WEB
-// ==========================
-
-generateCompetitionFilter();
-renderInitial(jerseys);
-
-// ==========================
-// ANÁLISIS - FRONTEND
-// ==========================
-const leagueSelect = document.getElementById("leagueSelect");
-const viewSelect = document.getElementById("viewSelect");
-const output = document.getElementById("dataOutput");
-
-// Obtener datos desde el backend
-async function getData(league) {
-    const [standingsRes, scorersRes] = await Promise.all([
-        fetch(`/api/standings?league=${league}`),
-        fetch(`/api/scorers?league=${league}`)
-    ]);
-
-    const standingsData = await standingsRes.json();
-    const scorersData = await scorersRes.json();
-
-    return {
-        table: standingsData.standings[0].table,
-        scorers: scorersData.scorers
-    };
-}
-
-// Renderizar
-function render(view, data) {
-    output.innerHTML = "";
-    if (!data) return;
-
-    if (view === "table") data.table.forEach(t => addRow(`${t.position}. ${t.team.name}`, `${t.points} pts`));
-    if (view === "attack") data.table
-        .sort((a, b) => b.goalsFor - a.goalsFor).slice(0, 10)
-        .forEach(t => addRow(t.team.name, `${t.goalsFor} goles`));
-    if (view === "defense") data.table
-        .sort((a, b) => a.goalsAgainst - b.goalsAgainst).slice(0, 10)
-        .forEach(t => addRow(t.team.name, `${t.goalsAgainst} encajados`));
-    if (view === "form") data.table.forEach(t => addRow(t.team.name, t.form || "N/A"));
-    if (view === "scorers") data.scorers.slice(0, 10).forEach(p => addRow(p.player.name, `${p.goals} goles`));
-    if (view === "assists") data.scorers
-        .sort((a, b) => (b.assists || 0) - (a.assists || 0)).slice(0, 10)
-        .forEach(p => addRow(p.player.name, `${p.assists || 0} asistencias`));
-}
-
-// Añadir fila
-function addRow(left, right) {
-    const li = document.createElement("li");
-    li.innerHTML = `<span>${left}</span><span>${right}</span>`;
-    output.appendChild(li);
-}
-
-// Cargar y renderizar
-async function load() {
-    output.innerHTML = "Cargando...";
-    try {
-        const data = await getData(leagueSelect.value);
-        render(viewSelect.value, data);
-    } catch (e) {
-        output.innerHTML = "Error cargando datos";
-        console.error(e);
+        container.appendChild(card);
     }
-}
 
-leagueSelect.addEventListener("change", load);
-viewSelect.addEventListener("change", load);
-load();
+    // ==========================
+    // LOAD PROGRESIVO
+    // ==========================
+    function load() {
+        const next = currentList.slice(currentIndex, currentIndex + visible);
+        next.forEach(createCard);
+        currentIndex += visible;
+    }
+
+    // ==========================
+    // RENDER
+    // ==========================
+    function render(list) {
+        container.innerHTML = "";
+        currentIndex = 0;
+        currentList = list;
+        load();
+    }
+
+    // ==========================
+    // SCROLL INFINITO
+    // ==========================
+    container.addEventListener("scroll", () => {
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
+            load();
+        }
+    });
+
+    // ==========================
+    // FILTROS
+    // ==========================
+    function filter() {
+        const team = searchTeam?.value.toLowerCase() || "";
+        const competition = searchCompetition?.value || "";
+        const year = searchYear?.value || "";
+
+        const filtered = jerseys.filter(j => {
+            return (
+                j.team.toLowerCase().includes(team) &&
+                (competition === "" || j.competition === competition) &&
+                (year === "" || j.year.includes(year))
+            );
+        });
+
+        render(filtered);
+    }
+
+    // ==========================
+    // GENERAR COMPETICIONES
+    // ==========================
+    function generateCompetitionFilter() {
+        if (!searchCompetition) return;
+
+        const competitions = [...new Set(jerseys.map(j => j.competition))].sort();
+
+        competitions.forEach(comp => {
+            const option = document.createElement("option");
+            option.value = comp;
+            option.textContent = comp;
+            searchCompetition.appendChild(option);
+        });
+    }
+
+    // ==========================
+    // EVENTOS
+    // ==========================
+    if (searchTeam) searchTeam.addEventListener("input", filter);
+    if (searchCompetition) searchCompetition.addEventListener("change", filter);
+    if (searchYear) searchYear.addEventListener("input", filter);
+
+    // ==========================
+    // INIT REAL
+    // ==========================
+    generateCompetitionFilter();
+    render(jerseys);
+}
