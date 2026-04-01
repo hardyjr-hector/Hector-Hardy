@@ -1277,7 +1277,7 @@ const worldCupMatches = [
     away: "W90",
     stadium: "Boston Stadium",
     city: "Boston",
-    stage: "quarterfinal"
+    stage: "quarters"
   },
 
   {
@@ -1288,7 +1288,7 @@ const worldCupMatches = [
     away: "W94",
     stadium: "Los Angeles Stadium",
     city: "Los Angeles",
-    stage: "quarterfinal"
+    stage: "quarters"
   },
 
   {
@@ -1299,7 +1299,7 @@ const worldCupMatches = [
     away: "W92",
     stadium: "Miami Stadium",
     city: "Miami",
-    stage: "quarterfinal"
+    stage: "quarters"
   },
 
   {
@@ -1310,7 +1310,7 @@ const worldCupMatches = [
     away: "W96",
     stadium: "Kansas City Stadium",
     city: "Kansas City",
-    stage: "quarterfinal"
+    stage: "quarters"
   },
 
   // SEMIFINALS
@@ -1322,7 +1322,7 @@ const worldCupMatches = [
     away: "W98",
     stadium: "Dallas Stadium",
     city: "Dallas",
-    stage: "semifinal"
+    stage: "semis"
   },
 
   {
@@ -1333,7 +1333,7 @@ const worldCupMatches = [
     away: "W100",
     stadium: "Atlanta Stadium",
     city: "Atlanta",
-    stage: "semifinal"
+    stage: "semis"
   },
 
   // THIRD PLACE
@@ -1345,7 +1345,7 @@ const worldCupMatches = [
     away: "L102",
     stadium: "Miami Stadium",
     city: "Miami",
-    stage: "thirdplace"
+    stage: "third_place"
   },
 
   // FINAL
