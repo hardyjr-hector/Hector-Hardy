@@ -762,7 +762,6 @@ load();
 // ==========================
 
 const worldCupMatches = [
-const worldCupMatches = [
     // ========================================
     // 🌍 GROUP STAGE (72 MATCHES)
     // ========================================
@@ -1009,7 +1008,6 @@ const worldCupMatches = [
         city: "New York",
         stage: "final"
     }
-]; 
 ];
 
 function renderWorldCupFixture() {
