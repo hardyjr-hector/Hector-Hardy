@@ -596,3 +596,53 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ===== WORLD CUP FIXTURE ===== */
+.worldcup {
+  padding: 60px 6%;
+}
+
+.worldcup-subtitle {
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+.fixture-container {
+  display: grid;
+  gap: 20px;
+}
+
+.match-card {
+  background: var(--bg-secondary);
+  padding: 25px;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.match-card:hover {
+  background: #222;
+  transform: translateY(-5px);
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.match-teams {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.match-info {
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.match-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

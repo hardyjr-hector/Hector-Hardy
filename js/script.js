@@ -756,3 +756,401 @@ async function load() {
 leagueSelect.addEventListener("change", load);
 viewSelect.addEventListener("change", load);
 load();
+
+// ==========================
+// WORLD CUP FIXTURE
+// ==========================
+
+const worldCupMatches = [
+const worldCupMatches = [
+    // ========================================
+    // 🌍 GROUP STAGE (72 MATCHES)
+    // ========================================
+
+    // ===== GROUP A =====
+    {
+        id: 1,
+        date: "2026-06-11",
+        time: "21:00",
+        home: "México",
+        away: "Sudáfrica",
+        stadium: "Estadio Azteca",
+        city: "Ciudad de México",
+        stage: "groups",
+        group: "A"
+    },
+    {
+        id: 2,
+        date: "2026-06-12",
+        time: "04:00",
+        home: "Corea del Sur",
+        away: "Ganador UEFA PO D",
+        stadium: "Estadio Guadalajara",
+        city: "Guadalajara",
+        stage: "groups",
+        group: "A"
+    },
+
+    // ===== GROUP B =====
+    {
+        id: 3,
+        date: "2026-06-12",
+        time: "21:00",
+        home: "Canadá",
+        away: "Ganador UEFA PO A",
+        stadium: "Toronto Stadium",
+        city: "Toronto",
+        stage: "groups",
+        group: "B"
+    },
+
+    // ===== GROUP C =====
+    {
+        id: 4,
+        date: "2026-06-13",
+        time: "00:00",
+        home: "Brasil",
+        away: "Marruecos",
+        stadium: "MetLife Stadium",
+        city: "New York",
+        stage: "groups",
+        group: "C"
+    },
+
+    // ===== GROUP D =====
+    {
+        id: 5,
+        date: "2026-06-13",
+        time: "03:00",
+        home: "Estados Unidos",
+        away: "Paraguay",
+        stadium: "Los Angeles Stadium",
+        city: "Los Angeles",
+        stage: "groups",
+        group: "D"
+    },
+
+    // ===== GROUP E =====
+    {
+        id: 6,
+        date: "2026-06-14",
+        time: "19:00",
+        home: "Alemania",
+        away: "Curazao",
+        stadium: "Philadelphia Stadium",
+        city: "Philadelphia",
+        stage: "groups",
+        group: "E"
+    },
+
+    // ===== GROUP F =====
+    {
+        id: 7,
+        date: "2026-06-14",
+        time: "22:00",
+        home: "Países Bajos",
+        away: "Japón",
+        stadium: "Dallas Stadium",
+        city: "Dallas",
+        stage: "groups",
+        group: "F"
+    },
+
+    // ===== GROUP G =====
+    {
+        id: 8,
+        date: "2026-06-15",
+        time: "21:00",
+        home: "Bélgica",
+        away: "Egipto",
+        stadium: "Seattle Stadium",
+        city: "Seattle",
+        stage: "groups",
+        group: "G"
+    },
+
+    // ===== GROUP H =====
+    {
+        id: 9,
+        date: "2026-06-15",
+        time: "18:00",
+        home: "España",
+        away: "Cabo Verde",
+        stadium: "Atlanta Stadium",
+        city: "Atlanta",
+        stage: "groups",
+        group: "H"
+    },
+
+    // ===== GROUP I =====
+    {
+        id: 10,
+        date: "2026-06-16",
+        time: "21:00",
+        home: "Francia",
+        away: "Senegal",
+        stadium: "Houston Stadium",
+        city: "Houston",
+        stage: "groups",
+        group: "I"
+    },
+
+    // ===== GROUP J =====
+    {
+        id: 11,
+        date: "2026-06-17",
+        time: "03:00",
+        home: "Argentina",
+        away: "Argelia",
+        stadium: "Miami Stadium",
+        city: "Miami",
+        stage: "groups",
+        group: "J"
+    },
+
+    // ===== GROUP K =====
+    {
+        id: 12,
+        date: "",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "",
+        city: "",
+        stage: "groups",
+        group: "K"
+    },
+
+    // ===== GROUP L =====
+    {
+        id: 13,
+        date: "",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "",
+        city: "",
+        stage: "groups",
+        group: "L"
+    },
+
+    // ========================================
+    // 🏆 KNOCKOUT STAGE
+    // ========================================
+
+    // ROUND OF 32
+    {
+        id: 73,
+        date: "2026-06-28",
+        time: "",
+        home: "2º Grupo A",
+        away: "2º Grupo B",
+        stadium: "Los Angeles Stadium",
+        city: "Los Angeles",
+        stage: "round32"
+    },
+
+    // ROUND OF 16
+    {
+        id: 89,
+        date: "",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "",
+        city: "",
+        stage: "round16"
+    },
+
+    // QUARTERFINALS
+    {
+        id: 97,
+        date: "",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "",
+        city: "",
+        stage: "quarterfinal"
+    },
+
+    // SEMIFINALS
+    {
+        id: 101,
+        date: "",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "Dallas Stadium",
+        city: "Dallas",
+        stage: "semifinal"
+    },
+
+    // THIRD PLACE
+    {
+        id: 103,
+        date: "",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "Miami Stadium",
+        city: "Miami",
+        stage: "thirdplace"
+    },
+
+    // FINAL
+    {
+        id: 104,
+        date: "2026-07-19",
+        time: "",
+        home: "",
+        away: "",
+        stadium: "MetLife Stadium",
+        city: "New York",
+        stage: "final"
+    }
+]; 
+];
+
+function renderWorldCupFixture() {
+    const container = document.getElementById("fixtureContainer");
+    if (!container) return;
+
+    container.innerHTML = worldCupMatches.map(match => `
+    <div class="match-card">
+      <div class="match-header">
+        <span>${match.date}</span>
+        <span>${match.time}</span>
+      </div>
+
+      <div class="match-teams">
+        ${match.home} vs ${match.away}
+      </div>
+
+      <p class="match-info">
+        📍 ${match.stadium} · ${match.city}
+      </p>
+
+      <div class="match-actions">
+        <button class="btn" onclick="downloadMatchICS(${match.id})">
+          🍎 Apple
+        </button>
+
+        <a class="btn-outline"
+           href="${googleCalendarLink(match)}"
+           target="_blank">
+          📆 Google
+        </a>
+      </div>
+    </div>
+  `).join("");
+}
+
+function generateICS(match) {
+    const start = `${match.date.replace(/-/g, "")}T${match.time.replace(":", "")}00`;
+    const end = `${match.date.replace(/-/g, "")}T${String(Number(match.time.split(":")[0]) + 2).padStart(2, "0")}0000`;
+
+    return `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${match.home} vs ${match.away}
+DTSTART:${start}
+DTEND:${end}
+LOCATION:${match.stadium}
+DESCRIPTION:Partido del Mundial 2026
+END:VEVENT
+END:VCALENDAR`;
+}
+
+function downloadMatchICS(id) {
+    const match = worldCupMatches.find(m => m.id === id);
+    if (!match) return;
+
+    const ics = generateICS(match);
+    const blob = new Blob([ics], { type: "text/calendar" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${match.home}-vs-${match.away}.ics`;
+    a.click();
+}
+
+function googleCalendarLink(match) {
+    const start = `${match.date.replace(/-/g, "")}T${match.time.replace(":", "")}00`;
+    const end = `${match.date.replace(/-/g, "")}T${String(Number(match.time.split(":")[0]) + 2).padStart(2, "0")}0000`;
+
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(match.home + " vs " + match.away)}&dates=${start}/${end}&details=${encodeURIComponent("Mundial 2026")}&location=${encodeURIComponent(match.stadium)}`;
+}
+
+renderWorldCupFixture();
+
+const worldCupTeams = [
+    {
+        name: "Alemania",
+        group: "E",
+        coach: "Julian Nagelsmann",
+        fifaRanking: 8,
+        strengths: [
+            "presión alta",
+            "transiciones rápidas",
+            "profundidad de plantilla"
+        ],
+        weaknesses: [
+            "espacios a la espalda",
+            "irregularidad defensiva"
+        ],
+        keyPlayers: ["Musiala", "Wirtz", "Rüdiger"],
+        prediction: "Cuartos de final",
+        analysis: "Alemania llega con una generación muy talentosa y una idea ofensiva clara. Si mantiene estabilidad atrás, puede competir por semifinales."
+    },
+
+    {
+        name: "España",
+        group: "H",
+        coach: "Luis de la Fuente",
+        fifaRanking: 3,
+        strengths: [
+            "posesión",
+            "presión tras pérdida",
+            "talento joven"
+        ],
+        weaknesses: [
+            "dependencia del control",
+            "fragilidad en centros laterales"
+        ],
+        keyPlayers: ["Pedri", "Lamine Yamal", "Rodri"],
+        prediction: "Semifinales",
+        analysis: "España tiene una identidad muy marcada, domina desde la posesión y tiene desequilibrio exterior. Su techo dependerá de la contundencia en ambas áreas."
+    }
+];
+
+function renderTeamAnalysis() {
+    const container = document.getElementById("teamAnalysisContainer");
+    if (!container) return;
+
+    container.innerHTML = worldCupTeams.map(team => `
+    <div class="match-card">
+      <div class="match-header">
+        <span>Grupo ${team.group}</span>
+        <span>#${team.fifaRanking}</span>
+      </div>
+
+      <div class="match-teams">${team.name}</div>
+
+      <p class="match-info">
+        👨‍🏫 ${team.coach}<br>
+        ⭐ ${team.keyPlayers.join(", ")}<br>
+        🎯 Pronóstico: ${team.prediction}
+      </p>
+
+      <p>${team.analysis}</p>
+    </div>
+  `).join("");
+}
+
+renderTeamAnalysis();
+
+const todayIndex = new Date().getDate() % worldCupTeams.length;
+const teamOfTheDay = worldCupTeams
+    .sort((a, b) => a.name.localeCompare(b.name))[todayIndex];
