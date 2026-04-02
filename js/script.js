@@ -1401,36 +1401,6 @@ const teamArticles = {
       </div>`
   },
 
-  "Portugal 🇵🇹": {
-    content: `
-      <span class="article-flag">🇵🇹</span>
-      <h1>Portugal sin Cristiano: la liberación</h1>
-      <div class="article-meta">
-        <span>✍️ Hector Hardy</span><span>📅 Enero 2026</span><span>⏱ 3 min</span>
-      </div>
-      <p class="article-lead">
-        La era post-Ronaldo ha liberado a Portugal. Roberto Martínez ha construido un equipo fluido
-        y moderno, liderado por una generación que por fin puede brillar sin sombras.
-      </p>
-      <h2>El relevo de una era</h2>
-      <p>Cuando Ronaldo se retiró de la selección, hubo cierto miedo. Lo que siguió fue una liberación. Rafael Leão asumió el liderazgo sin complejos, Bernardo Silva se convirtió en el cerebro del equipo, y Rúben Dias consolidó una defensa de primer nivel mundial.</p>
-      <div class="article-stat-grid">
-        <div class="stat-box"><span class="stat-val">#6</span><span class="stat-lbl">Ranking FIFA</span></div>
-        <div class="stat-box"><span class="stat-val">0</span><span class="stat-lbl">Mundiales ganados</span></div>
-        <div class="stat-box"><span class="stat-val">Por confirmar</span><span class="stat-lbl">Grupo</span></div>
-      </div>
-      <h2>Jugadores a seguir</h2>
-      <ul class="player-list">
-        <li><span><strong>Rafael Leão</strong> · Extremo</span><span class="player-role">El desequilibrio personificado</span></li>
-        <li><span><strong>Bernardo Silva</strong> · Mediapunta</span><span class="player-role">El más inteligente del equipo</span></li>
-        <li><span><strong>Rúben Dias</strong> · Defensa central</span><span class="player-role">Muro infranqueable</span></li>
-        <li><span><strong>Vitinha</strong> · Centrocampista</span><span class="player-role">Talento en ascenso</span></li>
-      </ul>
-      <div class="article-verdict">
-        <strong>Veredicto de Hector Hardy</strong>
-        <p>Portugal puede llegar lejos si Leão aparece. Es así de simple y así de frágil. Son un equipo para disfrutar, no para contar como favorito. Cuartos es su techo realista, pero tienen calidad para sorprender a cualquiera.</p>
-      </div>`
-  },
 
   // ─────────────────────────────────────────────────────────────────────
   // PLANTILLA para nuevos artículos — descomenta y rellena:
