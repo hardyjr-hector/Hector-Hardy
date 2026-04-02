@@ -1826,9 +1826,22 @@ function pad(n) { return String(n).padStart(2, '0'); }
 function generateGoogleCalUrl(m) {
   const ds = m.date.replace(/-/g, '');
   const [h, min] = m.time.split(':').map(Number);
-  const st = `${ds}T${pad(h)}${pad(min)}00`, et = `${ds}T${pad((h + 2) % 24)}${pad(min)}00`;
-  const stage = m.stage === 'groups' ? `Grupo ${m.group} · Mundial 2026` : (STAGE_LABELS[m.stage] || 'Mundial 2026');
-  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${m.home} vs ${m.away}`, dates: `${st}/${et}`, details: stage, location: `${m.stadium}, ${m.city}`)}}`;
+
+  const st = `${ds}T${pad(h)}${pad(min)}00`;
+  const et = `${ds}T${pad((h + 2) % 24)}${pad(min)}00`;
+
+  const stage =
+    m.stage === 'groups'
+      ? `Grupo ${m.group} · Mundial 2026`
+      : (STAGE_LABELS[m.stage] || 'Mundial 2026');
+
+  return `https://calendar.google.com/calendar/render?${new URLSearchParams({
+    action: 'TEMPLATE',
+    text: `${m.home} vs ${m.away}`,
+    dates: `${st}/${et}`,
+    details: stage,
+    location: `${m.stadium}, ${m.city}`
+  })}`;
 }
 
 window.downloadMatchICS = function (id) {
