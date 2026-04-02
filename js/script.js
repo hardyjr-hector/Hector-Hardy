@@ -1359,14 +1359,14 @@ const teamArticles = {
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role">Mejor jugador del mundo</span></li>
-        <li><span><strong>Rodrygo</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
+        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role">De los mejores jugadores del mundo</span></li>
+        <li><span><strong>Raphinha</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
         <li><span><strong>Bruno Guimarães</strong> · Centrocampista</span><span class="player-role">El motor del equipo</span></li>
         <li><span><strong>Marquinhos</strong> · Defensa central</span><span class="player-role">Capitán y líder en la zaga</span></li>
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>Brasil tiene el talento. Le falta el bloque. Si el seleccionador logra construir un equipo cohesionado alrededor de Vinícius, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos.</p>
+        <p>Brasil tiene el talento. Le falta el bloque. Si el seleccionador logra construir un equipo cohesionado, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos.</p>
       </div>`
   },
 
