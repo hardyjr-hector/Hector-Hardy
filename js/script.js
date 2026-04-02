@@ -1550,7 +1550,7 @@ const teamsData = [
   { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 1, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
   { name: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, player: "Jude Bellingham", group: "G", style: "Físico y balones al área" },
   { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
-  { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 5, player: "Rafael Leão", group: "—", style: "Posesión ofensiva" },
+  { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 5, player: "Cristiano Ronaldo", group: "—", style: "Posesión ofensiva" },
   { name: "Países Bajos 🇳🇱", flag: "🇳🇱", ranking: 7, player: "Virgil van Dijk", group: "F", style: "Fútbol total moderno" },
   { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
   { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 13, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
