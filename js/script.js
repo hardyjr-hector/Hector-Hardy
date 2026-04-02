@@ -1373,16 +1373,15 @@ const teamArticles = {
         <span>✍️ Hector Hardy</span><span>📅 Marzo 2026</span><span>⏱ 5 min</span>
       </div>
       <p class="article-lead">
-        Campeona de Europa en 2024, España llega al Mundial como favorita con la generación más
+        Campeona de Europa en 2024, España llega al Mundial como una de las favoritas con la generación más
         talentosa desde la época dorada — y ahora hambrienta de historia.
       </p>
       <h2>Un proyecto que trasciende generaciones</h2>
-      <p>Lo que Hansi Flick construyó en el Barcelona fue la chispa que encendió a toda una selección. Lamine Yamal, Nico Williams, Pedri, Gavi… España tiene la plantilla más joven de entre los favoritos y, a la vez, la más experimentada en títulos. Esa paradoja es precisamente su mayor fortaleza.</p>
+      <p>Lamine Yamal, Nico Williams, Pedri, Gavi… España tiene la plantilla más joven de entre los favoritos y, a la vez, la más experimentada en títulos. Esa paradoja es precisamente su mayor fortaleza.</p>
       <p>La Eurocopa de 2024 en Alemania fue una demostración de poder colectivo. Ganan sin que nadie brille individualmente porque todos brillan. No hay dependencia de un nombre: hay un sistema.</p>
       <div class="article-stat-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="stat-box"><span class="stat-val">#2</span><span class="stat-lbl">Ranking FIFA</span></div>
         <div class="stat-box"><span class="stat-val">1</span><span class="stat-lbl">Mundial (2010)</span></div>
-        <div class="stat-box"><span class="stat-val">4</span><span class="stat-lbl">Eurocopas</span></div>
         <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <h2>Estilo de juego: posesión con veneno</h2>
@@ -1396,7 +1395,7 @@ const teamArticles = {
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>España es mi favorita. No porque sea la más talentosa individualmente —Francia o Brasil pueden argumentar eso—, sino porque es la más equipo. Y en un torneo de 48 selecciones, eso marca la diferencia.</p>
+        <p>España no es la más talentosa individualmente —Francia o Inglaterra pueden argumentar eso—, pero si es la más equipo. Y en un torneo de 48 selecciones, eso marca la diferencia.</p>
       </div>`
   },
 
@@ -1409,21 +1408,21 @@ const teamArticles = {
       </div>
       <p class="article-lead">
         El campeón del mundo llega a 2026 con la presión de defender el título y la incógnita de hasta
-        dónde puede llegar un Messi de 38 años que sigue siendo el mejor de la historia.
+        dónde puede llegar un Messi de 38 años que no tiene nada que demostrar, siendo el mejor de la historia.
       </p>
       <h2>La última danza del 10</h2>
       <p>Hay algo cinematográfico en la historia de Messi con la selección argentina. Qatar fue el cierre perfecto. Pero Scaloni ha construido algo que va más allá del número 10: un equipo con identidad propia, con un bloque sólido y una presión altísima que funciona como un mecanismo de relojería.</p>
       <div class="article-stat-grid">
-        <div class="stat-box"><span class="stat-val">#1</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">#3</span><span class="stat-lbl">Ranking FIFA</span></div>
         <div class="stat-box"><span class="stat-val">3</span><span class="stat-lbl">Mundiales ganados</span></div>
         <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Lionel Messi</strong> · Extremo / mediapunta</span><span class="player-role">El último baile. Aprovéchalo.</span></li>
-        <li><span><strong>Lautaro Martínez</strong> · Delantero centro</span><span class="player-role">Goleador e incansable</span></li>
-        <li><span><strong>Enzo Fernández</strong> · Centrocampista</span><span class="player-role">Creciendo partido a partido</span></li>
-        <li><span><strong>Julián Álvarez</strong> · Delantero</span><span class="player-role">El relevo natural de Messi</span></li>
+        <li><span><strong>Lionel Messi</strong> · Extremo / mediapunta</span><span class="player-role">The last dance</span></li>
+        <li><span><strong>Lautaro Martínez</strong> · Delantero centro</span><span class="player-role">Goleador</span></li>
+        <li><span><strong>Enzo Fernández</strong> · Centrocampista</span><span class="player-role">Controla el centro del campo</span></li>
+        <li><span><strong>Julián Álvarez</strong> · Delantero</span><span class="player-role">El hombre araña. Incansable</span></li>
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
@@ -1436,29 +1435,29 @@ const teamArticles = {
       <span class="article-flag">🇫🇷</span>
       <h1>Francia: el gigante que siempre llega</h1>
       <div class="article-meta">
-        <span>✍️ Hector Hardy</span><span>📅 Febrero 2026</span><span>⏱ 4 min</span>
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
       </div>
       <p class="article-lead">
         Finalista en 2022, campeona en 2018. Francia llega con la plantilla más profunda del torneo
         y con Mbappé convertido en capitán de un proyecto que busca su tercer título.
       </p>
       <h2>La plantilla más profunda del mundo</h2>
-      <p>Incluso si el equipo titular de Francia tuviese una noche mala, el banquillo de Deschamps podría competir en cualquier torneo de primer nivel. Esa es la realidad de una selección que ha acumulado talento durante décadas gracias a su cantera y diversidad cultural.</p>
+      <p>Incluso si el equipo titular de Francia tuviese una noche mala, Deschamps podría armar hasta 3 equipos y competir en cualquier torneo de primer nivel. Esa es la realidad de una selección que ha acumulado talento durante décadas gracias a su cantera y diversidad cultural.</p>
       <div class="article-stat-grid">
-        <div class="stat-box"><span class="stat-val">#3</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">#1</span><span class="stat-lbl">Ranking FIFA</span></div>
         <div class="stat-box"><span class="stat-val">2</span><span class="stat-lbl">Mundiales ganados</span></div>
         <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Kylian Mbappé</strong> · Extremo / delantero</span><span class="player-role">El mejor del mundo en 2026</span></li>
-        <li><span><strong>Antoine Griezmann</strong> · Mediapunta</span><span class="player-role">El cerebro del equipo</span></li>
+        <li><span><strong>Kylian Mbappé</strong> · Extremo / delantero</span><span class="player-role">El mejor del mundo</span></li>
+        <li><span><strong>Ousmane Dembèlè</strong> · Extremo</span><span class="player-role">Actual balón de oro</span></li>
         <li><span><strong>Aurélien Tchouaméni</strong> · Centrocampista defensivo</span><span class="player-role">Destructor de primer nivel</span></li>
         <li><span><strong>William Saliba</strong> · Defensa central</span><span class="player-role">El mejor central del mundo</span></li>
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>Francia siempre llega a semifinales. La pregunta es si tienen la energía colectiva para dar un paso más. Con Mbappé en modo final son imbatibles. El problema es que ese modo solo aparece cuando quiere.</p>
+        <p>Francia sobre el papel debería llegar a semifinales. La pregunta es si tienen la energía colectiva para dar un paso más. Con Mbappé en modo final son imbatibles. El problema es que ese modo solo aparece cuando Mbappé quiere.</p>
       </div>`
   },
 
@@ -1467,7 +1466,7 @@ const teamArticles = {
       <span class="article-flag">🇧🇷</span>
       <h1>Brasil: el eterno candidato busca su regreso</h1>
       <div class="article-meta">
-        <span>✍️ Hector Hardy</span><span>📅 Febrero 2026</span><span>⏱ 4 min</span>
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
       </div>
       <p class="article-lead">
         24 años sin una Copa del Mundo. Brasil llega a 2026 con Vinícius Jr. como estandarte de
@@ -1476,20 +1475,20 @@ const teamArticles = {
       <h2>La pesada mochila de ser Brasil</h2>
       <p>Ninguna selección carga con más expectativa que Brasil. Cinco estrellas en el escudo y la obligación de ganar siempre. En los últimos mundiales, esa presión ha podido con ellos. La eliminación en cuartos de 2022 ante Croacia sigue doliendo.</p>
       <div class="article-stat-grid">
-        <div class="stat-box"><span class="stat-val">#5</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">#6</span><span class="stat-lbl">Ranking FIFA</span></div>
         <div class="stat-box"><span class="stat-val">5</span><span class="stat-lbl">Mundiales ganados</span></div>
         <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role">Mejor jugador del mundo</span></li>
-        <li><span><strong>Rodrygo</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
+        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role"Jugador más desequilibrante del mundo</span></li>
+        <li><span><strong>Raphinha</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
         <li><span><strong>Bruno Guimarães</strong> · Centrocampista</span><span class="player-role">El motor del equipo</span></li>
         <li><span><strong>Marquinhos</strong> · Defensa central</span><span class="player-role">Capitán y líder en la zaga</span></li>
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>Brasil tiene el talento. Le falta el bloque. Si el seleccionador logra construir un equipo cohesionado alrededor de Vinícius, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos.</p>
+        <p>Brasil tiene el talento. Le falta el bloque. Si Ancelotti logra construir un equipo cohesionado, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos. La pregunta que me queda es ¿Podremos ver el último baile de Neymar?</p>
       </div>`
   },
 
@@ -1501,8 +1500,8 @@ const teamArticles = {
         <span>✍️ Hector Hardy</span><span>📅 Enero 2026</span><span>⏱ 4 min</span>
       </div>
       <p class="article-lead">
-        60 años esperando. Finalistas en Euro 2021 y Euro 2024. Inglaterra tiene la generación
-        más completa de su historia y el mundo siente que algo está a punto de pasar.
+        60 años esperando. Finalistas en Euro 2021 y Euro 2024. Inglaterra tiene la camada de 
+        futbolistas más completa de su historia.
       </p>
       <h2>La generación que no puede fallar</h2>
       <p>Bellingham, Kane, Foden, Saka. No hay otro combinado que tenga tanta calidad en las cuatro posiciones clave del campo. El problema de Inglaterra nunca ha sido el talento. Ha sido la gestión de la presión y la falta de un sistema claro en los momentos decisivos.</p>
@@ -1520,38 +1519,7 @@ const teamArticles = {
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>Inglaterra tiene todo para ganar. Excepto la cabeza. Si superan la presión histórica y juegan como saben, llegan a la final. Es el torneo de Bellingham. Y todos lo saben.</p>
-      </div>`
-  },
-
-  "Portugal 🇵🇹": {
-    content: `
-      <span class="article-flag">🇵🇹</span>
-      <h1>Portugal sin Cristiano: la liberación</h1>
-      <div class="article-meta">
-        <span>✍️ Hector Hardy</span><span>📅 Enero 2026</span><span>⏱ 3 min</span>
-      </div>
-      <p class="article-lead">
-        La era post-Ronaldo ha liberado a Portugal. Roberto Martínez ha construido un equipo fluido
-        y moderno, liderado por una generación que por fin puede brillar sin sombras.
-      </p>
-      <h2>El relevo de una era</h2>
-      <p>Cuando Ronaldo se retiró de la selección, hubo cierto miedo. Lo que siguió fue una liberación. Rafael Leão asumió el liderazgo sin complejos, Bernardo Silva se convirtió en el cerebro del equipo, y Rúben Dias consolidó una defensa de primer nivel mundial.</p>
-      <div class="article-stat-grid">
-        <div class="stat-box"><span class="stat-val">#6</span><span class="stat-lbl">Ranking FIFA</span></div>
-        <div class="stat-box"><span class="stat-val">0</span><span class="stat-lbl">Mundiales ganados</span></div>
-        <div class="stat-box"><span class="stat-val">Por confirmar</span><span class="stat-lbl">Grupo</span></div>
-      </div>
-      <h2>Jugadores a seguir</h2>
-      <ul class="player-list">
-        <li><span><strong>Rafael Leão</strong> · Extremo</span><span class="player-role">El desequilibrio personificado</span></li>
-        <li><span><strong>Bernardo Silva</strong> · Mediapunta</span><span class="player-role">El más inteligente del equipo</span></li>
-        <li><span><strong>Rúben Dias</strong> · Defensa central</span><span class="player-role">Muro infranqueable</span></li>
-        <li><span><strong>Vitinha</strong> · Centrocampista</span><span class="player-role">Talento en ascenso</span></li>
-      </ul>
-      <div class="article-verdict">
-        <strong>Veredicto de Hector Hardy</strong>
-        <p>Portugal puede llegar lejos si Leão aparece. Es así de simple y así de frágil. Son un equipo para disfrutar, no para contar como favorito. Cuartos es su techo realista, pero tienen calidad para sorprender a cualquiera.</p>
+        <p>Inglaterra tiene todo para ganar. Excepto la cabeza. Todo está en si superan la presión histórica y juegan como saben.</p>
       </div>`
   },
 
@@ -1577,23 +1545,23 @@ const teamArticles = {
 
 // Datos de todas las selecciones (ranking + grupo)
 const teamsData = [
-  { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 1, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
+  { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 3, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
   { name: "España 🇪🇸", flag: "🇪🇸", ranking: 2, player: "Lamine Yamal", group: "H", style: "Posesión y presión" },
-  { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 3, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
+  { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 1, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
   { name: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, player: "Jude Bellingham", group: "G", style: "Físico y balones al área" },
-  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 5, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
-  { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 6, player: "Rafael Leão", group: "—", style: "Posesión ofensiva" },
+  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
+  { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 5, player: "Rafael Leão", group: "—", style: "Posesión ofensiva" },
   { name: "Países Bajos 🇳🇱", flag: "🇳🇱", ranking: 7, player: "Virgil van Dijk", group: "F", style: "Fútbol total moderno" },
-  { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 8, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
-  { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 9, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
-  { name: "México 🇲🇽", flag: "🇲🇽", ranking: 11, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
-  { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 12, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
-  { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 13, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
-  { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 14, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
-  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 16, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
-  { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 17, player: "Takefusa Kubo", group: "F", style: "Presión alta y disciplina" },
-  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 18, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
-  { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 19, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
+  { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
+  { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 13, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
+  { name: "México 🇲🇽", flag: "🇲🇽", ranking: 15, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
+  { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 10, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
+  { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 8, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
+  { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 16, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
+  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
+  { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 18, player: "Takefusa Kubo", group: "F", style: "Presión alta y disciplina" },
+  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
+  { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 14, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
   { name: "Noruega 🇳🇴", flag: "🇳🇴", ranking: 20, player: "Erling Haaland", group: "I", style: "Directo y poderoso" },
   { name: "Australia 🇦🇺", flag: "🇦🇺", ranking: 24, player: "Mitchell Duke", group: "D", style: "Físico y transiciones" },
   { name: "Canadá 🇨🇦", flag: "🇨🇦", ranking: 25, player: "Alphonso Davies", group: "B", style: "Físico y presión" },
