@@ -23,6 +23,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
+<div class="fixture-overlay" id="fixtureOverlay"></div>
+<div class="article-panel-overlay" id="articleOverlay"></div>
+<div class="article-panel" id="articlePanel">
+  <div class="article-panel-header">
+    <span class="back-label">🌍 Mundial 2026 · Análisis</span>
+    <button class="article-close-btn" id="closeArticleBtn">✕</button>
+  </div>
+  <div id="articleContent"></div>
+</div>
+
 <body>
 
   <header class="navbar">
@@ -150,8 +160,6 @@
   </section>
 
   <section id="worldcup" class="worldcup">
-
-    <!-- CABECERA -->
     <div class="worldcup-header">
       <div>
         <h2>🌍 Mundial 2026</h2>
@@ -159,23 +167,15 @@
       </div>
       <button id="toggleFixtureBtn" class="btn-outline">📅 Ver fixture</button>
     </div>
-
-    <!-- LAYOUT PRINCIPAL: selecciones + sidebar -->
     <div class="worldcup-layout" id="worldcupLayout">
-
-      <!-- SELECCIONES (columna principal) -->
       <div class="worldcup-main">
         <div id="teamAnalysisContainer"></div>
       </div>
-
-      <!-- FIXTURE SIDEBAR -->
       <aside class="fixture-sidebar" id="fixtureSidebar">
-
         <div class="fixture-sidebar-header">
           <h3>Fixture completo</h3>
           <button class="sidebar-close-btn" id="closeSidebarBtn">✕</button>
         </div>
-
         <div class="fixture-filters">
           <div class="filter-tabs">
             <button class="filter-tab active" data-view="group">Por grupo</button>
@@ -187,17 +187,15 @@
           </select>
           <button id="downloadFilteredBtn" class="btn-download-filtered">📥 Descargar todos los partidos</button>
         </div>
-
         <div class="fixture-scroll" id="fixtureScroll"></div>
-
       </aside>
-
     </div>
-
   </section>
 
   <section id="jerseys" class="jerseys">
     <h2>Colección de camisetas de fútbol</h2>
+    <p class="jerseys-affiliate-note">* Los enlaces "Dónde comprar" son enlaces de afiliado. Si compras a través de
+      ellos, recibo una pequeña comisión sin coste adicional para ti.</p>
     <div class="jersey-search">
       <input type="text" id="searchTeam" placeholder="Equipo">
       <select id="searchCompetition">
@@ -237,6 +235,23 @@
       <button class="article-close-btn" id="closeArticleBtn">✕</button>
     </div>
     <div id="articleContent"></div>
+  </div>
+
+  <!-- KO-FI -->
+  <div class="kofi-strip">
+    <p>
+      <strong>¿Te gusta el contenido?</strong><br>
+      Este proyecto lo hago solo, en mi tiempo libre. Si los análisis te aportan algo,
+      puedes invitarme a un café. Me ayuda a seguir escribiendo.
+    </p>
+    <a href="https://ko-fi.com/hectorhardy" target="_blank" rel="noopener" class="btn-kofi">
+      <!-- Icono Ko-fi (taza de café) -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.75-.397-3.580-2.896-4.394-3.484a.37.37 0 0 1-.166-.31c0-.347.396-.571.592-.399 1.557 1.359 3.494 2.886 3.494 2.886l3.727-4.273c.299-.342.831-.107.831.326v.177c0 .144-.061.287-.163.378zm5.87.307c-.166.165-.404.165-.571 0a.404.404 0 0 1 0-.571l2.029-2.028a.404.404 0 0 1 .571 0c.166.166.166.404 0 .571l-2.029 2.028z" />
+      </svg>
+      Invítame a un café
+    </a>
   </div>
 
   <footer class="footer-contacto">

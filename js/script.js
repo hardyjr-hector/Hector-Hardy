@@ -74,64 +74,177 @@ document.querySelector('.logo')?.addEventListener('click', e => { e.preventDefau
 // ==========================
 // CAMISETAS
 // ==========================
+// ─────────────────────────────────────────────────────────────────────────────
+// CAMISETAS
+// Cómo añadir un enlace de afiliado:
+//   Añade  buyUrl: "https://tu-enlace-afiliado.com/..."  a cualquier entrada.
+//   Aparecerá automáticamente el botón "Dónde comprar" en esa card.
+//
+// Programas de afiliados recomendados:
+//   · Fútbol Emotion  → https://www.futbolemotion.com/afiliados
+//   · Fútbol Factory  → https://www.futbolfactory.es/afiliados
+//   · Amazon Afiliados → https://afiliados.amazon.es
+//   · Kitbag          → https://www.kitbag.com/en/affiliate-programme
+//
+// Sustituye las URLs de ejemplo por tus enlaces reales con tu ID de afiliado.
+// ─────────────────────────────────────────────────────────────────────────────
 const jerseys = [
-  { team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan1.jpg", desc: "Primera equipación AC MILAN 2024/2025" },
-  { team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan3.jpg", desc: "Segunda equipación AC MILAN 2024/2025" },
+  {
+    team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan1.jpg", desc: "Primera equipación AC MILAN 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-ac-milan" /* ← reemplaza con tu enlace de afiliado */
+  },
+  {
+    team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan3.jpg", desc: "Segunda equipación AC MILAN 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-ac-milan"
+  },
   { team: "AC Milan", year: "2008/2009", competition: "Serie A", img: "assets/images/acmilan2.jpg", desc: "Primera equipación AC MILAN 2008/2009" },
-  { team: "Alemania", year: "2024", competition: "Selecciones", img: "assets/images/alemania.jpg", desc: "Primera equipación Alemania Eurocopa 2024" },
-  { team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina1.jpg", desc: "Segunda equipación Argentina 2024" },
+  {
+    team: "Alemania", year: "2024", competition: "Selecciones", img: "assets/images/alemania.jpg", desc: "Primera equipación Alemania Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-alemania"
+  },
+  {
+    team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina1.jpg", desc: "Segunda equipación Argentina 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
+  },
   { team: "Argentina", year: "1994", competition: "Selecciones", img: "assets/images/argentina2.jpg", desc: "Segunda equipación Argentina Mundial 1994" },
-  { team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina3.jpg", desc: "Primera equipación Argentina 2024" },
+  {
+    team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina3.jpg", desc: "Primera equipación Argentina 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
+  },
   { team: "Argentina", year: "2022", competition: "Selecciones", img: "assets/images/argentina4.jpg", desc: "Primera equipación Argentina Mundial 2022" },
-  { team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina5.jpg", desc: "Edición especial de estilo lifestyle 2024" },
+  {
+    team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina5.jpg", desc: "Edición especial de estilo lifestyle 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
+  },
   { team: "Argentina", year: "2023", competition: "Selecciones", img: "assets/images/argentina6.jpg", desc: "Segunda equipación Argentina 2023" },
   { team: "Arsenal", year: "2006/2007", competition: "Premier League", img: "assets/images/arsenal.jpg", desc: "Primera equipación Arsenal 2006/2007" },
-  { team: "AS Roma", year: "2024/2025", competition: "Serie A", img: "assets/images/asroma.jpg", desc: "Segunda equipación AS Roma 2024/2025" },
-  { team: "Atlético de Madrid", year: "2024/2025", competition: "La Liga", img: "assets/images/atletico_madrid.jpg", desc: "Primera equipación Atlético de Madrid 2024/2025" },
+  {
+    team: "AS Roma", year: "2024/2025", competition: "Serie A", img: "assets/images/asroma.jpg", desc: "Segunda equipación AS Roma 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-as-roma"
+  },
+  {
+    team: "Atlético de Madrid", year: "2024/2025", competition: "La Liga", img: "assets/images/atletico_madrid.jpg", desc: "Primera equipación Atlético de Madrid 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-atletico-de-madrid"
+  },
   { team: "Barcelona SC", year: "2015/2016", competition: "Liga Pro Ecuador", img: "assets/images/barcelona_guayaquil.jpg", desc: "Primera equipación Barcelona SC 2015/2016" },
-  { team: "Bayer Leverkusen", year: "2024/2025", competition: "Bundesliga", img: "assets/images/bayer_leverkusen.jpg", desc: "Primera equipación Bayer Leverkusen 2024/2025" },
+  {
+    team: "Bayer Leverkusen", year: "2024/2025", competition: "Bundesliga", img: "assets/images/bayer_leverkusen.jpg", desc: "Primera equipación Bayer Leverkusen 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-bayer-leverkusen"
+  },
   { team: "Benfica", year: "1998/1999", competition: "Primeira Liga", img: "assets/images/benfica.jpg", desc: "Segunda equipación Benfica 1998/1999" },
-  { team: "Club Atlético Boca Juniors", year: "2023/2024", competition: "Primera División Argentina", img: "assets/images/boca_juniors1.jpg", desc: "Primera equipación Boca Juniors 2023/2024" },
+  {
+    team: "Club Atlético Boca Juniors", year: "2023/2024", competition: "Primera División Argentina", img: "assets/images/boca_juniors1.jpg", desc: "Primera equipación Boca Juniors 2023/2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-boca-juniors"
+  },
   { team: "Club Atlético Boca Juniors", year: "2005", competition: "Primera División Argentina", img: "assets/images/boca_juniors2.jpg", desc: "Reedición moderna de primera equipación Boca Juniors 2005" },
-  { team: "Borussia Dortmund", year: "2024/2025", competition: "Bundesliga", img: "assets/images/borussia_dortmund.jpg", desc: "Primera equipación Borussia Dortmund 2024/2025" },
-  { team: "Brasil", year: "2024", competition: "Selecciones", img: "assets/images/brasil.jpg", desc: "Primera equipación Brasil Copa América 2024" },
-  { team: "Chelsea", year: "2024/2025", competition: "Premier League", img: "assets/images/chelsea.jpg", desc: "Primera equipación Chelsea 2024/2025" },
+  {
+    team: "Borussia Dortmund", year: "2024/2025", competition: "Bundesliga", img: "assets/images/borussia_dortmund.jpg", desc: "Primera equipación Borussia Dortmund 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-borussia-dortmund"
+  },
+  {
+    team: "Brasil", year: "2024", competition: "Selecciones", img: "assets/images/brasil.jpg", desc: "Primera equipación Brasil Copa América 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-brasil"
+  },
+  {
+    team: "Chelsea", year: "2024/2025", competition: "Premier League", img: "assets/images/chelsea.jpg", desc: "Primera equipación Chelsea 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-chelsea"
+  },
   { team: "Corinthians", year: "2024/2025", competition: "Brasileirao", img: "assets/images/corintians.jpg", desc: "Primera equipación Corinthians 2024/2025" },
   { team: "Ecuador", year: "2015", competition: "Selecciones", img: "assets/images/ecuador.jpg", desc: "Primera equipación Ecuador" },
-  { team: "España", year: "2024", competition: "Selecciones", img: "assets/images/españa.jpg", desc: "Primera equipación España Eurocopa 2024" },
+  {
+    team: "España", year: "2024", competition: "Selecciones", img: "assets/images/españa.jpg", desc: "Primera equipación España Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-seleccion-espanola"
+  },
   { team: "FC Barcelona", year: "2022/2023", competition: "La Liga", img: "assets/images/fcb1.jpg", desc: "Tercera equipación FC Barcelona 2022/2023" },
   { team: "FC Barcelona", year: "2004/2005", competition: "La Liga", img: "assets/images/fcb2.jpg", desc: "Segunda equipación FC Barcelona 2004/2005" },
-  { team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb3.jpg", desc: "Tercera equipación FC Barcelona 2024/2025" },
-  { team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb4.jpg", desc: "Segunda equipación FC Barcelona 2024/2025" },
+  {
+    team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb3.jpg", desc: "Tercera equipación FC Barcelona 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
+  },
+  {
+    team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb4.jpg", desc: "Segunda equipación FC Barcelona 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
+  },
   { team: "FC Barcelona", year: "1998/1999", competition: "La Liga", img: "assets/images/fcb5.jpg", desc: "Primera equipación FC Barcelona 1998/1999. Edición centenario" },
-  { team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb6.jpg", desc: "Primera equipación FC Barcelona 2024/2025" },
+  {
+    team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb6.jpg", desc: "Primera equipación FC Barcelona 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
+  },
   { team: "FC Barcelona", year: "2009/2010", competition: "La Liga", img: "assets/images/fcb7.jpg", desc: "Primera equipación FC Barcelona 2009/2010" },
   { team: "ACF Fiorentina", year: "1998/1999", competition: "Serie A", img: "assets/images/fiorentina.jpg", desc: "Primera equipación Fiorentina 1998/1999" },
-  { team: "Francia", year: "2024", competition: "Selecciones", img: "assets/images/francia1.jpg", desc: "Segunda equipación Francia Eurocopa 2024" },
+  {
+    team: "Francia", year: "2024", competition: "Selecciones", img: "assets/images/francia1.jpg", desc: "Segunda equipación Francia Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-francia"
+  },
   { team: "Francia", year: "2006", competition: "Selecciones", img: "assets/images/francia2.jpg", desc: "Segunda equipación Francia Mundial 2006" },
-  { team: "Holanda", year: "2024", competition: "Selecciones", img: "assets/images/holanda.jpg", desc: "Primera equipación Holanda Eurocopa 2024" },
-  { team: "Inglaterra", year: "2024", competition: "Selecciones", img: "assets/images/inglaterra1.jpg", desc: "Primera equipación Inglaterra Eurocopa 2024" },
+  {
+    team: "Holanda", year: "2024", competition: "Selecciones", img: "assets/images/holanda.jpg", desc: "Primera equipación Holanda Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-holanda"
+  },
+  {
+    team: "Inglaterra", year: "2024", competition: "Selecciones", img: "assets/images/inglaterra1.jpg", desc: "Primera equipación Inglaterra Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-inglaterra"
+  },
   { team: "Inglaterra", year: "2006", competition: "Selecciones", img: "assets/images/inglaterra2.jpg", desc: "Primera equipación Inglaterra Mundial 2006" },
-  { team: "Inter Miami", year: "2024/2025", competition: "MLS", img: "assets/images/inter_miami1.jpg", desc: "Segunda equipación Inter Miami 2024/2025" },
-  { team: "Inter Miami", year: "2023/2024", competition: "MLS", img: "assets/images/inter_miami2.jpg", desc: "Primera equipación Inter Miami 2023/2024" },
-  { team: "FC Inter Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/inter_milan.jpg", desc: "Segunda equipación Inter Milan 2024/2025" },
-  { team: "Italia", year: "2024", competition: "Selecciones", img: "assets/images/italia.jpg", desc: "Primera equipación Italia Eurocopa 2024" },
+  {
+    team: "Inter Miami", year: "2024/2025", competition: "MLS", img: "assets/images/inter_miami1.jpg", desc: "Segunda equipación Inter Miami 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-inter-miami"
+  },
+  {
+    team: "Inter Miami", year: "2023/2024", competition: "MLS", img: "assets/images/inter_miami2.jpg", desc: "Primera equipación Inter Miami 2023/2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-inter-miami"
+  },
+  {
+    team: "FC Inter Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/inter_milan.jpg", desc: "Segunda equipación Inter Milan 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-inter-de-milan"
+  },
+  {
+    team: "Italia", year: "2024", competition: "Selecciones", img: "assets/images/italia.jpg", desc: "Primera equipación Italia Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-italia"
+  },
   { team: "Manchester City", year: "2023/2024", competition: "Premier League", img: "assets/images/man_city1.jpg", desc: "Primera equipación Manchester City 2023/2024" },
-  { team: "Manchester City", year: "2024/2025", competition: "Premier League", img: "assets/images/man_city2.jpg", desc: "Segunda equipación Manchester City 2024/2025" },
+  {
+    team: "Manchester City", year: "2024/2025", competition: "Premier League", img: "assets/images/man_city2.jpg", desc: "Segunda equipación Manchester City 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-manchester-city"
+  },
   { team: "Manchester United", year: "2023/2024", competition: "Premier League", img: "assets/images/man_united2.jpg", desc: "Segunda equipación Manchester United 2023/2024" },
-  { team: "Manchester United", year: "2024/2025", competition: "Premier League", img: "assets/images/man_united1.jpg", desc: "Primera equipación Manchester United 2024/2025" },
-  { team: "SSC Napoli", year: "2024/2025", competition: "Serie A", img: "assets/images/napoles.jpg", desc: "Primera equipación Napoli 2024/2025" },
-  { team: "Portugal", year: "2024", competition: "Selecciones", img: "assets/images/portugal.jpg", desc: "Primera equipación Portugal Eurocopa 2024" },
+  {
+    team: "Manchester United", year: "2024/2025", competition: "Premier League", img: "assets/images/man_united1.jpg", desc: "Primera equipación Manchester United 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-manchester-united"
+  },
+  {
+    team: "SSC Napoli", year: "2024/2025", competition: "Serie A", img: "assets/images/napoles.jpg", desc: "Primera equipación Napoli 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-napoles"
+  },
+  {
+    team: "Portugal", year: "2024", competition: "Selecciones", img: "assets/images/portugal.jpg", desc: "Primera equipación Portugal Eurocopa 2024",
+    buyUrl: "https://www.futbolemotion.com/camisetas-portugal"
+  },
   { team: "Paris Saint Germain FC", year: "2021/2022", competition: "Ligue 1", img: "assets/images/psg1.jpg", desc: "Primera equipación PSG 2021/2022" },
   { team: "Paris Saint Germain FC", year: "2003/2004", competition: "Ligue 1", img: "assets/images/psg2.jpg", desc: "Primera equipación PSG 2003/2004" },
-  { team: "Paris Saint Germain FC", year: "2024/2025", competition: "Ligue 1", img: "assets/images/psg3.jpg", desc: "Tercera equipación PSG 2024/2025" },
-  { team: "Real Betis Balompié", year: "2025/2026", competition: "La Liga", img: "assets/images/real_betis1.jpg", desc: "Edición especial Betis 2025/2026" },
+  {
+    team: "Paris Saint Germain FC", year: "2024/2025", competition: "Ligue 1", img: "assets/images/psg3.jpg", desc: "Tercera equipación PSG 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-paris-saint-germain"
+  },
+  {
+    team: "Real Betis Balompié", year: "2025/2026", competition: "La Liga", img: "assets/images/real_betis1.jpg", desc: "Edición especial Betis 2025/2026",
+    buyUrl: "https://www.futbolemotion.com/camisetas-real-betis"
+  },
   { team: "Real Betis Balompié", year: "1987/1988", competition: "La Liga", img: "assets/images/real_betis2.jpg", desc: "Primera equipación Betis 1987/1988" },
-  { team: "Real Madrid CF", year: "2024/2025", competition: "La Liga", img: "assets/images/real_madrid.jpg", desc: "Primera equipación Real Madrid 2024/2025" },
-  { team: "Club Atlético River Plate", year: "2024/2025", competition: "Primera División Argentina", img: "assets/images/river_plate.jpg", desc: "Primera equipación River Plate 2024/2025" },
+  {
+    team: "Real Madrid CF", year: "2024/2025", competition: "La Liga", img: "assets/images/real_madrid.jpg", desc: "Primera equipación Real Madrid 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-real-madrid"
+  },
+  {
+    team: "Club Atlético River Plate", year: "2024/2025", competition: "Primera División Argentina", img: "assets/images/river_plate.jpg", desc: "Primera equipación River Plate 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-river-plate"
+  },
   { team: "Santos Futebol Clube", year: "2024/2025", competition: "Brasileirao", img: "assets/images/santos1.jpg", desc: "Primera equipación Santos 2024/2025" },
   { team: "Santos Futebol Clube", year: "2011/2012", competition: "Brasileirao", img: "assets/images/santos2.jpg", desc: "Primera equipación Santos 2011/2012" },
-  { team: "Sporting Clube de Portugal", year: "2024/2025", competition: "Primeira Liga", img: "assets/images/sporting_lisboa.jpg", desc: "Primera equipación Sporting de Lisboa 2024/2025" },
+  {
+    team: "Sporting Clube de Portugal", year: "2024/2025", competition: "Primeira Liga", img: "assets/images/sporting_lisboa.jpg", desc: "Primera equipación Sporting de Lisboa 2024/2025",
+    buyUrl: "https://www.futbolemotion.com/camisetas-sporting-de-lisboa"
+  },
   { team: "Venezuela", year: "2022/2023", competition: "Selecciones", img: "assets/images/venezuela.jpg", desc: "Primera equipación Venezuela 2022/2023" },
 ];
 
@@ -147,7 +260,15 @@ function initJerseys() {
 function createJerseyCard(j) {
   const card = document.createElement("div");
   card.classList.add("jersey-card", "fade-in");
-  card.innerHTML = `<img loading="lazy" src="${j.img}" alt="${j.team}" onerror="this.style.display='none'"><h3>${j.team}</h3><p>${j.desc}</p>`;
+  const buyBtn = j.buyUrl
+    ? `<a href="${j.buyUrl}" target="_blank" rel="noopener sponsored" class="jersey-buy-btn">🛒 Dónde comprar</a>`
+    : '';
+  card.innerHTML = `
+    <img loading="lazy" src="${j.img}" alt="${j.team}" onerror="this.style.display='none'">
+    <h3>${j.team}</h3>
+    <p>${j.desc}</p>
+    ${buyBtn}
+  `;
   document.getElementById("jersey-container")?.appendChild(card);
   fadeObserver.observe(card);
 }
@@ -237,6 +358,7 @@ viewSelect?.addEventListener("change", loadAnalysis);
 // ==========================
 // WORLD CUP — PARTIDOS
 // ==========================
+// ⬇️  PEGA AQUÍ TU ARRAY worldCupMatches COMPLETO (id: 21 en adelante)
 const worldCupMatches = [
   { id: 1, date: "2026-06-11", time: "21:00", home: "México 🇲🇽", away: "Sudáfrica 🇿🇦", stadium: "Estadio Azteca", city: "Ciudad de México", stage: "groups", group: "A" },
   { id: 2, date: "2026-06-12", time: "04:00", home: "Corea del Sur 🇰🇷", away: "República Checa 🇨🇿", stadium: "Estadio Guadalajara", city: "Guadalajara", stage: "groups", group: "A" },
@@ -1257,9 +1379,10 @@ const teamArticles = {
       <h2>Un proyecto que trasciende generaciones</h2>
       <p>Lo que Hansi Flick construyó en el Barcelona fue la chispa que encendió a toda una selección. Lamine Yamal, Nico Williams, Pedri, Gavi… España tiene la plantilla más joven de entre los favoritos y, a la vez, la más experimentada en títulos. Esa paradoja es precisamente su mayor fortaleza.</p>
       <p>La Eurocopa de 2024 en Alemania fue una demostración de poder colectivo. Ganan sin que nadie brille individualmente porque todos brillan. No hay dependencia de un nombre: hay un sistema.</p>
-      <div class="article-stat-grid">
+      <div class="article-stat-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="stat-box"><span class="stat-val">#2</span><span class="stat-lbl">Ranking FIFA</span></div>
-        <div class="stat-box"><span class="stat-val">4</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">1</span><span class="stat-lbl">Mundial (2010)</span></div>
+        <div class="stat-box"><span class="stat-val">4</span><span class="stat-lbl">Eurocopas</span></div>
         <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <h2>Estilo de juego: posesión con veneno</h2>
@@ -1359,14 +1482,14 @@ const teamArticles = {
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role">De los mejores jugadores del mundo</span></li>
-        <li><span><strong>Raphinha</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
+        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role">Mejor jugador del mundo</span></li>
+        <li><span><strong>Rodrygo</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
         <li><span><strong>Bruno Guimarães</strong> · Centrocampista</span><span class="player-role">El motor del equipo</span></li>
         <li><span><strong>Marquinhos</strong> · Defensa central</span><span class="player-role">Capitán y líder en la zaga</span></li>
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>Brasil tiene el talento. Le falta el bloque. Si el seleccionador logra construir un equipo cohesionado, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos.</p>
+        <p>Brasil tiene el talento. Le falta el bloque. Si el seleccionador logra construir un equipo cohesionado alrededor de Vinícius, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos.</p>
       </div>`
   },
 
@@ -1401,6 +1524,36 @@ const teamArticles = {
       </div>`
   },
 
+  "Portugal 🇵🇹": {
+    content: `
+      <span class="article-flag">🇵🇹</span>
+      <h1>Portugal sin Cristiano: la liberación</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Enero 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">
+        La era post-Ronaldo ha liberado a Portugal. Roberto Martínez ha construido un equipo fluido
+        y moderno, liderado por una generación que por fin puede brillar sin sombras.
+      </p>
+      <h2>El relevo de una era</h2>
+      <p>Cuando Ronaldo se retiró de la selección, hubo cierto miedo. Lo que siguió fue una liberación. Rafael Leão asumió el liderazgo sin complejos, Bernardo Silva se convirtió en el cerebro del equipo, y Rúben Dias consolidó una defensa de primer nivel mundial.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#6</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">0</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Por confirmar</span><span class="stat-lbl">Grupo</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Rafael Leão</strong> · Extremo</span><span class="player-role">El desequilibrio personificado</span></li>
+        <li><span><strong>Bernardo Silva</strong> · Mediapunta</span><span class="player-role">El más inteligente del equipo</span></li>
+        <li><span><strong>Rúben Dias</strong> · Defensa central</span><span class="player-role">Muro infranqueable</span></li>
+        <li><span><strong>Vitinha</strong> · Centrocampista</span><span class="player-role">Talento en ascenso</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Portugal puede llegar lejos si Leão aparece. Es así de simple y así de frágil. Son un equipo para disfrutar, no para contar como favorito. Cuartos es su techo realista, pero tienen calidad para sorprender a cualquiera.</p>
+      </div>`
+  },
 
   // ─────────────────────────────────────────────────────────────────────
   // PLANTILLA para nuevos artículos — descomenta y rellena:
@@ -1652,7 +1805,6 @@ function renderByDay(container) {
 function createSidebarCard(match) {
   const card = document.createElement('div');
   card.className = 'match-card';
-
   card.innerHTML = `
     <div class="match-header">
       <span class="match-teams">${match.home} vs ${match.away}</span>
@@ -1661,10 +1813,8 @@ function createSidebarCard(match) {
     <div class="match-info">📍 ${match.city}</div>
     <div class="match-actions">
       <a href="${generateGoogleCalUrl(match)}" target="_blank" rel="noopener" class="btn-cal btn-google">Google</a>
-      <button onclick="downloadMatchICS('${match.id}')" class="btn-cal btn-apple">Apple</button>
-    </div>
-  `;
-
+      <button onclick="downloadMatchICS(${match.id})" class="btn-cal btn-apple">Apple</button>
+    </div>`;
   return card;
 }
 
@@ -1676,22 +1826,9 @@ function pad(n) { return String(n).padStart(2, '0'); }
 function generateGoogleCalUrl(m) {
   const ds = m.date.replace(/-/g, '');
   const [h, min] = m.time.split(':').map(Number);
-
-  const st = `${ds}T${pad(h)}${pad(min)}00`;
-  const et = `${ds}T${pad((h + 2) % 24)}${pad(min)}00`;
-
-  const stage =
-    m.stage === 'groups'
-      ? `Grupo ${m.group} · Mundial 2026`
-      : (STAGE_LABELS[m.stage] || 'Mundial 2026');
-
-  return `https://calendar.google.com/calendar/render?${new URLSearchParams({
-    action: 'TEMPLATE',
-    text: `${m.home} vs ${m.away}`,
-    dates: `${st}/${et}`,
-    details: stage,
-    location: `${m.stadium}, ${m.city}`
-  }).toString()}`;
+  const st = `${ds}T${pad(h)}${pad(min)}00`, et = `${ds}T${pad((h + 2) % 24)}${pad(min)}00`;
+  const stage = m.stage === 'groups' ? `Grupo ${m.group} · Mundial 2026` : (STAGE_LABELS[m.stage] || 'Mundial 2026');
+  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${m.home} vs ${m.away}`, dates: `${st}/${et}`, details: stage, location: `${m.stadium}, ${m.city}`)}}`;
 }
 
 window.downloadMatchICS = function (id) {

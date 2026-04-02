@@ -607,3 +607,96 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ===== MONETIZACIÓN — CAMISETAS ===== */
+.jersey-buy-btn {
+  display: block;
+  margin-top: 12px;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.jersey-buy-btn:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.28);
+}
+
+/* Etiqueta discreta de afiliado en la sección de camisetas */
+.jerseys-affiliate-note {
+  font-size: 0.72rem;
+  color: #555;
+  margin-top: 12px;
+  margin-bottom: -8px;
+}
+
+/* ===== MONETIZACIÓN — KO-FI / FOOTER ===== */
+.kofi-strip {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.kofi-strip p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.kofi-strip p strong {
+  color: var(--text-primary);
+}
+
+.btn-kofi {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: #ff5e5b;
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-kofi:hover {
+  background: #e04d4a;
+  transform: translateY(-1px);
+}
+
+.btn-kofi svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+@media (max-width: 600px) {
+  .kofi-strip {
+    padding: 20px 6%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btn-kofi {
+    width: 100%;
+    justify-content: center;
+  }
+}
