@@ -2,149 +2,77 @@
 // NAVBAR SCROLL EFFECT
 // ==========================
 const navbar = document.querySelector(".navbar");
-
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 60) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
+  navbar.classList.toggle("scrolled", window.scrollY > 60);
 });
 
 // ==========================
-// MENU MOVIL
+// MENU MÓVIL
 // ==========================
 const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.querySelector(".nav-links");
+const navLinksEl = document.querySelector(".nav-links");
 
-navToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
-});
-
-// Cerrar menú si se hace click fuera
+navToggle?.addEventListener("click", () => navLinksEl.classList.toggle("show"));
 document.addEventListener("click", (e) => {
-  if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-    navLinks.classList.remove("show");
-  }
+  if (!navLinksEl?.contains(e.target) && !navToggle?.contains(e.target))
+    navLinksEl?.classList.remove("show");
 });
 
 // ==========================
-// FADE IN ANIMATION
+// FADE IN
 // ==========================
-const observerOptions = { threshold: 0.15 };
-
-const fadeObserver = new IntersectionObserver((entries, observer) => {
+const fadeObserver = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) { entry.target.classList.add("visible"); obs.unobserve(entry.target); }
   });
-}, observerOptions);
+}, { threshold: 0.12 });
 
 function observeFadeElements() {
-  document.querySelectorAll(".fade-in:not(.visible)").forEach(el => {
-    fadeObserver.observe(el);
-  });
+  document.querySelectorAll(".fade-in:not(.visible)").forEach(el => fadeObserver.observe(el));
 }
 
 // ==========================
-// NAVEGACIÓN POR SECCIONES
+// SECTION NAVIGATION
 // ==========================
 const SECTION_IDS = ['about', 'articles', 'analisis', 'worldcup', 'jerseys'];
-let sectionInitialized = {};
+const sectionInitialized = {};
 
 function navigateTo(sectionId) {
-  // Entrar en modo panel
   document.body.classList.add('panel-mode');
-
-  // Ocultar todas las secciones
-  SECTION_IDS.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove('active-section');
-  });
-  const wcAnalysis = document.getElementById('worldcup-analysis');
-  if (wcAnalysis) wcAnalysis.classList.remove('active-section');
-
-  // Mostrar la sección objetivo
-  const target = document.getElementById(sectionId);
-  if (target) {
-    target.classList.add('active-section');
-
-    // Si es worldcup, también mostrar el análisis de selecciones
-    if (sectionId === 'worldcup' && wcAnalysis) {
-      wcAnalysis.classList.add('active-section');
-    }
-  }
-
-  // Actualizar enlace activo en nav
+  SECTION_IDS.forEach(id => document.getElementById(id)?.classList.remove('active-section'));
+  document.getElementById(sectionId)?.classList.add('active-section');
   document.querySelectorAll('.nav-links a').forEach(a => {
-    const href = (a.getAttribute('href') || '').replace('#', '');
-    a.classList.toggle('active', href === sectionId);
+    a.classList.toggle('active', (a.getAttribute('href') || '').replace('#', '') === sectionId);
   });
-
-  // Volver al top
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Cerrar menú móvil
-  navLinks.classList.remove('show');
-
-  // Inicializar sección si es la primera vez
+  navLinksEl?.classList.remove('show');
   if (!sectionInitialized[sectionId]) {
     sectionInitialized[sectionId] = true;
-
-    if (sectionId === 'analisis') {
-      loadAnalysis();
-    }
-    if (sectionId === 'worldcup') {
-      renderFixture();
-      renderTeamAnalysis();
-    }
-    if (sectionId === 'jerseys') {
-      generateCompetitionFilter();
-      renderInitial(jerseys);
-    }
+    if (sectionId === 'analisis') loadAnalysis();
+    if (sectionId === 'worldcup') initWorldCup();
+    if (sectionId === 'jerseys') initJerseys();
   }
-
-  // Re-observar fade-in elements
   setTimeout(observeFadeElements, 50);
 }
 
 function goHome() {
   document.body.classList.remove('panel-mode');
-  SECTION_IDS.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove('active-section');
-  });
-  const wcAnalysis = document.getElementById('worldcup-analysis');
-  if (wcAnalysis) wcAnalysis.classList.remove('active-section');
+  SECTION_IDS.forEach(id => document.getElementById(id)?.classList.remove('active-section'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  navLinks.classList.remove('show');
+  navLinksEl?.classList.remove('show');
 }
 
-// Interceptar todos los clics en enlaces internos
 document.addEventListener('click', e => {
   const a = e.target.closest('a[href^="#"]');
   if (!a) return;
-
-  const sectionId = a.getAttribute('href').slice(1);
-  if (!sectionId) return;
-
-  if (SECTION_IDS.includes(sectionId)) {
-    e.preventDefault();
-    navigateTo(sectionId);
-  }
+  const id = a.getAttribute('href').slice(1);
+  if (SECTION_IDS.includes(id)) { e.preventDefault(); navigateTo(id); }
 });
-
-// Click en el logo → volver a home
-document.querySelector('.logo')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  goHome();
-});
+document.querySelector('.logo')?.addEventListener('click', e => { e.preventDefault(); goHome(); });
 
 // ==========================
-// CAMISETAS — DATOS
+// CAMISETAS
 // ==========================
 const jerseys = [
   { team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan1.jpg", desc: "Primera equipación AC MILAN 2024/2025" },
@@ -207,185 +135,130 @@ const jerseys = [
   { team: "Venezuela", year: "2022/2023", competition: "Selecciones", img: "assets/images/venezuela.jpg", desc: "Primera equipación Venezuela 2022/2023" },
 ];
 
-// ==========================
-// CAMISETAS — RENDER
-// ==========================
-const container = document.getElementById("jersey-container");
-let currentIndex = 0;
-const LOAD_BATCH = 8;
-let currentList = [];
-let jerseyInitDone = false;
+let jerseyCurrentIndex = 0;
+const JERSEY_BATCH = 8;
+let jerseyCurrentList = [];
 
-function createCard(jersey) {
+function initJerseys() {
+  generateCompetitionFilter();
+  renderInitialJerseys(jerseys);
+}
+
+function createJerseyCard(j) {
   const card = document.createElement("div");
   card.classList.add("jersey-card", "fade-in");
-  card.innerHTML = `
-    <img loading="lazy" src="${jersey.img}" alt="${jersey.team}" onerror="this.style.display='none'">
-    <h3>${jersey.team}</h3>
-    <p>${jersey.desc}</p>
-  `;
-  container.appendChild(card);
+  card.innerHTML = `<img loading="lazy" src="${j.img}" alt="${j.team}" onerror="this.style.display='none'"><h3>${j.team}</h3><p>${j.desc}</p>`;
+  document.getElementById("jersey-container")?.appendChild(card);
   fadeObserver.observe(card);
 }
 
-function loadJerseys() {
-  if (currentIndex >= currentList.length) return;
-  const next = currentList.slice(currentIndex, currentIndex + LOAD_BATCH);
-  next.forEach(jersey => createCard(jersey));
-  currentIndex += LOAD_BATCH;
+function loadMoreJerseys() {
+  if (jerseyCurrentIndex >= jerseyCurrentList.length) return;
+  jerseyCurrentList.slice(jerseyCurrentIndex, jerseyCurrentIndex + JERSEY_BATCH).forEach(createJerseyCard);
+  jerseyCurrentIndex += JERSEY_BATCH;
 }
 
-function renderInitial(list) {
-  if (!container) return;
-  container.innerHTML = "";
-  currentIndex = 0;
-  currentList = list;
-  loadJerseys();
+function renderInitialJerseys(list) {
+  const c = document.getElementById("jersey-container");
+  if (!c) return;
+  c.innerHTML = "";
+  jerseyCurrentIndex = 0;
+  jerseyCurrentList = list;
+  loadMoreJerseys();
 }
 
-// Scroll infinito horizontal
-container?.addEventListener("scroll", () => {
-  if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 80) {
-    loadJerseys();
-  }
+document.getElementById("jersey-container")?.addEventListener("scroll", () => {
+  const c = document.getElementById("jersey-container");
+  if (c.scrollLeft + c.clientWidth >= c.scrollWidth - 80) loadMoreJerseys();
 });
 
-// ==========================
-// CAMISETAS — FILTROS
-// ==========================
 const searchTeam = document.getElementById("searchTeam");
 const searchCompetition = document.getElementById("searchCompetition");
 const searchYear = document.getElementById("searchYear");
 
 function filterJerseys() {
-  const team = searchTeam ? searchTeam.value.toLowerCase() : "";
-  const competition = searchCompetition ? searchCompetition.value : "";
-  const year = searchYear ? searchYear.value : "";
-
-  const filtered = jerseys.filter(jersey =>
-    jersey.team.toLowerCase().includes(team) &&
-    (competition === "" || jersey.competition === competition) &&
-    (year === "" || jersey.year.includes(year))
-  );
-
-  renderInitial(filtered);
+  const t = searchTeam?.value.toLowerCase() ?? "";
+  const c = searchCompetition?.value ?? "";
+  const y = searchYear?.value ?? "";
+  renderInitialJerseys(jerseys.filter(j => j.team.toLowerCase().includes(t) && (!c || j.competition === c) && (!y || j.year.includes(y))));
 }
 
-if (searchTeam) searchTeam.addEventListener("input", filterJerseys);
-if (searchCompetition) searchCompetition.addEventListener("change", filterJerseys);
-if (searchYear) searchYear.addEventListener("input", filterJerseys);
+searchTeam?.addEventListener("input", filterJerseys);
+searchCompetition?.addEventListener("change", filterJerseys);
+searchYear?.addEventListener("input", filterJerseys);
 
 function generateCompetitionFilter() {
   if (!searchCompetition || searchCompetition.options.length > 1) return;
-  const competitions = [...new Set(jerseys.map(j => j.competition))].sort();
-  competitions.forEach(comp => {
-    const option = document.createElement("option");
-    option.value = comp;
-    option.textContent = comp;
-    searchCompetition.appendChild(option);
+  [...new Set(jerseys.map(j => j.competition))].sort().forEach(comp => {
+    const o = document.createElement("option");
+    o.value = comp; o.textContent = comp;
+    searchCompetition.appendChild(o);
   });
 }
 
-// Contador de camisetas
 const jerseysTitle = document.querySelector(".jerseys h2");
-if (jerseysTitle) {
-  jerseysTitle.textContent = `Camisetas de fútbol (${jerseys.length})`;
-}
+if (jerseysTitle) jerseysTitle.textContent = `Camisetas de fútbol (${jerseys.length})`;
 
 // ==========================
-// ANÁLISIS — API
+// ANÁLISIS API
 // ==========================
 const leagueSelect = document.getElementById("leagueSelect");
 const viewSelect = document.getElementById("viewSelect");
 const output = document.getElementById("dataOutput");
 
 async function getData(league) {
-  const [standingsRes, scorersRes] = await Promise.all([
-    fetch(`/api/standings?league=${league}`),
-    fetch(`/api/scorers?league=${league}`)
-  ]);
-
-  if (!standingsRes.ok || !scorersRes.ok) {
-    throw new Error(`Error ${standingsRes.status}`);
-  }
-
-  const standingsData = await standingsRes.json();
-  const scorersData = await scorersRes.json();
-
-  return {
-    table: standingsData.standings[0].table,
-    scorers: scorersData.scorers
-  };
+  const [sRes, pRes] = await Promise.all([fetch(`/api/standings?league=${league}`), fetch(`/api/scorers?league=${league}`)]);
+  if (!sRes.ok || !pRes.ok) throw new Error(`HTTP ${sRes.status}`);
+  const s = await sRes.json(), p = await pRes.json();
+  return { table: s.standings[0].table, scorers: p.scorers };
 }
 
-function render(view, data) {
+function renderAnalysis(view, data) {
   if (!output) return;
   output.innerHTML = "";
-  if (!data) return;
-
-  if (view === "table") {
-    data.table.forEach(t => addRow(`${t.position}. ${t.team.name}`, `${t.points} pts`));
-  } else if (view === "attack") {
-    [...data.table].sort((a, b) => b.goalsFor - a.goalsFor).slice(0, 10)
-      .forEach(t => addRow(t.team.name, `${t.goalsFor} goles`));
-  } else if (view === "defense") {
-    [...data.table].sort((a, b) => a.goalsAgainst - b.goalsAgainst).slice(0, 10)
-      .forEach(t => addRow(t.team.name, `${t.goalsAgainst} encajados`));
-  } else if (view === "scorers") {
-    data.scorers.slice(0, 10).forEach(p => addRow(p.player.name, `${p.goals} goles`));
-  } else if (view === "assists") {
-    [...data.scorers].sort((a, b) => (b.assists || 0) - (a.assists || 0)).slice(0, 10)
-      .forEach(p => addRow(p.player.name, `${p.assists || 0} asistencias`));
-  }
-}
-
-function addRow(left, right) {
-  const li = document.createElement("li");
-  li.innerHTML = `<span>${left}</span><span>${right}</span>`;
-  output.appendChild(li);
+  const row = (l, r) => { const li = document.createElement("li"); li.innerHTML = `<span>${l}</span><span>${r}</span>`; output.appendChild(li); };
+  if (view === "table") data.table.forEach(t => row(`${t.position}. ${t.team.name}`, `${t.points} pts`));
+  if (view === "attack") [...data.table].sort((a, b) => b.goalsFor - a.goalsFor).slice(0, 10).forEach(t => row(t.team.name, `${t.goalsFor} goles`));
+  if (view === "defense") [...data.table].sort((a, b) => a.goalsAgainst - b.goalsAgainst).slice(0, 10).forEach(t => row(t.team.name, `${t.goalsAgainst} encajados`));
+  if (view === "scorers") data.scorers.slice(0, 10).forEach(p => row(p.player.name, `${p.goals} goles`));
+  if (view === "assists") [...data.scorers].sort((a, b) => (b.assists || 0) - (a.assists || 0)).slice(0, 10).forEach(p => row(p.player.name, `${p.assists || 0} asistencias`));
 }
 
 async function loadAnalysis() {
   if (!output) return;
-  output.innerHTML = '<li style="justify-content:center;opacity:0.5">Cargando datos...</li>';
-  try {
-    const data = await getData(leagueSelect.value);
-    render(viewSelect.value, data);
-  } catch (e) {
-    output.innerHTML = '<li style="justify-content:center;opacity:0.5">⚠️ No se pudieron cargar los datos</li>';
-    console.error("Error loading analysis:", e);
-  }
+  output.innerHTML = '<li style="justify-content:center;opacity:0.5;padding:20px 0">Cargando...</li>';
+  try { const d = await getData(leagueSelect.value); renderAnalysis(viewSelect.value, d); }
+  catch { output.innerHTML = '<li style="justify-content:center;opacity:0.5;padding:20px 0">⚠️ Error cargando datos</li>'; }
 }
 
 leagueSelect?.addEventListener("change", loadAnalysis);
 viewSelect?.addEventListener("change", loadAnalysis);
 
 // ==========================
-// WORLD CUP — DATOS
+// WORLD CUP — PARTIDOS
 // ==========================
 const worldCupMatches = [
   { id: 1, date: "2026-06-11", time: "21:00", home: "México 🇲🇽", away: "Sudáfrica 🇿🇦", stadium: "Estadio Azteca", city: "Ciudad de México", stage: "groups", group: "A" },
   { id: 2, date: "2026-06-12", time: "04:00", home: "Corea del Sur 🇰🇷", away: "República Checa 🇨🇿", stadium: "Estadio Guadalajara", city: "Guadalajara", stage: "groups", group: "A" },
-  { id: 3, date: "2026-06-12", time: "21:00", home: "Canadá 🇨🇦", away: "Bosnia y Herzegovina 🇧🇦", stadium: "Toronto Stadium", city: "Toronto", stage: "groups", group: "B" },
-  { id: 4, date: "2026-06-13", time: "03:00", home: "Estados Unidos 🇺🇸", away: "Paraguay 🇵🇾", stadium: "Los Angeles Stadium", city: "Los Angeles", stage: "groups", group: "D" },
-  { id: 5, date: "2026-06-13", time: "03:00", home: "Qatar 🇶🇦", away: "Suiza 🇨🇭", stadium: "San Francisco Stadium", city: "San Francisco", stage: "groups", group: "B" },
+  { id: 3, date: "2026-06-12", time: "21:00", home: "Canadá 🇨🇦", away: "Bosnia y Herzegovina 🇧🇦", stadium: "BMO Field", city: "Toronto", stage: "groups", group: "B" },
+  { id: 4, date: "2026-06-13", time: "03:00", home: "Estados Unidos 🇺🇸", away: "Paraguay 🇵🇾", stadium: "SoFi Stadium", city: "Los Angeles", stage: "groups", group: "D" },
+  { id: 5, date: "2026-06-13", time: "03:00", home: "Qatar 🇶🇦", away: "Suiza 🇨🇭", stadium: "Levi's Stadium", city: "San Francisco", stage: "groups", group: "B" },
   { id: 6, date: "2026-06-14", time: "00:00", home: "Brasil 🇧🇷", away: "Marruecos 🇲🇦", stadium: "MetLife Stadium", city: "New York", stage: "groups", group: "C" },
-  { id: 7, date: "2026-06-14", time: "03:00", home: "Haití 🇭🇹", away: "Escocia 🏴󠁧󠁢󠁳󠁣󠁴󠁿", stadium: "Boston Stadium", city: "Boston", stage: "groups", group: "C" },
-  { id: 8, date: "2026-06-14", time: "06:00", home: "Australia 🇦🇺", away: "Turquía 🇹🇷", stadium: "BC Place Vancouver Stadium", city: "Vancouver", stage: "groups", group: "D" },
-  { id: 9, date: "2026-06-14", time: "19:00", home: "Alemania 🇩🇪", away: "Curazao 🇨🇼", stadium: "Houston Stadium", city: "Houston", stage: "groups", group: "E" },
-  { id: 10, date: "2026-06-14", time: "22:00", home: "Países Bajos 🇳🇱", away: "Japón 🇯🇵", stadium: "Dallas Stadium", city: "Dallas", stage: "groups", group: "F" },
-  { id: 11, date: "2026-06-15", time: "01:00", home: "Costa de Marfil 🇨🇮", away: "Ecuador 🇪🇨", stadium: "Philadelphia Stadium", city: "Philadelphia", stage: "groups", group: "E" },
-  { id: 12, date: "2026-06-15", time: "14:00", home: "Suecia 🇸🇪", away: "Túnez 🇹🇳", stadium: "Estadio de Monterrey", city: "Monterrey", stage: "groups", group: "F" },
-  { id: 13, date: "2026-06-15", time: "18:00", home: "España 🇪🇸", away: "Cabo Verde 🇨🇻", stadium: "Atlanta Stadium", city: "Atlanta", stage: "groups", group: "H" },
-  { id: 14, date: "2026-06-15", time: "21:00", home: "Bélgica 🇧🇪", away: "Egipto 🇪🇬", stadium: "Seattle Stadium", city: "Seattle", stage: "groups", group: "G" },
-  { id: 15, date: "2026-06-16", time: "00:00", home: "Arabia Saudí 🇸🇦", away: "Uruguay 🇺🇾", stadium: "Miami Stadium", city: "Miami", stage: "groups", group: "H" },
-  { id: 16, date: "2026-06-16", time: "03:00", home: "Irán 🇮🇷", away: "Nueva Zelanda 🇳🇿", stadium: "Los Angeles Stadium", city: "Los Angeles", stage: "groups", group: "G" },
-  { id: 17, date: "2026-06-16", time: "21:00", home: "Francia 🇫🇷", away: "Senegal 🇸🇳", stadium: "New York Stadium", city: "New York", stage: "groups", group: "I" },
-  { id: 18, date: "2026-06-17", time: "00:00", home: "Irak 🇮🇶", away: "Noruega 🇳🇴", stadium: "Boston Stadium", city: "Boston", stage: "groups", group: "I" },
-  { id: 19, date: "2026-06-17", time: "03:00", home: "Argentina 🇦🇷", away: "Argelia 🇩🇿", stadium: "Kansas City Stadium", city: "Kansas City", stage: "groups", group: "J" },
-  { id: 20, date: "2026-06-17", time: "06:00", home: "Austria 🇦🇹", away: "Chile 🇨🇱", stadium: "Seattle Stadium", city: "Seattle", stage: "groups", group: "J" },
+  { id: 7, date: "2026-06-14", time: "03:00", home: "Haití 🇭🇹", away: "Escocia 🏴󠁧󠁢󠁳󠁣󠁴󠁿", stadium: "Gillette Stadium", city: "Boston", stage: "groups", group: "C" },
+  { id: 8, date: "2026-06-14", time: "06:00", home: "Australia 🇦🇺", away: "Turquía 🇹🇷", stadium: "BC Place", city: "Vancouver", stage: "groups", group: "D" },
+  { id: 9, date: "2026-06-14", time: "19:00", home: "Alemania 🇩🇪", away: "Curazao 🇨🇼", stadium: "NRG Stadium", city: "Houston", stage: "groups", group: "E" },
+  { id: 10, date: "2026-06-14", time: "22:00", home: "Países Bajos 🇳🇱", away: "Japón 🇯🇵", stadium: "AT&T Stadium", city: "Dallas", stage: "groups", group: "F" },
+  { id: 11, date: "2026-06-15", time: "01:00", home: "Costa de Marfil 🇨🇮", away: "Ecuador 🇪🇨", stadium: "Lincoln Financial Field", city: "Philadelphia", stage: "groups", group: "E" },
+  { id: 12, date: "2026-06-15", time: "14:00", home: "Suecia 🇸🇪", away: "Túnez 🇹🇳", stadium: "Estadio BBVA", city: "Monterrey", stage: "groups", group: "F" },
+  { id: 13, date: "2026-06-15", time: "18:00", home: "España 🇪🇸", away: "Cabo Verde 🇨🇻", stadium: "Mercedes-Benz Stadium", city: "Atlanta", stage: "groups", group: "H" },
+  { id: 14, date: "2026-06-15", time: "21:00", home: "Bélgica 🇧🇪", away: "Egipto 🇪🇬", stadium: "Lumen Field", city: "Seattle", stage: "groups", group: "G" },
+  { id: 15, date: "2026-06-16", time: "00:00", home: "Arabia Saudí 🇸🇦", away: "Uruguay 🇺🇾", stadium: "Hard Rock Stadium", city: "Miami", stage: "groups", group: "H" },
+  { id: 16, date: "2026-06-16", time: "03:00", home: "Irán 🇮🇷", away: "Nueva Zelanda 🇳🇿", stadium: "SoFi Stadium", city: "Los Angeles", stage: "groups", group: "G" },
+  { id: 17, date: "2026-06-16", time: "21:00", home: "Francia 🇫🇷", away: "Senegal 🇸🇳", stadium: "MetLife Stadium", city: "New York", stage: "groups", group: "I" },
+  { id: 18, date: "2026-06-17", time: "00:00", home: "Irak 🇮🇶", away: "Noruega 🇳🇴", stadium: "Gillette Stadium", city: "Boston", stage: "groups", group: "I" },
+  { id: 19, date: "2026-06-17", time: "03:00", home: "Argentina 🇦🇷", away: "Argelia 🇩🇿", stadium: "Arrowhead Stadium", city: "Kansas City", stage: "groups", group: "J" },
+  { id: 20, date: "2026-06-17", time: "06:00", home: "Austria 🇦🇹", away: "Chile 🇨🇱", stadium: "Lumen Field", city: "Seattle", stage: "groups", group: "J" },
   { id: 21, date: "2026-06-17", time: "19:00", home: "Portugal 🇵🇹", away: "RD Congo 🇨🇩", stadium: "Houston Stadium", city: "Houston", stage: "groups", group: "K" },
-
   {
     id: 22,
     date: "2026-06-17",
@@ -1360,286 +1233,507 @@ const worldCupMatches = [
   }
 ];
 
-// Mapa rápido de partidos por ID
 const matchesById = {};
 worldCupMatches.forEach(m => { matchesById[m.id] = m; });
 
 // ==========================
-// WORLD CUP — RENDER FIXTURE
+// SELECCIONES — ARTÍCULOS
 // ==========================
-const STAGE_ORDER = ['groups', 'round32', 'round16', 'quarters', 'semis', 'third_place', 'final'];
-const STAGE_NAMES = {
-  groups: '⚽ Fase de Grupos',
-  round32: '🔥 Ronda de 32',
-  round16: '⚡ Octavos de Final',
-  quarters: '🎯 Cuartos de Final',
-  semis: '🌟 Semifinales',
-  third_place: '🥉 Tercer y Cuarto Puesto',
-  final: '🏆 Final'
+// Para añadir un artículo: copia una entrada y edita el HTML del "content".
+// El ✍️ aparecerá automáticamente en las cards que tengan artículo.
+const teamArticles = {
+
+  "España 🇪🇸": {
+    content: `
+      <span class="article-flag">🇪🇸</span>
+      <h1>España: la máquina que no se apaga</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Marzo 2026</span><span>⏱ 5 min</span>
+      </div>
+      <p class="article-lead">
+        Campeona de Europa en 2024, España llega al Mundial como favorita con la generación más
+        talentosa desde la época dorada — y ahora hambrienta de historia.
+      </p>
+      <h2>Un proyecto que trasciende generaciones</h2>
+      <p>Lo que Hansi Flick construyó en el Barcelona fue la chispa que encendió a toda una selección. Lamine Yamal, Nico Williams, Pedri, Gavi… España tiene la plantilla más joven de entre los favoritos y, a la vez, la más experimentada en títulos. Esa paradoja es precisamente su mayor fortaleza.</p>
+      <p>La Eurocopa de 2024 en Alemania fue una demostración de poder colectivo. Ganan sin que nadie brille individualmente porque todos brillan. No hay dependencia de un nombre: hay un sistema.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#2</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">4</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Estilo de juego: posesión con veneno</h2>
+      <p>España no controla el balón para entretener. Lo hace para dominar, agotar al rival, crear superioridades locales y ejecutar con precisión quirúrgica. El 4-3-3 de Luis de la Fuente es flexible: se convierte en 4-2-3-1 en defensa y en un 3-2-5 en ataque cuando toca apretar.</p>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Lamine Yamal</strong> · Extremo derecho</span><span class="player-role">El mejor del mundo con 18 años</span></li>
+        <li><span><strong>Pedri</strong> · Centrocampista</span><span class="player-role">El metrónomo</span></li>
+        <li><span><strong>Nico Williams</strong> · Extremo izquierdo</span><span class="player-role">Velocidad e impredecibilidad</span></li>
+        <li><span><strong>Aymeric Laporte</strong> · Defensa central</span><span class="player-role">Líder en la zaga</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>España es mi favorita. No porque sea la más talentosa individualmente —Francia o Brasil pueden argumentar eso—, sino porque es la más equipo. Y en un torneo de 48 selecciones, eso marca la diferencia.</p>
+      </div>`
+  },
+
+  "Argentina 🇦🇷": {
+    content: `
+      <span class="article-flag">🇦🇷</span>
+      <h1>Argentina: defender la corona con Messi al límite</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Marzo 2026</span><span>⏱ 5 min</span>
+      </div>
+      <p class="article-lead">
+        El campeón del mundo llega a 2026 con la presión de defender el título y la incógnita de hasta
+        dónde puede llegar un Messi de 38 años que sigue siendo el mejor de la historia.
+      </p>
+      <h2>La última danza del 10</h2>
+      <p>Hay algo cinematográfico en la historia de Messi con la selección argentina. Qatar fue el cierre perfecto. Pero Scaloni ha construido algo que va más allá del número 10: un equipo con identidad propia, con un bloque sólido y una presión altísima que funciona como un mecanismo de relojería.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#1</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">3</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Lionel Messi</strong> · Extremo / mediapunta</span><span class="player-role">El último baile. Aprovéchalo.</span></li>
+        <li><span><strong>Lautaro Martínez</strong> · Delantero centro</span><span class="player-role">Goleador e incansable</span></li>
+        <li><span><strong>Enzo Fernández</strong> · Centrocampista</span><span class="player-role">Creciendo partido a partido</span></li>
+        <li><span><strong>Julián Álvarez</strong> · Delantero</span><span class="player-role">El relevo natural de Messi</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Defender un Mundial es históricamente imposible. Solo Brasil en 1958–62 lo logró. Argentina tiene el equipo para intentarlo, pero el nuevo formato con 48 equipos añade desgaste. Si Messi llega sano a cuartos, todo es posible.</p>
+      </div>`
+  },
+
+  "Francia 🇫🇷": {
+    content: `
+      <span class="article-flag">🇫🇷</span>
+      <h1>Francia: el gigante que siempre llega</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Febrero 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Finalista en 2022, campeona en 2018. Francia llega con la plantilla más profunda del torneo
+        y con Mbappé convertido en capitán de un proyecto que busca su tercer título.
+      </p>
+      <h2>La plantilla más profunda del mundo</h2>
+      <p>Incluso si el equipo titular de Francia tuviese una noche mala, el banquillo de Deschamps podría competir en cualquier torneo de primer nivel. Esa es la realidad de una selección que ha acumulado talento durante décadas gracias a su cantera y diversidad cultural.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#3</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">2</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Kylian Mbappé</strong> · Extremo / delantero</span><span class="player-role">El mejor del mundo en 2026</span></li>
+        <li><span><strong>Antoine Griezmann</strong> · Mediapunta</span><span class="player-role">El cerebro del equipo</span></li>
+        <li><span><strong>Aurélien Tchouaméni</strong> · Centrocampista defensivo</span><span class="player-role">Destructor de primer nivel</span></li>
+        <li><span><strong>William Saliba</strong> · Defensa central</span><span class="player-role">El mejor central del mundo</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Francia siempre llega a semifinales. La pregunta es si tienen la energía colectiva para dar un paso más. Con Mbappé en modo final son imbatibles. El problema es que ese modo solo aparece cuando quiere.</p>
+      </div>`
+  },
+
+  "Brasil 🇧🇷": {
+    content: `
+      <span class="article-flag">🇧🇷</span>
+      <h1>Brasil: el eterno candidato busca su regreso</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Febrero 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        24 años sin una Copa del Mundo. Brasil llega a 2026 con Vinícius Jr. como estandarte de
+        una generación que necesita reivindicarse ante su propia historia.
+      </p>
+      <h2>La pesada mochila de ser Brasil</h2>
+      <p>Ninguna selección carga con más expectativa que Brasil. Cinco estrellas en el escudo y la obligación de ganar siempre. En los últimos mundiales, esa presión ha podido con ellos. La eliminación en cuartos de 2022 ante Croacia sigue doliendo.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#5</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">5</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role">Mejor jugador del mundo</span></li>
+        <li><span><strong>Rodrygo</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
+        <li><span><strong>Bruno Guimarães</strong> · Centrocampista</span><span class="player-role">El motor del equipo</span></li>
+        <li><span><strong>Marquinhos</strong> · Defensa central</span><span class="player-role">Capitán y líder en la zaga</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Brasil tiene el talento. Le falta el bloque. Si el seleccionador logra construir un equipo cohesionado alrededor de Vinícius, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos.</p>
+      </div>`
+  },
+
+  "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿": {
+    content: `
+      <span class="article-flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+      <h1>Inglaterra: ¿llegó su momento?</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Enero 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        60 años esperando. Finalistas en Euro 2021 y Euro 2024. Inglaterra tiene la generación
+        más completa de su historia y el mundo siente que algo está a punto de pasar.
+      </p>
+      <h2>La generación que no puede fallar</h2>
+      <p>Bellingham, Kane, Foden, Saka. No hay otro combinado que tenga tanta calidad en las cuatro posiciones clave del campo. El problema de Inglaterra nunca ha sido el talento. Ha sido la gestión de la presión y la falta de un sistema claro en los momentos decisivos.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#4</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">1</span><span class="stat-lbl">Mundial ganado (1966)</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Jude Bellingham</strong> · Centrocampista / mediapunta</span><span class="player-role">La estrella total</span></li>
+        <li><span><strong>Harry Kane</strong> · Delantero centro</span><span class="player-role">El goleador más fiable del mundo</span></li>
+        <li><span><strong>Phil Foden</strong> · Extremo</span><span class="player-role">Magia en estado puro</span></li>
+        <li><span><strong>Bukayo Saka</strong> · Extremo</span><span class="player-role">El más consistente de todos</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Inglaterra tiene todo para ganar. Excepto la cabeza. Si superan la presión histórica y juegan como saben, llegan a la final. Es el torneo de Bellingham. Y todos lo saben.</p>
+      </div>`
+  },
+
+  "Portugal 🇵🇹": {
+    content: `
+      <span class="article-flag">🇵🇹</span>
+      <h1>Portugal sin Cristiano: la liberación</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Enero 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">
+        La era post-Ronaldo ha liberado a Portugal. Roberto Martínez ha construido un equipo fluido
+        y moderno, liderado por una generación que por fin puede brillar sin sombras.
+      </p>
+      <h2>El relevo de una era</h2>
+      <p>Cuando Ronaldo se retiró de la selección, hubo cierto miedo. Lo que siguió fue una liberación. Rafael Leão asumió el liderazgo sin complejos, Bernardo Silva se convirtió en el cerebro del equipo, y Rúben Dias consolidó una defensa de primer nivel mundial.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#6</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">0</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Por confirmar</span><span class="stat-lbl">Grupo</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Rafael Leão</strong> · Extremo</span><span class="player-role">El desequilibrio personificado</span></li>
+        <li><span><strong>Bernardo Silva</strong> · Mediapunta</span><span class="player-role">El más inteligente del equipo</span></li>
+        <li><span><strong>Rúben Dias</strong> · Defensa central</span><span class="player-role">Muro infranqueable</span></li>
+        <li><span><strong>Vitinha</strong> · Centrocampista</span><span class="player-role">Talento en ascenso</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Portugal puede llegar lejos si Leão aparece. Es así de simple y así de frágil. Son un equipo para disfrutar, no para contar como favorito. Cuartos es su techo realista, pero tienen calidad para sorprender a cualquiera.</p>
+      </div>`
+  },
+
+  // ─────────────────────────────────────────────────────────────────────
+  // PLANTILLA para nuevos artículos — descomenta y rellena:
+  // ─────────────────────────────────────────────────────────────────────
+  // "Nombre del Equipo 🏳️": {
+  //   content: `
+  //     <span class="article-flag">🏳️</span>
+  //     <h1>Título del artículo</h1>
+  //     <div class="article-meta">
+  //       <span>✍️ Hector Hardy</span><span>📅 Mes 2026</span>
+  //     </div>
+  //     <p class="article-lead">Introducción...</p>
+  //     <h2>Sección 1</h2>
+  //     <p>Contenido...</p>
+  //     <div class="article-verdict">
+  //       <strong>Veredicto de Hector Hardy</strong>
+  //       <p>Tu conclusión...</p>
+  //     </div>`
+  // },
 };
 
-function formatDate(dateStr) {
-  const d = new Date(dateStr + 'T12:00:00');
-  return d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
+// Datos de todas las selecciones (ranking + grupo)
+const teamsData = [
+  { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 1, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
+  { name: "España 🇪🇸", flag: "🇪🇸", ranking: 2, player: "Lamine Yamal", group: "H", style: "Posesión y presión" },
+  { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 3, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
+  { name: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, player: "Jude Bellingham", group: "G", style: "Físico y balones al área" },
+  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 5, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
+  { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 6, player: "Rafael Leão", group: "—", style: "Posesión ofensiva" },
+  { name: "Países Bajos 🇳🇱", flag: "🇳🇱", ranking: 7, player: "Virgil van Dijk", group: "F", style: "Fútbol total moderno" },
+  { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 8, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
+  { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 9, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
+  { name: "México 🇲🇽", flag: "🇲🇽", ranking: 11, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
+  { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 12, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
+  { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 13, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
+  { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 14, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
+  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 16, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
+  { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 17, player: "Takefusa Kubo", group: "F", style: "Presión alta y disciplina" },
+  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 18, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
+  { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 19, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
+  { name: "Noruega 🇳🇴", flag: "🇳🇴", ranking: 20, player: "Erling Haaland", group: "I", style: "Directo y poderoso" },
+  { name: "Australia 🇦🇺", flag: "🇦🇺", ranking: 24, player: "Mitchell Duke", group: "D", style: "Físico y transiciones" },
+  { name: "Canadá 🇨🇦", flag: "🇨🇦", ranking: 25, player: "Alphonso Davies", group: "B", style: "Físico y presión" },
+  { name: "Austria 🇦🇹", flag: "🇦🇹", ranking: 26, player: "David Alaba", group: "J", style: "Presión y verticalidad" },
+  { name: "Turquía 🇹🇷", flag: "🇹🇷", ranking: 28, player: "Arda Güler", group: "D", style: "Ataque directo" },
+  { name: "Ecuador 🇪🇨", flag: "🇪🇨", ranking: 30, player: "Moisés Caicedo", group: "E", style: "Sólido y ordenado" },
+  { name: "Corea del Sur 🇰🇷", flag: "🇰🇷", ranking: 22, player: "Son Heung-min", group: "A", style: "Trabajo colectivo" },
+];
+
+// ==========================
+// WORLD CUP — INIT
+// ==========================
+function initWorldCup() {
+  renderTeams();
+  initFixtureSidebar();
 }
 
-function renderFixture() {
-  const fixtureContainer = document.getElementById('fixtureContainer');
-  if (!fixtureContainer) return;
-  fixtureContainer.innerHTML = '';
+// ==========================
+// RENDER TEAMS
+// ==========================
+function renderTeams() {
+  const container = document.getElementById('teamAnalysisContainer');
+  if (!container) return;
+  container.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'teams-grid';
 
-  // Agrupar por fase
-  const byStage = {};
-  worldCupMatches.forEach(m => {
-    const stage = m.stage || 'groups';
-    if (!byStage[stage]) byStage[stage] = [];
-    byStage[stage].push(m);
+  teamsData.forEach(team => {
+    const hasArticle = !!teamArticles[team.name];
+    const card = document.createElement('div');
+    card.className = `team-card${hasArticle ? ' has-article' : ''}`;
+    // Strip flag emoji from display name for cleanliness
+    const displayName = team.name.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim();
+    card.innerHTML = `
+      <span class="team-card-flag">${team.flag}</span>
+      <div class="team-card-name">${displayName}</div>
+      <div class="team-card-ranking">Ranking #${team.ranking} · Grupo ${team.group}</div>
+      <div class="team-card-player">${team.player}</div>
+      <span class="team-read-more">${hasArticle ? 'Leer análisis →' : 'Próximamente →'}</span>
+    `;
+    card.addEventListener('click', () => openTeamArticle(team.name));
+    grid.appendChild(card);
   });
 
+  container.appendChild(grid);
+}
+
+// ==========================
+// ARTICLE PANEL
+// ==========================
+function openTeamArticle(teamName) {
+  const overlay = document.getElementById('articleOverlay');
+  const panel = document.getElementById('articlePanel');
+  const content = document.getElementById('articleContent');
+  if (!overlay || !panel || !content) return;
+
+  const article = teamArticles[teamName];
+  const team = teamsData.find(t => t.name === teamName);
+
+  content.innerHTML = article
+    ? `<div class="article-panel-content">${article.content}</div>`
+    : `<div class="article-panel-content">
+        <span class="article-flag">${team?.flag || '🏳️'}</span>
+        <h1>${team?.name.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim() || teamName}</h1>
+        <div class="article-coming-soon">
+          <span class="coming-emoji">✍️</span>
+          <p>El análisis de esta selección está en camino.</p>
+          <p style="margin-top:8px;opacity:0.5">Vuelve pronto — Hector Hardy</p>
+        </div>
+      </div>`;
+
+  overlay.classList.add('open');
+  panel.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticlePanel() {
+  document.getElementById('articleOverlay')?.classList.remove('open');
+  document.getElementById('articlePanel')?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('articleOverlay')?.addEventListener('click', closeArticlePanel);
+document.getElementById('closeArticleBtn')?.addEventListener('click', closeArticlePanel);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeArticlePanel(); closeFixtureSidebar(); }
+});
+
+// ==========================
+// FIXTURE SIDEBAR
+// ==========================
+let currentView = 'group';
+let countryQuery = '';
+let stageFilter = '';
+let filteredMatches = [...worldCupMatches];
+
+function initFixtureSidebar() {
+  // Populate stage filter
+  const stageSelect = document.getElementById('fixtureStageFilter');
+  if (stageSelect && stageSelect.options.length <= 1) {
+    const STAGE_LABELS = { groups: 'Fase de grupos', round32: 'Ronda de 32', round16: 'Octavos', quarters: 'Cuartos', semis: 'Semifinales', third_place: '3.er / 4.º puesto', final: 'Final' };
+    [...new Set(worldCupMatches.map(m => m.stage))].forEach(s => {
+      const o = document.createElement('option');
+      o.value = s; o.textContent = STAGE_LABELS[s] || s;
+      stageSelect.appendChild(o);
+    });
+  }
+
+  renderSidebarFixture();
+
+  document.getElementById('toggleFixtureBtn')?.addEventListener('click', openFixtureSidebar);
+  document.getElementById('closeSidebarBtn')?.addEventListener('click', closeFixtureSidebar);
+  document.getElementById('fixtureOverlay')?.addEventListener('click', closeFixtureSidebar);
+
+  document.getElementById('fixtureCountryFilter')?.addEventListener('input', e => {
+    countryQuery = e.target.value.toLowerCase();
+    applyFilters();
+  });
+
+  document.getElementById('fixtureStageFilter')?.addEventListener('change', e => {
+    stageFilter = e.target.value;
+    applyFilters();
+  });
+
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentView = btn.dataset.view;
+      renderSidebarFixture();
+    });
+  });
+
+  document.getElementById('downloadFilteredBtn')?.addEventListener('click', () => {
+    if (!filteredMatches.length) return alert('Sin partidos con los filtros actuales.');
+    triggerDownload(buildICS(filteredMatches), 'mundial-2026-seleccion.ics');
+  });
+}
+
+function openFixtureSidebar() {
+  document.getElementById('fixtureSidebar')?.classList.add('mobile-open');
+  document.getElementById('fixtureOverlay')?.classList.add('visible');
+}
+function closeFixtureSidebar() {
+  document.getElementById('fixtureSidebar')?.classList.remove('mobile-open');
+  document.getElementById('fixtureOverlay')?.classList.remove('visible');
+}
+
+function applyFilters() {
+  filteredMatches = worldCupMatches.filter(m => {
+    const teams = `${m.home} ${m.away}`.toLowerCase();
+    return (!countryQuery || teams.includes(countryQuery)) && (!stageFilter || m.stage === stageFilter);
+  });
+  const btn = document.getElementById('downloadFilteredBtn');
+  if (btn) btn.textContent = filteredMatches.length
+    ? `📥 Descargar ${filteredMatches.length} partido${filteredMatches.length !== 1 ? 's' : ''}`
+    : '📥 Sin resultados';
+  renderSidebarFixture();
+}
+
+function renderSidebarFixture() {
+  const scroll = document.getElementById('fixtureScroll');
+  if (!scroll) return;
+  scroll.innerHTML = '';
+  if (!filteredMatches.length) {
+    scroll.innerHTML = '<div class="fixture-empty">Sin partidos para estos filtros</div>';
+    return;
+  }
+  currentView === 'day' ? renderByDay(scroll) : renderByGroup(scroll);
+}
+
+const STAGE_ORDER = ['groups', 'round32', 'round16', 'quarters', 'semis', 'third_place', 'final'];
+const STAGE_LABELS = { groups: 'Fase de Grupos', round32: 'Ronda de 32', round16: 'Octavos', quarters: 'Cuartos', semis: 'Semifinales', third_place: '3.er / 4.º puesto', final: '⭐ Final' };
+
+function renderByGroup(container) {
+  const byStage = {};
+  filteredMatches.forEach(m => { const s = m.stage || 'groups'; if (!byStage[s]) byStage[s] = []; byStage[s].push(m); });
   STAGE_ORDER.forEach(stage => {
     if (!byStage[stage]) return;
-
-    const stageDiv = document.createElement('div');
-    stageDiv.className = 'fixture-stage';
-    stageDiv.innerHTML = `<h3 class="stage-title">${STAGE_NAMES[stage] || stage}</h3>`;
-
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `<div class="fixture-divider">${STAGE_LABELS[stage] || stage}</div>`;
     if (stage === 'groups') {
-      // Sub-agrupar por grupo (A, B, C...)
       const byGroup = {};
-      byStage[stage].forEach(m => {
-        const g = m.group || '?';
-        if (!byGroup[g]) byGroup[g] = [];
-        byGroup[g].push(m);
+      byStage[stage].forEach(m => { const g = m.group || '?'; if (!byGroup[g]) byGroup[g] = []; byGroup[g].push(m); });
+      Object.keys(byGroup).sort().forEach(g => {
+        wrap.innerHTML += `<div class="fixture-divider" style="font-size:.65rem;background:transparent;color:#444;border-bottom-color:transparent">Grupo ${g}</div>`;
+        byGroup[g].forEach(m => wrap.appendChild(createSidebarCard(m)));
       });
-
-      const groupsContainer = document.createElement('div');
-      groupsContainer.style.cssText = 'display:grid;gap:24px;';
-
-      Object.keys(byGroup).sort().forEach(group => {
-        const groupDiv = document.createElement('div');
-        groupDiv.className = 'fixture-group';
-        groupDiv.innerHTML = `<h4 class="group-title">Grupo ${group}</h4>`;
-
-        const matchesGrid = document.createElement('div');
-        matchesGrid.style.cssText = 'display:grid;gap:10px;';
-
-        byGroup[group].forEach(match => {
-          matchesGrid.appendChild(createMatchCard(match));
-        });
-
-        groupDiv.appendChild(matchesGrid);
-        groupsContainer.appendChild(groupDiv);
-      });
-
-      stageDiv.appendChild(groupsContainer);
     } else {
-      const matchesGrid = document.createElement('div');
-      matchesGrid.style.cssText = 'display:grid;gap:10px;';
-      byStage[stage].forEach(match => {
-        matchesGrid.appendChild(createMatchCard(match));
-      });
-      stageDiv.appendChild(matchesGrid);
+      byStage[stage].forEach(m => wrap.appendChild(createSidebarCard(m)));
     }
-
-    fixtureContainer.appendChild(stageDiv);
+    container.appendChild(wrap);
   });
 }
 
-function createMatchCard(match) {
+function renderByDay(container) {
+  const byDay = {};
+  filteredMatches.forEach(m => { if (!byDay[m.date]) byDay[m.date] = []; byDay[m.date].push(m); });
+  Object.keys(byDay).sort().forEach(date => {
+    const wrap = document.createElement('div');
+    const d = new Date(date + 'T12:00:00');
+    const label = d.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'long' });
+    wrap.innerHTML = `<div class="fixture-divider">${label}</div>`;
+    byDay[date].forEach(m => wrap.appendChild(createSidebarCard(m)));
+    container.appendChild(wrap);
+  });
+}
+
+function createSidebarCard(match) {
   const card = document.createElement('div');
   card.className = 'match-card';
-
-  const googleUrl = generateGoogleCalUrl(match);
-
   card.innerHTML = `
     <div class="match-header">
       <span class="match-teams">${match.home} vs ${match.away}</span>
-      <span class="match-date">${formatDate(match.date)} · ${match.time}h</span>
+      <span class="match-date">${match.time}h</span>
     </div>
-    <div class="match-info">📍 ${match.stadium}, ${match.city}</div>
+    <div class="match-info">📍 ${match.city}</div>
     <div class="match-actions">
-      <a href="${googleUrl}" target="_blank" rel="noopener" class="btn-cal btn-google">📅 Google Calendar</a>
-      <button onclick="downloadMatchICS(${match.id})" class="btn-cal btn-apple">🍎 Apple / iCal</button>
-    </div>
-  `;
-
+      <a href="${generateGoogleCalUrl(match)}" target="_blank" rel="noopener" class="btn-cal btn-google">Google</a>
+      <button onclick="downloadMatchICS(${match.id})" class="btn-cal btn-apple">Apple</button>
+    </div>`;
   return card;
 }
 
 // ==========================
-// WORLD CUP — GOOGLE CAL URL
+// CALENDAR
 // ==========================
-function generateGoogleCalUrl(match) {
-  const dateStr = match.date.replace(/-/g, '');
-  const [h, min] = match.time.split(':').map(Number);
+function pad(n) { return String(n).padStart(2, '0'); }
 
-  const startStr = `${dateStr}T${String(h).padStart(2, '0')}${String(min).padStart(2, '0')}00`;
-  const endH = (h + 2) % 24;
-  const endStr = `${dateStr}T${String(endH).padStart(2, '0')}${String(min).padStart(2, '0')}00`;
-
-  const stage = match.stage === 'groups'
-    ? `Grupo ${match.group} · Mundial 2026`
-    : (STAGE_NAMES[match.stage] || 'Mundial 2026');
-
-  const params = new URLSearchParams({
-    action: 'TEMPLATE',
-    text: `${match.home} vs ${match.away}`,
-    dates: `${startStr}/${endStr}`,
-    details: stage,
-    location: `${match.stadium}, ${match.city}`,
-  });
-
-  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+function generateGoogleCalUrl(m) {
+  const ds = m.date.replace(/-/g, '');
+  const [h, min] = m.time.split(':').map(Number);
+  const st = `${ds}T${pad(h)}${pad(min)}00`, et = `${ds}T${pad((h + 2) % 24)}${pad(min)}00`;
+  const stage = m.stage === 'groups' ? `Grupo ${m.group} · Mundial 2026` : (STAGE_LABELS[m.stage] || 'Mundial 2026');
+  return `https://calendar.google.com/calendar/render?${new URLSearchParams({ action: 'TEMPLATE', text: `${m.home} vs ${m.away}`, dates: `${st}/${et}`, details: stage, location: `${m.stadium}, ${m.city}`)}}`;
 }
 
-// ==========================
-// WORLD CUP — DESCARGAR ICS (1 partido)
-// ==========================
-window.downloadMatchICS = function (matchId) {
-  const match = matchesById[matchId];
-  if (!match) return;
-
-  const ics = buildICS([match]);
-  triggerDownload(ics, `wc2026-partido-${matchId}.ics`);
+window.downloadMatchICS = function (id) {
+  const m = matchesById[id]; if (m) triggerDownload(buildICS([m]), `wc2026-partido-${id}.ics`);
 };
 
-// ==========================
-// WORLD CUP — DESCARGAR ICS (fixture completo)
-// ==========================
-document.getElementById('downloadFullFixture')?.addEventListener('click', () => {
-  if (worldCupMatches.length === 0) {
-    alert('No hay partidos cargados.');
-    return;
-  }
-  const ics = buildICS(worldCupMatches);
-  triggerDownload(ics, 'mundial-2026-fixture-completo.ics');
-});
-
 function buildICS(matches) {
-  const lines = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Hector Hardy//Mundial 2026//ES',
-    'X-WR-CALNAME:Mundial 2026 – Fixture Completo',
-    'X-WR-CALDESC:Todos los partidos del Mundial 2026 · hectorhardy.com',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-  ];
-
-  matches.forEach(match => {
-    const dateStr = match.date.replace(/-/g, '');
-    const [h, min] = match.time.split(':').map(Number);
-    const startTime = `${String(h).padStart(2, '0')}${String(min).padStart(2, '0')}00`;
-    const endH = (h + 2) % 24;
-    const endTime = `${String(endH).padStart(2, '0')}${String(min).padStart(2, '0')}00`;
-
-    const stageLabel = match.stage === 'groups'
-      ? `Fase de Grupos · Grupo ${match.group}`
-      : (STAGE_NAMES[match.stage] || match.stage);
-
-    const summary = `${match.home} vs ${match.away}`;
-    const location = `${match.stadium}\\, ${match.city}`;
-    const description = `${stageLabel} · Mundial 2026\\nhectorhardy.com`;
-
-    lines.push(
-      'BEGIN:VEVENT',
-      `UID:wc2026-match-${match.id}@hectorhardy.com`,
-      `DTSTART:${dateStr}T${startTime}`,
-      `DTEND:${dateStr}T${endTime}`,
-      `SUMMARY:${summary}`,
-      `LOCATION:${location}`,
-      `DESCRIPTION:${description}`,
-      'END:VEVENT'
-    );
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Hector Hardy//Mundial 2026//ES', 'X-WR-CALNAME:Mundial 2026', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+  matches.forEach(m => {
+    const ds = m.date.replace(/-/g, '');
+    const [h, min] = m.time.split(':').map(Number);
+    const stage = m.stage === 'groups' ? `Fase de Grupos · Grupo ${m.group}` : (STAGE_LABELS[m.stage] || m.stage);
+    lines.push('BEGIN:VEVENT', `UID:wc2026-${m.id}@hectorhardy.com`, `DTSTART:${ds}T${pad(h)}${pad(min)}00`, `DTEND:${ds}T${pad((h + 2) % 24)}${pad(min)}00`, `SUMMARY:${m.home} vs ${m.away}`, `LOCATION:${m.stadium}\\, ${m.city}`, `DESCRIPTION:${stage} · hectorhardy.com`, 'END:VEVENT');
   });
-
   lines.push('END:VCALENDAR');
   return lines.join('\r\n');
 }
 
 function triggerDownload(content, filename) {
-  const blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-// ==========================
-// WORLD CUP — ANÁLISIS SELECCIONES
-// ==========================
-const teamAnalysisData = [
-  { team: "Alemania 🇩🇪", ranking: 12, estilo: "Presión alta, juego directo", fortaleza: "Solidez defensiva y físico", jugador: "Florian Wirtz" },
-  { team: "Argentina 🇦🇷", ranking: 1, estilo: "Contraataque y control", fortaleza: "Campeones del mundo · experiencia máxima", jugador: "Lionel Messi" },
-  { team: "Brasil 🇧🇷", ranking: 5, estilo: "Ataque vertical y habilidad individual", fortaleza: "Talento ofensivo desbordante", jugador: "Vinícius Jr." },
-  { team: "España 🇪🇸", ranking: 2, estilo: "Posesión y presión", fortaleza: "Campeones de Europa · generación dorada", jugador: "Lamine Yamal" },
-  { team: "Francia 🇫🇷", ranking: 3, estilo: "Transiciones rápidas", fortaleza: "Plantilla más profunda del torneo", jugador: "Kylian Mbappé" },
-  { team: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, estilo: "Físico y balones al área", fortaleza: "Generación con hambre de título", jugador: "Jude Bellingham" },
-  { team: "Países Bajos 🇳🇱", ranking: 7, estilo: "Fútbol total moderno", fortaleza: "Presión organizada y creación", jugador: "Virgil van Dijk" },
-  { team: "Portugal 🇵🇹", ranking: 6, estilo: "Ataque posicional", fortaleza: "Elenco en plena madurez", jugador: "Rafael Leão" },
-];
-
-function renderTeamAnalysis() {
-  const teamContainer = document.getElementById('teamAnalysisContainer');
-  if (!teamContainer) return;
-  teamContainer.innerHTML = '';
-
-  // Selección del día según fecha (orden alfabético rotativo)
-  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  const todayTeam = teamAnalysisData[dayOfYear % teamAnalysisData.length];
-
-  // Tarjeta selección del día
-  const todayCard = document.createElement('div');
-  todayCard.style.cssText = `
-    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 28px;
-    margin-bottom: 20px;
-  `;
-  todayCard.innerHTML = `
-    <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:#888;margin-bottom:12px">Selección del día</p>
-    <h3 style="font-size:1.5rem;margin-bottom:16px">${todayTeam.team}</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:0.85rem">
-      <div><span style="color:#888;display:block;margin-bottom:4px">Ranking FIFA</span><strong>#${todayTeam.ranking}</strong></div>
-      <div><span style="color:#888;display:block;margin-bottom:4px">Figura</span><strong>${todayTeam.jugador}</strong></div>
-      <div style="grid-column:1/-1"><span style="color:#888;display:block;margin-bottom:4px">Estilo de juego</span><strong>${todayTeam.estilo}</strong></div>
-      <div style="grid-column:1/-1"><span style="color:#888;display:block;margin-bottom:4px">Fortaleza clave</span><strong>${todayTeam.fortaleza}</strong></div>
-    </div>
-  `;
-  teamContainer.appendChild(todayCard);
-
-  // Grid de todas las selecciones
-  const grid = document.createElement('div');
-  grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;';
-
-  teamAnalysisData.forEach(team => {
-    const card = document.createElement('div');
-    card.className = 'match-card';
-    card.innerHTML = `
-      <div style="font-weight:600;margin-bottom:6px">${team.team}</div>
-      <div style="font-size:0.8rem;color:#888">Ranking #${team.ranking} · ${team.jugador}</div>
-    `;
-    grid.appendChild(card);
-  });
-
-  teamContainer.appendChild(grid);
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([content], { type: 'text/calendar;charset=utf-8' })), download: filename });
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 // ==========================
 // INIT
 // ==========================
 document.addEventListener('DOMContentLoaded', () => {
-  // Observar elementos fade-in del hero
   observeFadeElements();
-
-  // Activar una sección si hay hash en la URL
   const hash = window.location.hash.slice(1);
-  if (hash && SECTION_IDS.includes(hash)) {
-    navigateTo(hash);
-  }
+  if (hash && SECTION_IDS.includes(hash)) navigateTo(hash);
 });

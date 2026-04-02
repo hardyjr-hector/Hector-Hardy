@@ -19,6 +19,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/worldcup-styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -149,27 +150,50 @@
   </section>
 
   <section id="worldcup" class="worldcup">
-    <h2>🌍 Mundial 2026 · Fixture completo</h2>
-    <p class="worldcup-subtitle">
-      Todos los partidos con horario local y sincronización con Apple y Google Calendar.
-    </p>
 
-    <div class="worldcup-actions">
-      <button id="downloadFullFixture" class="btn">
-        📥 Descargar fixture completo
-      </button>
+    <!-- CABECERA -->
+    <div class="worldcup-header">
+      <div>
+        <h2>🌍 Mundial 2026</h2>
+        <p class="section-subtitle">Análisis de selecciones · USA, Canadá &amp; México · 48 equipos</p>
+      </div>
+      <button id="toggleFixtureBtn" class="btn-outline">📅 Ver fixture</button>
     </div>
 
-    <div id="fixtureContainer" class="fixture-container"></div>
-  </section>
+    <!-- LAYOUT PRINCIPAL: selecciones + sidebar -->
+    <div class="worldcup-layout" id="worldcupLayout">
 
-  <section id="worldcup-analysis" class="worldcup-analysis">
-    <h2>📊 Análisis de selecciones</h2>
-    <p class="worldcup-subtitle">
-      Una selección diaria por orden alfabético rumbo al Mundial.
-    </p>
+      <!-- SELECCIONES (columna principal) -->
+      <div class="worldcup-main">
+        <div id="teamAnalysisContainer"></div>
+      </div>
 
-    <div id="teamAnalysisContainer" class="fixture-container"></div>
+      <!-- FIXTURE SIDEBAR -->
+      <aside class="fixture-sidebar" id="fixtureSidebar">
+
+        <div class="fixture-sidebar-header">
+          <h3>Fixture completo</h3>
+          <button class="sidebar-close-btn" id="closeSidebarBtn">✕</button>
+        </div>
+
+        <div class="fixture-filters">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-view="group">Por grupo</button>
+            <button class="filter-tab" data-view="day">Por día</button>
+          </div>
+          <input type="text" id="fixtureCountryFilter" placeholder="🔍 Buscar país...">
+          <select id="fixtureStageFilter">
+            <option value="">Todas las fases</option>
+          </select>
+          <button id="downloadFilteredBtn" class="btn-download-filtered">📥 Descargar todos los partidos</button>
+        </div>
+
+        <div class="fixture-scroll" id="fixtureScroll"></div>
+
+      </aside>
+
+    </div>
+
   </section>
 
   <section id="jerseys" class="jerseys">
@@ -200,6 +224,20 @@
 
     </div>
   </section>-->
+
+  <div class="fixture-overlay" id="fixtureOverlay"></div>
+
+  <!-- OVERLAY artículo -->
+  <div class="article-panel-overlay" id="articleOverlay"></div>
+
+  <!-- PANEL ARTÍCULO (slide-in desde la derecha) -->
+  <div class="article-panel" id="articlePanel">
+    <div class="article-panel-header">
+      <span class="back-label">🌍 Mundial 2026 · Análisis</span>
+      <button class="article-close-btn" id="closeArticleBtn">✕</button>
+    </div>
+    <div id="articleContent"></div>
+  </div>
 
   <footer class="footer-contacto">
     <div class="footer-content">
