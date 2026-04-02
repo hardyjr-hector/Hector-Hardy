@@ -1683,7 +1683,7 @@ function createSidebarCard(match) {
   const card = document.createElement('div');
   card.className = 'match-card';
 
-  card.innerHTML = 
+  card.innerHTML = `
     <div class="match-header">
       <span class="match-teams">${match.home} vs ${match.away}</span>
       <span class="match-date">${match.time}h</span>
@@ -1693,7 +1693,7 @@ function createSidebarCard(match) {
       <a href="${generateGoogleCalUrl(match)}" target="_blank" rel="noopener" class="btn-cal btn-google">Google</a>
       <button onclick="downloadMatchICS('${match.id}')" class="btn-cal btn-apple">Apple</button>
     </div>
-    ;
+  `;
 
   return card;
 }
