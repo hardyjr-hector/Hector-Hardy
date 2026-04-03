@@ -1555,7 +1555,7 @@ const teamsData = [
   { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 8, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
   { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
   { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 10, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
-  { name: "Croacia 🇭🇷", flag: "🇭🇷", ranking: 11, player: "Luka Modrić", group: "L", style: "Intensidad y presión" }
+  { name: "Croacia 🇭🇷", flag: "🇭🇷", ranking: 11, player: "Luka Modrić", group: "L", style: "Intensidad y presión" },
   { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 13, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
   { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 14, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
   { name: "México 🇲🇽", flag: "🇲🇽", ranking: 15, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
