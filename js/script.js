@@ -91,159 +91,159 @@ document.querySelector('.logo')?.addEventListener('click', e => { e.preventDefau
 const jerseys = [
   {
     team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan1.jpg", desc: "Primera equipación AC MILAN 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-ac-milan" /* ← reemplaza con tu enlace de afiliado */
+    //buyUrl: "https://www.futbolemotion.com/camisetas-ac-milan" /* ← reemplaza con tu enlace de afiliado */
   },
   {
     team: "AC Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/acmilan3.jpg", desc: "Segunda equipación AC MILAN 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-ac-milan"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-ac-milan"
   },
   { team: "AC Milan", year: "2008/2009", competition: "Serie A", img: "assets/images/acmilan2.jpg", desc: "Primera equipación AC MILAN 2008/2009" },
   {
     team: "Alemania", year: "2024", competition: "Selecciones", img: "assets/images/alemania.jpg", desc: "Primera equipación Alemania Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-alemania"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-alemania"
   },
   {
     team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina1.jpg", desc: "Segunda equipación Argentina 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
   },
   { team: "Argentina", year: "1994", competition: "Selecciones", img: "assets/images/argentina2.jpg", desc: "Segunda equipación Argentina Mundial 1994" },
   {
     team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina3.jpg", desc: "Primera equipación Argentina 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
   },
   { team: "Argentina", year: "2022", competition: "Selecciones", img: "assets/images/argentina4.jpg", desc: "Primera equipación Argentina Mundial 2022" },
   {
     team: "Argentina", year: "2024", competition: "Selecciones", img: "assets/images/argentina5.jpg", desc: "Edición especial de estilo lifestyle 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-argentina"
   },
   { team: "Argentina", year: "2023", competition: "Selecciones", img: "assets/images/argentina6.jpg", desc: "Segunda equipación Argentina 2023" },
   { team: "Arsenal", year: "2006/2007", competition: "Premier League", img: "assets/images/arsenal.jpg", desc: "Primera equipación Arsenal 2006/2007" },
   {
     team: "AS Roma", year: "2024/2025", competition: "Serie A", img: "assets/images/asroma.jpg", desc: "Segunda equipación AS Roma 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-as-roma"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-as-roma"
   },
   {
     team: "Atlético de Madrid", year: "2024/2025", competition: "La Liga", img: "assets/images/atletico_madrid.jpg", desc: "Primera equipación Atlético de Madrid 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-atletico-de-madrid"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-atletico-de-madrid"
   },
   { team: "Barcelona SC", year: "2015/2016", competition: "Liga Pro Ecuador", img: "assets/images/barcelona_guayaquil.jpg", desc: "Primera equipación Barcelona SC 2015/2016" },
   {
     team: "Bayer Leverkusen", year: "2024/2025", competition: "Bundesliga", img: "assets/images/bayer_leverkusen.jpg", desc: "Primera equipación Bayer Leverkusen 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-bayer-leverkusen"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-bayer-leverkusen"
   },
   { team: "Benfica", year: "1998/1999", competition: "Primeira Liga", img: "assets/images/benfica.jpg", desc: "Segunda equipación Benfica 1998/1999" },
   {
     team: "Club Atlético Boca Juniors", year: "2023/2024", competition: "Primera División Argentina", img: "assets/images/boca_juniors1.jpg", desc: "Primera equipación Boca Juniors 2023/2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-boca-juniors"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-boca-juniors"
   },
   { team: "Club Atlético Boca Juniors", year: "2005", competition: "Primera División Argentina", img: "assets/images/boca_juniors2.jpg", desc: "Reedición moderna de primera equipación Boca Juniors 2005" },
   {
     team: "Borussia Dortmund", year: "2024/2025", competition: "Bundesliga", img: "assets/images/borussia_dortmund.jpg", desc: "Primera equipación Borussia Dortmund 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-borussia-dortmund"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-borussia-dortmund"
   },
   {
     team: "Brasil", year: "2024", competition: "Selecciones", img: "assets/images/brasil.jpg", desc: "Primera equipación Brasil Copa América 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-brasil"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-brasil"
   },
   {
     team: "Chelsea", year: "2024/2025", competition: "Premier League", img: "assets/images/chelsea.jpg", desc: "Primera equipación Chelsea 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-chelsea"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-chelsea"
   },
   { team: "Corinthians", year: "2024/2025", competition: "Brasileirao", img: "assets/images/corintians.jpg", desc: "Primera equipación Corinthians 2024/2025" },
   { team: "Ecuador", year: "2015", competition: "Selecciones", img: "assets/images/ecuador.jpg", desc: "Primera equipación Ecuador" },
   {
     team: "España", year: "2024", competition: "Selecciones", img: "assets/images/españa.jpg", desc: "Primera equipación España Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-seleccion-espanola"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-seleccion-espanola"
   },
   { team: "FC Barcelona", year: "2022/2023", competition: "La Liga", img: "assets/images/fcb1.jpg", desc: "Tercera equipación FC Barcelona 2022/2023" },
   { team: "FC Barcelona", year: "2004/2005", competition: "La Liga", img: "assets/images/fcb2.jpg", desc: "Segunda equipación FC Barcelona 2004/2005" },
   {
     team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb3.jpg", desc: "Tercera equipación FC Barcelona 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
   },
   {
     team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb4.jpg", desc: "Segunda equipación FC Barcelona 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
   },
   { team: "FC Barcelona", year: "1998/1999", competition: "La Liga", img: "assets/images/fcb5.jpg", desc: "Primera equipación FC Barcelona 1998/1999. Edición centenario" },
   {
     team: "FC Barcelona", year: "2024/2025", competition: "La Liga", img: "assets/images/fcb6.jpg", desc: "Primera equipación FC Barcelona 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-fc-barcelona"
   },
   { team: "FC Barcelona", year: "2009/2010", competition: "La Liga", img: "assets/images/fcb7.jpg", desc: "Primera equipación FC Barcelona 2009/2010" },
   { team: "ACF Fiorentina", year: "1998/1999", competition: "Serie A", img: "assets/images/fiorentina.jpg", desc: "Primera equipación Fiorentina 1998/1999" },
   {
     team: "Francia", year: "2024", competition: "Selecciones", img: "assets/images/francia1.jpg", desc: "Segunda equipación Francia Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-francia"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-francia"
   },
   { team: "Francia", year: "2006", competition: "Selecciones", img: "assets/images/francia2.jpg", desc: "Segunda equipación Francia Mundial 2006" },
   {
     team: "Holanda", year: "2024", competition: "Selecciones", img: "assets/images/holanda.jpg", desc: "Primera equipación Holanda Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-holanda"
+    // buyUrl: "https://www.futbolemotion.com/camisetas-holanda"
   },
   {
     team: "Inglaterra", year: "2024", competition: "Selecciones", img: "assets/images/inglaterra1.jpg", desc: "Primera equipación Inglaterra Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-inglaterra"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-inglaterra"
   },
   { team: "Inglaterra", year: "2006", competition: "Selecciones", img: "assets/images/inglaterra2.jpg", desc: "Primera equipación Inglaterra Mundial 2006" },
   {
     team: "Inter Miami", year: "2024/2025", competition: "MLS", img: "assets/images/inter_miami1.jpg", desc: "Segunda equipación Inter Miami 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-inter-miami"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-inter-miami"
   },
   {
     team: "Inter Miami", year: "2023/2024", competition: "MLS", img: "assets/images/inter_miami2.jpg", desc: "Primera equipación Inter Miami 2023/2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-inter-miami"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-inter-miami"
   },
   {
     team: "FC Inter Milan", year: "2024/2025", competition: "Serie A", img: "assets/images/inter_milan.jpg", desc: "Segunda equipación Inter Milan 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-inter-de-milan"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-inter-de-milan"
   },
   {
     team: "Italia", year: "2024", competition: "Selecciones", img: "assets/images/italia.jpg", desc: "Primera equipación Italia Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-italia"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-italia"
   },
   { team: "Manchester City", year: "2023/2024", competition: "Premier League", img: "assets/images/man_city1.jpg", desc: "Primera equipación Manchester City 2023/2024" },
   {
     team: "Manchester City", year: "2024/2025", competition: "Premier League", img: "assets/images/man_city2.jpg", desc: "Segunda equipación Manchester City 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-manchester-city"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-manchester-city"
   },
   { team: "Manchester United", year: "2023/2024", competition: "Premier League", img: "assets/images/man_united2.jpg", desc: "Segunda equipación Manchester United 2023/2024" },
   {
     team: "Manchester United", year: "2024/2025", competition: "Premier League", img: "assets/images/man_united1.jpg", desc: "Primera equipación Manchester United 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-manchester-united"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-manchester-united"
   },
   {
     team: "SSC Napoli", year: "2024/2025", competition: "Serie A", img: "assets/images/napoles.jpg", desc: "Primera equipación Napoli 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-napoles"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-napoles"
   },
   {
     team: "Portugal", year: "2024", competition: "Selecciones", img: "assets/images/portugal.jpg", desc: "Primera equipación Portugal Eurocopa 2024",
-    buyUrl: "https://www.futbolemotion.com/camisetas-portugal"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-portugal"
   },
   { team: "Paris Saint Germain FC", year: "2021/2022", competition: "Ligue 1", img: "assets/images/psg1.jpg", desc: "Primera equipación PSG 2021/2022" },
   { team: "Paris Saint Germain FC", year: "2003/2004", competition: "Ligue 1", img: "assets/images/psg2.jpg", desc: "Primera equipación PSG 2003/2004" },
   {
     team: "Paris Saint Germain FC", year: "2024/2025", competition: "Ligue 1", img: "assets/images/psg3.jpg", desc: "Tercera equipación PSG 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-paris-saint-germain"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-paris-saint-germain"
   },
   {
     team: "Real Betis Balompié", year: "2025/2026", competition: "La Liga", img: "assets/images/real_betis1.jpg", desc: "Edición especial Betis 2025/2026",
-    buyUrl: "https://www.futbolemotion.com/camisetas-real-betis"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-real-betis"
   },
   { team: "Real Betis Balompié", year: "1987/1988", competition: "La Liga", img: "assets/images/real_betis2.jpg", desc: "Primera equipación Betis 1987/1988" },
   {
     team: "Real Madrid CF", year: "2024/2025", competition: "La Liga", img: "assets/images/real_madrid.jpg", desc: "Primera equipación Real Madrid 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-real-madrid"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-real-madrid"
   },
   {
     team: "Club Atlético River Plate", year: "2024/2025", competition: "Primera División Argentina", img: "assets/images/river_plate.jpg", desc: "Primera equipación River Plate 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-river-plate"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-river-plate"
   },
   { team: "Santos Futebol Clube", year: "2024/2025", competition: "Brasileirao", img: "assets/images/santos1.jpg", desc: "Primera equipación Santos 2024/2025" },
   { team: "Santos Futebol Clube", year: "2011/2012", competition: "Brasileirao", img: "assets/images/santos2.jpg", desc: "Primera equipación Santos 2011/2012" },
   {
     team: "Sporting Clube de Portugal", year: "2024/2025", competition: "Primeira Liga", img: "assets/images/sporting_lisboa.jpg", desc: "Primera equipación Sporting de Lisboa 2024/2025",
-    buyUrl: "https://www.futbolemotion.com/camisetas-sporting-de-lisboa"
+    //buyUrl: "https://www.futbolemotion.com/camisetas-sporting-de-lisboa"
   },
   { team: "Venezuela", year: "2022/2023", competition: "Selecciones", img: "assets/images/venezuela.jpg", desc: "Primera equipación Venezuela 2022/2023" },
 ];
