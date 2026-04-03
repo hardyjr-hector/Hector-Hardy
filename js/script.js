@@ -1545,30 +1545,31 @@ const teamArticles = {
 
 // Datos de todas las selecciones (ranking + grupo)
 const teamsData = [
-  { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 3, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
-  { name: "España 🇪🇸", flag: "🇪🇸", ranking: 2, player: "Lamine Yamal", group: "H", style: "Posesión y presión" },
   { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 1, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
+  { name: "España 🇪🇸", flag: "🇪🇸", ranking: 2, player: "Lamine Yamal", group: "H", style: "Posesión y presión" },
+  { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 3, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
   { name: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, player: "Jude Bellingham", group: "G", style: "Físico y balones al área" },
-  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
   { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 5, player: "Cristiano Ronaldo", group: "—", style: "Posesión ofensiva" },
+  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
   { name: "Países Bajos 🇳🇱", flag: "🇳🇱", ranking: 7, player: "Virgil van Dijk", group: "F", style: "Fútbol total moderno" },
-  { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
-  { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 13, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
-  { name: "México 🇲🇽", flag: "🇲🇽", ranking: 15, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
-  { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 10, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
   { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 8, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
-  { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 16, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
-  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
-  { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 18, player: "Takefusa Kubo", group: "F", style: "Presión alta y disciplina" },
-  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
+  { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Romelu Lukaku", group: "G", style: "Potencia y calidad" },
+  { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 10, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
+  { name: "Croacia 🇭🇷", flag: "🇭🇷", ranking: 11, player: "Luka Modrić", group: "L", style: "Intensidad y presión" }
+  { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 13, player: "Luis Díaz", group: "—", style: "Presión y velocidad" },
   { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 14, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
+  { name: "México 🇲🇽", flag: "🇲🇽", ranking: 15, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
+  { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 16, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
+  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
+  { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 18, player: "Takefusa Kubo", group: "F", style: "Presión alta y disciplina" },
+  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
   { name: "Noruega 🇳🇴", flag: "🇳🇴", ranking: 20, player: "Erling Haaland", group: "I", style: "Directo y poderoso" },
+  { name: "Corea del Sur 🇰🇷", flag: "🇰🇷", ranking: 22, player: "Son Heung-min", group: "A", style: "Trabajo colectivo" },
   { name: "Australia 🇦🇺", flag: "🇦🇺", ranking: 24, player: "Mitchell Duke", group: "D", style: "Físico y transiciones" },
   { name: "Canadá 🇨🇦", flag: "🇨🇦", ranking: 25, player: "Alphonso Davies", group: "B", style: "Físico y presión" },
   { name: "Austria 🇦🇹", flag: "🇦🇹", ranking: 26, player: "David Alaba", group: "J", style: "Presión y verticalidad" },
   { name: "Turquía 🇹🇷", flag: "🇹🇷", ranking: 28, player: "Arda Güler", group: "D", style: "Ataque directo" },
   { name: "Ecuador 🇪🇨", flag: "🇪🇨", ranking: 30, player: "Moisés Caicedo", group: "E", style: "Sólido y ordenado" },
-  { name: "Corea del Sur 🇰🇷", flag: "🇰🇷", ranking: 22, player: "Son Heung-min", group: "A", style: "Trabajo colectivo" },
 ];
 
 // ==========================
