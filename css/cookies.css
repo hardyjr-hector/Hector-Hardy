@@ -1,0 +1,105 @@
+/* ===================================================
+   COOKIE BANNER — añadir al final de worldcup-styles.css
+   (o en un archivo cookies.css aparte)
+   =================================================== */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #111;
+  border-top: 1px solid #2a2a2a;
+  padding: 20px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.cookie-banner.hidden {
+  transform: translateY(110%);
+  pointer-events: none;
+}
+
+.cookie-banner p {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0;
+}
+
+.cookie-banner p a {
+  color: #bbb;
+  text-decoration: underline;
+}
+
+.cookie-banner p a:hover {
+  color: #fff;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.btn-cookie-accept {
+  padding: 10px 22px;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btn-cookie-accept:hover {
+  background: #e0e0e0;
+}
+
+.btn-cookie-reject {
+  padding: 10px 22px;
+  background: transparent;
+  color: #666;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-cookie-reject:hover {
+  color: #aaa;
+  border-color: #444;
+}
+
+@media (max-width: 600px) {
+  .cookie-banner {
+    padding: 20px 6%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cookie-banner-actions {
+    width: 100%;
+  }
+  .btn-cookie-accept,
+  .btn-cookie-reject {
+    flex: 1;
+    text-align: center;
+  }
+}
