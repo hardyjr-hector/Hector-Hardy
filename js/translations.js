@@ -112,8 +112,8 @@ const TRANSLATIONS = {
 
   // ── KO-FI ──────────────────────────────────────────────
   "kofi.title":  { es: "¿Te gusta el contenido?",  en: "Enjoying the content?" },
-  "kofi.body":   { es: "Este proyecto lo hago solo, en mi tiempo libre. Si los análisis te aportan algo, puedes invitarme a un café.", en: "This project is a solo effort in my spare time. If my analysis adds value, you can buy me a coffee." },
-  "kofi.btn":    { es: "Invítame a un café",        en: "Buy me a coffee" },
+  "kofi.body": { es: "Este proyecto lo hago solo, en mi tiempo libre. Si los análisis te gustan o te aportan algo, puedes ayudarme a seguir creando.", en: "This is a solo project built in my spare time. If you enjoy the content, you can help me keep creating." },
+  "kofi.btn":  { es: "Ayúdame a seguir creando", en: "Help me keep creating" },
 
   // ── FOOTER ─────────────────────────────────────────────
   "footer.title":   { es: "¿Hablamos?",   en: "Get in touch" },
