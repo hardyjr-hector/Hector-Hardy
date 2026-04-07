@@ -1562,7 +1562,7 @@ const teamsData = [
   { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 16, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
   { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
   { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 18, player: "Takefusa Kubo", group: "F", style: "Presión y disciplina táctica" },
-  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" }, { name: "Irán 🇮🇷", flag: "🇮🇷", ranking: 21, player: "Mehdi Taremi", group: "G", style: "Sólido y organizado" },
+  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
   { name: "Irán 🇮🇷", flag: "🇮🇷", ranking: 21, player: "Mehdi Taremi", group: "G", style: "Sólido y organizado" },
   { name: "Turquía 🇹🇷", flag: "🇹🇷", ranking: 22, player: "Arda Güler", group: "D", style: "Ataque directo" },
   { name: "Ecuador 🇪🇨", flag: "🇪🇨", ranking: 23, player: "Moisés Caicedo", group: "E", style: "Sólido y ordenado" },
