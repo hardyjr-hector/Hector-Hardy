@@ -1578,7 +1578,7 @@ const teamsData = [
   { name: "Suecia 🇸🇪", flag: "🇸🇪", ranking: 38, player: "Viktor Gyökeres", group: "F", style: "Físico y verticalidad" },
   { name: "Paraguay 🇵🇾", flag: "🇵🇾", ranking: 40, player: "Miguel Almirón", group: "D", style: "Físico y sólido" },
   { name: "República Checa 🇨🇿", flag: "🇨🇿", ranking: 41, player: "Patrik Schick", group: "A", style: "Sólido y eficiente" },
-  { name: "Escocia 🏴", flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", ranking: 43, player: "Scott McTominay", group: "C", style: "Físico y presión" },
+  { name: "Escocia", flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", ranking: 43, player: "Scott McTominay", group: "C", style: "Físico y presión" },
   { name: "Túnez 🇹🇳", flag: "🇹🇳", ranking: 44, player: "Wahbi Khazri", group: "F", style: "Organizado y difícil de batir" },
   { name: "República Democrática del Congo 🇨🇩", flag: "🇨🇩", ranking: 46, player: "Théo Bongonda", group: "K", style: "Velocidad y ataque directo" },
   { name: "Uzbekistán 🇺🇿", flag: "🇺🇿", ranking: 50, player: "Eldor Shomurodov", group: "K", style: "Compacto y trabajador" },
