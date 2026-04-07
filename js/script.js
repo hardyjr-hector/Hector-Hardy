@@ -1450,7 +1450,7 @@ const teamArticles = {
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Kylian Mbappé</strong> · Extremo / delantero</span><span class="player-role">El mejor del mundo</span></li>
+        <li><span><strong>Kylian Mbappé</strong> · Extremo / delantero</span><span class="player-role">El jugador más determiante del mundo</span></li>
         <li><span><strong>Ousmane Dembèlè</strong> · Extremo</span><span class="player-role">Actual balón de oro</span></li>
         <li><span><strong>Aurélien Tchouaméni</strong> · Centrocampista defensivo</span><span class="player-role">Destructor de primer nivel</span></li>
         <li><span><strong>William Saliba</strong> · Defensa central</span><span class="player-role">El mejor central del mundo</span></li>
@@ -1481,14 +1481,14 @@ const teamArticles = {
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Vinícius Jr.</strong> · Extremo izquierdo</span><span class="player-role"Jugador más desequilibrante del mundo</span></li>
+        <li><span><strong>Vinícius Jr.</strong> · Extremo</span><span class="player-role">El jugador más desequilibrante del mundo</span></li>
         <li><span><strong>Raphinha</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
         <li><span><strong>Bruno Guimarães</strong> · Centrocampista</span><span class="player-role">El motor del equipo</span></li>
         <li><span><strong>Marquinhos</strong> · Defensa central</span><span class="player-role">Capitán y líder en la zaga</span></li>
       </ul>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong>
-        <p>Brasil tiene el talento. Le falta el bloque. Si Ancelotti logra construir un equipo cohesionado, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos. La pregunta que me queda es ¿Podremos ver el último baile de Neymar?</p>
+        <p>Brasil tiene el talento. Le falta el bloque. Si Ancelotti logra construir un equipo cohesionado, pueden llegar lejos. Pero llevan demasiados ciclos prometiendo y llegando a cuartos. ¿Veremos un último baile de Neymar?</p>
       </div>`
   },
 
