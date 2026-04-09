@@ -12,24 +12,27 @@ window.addEventListener("scroll", () => {
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
+// Abrir / cerrar al pulsar el botón hamburguesa
 navToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isOpen = navLinks.classList.toggle('show');
+  e.stopPropagation(); // evita que el click "se escape" al documento
+  const isOpen = navLinks.classList.toggle('nav-open');
   navToggle.setAttribute('aria-expanded', isOpen);
   navToggle.textContent = isOpen ? '✕' : '☰';
 });
 
+// Cerrar al hacer clic en cualquier enlace del menú
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
-    navLinks.classList.remove('show');
+    navLinks.classList.remove('nav-open');
     navToggle.setAttribute('aria-expanded', false);
     navToggle.textContent = '☰';
   });
 });
 
+// Cerrar al tocar fuera del menú
 document.addEventListener('click', (e) => {
   if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-    navLinks.classList.remove('show');
+    navLinks.classList.remove('nav-open');
     navToggle.setAttribute('aria-expanded', false);
     navToggle.textContent = '☰';
   }
