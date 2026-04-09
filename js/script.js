@@ -9,13 +9,33 @@ window.addEventListener("scroll", () => {
 // ==========================
 // MENU MÓVIL
 // ==========================
-const navToggle = document.querySelector(".nav-toggle");
-const navLinksEl = document.querySelector(".nav-links");
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 
-navToggle?.addEventListener("click", () => navLinksEl.classList.toggle("show"));
-document.addEventListener("click", (e) => {
-  if (!navLinksEl?.contains(e.target) && !navToggle?.contains(e.target))
-    navLinksEl?.classList.remove("show");
+// Abrir / cerrar al pulsar el botón hamburguesa
+navToggle.addEventListener('click', (e) => {
+  e.stopPropagation(); // evita que el click "se escape" al documento
+  const isOpen = navLinks.classList.toggle('nav-open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.textContent = isOpen ? '✕' : '☰';
+});
+
+// Cerrar al hacer clic en cualquier enlace del menú
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', false);
+    navToggle.textContent = '☰';
+  });
+});
+
+// Cerrar al tocar fuera del menú
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+    navLinks.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', false);
+    navToggle.textContent = '☰';
+  }
 });
 
 // ==========================

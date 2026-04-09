@@ -12,8 +12,8 @@
   --text-primary: #f5f5f5;
   --text-secondary: #aaa;
   --accent: #ffffff;
-  --accent-muted: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.08);
+  --accent-muted: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.08);
   --transition: 0.3s ease;
   --navbar-height: 70px;
   --radius: 8px;
@@ -32,24 +32,50 @@ a {
 }
 
 /* ===== NAVBAR ===== */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10%;
-  height: var(--navbar-height);
-  position: sticky;
-  top: 0;
-  background: var(--bg-primary);
-  z-index: 1000;
-  transition: var(--transition);
-  border-bottom: 1px solid transparent;
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    /* visible en móvil */
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: inherit;
+    /* Importante para iOS: */
+    -webkit-appearance: none;
+    touch-action: manipulation;
+  }
+
+  .nav-links {
+    display: none;
+    /* oculto por defecto */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0d0d0d;
+    /* tu color de fondo */
+    padding: 1rem 0;
+    z-index: 999;
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+    /* visible cuando está abierto */
+  }
+
+  .nav-links a {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
 }
 
-.navbar.scrolled {
-  background: rgba(15, 15, 15, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom-color: var(--border);
+@media (min-width: 769px) {
+  .nav-toggle {
+    display: none;
+    /* oculto en escritorio */
+  }
 }
 
 /* LOGO */
@@ -161,7 +187,7 @@ body.panel-mode .hero {
   background: rgba(0, 0, 0, 0.52);
 }
 
-.hero > * {
+.hero>* {
   position: relative;
   z-index: 2;
 }
@@ -225,6 +251,7 @@ section.active-section {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -275,7 +302,7 @@ section h2 {
 }
 
 .btn-outline {
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--text-primary);
   background: transparent;
 }
@@ -416,7 +443,7 @@ section h2 {
   padding: 9px 14px;
   background: var(--bg-secondary);
   color: white;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius);
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
@@ -430,8 +457,9 @@ section h2 {
   padding-right: 32px;
 }
 
-.controls select:hover, .controls select:focus {
-  border-color: rgba(255,255,255,0.3);
+.controls select:hover,
+.controls select:focus {
+  border-color: rgba(255, 255, 255, 0.3);
   outline: none;
 }
 
@@ -593,13 +621,13 @@ section h2 {
 }
 
 .btn-apple {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-secondary);
   border: 1px solid var(--border);
 }
 
 .btn-apple:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: var(--text-primary);
 }
 
@@ -627,7 +655,7 @@ section h2 {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.15) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
   padding-bottom: 12px;
 }
 
@@ -694,7 +722,7 @@ section h2 {
 .jersey-search select {
   padding: 8px 12px;
   background: var(--bg-secondary);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   border-radius: var(--radius);
   font-family: 'Inter', sans-serif;
@@ -705,7 +733,7 @@ section h2 {
 .jersey-search input:focus,
 .jersey-search select:focus {
   outline: none;
-  border-color: rgba(255,255,255,0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .jersey-search input::placeholder {
@@ -726,7 +754,7 @@ section h2 {
   margin-bottom: 8px;
 }
 
-.footer-contacto > p:first-of-type {
+.footer-contacto>p:first-of-type {
   color: var(--text-secondary);
   margin-bottom: 24px;
   font-size: 0.9rem;
@@ -745,7 +773,7 @@ section h2 {
   text-decoration: none;
   color: white;
   padding: 10px 20px;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius);
   transition: var(--transition);
   font-size: 0.85rem;
@@ -753,7 +781,7 @@ section h2 {
 
 .btn-contacto:hover {
   background-color: var(--bg-tertiary);
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .btn-cv {
@@ -768,8 +796,8 @@ section h2 {
 }
 
 .footer-contacto .copyright,
-.footer-contacto > p:last-of-type,
-.footer-contacto > p:nth-last-of-type(2) {
+.footer-contacto>p:last-of-type,
+.footer-contacto>p:nth-last-of-type(2) {
   font-size: 0.78rem;
   color: #666;
   margin-top: 6px;
@@ -823,7 +851,7 @@ section h2 {
     display: none;
     flex-direction: column;
     gap: 0;
-    background: rgba(15,15,15,0.97);
+    background: rgba(15, 15, 15, 0.97);
     backdrop-filter: blur(12px);
     position: absolute;
     top: 100%;
