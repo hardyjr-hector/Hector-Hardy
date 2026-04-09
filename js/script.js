@@ -1,3 +1,12 @@
+const menuBtn = document.querySelector(".menu-toggle");
+const navLinksEl = document.querySelector(".nav-links");
+
+if (menuBtn && navLinksEl) {
+  menuBtn.addEventListener("click", () => {
+    navLinksEl.classList.toggle("open");
+  });
+}
+
 // ==========================
 // NAVBAR SCROLL EFFECT
 // ==========================
@@ -12,27 +21,24 @@ window.addEventListener("scroll", () => {
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-// Abrir / cerrar al pulsar el botón hamburguesa
 navToggle.addEventListener('click', (e) => {
-  e.stopPropagation(); // evita que el click "se escape" al documento
-  const isOpen = navLinks.classList.toggle('nav-open');
+  e.stopPropagation();
+  const isOpen = navLinks.classList.toggle('show');
   navToggle.setAttribute('aria-expanded', isOpen);
   navToggle.textContent = isOpen ? '✕' : '☰';
 });
 
-// Cerrar al hacer clic en cualquier enlace del menú
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
-    navLinks.classList.remove('nav-open');
+    navLinks.classList.remove('show');
     navToggle.setAttribute('aria-expanded', false);
     navToggle.textContent = '☰';
   });
 });
 
-// Cerrar al tocar fuera del menú
 document.addEventListener('click', (e) => {
   if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-    navLinks.classList.remove('nav-open');
+    navLinks.classList.remove('show');
     navToggle.setAttribute('aria-expanded', false);
     navToggle.textContent = '☰';
   }
