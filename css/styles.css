@@ -52,53 +52,6 @@ a {
   border-bottom-color: var(--border);
 }
 
-/* ── Navbar móvil ───────────────────────────────────────── */
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: block;
-    /* visible en móvil */
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: inherit;
-    /* Importante para iOS: */
-    -webkit-appearance: none;
-    touch-action: manipulation;
-  }
-
-  .nav-links {
-    display: none;
-    /* oculto por defecto */
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #0d0d0d;
-    /* tu color de fondo */
-    padding: 1rem 0;
-    z-index: 999;
-  }
-
-  .nav-links.nav-open {
-    display: flex;
-    /* visible cuando está abierto */
-  }
-
-  .nav-links a {
-    padding: 0.75rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-}
-
-@media (min-width: 769px) {
-  .nav-toggle {
-    display: none;
-    /* oculto en escritorio */
-  }
-}
-
 /* LOGO */
 .logo {
   position: relative;
@@ -136,11 +89,31 @@ a {
   opacity: 1;
 }
 
-/* NAV LINKS */
-.nav-links {
-  display: flex;
-  gap: 30px;
-  align-items: center;
+/* BOTÓN MÓVIL */
+.nav-toggle {
+  display: none;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+}
+
+/* NAV LINKS — escritorio */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
 }
 
 nav a {
@@ -156,7 +129,6 @@ nav a:hover {
   opacity: 1;
 }
 
-/* Active nav indicator */
 .nav-links a.active {
   opacity: 1;
 }
@@ -170,18 +142,6 @@ nav a:hover {
   height: 1px;
   background: var(--accent);
   border-radius: 1px;
-}
-
-/* BOTÓN MÓVIL */
-.nav-toggle {
-  display: none;
-  font-size: 1.4rem;
-  background: none;
-  border: none;
-  color: var(--accent);
-  cursor: pointer;
-  padding: 5px;
-  line-height: 1;
 }
 
 /* ===== HERO ===== */
@@ -226,10 +186,9 @@ body.panel-mode .hero {
   max-width: 500px;
   color: var(--text-secondary);
   margin-bottom: 32px;
-  font-size: 1rem;
+  font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.85rem;
 }
 
 .hero-buttons {
@@ -279,7 +238,6 @@ section.active-section {
   }
 }
 
-/* Section headings */
 section h2 {
   font-size: 1.6rem;
   font-weight: 700;
@@ -404,7 +362,6 @@ section h2 {
   margin-bottom: 8px;
 }
 
-/* FIX: grid wrapper so h2 doesn't become a grid item */
 .articles-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -538,7 +495,6 @@ section h2 {
   margin-bottom: 32px;
 }
 
-/* Fixture stages */
 .fixture-stage {
   margin-bottom: 48px;
 }
@@ -617,7 +573,6 @@ section h2 {
   flex-wrap: wrap;
 }
 
-/* Calendar buttons */
 .btn-cal {
   padding: 6px 14px;
   border-radius: 5px;
@@ -868,6 +823,10 @@ section h2 {
     justify-content: center;
   }
 
+  .nav-toggle {
+    display: block;
+  }
+
   .nav-links {
     display: none;
     flex-direction: column;
@@ -883,10 +842,15 @@ section h2 {
     z-index: 999;
   }
 
+  .nav-links.show {
+    display: flex;
+  }
+
   .nav-links a {
     padding: 12px 6%;
     display: block;
     border-bottom: 1px solid var(--border);
+    opacity: 0.7;
   }
 
   .nav-links a:last-child {
@@ -895,14 +859,6 @@ section h2 {
 
   .nav-links a.active::after {
     display: none;
-  }
-
-  .nav-links.show {
-    display: flex;
-  }
-
-  .nav-toggle {
-    display: block;
   }
 
   .logo {
