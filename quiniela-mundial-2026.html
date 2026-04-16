@@ -3,49 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quiniela Mundial 2026 | hectorhardy.com</title>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+    <title>Quiniela Mundial 2026 | Hector Hardy</title>
     <link rel="stylesheet" href="css/quiniela.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <nav id="sidebar" style="display: none;">
-        <h2 style="color:var(--gold); font-family:'Barlow Condensed'; margin-bottom:2rem;">HECTOR HARDY</h2>
-        <a class="nav-link" onclick="showView('quiniela')" style="display:block; color:#fff; margin-bottom:1rem; cursor:pointer;">MI QUINIELA</a>
-        <a class="nav-link" onclick="showView('ranking')" style="display:block; color:#fff; margin-bottom:1rem; cursor:pointer;">CLASIFICACIÓN</a>
-        <a id="admin-nav" onclick="showView('admin')" style="display:none; color:#ff4444; cursor:pointer;">PANEL ADMIN</a>
-        <div style="margin-top: 3rem;">
-            <a href="index.html" style="color:var(--muted); text-decoration:none; font-size:0.9rem;">← VOLVER AL BLOG</a>
-        </div>
+<div id="auth-overlay">
+  <div class="auth-card">
+    <div class="auth-logo"><h2>⚽ Quiniela Mundial 2026</h2><p>hectorhardy.com · 11 Jun – 19 Jul 2026</p></div>
+    <div class="auth-tabs">
+      <button class="auth-tab on" id="tab-login-btn" onclick="switchTab('login')">Entrar</button>
+      <button class="auth-tab" id="tab-reg-btn" onclick="switchTab('reg')">Registrarse</button>
+    </div>
+    <div id="auth-err" class="auth-err"></div>
+    <div id="form-login">
+      <div class="fg"><label>Email</label><input class="fi" id="l-email" type="email" placeholder="tu@correo.com"></div>
+      <div class="fg"><label>Contraseña</label><input class="fi" id="l-pass" type="password" placeholder="••••••••"></div>
+      <button class="btn-p" id="btn-login" onclick="doLogin()">Entrar →</button>
+      <div class="auth-sw">¿No tienes cuenta? <span onclick="switchTab('reg')">Regístrate</span></div>
+    </div>
+    <div id="form-reg" style="display:none">
+      <div class="fg"><label>Nombre de usuario</label><input class="fi" id="r-user" type="text" placeholder="ej. hector2026" maxlength="20"></div>
+      <div class="fg"><label>Email</label><input class="fi" id="r-email" type="email" placeholder="tu@correo.com"></div>
+      <div class="fg"><label>Contraseña</label><input class="fi" id="r-pass" type="password" placeholder="mínimo 6 caracteres"></div>
+      <button class="btn-p" id="btn-reg" onclick="doRegister()">Crear cuenta →</button>
+      <div class="auth-sw">¿Ya tienes cuenta? <span onclick="switchTab('login')">Entra aquí</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="app">
+  <nav class="navbar">
+    <div class="logo"><span>HH</span></div>
+    <div class="nav-links">
+      <a href="#" class="on">Quiniela</a>
+      <a href="#" onclick="doLogout()">Salir</a>
+    </div>
+    <div class="nav-user" id="nav-user"></div>
+  </nav>
+  <div class="app-body">
+    <nav class="sidebar">
+      <div class="sidebar-u">
+        <div class="su-row"><div class="su-av" id="su-av">--</div><div><div class="su-name" id="su-name">—</div><div class="su-pts" id="su-pts">0 pts</div></div></div>
+      </div>
+      <div class="sni on" id="sni-home" onclick="goTo('home')"><span class="ico">🏠</span>Inicio</div>
+      <div class="sni" id="sni-matches" onclick="goTo('matches')"><span class="ico">⚽</span>Partidos</div>
+      <div class="sni" id="sni-groups" onclick="goTo('groups')"><span class="ico">📋</span>Grupos</div>
+      <div class="sni" id="sni-specials" onclick="goTo('specials')"><span class="ico">⭐</span>Especiales</div>
+      <div class="sni" id="sni-rank" onclick="goTo('rank')"><span class="ico">🏅</span>Ranking</div>
+      <div class="sni" id="sni-downloads" onclick="goTo('downloads')"><span class="ico">📥</span>Descargas</div>
+      <div class="sb-bot"><div class="logout-b" onclick="doLogout()">↩ Cerrar sesión</div></div>
     </nav>
-
-    <main>
-        <section id="auth-view" class="auth-container">
-            <h1 style="font-family:'Barlow Condensed'; font-size:3rem; margin-bottom:2rem;">MUNDIAL 2026</h1>
-            <input type="text" id="auth-user" class="auth-input" placeholder="Nombre de usuario">
-            <input type="email" id="auth-email" class="auth-input" placeholder="Email">
-            <input type="password" id="auth-pass" class="auth-input" placeholder="Contraseña">
-            <button id="btn-auth" class="btn-primary">ENTRAR A JUGAR</button>
-        </section>
-
-        <section id="quiniela-view" class="view">
-            <h1 style="font-family:'Barlow Condensed'; font-size:2.5rem; margin-bottom:1.5rem;">TUS PRONÓSTICOS</h1>
-            <div id="matches-container"></div>
-            <button class="btn-primary" style="background:#e1306c; color:#fff; margin-top:2rem;" onclick="takeScreenshot()">DESCARGAR PARA INSTAGRAM</button>
-        </section>
-
-        <section id="ranking-view" class="view">
-            <h1 style="font-family:'Barlow Condensed'; font-size:2.5rem; margin-bottom:1.5rem;">CLASIFICACIÓN</h1>
-            <div id="ranking-body"></div>
-        </section>
-
-        <section id="admin-view" class="view">
-            <h1 style="color:#ff4444; font-family:'Barlow Condensed';">ADMIN: RESULTADOS REALES</h1>
-            <div id="admin-matches-container"></div>
-        </section>
+    <main class="main" id="main">
+      <div class="screen on" id="screen-home">
+        <div class="s-title">Bienvenido, <span id="d-user"></span>! 👋</div>
+        <div class="stats-g" id="dash-stats"></div>
+        <div class="ql-g">
+          <div class="ql" onclick="goTo('matches')"><div class="ql-ico">⚽</div><div class="ql-title">Partidos</div></div>
+          <div class="ql" onclick="goTo('groups')"><div class="ql-ico">📋</div><div class="ql-title">Grupos</div></div>
+        </div>
+      </div>
+      <div class="screen" id="screen-matches">
+        <div class="s-title">Partidos</div>
+        <div class="gtabs" id="tabs-matches"></div>
+        <div id="matches-content"></div>
+      </div>
+      <div class="screen" id="screen-groups">
+        <div class="s-title">Grupos</div>
+        <div class="gtabs" id="tabs-groups"></div>
+        <div id="groups-content"></div>
+      </div>
+      <div class="screen" id="screen-specials">
+        <div class="s-title">Especiales</div>
+        <div id="specials-content"></div>
+      </div>
+      <div class="screen" id="screen-rank">
+        <div class="s-title">Ranking</div>
+        <div class="lb-c"><table class="lb-t" id="lb-tbl"></table></div>
+      </div>
+      <div class="screen" id="screen-downloads">
+        <div class="s-title">Descargas</div>
+        <div class="dl-g">
+           <div class="dl-c" onclick="downloadPDF()"><div class="dl-ico">📄</div><div class="dl-name">PDF</div></div>
+           <div class="dl-c" onclick="downloadExcel()"><div class="dl-ico">📊</div><div class="dl-name">Excel</div></div>
+        </div>
+      </div>
     </main>
+  </div>
+</div>
+<div class="bnav"><div class="bnav-row">
+  <div class="bni on" id="bni-home" onclick="goTo('home')">🏠</div>
+  <div class="bni" id="bni-matches" onclick="goTo('matches')">⚽</div>
+  <div class="bni" id="bni-groups" onclick="goTo('groups')">📋</div>
+  <div class="bni" id="bni-rank" onclick="goTo('rank')">🏅</div>
+</div></div>
+<div class="toast" id="toast"></div>
+<div id="ig-el" style="position:fixed;left:-9999px;top:0;width:1080px;background:#0a0b0f;padding:60px;color:#f0f0f0"></div>
 
-    <script src="js/quiniela.js"></script>
+<script src="js/quiniela.js"></script>
 </body>
 </html>
