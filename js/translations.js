@@ -21,6 +21,7 @@ const TRANSLATIONS = {
   "hero.btn1": { es: "Ver análisis", en: "See analysis" },
   "hero.btn2": { es: "Leer artículos", en: "Read articles" },
   "hero.btn3": { es: "Mundial 2026", en: "World Cup 2026" },
+  "hero.btn4": { es: "Jugar Quiniela Mundialista", en: "Guess the winner" },
 
   // ── SOBRE MÍ ───────────────────────────────────────────
   "about.title": { es: "Sobre mí", en: "About me" },
