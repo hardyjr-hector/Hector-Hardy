@@ -339,6 +339,57 @@
         }
 
         function logout() { supabase.auth.signOut(); location.reload(); }
+        
+        // Capturamos el formulario de registro por su ID (si no lo tiene, se lo ponemos)
+document.addEventListener('DOMContentLoaded', () => {
+    const authForm = document.querySelector('#auth-view button'); 
+    
+    if (authForm) {
+        authForm.onclick = async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('auth-user').value;
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-pass').value;
+
+            if (!username || !email || !password) {
+                alert("Por favor, llena todos los campos");
+                return;
+            }
+
+            console.log("Intentando conectar con Supabase...");
+
+            // Intentamos el registro
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: { username: username }
+                }
+            });
+
+            if (error) {
+                // Si el error es que ya existe, intentamos Login automático
+                if (error.message.includes("already registered")) {
+                    const { data: logData, error: logErr } = await supabase.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+                    
+                    if (logErr) return alert("Error al entrar: " + logErr.message);
+                    alert("¡Bienvenido de nuevo!");
+                    initSession(logData.user);
+                } else {
+                    alert("Error: " + error.message);
+                }
+            } else {
+                alert("¡Usuario creado con éxito!");
+                initSession(data.user);
+            }
+        };
+    }
+});
+
     </script>
 </body>
 
