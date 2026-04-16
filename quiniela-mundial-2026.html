@@ -6,31 +6,9 @@
     <title>Quiniela Mundial 2026 | hectorhardy.com</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-    <style>
-        :root { --bg: #080c18; --surf: #101728; --surf2: #182038; --gold: #f0b832; --text: #f2f2f2; --muted: #6878a0; --nav-w: 240px; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
-        nav { width: var(--nav-w); background: var(--surf); padding: 2rem; border-right: 1px solid rgba(255,255,255,0.05); position: fixed; height: 100vh; z-index: 100; }
-        nav h2 { font-family: 'Barlow Condensed'; color: var(--gold); margin-bottom: 2rem; }
-        .nav-link { display: block; color: var(--text); text-decoration: none; margin-bottom: 1.2rem; font-weight: 600; cursor: pointer; }
-        .nav-link:hover { color: var(--gold); }
-        main { margin-left: var(--nav-w); padding: 3rem; width: 100%; max-width: 900px; }
-        .view { display: none; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .match-card { background: var(--surf2); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.05); }
-        .group-label { font-size: 0.75rem; color: var(--gold); text-transform: uppercase; font-weight: 800; margin-bottom: 10px; display: block; }
-        .teams-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1.5rem; }
-        .team-name { font-family: 'Barlow Condensed'; font-size: 1.4rem; text-transform: uppercase; }
-        input[type="number"] { width: 55px; height: 50px; background: #000; border: 1px solid var(--muted); color: #fff; text-align: center; font-size: 1.5rem; border-radius: 6px; font-weight: 700; }
-        .auth-container { max-width: 400px; margin: 10vh auto; text-align: center; }
-        .auth-input { width: 100%; padding: 12px; margin-bottom: 10px; background: var(--surf2); border: 1px solid var(--muted); color: white; border-radius: 4px; }
-        .btn-primary { width: 100%; padding: 14px; background: var(--gold); border: none; font-weight: 800; cursor: pointer; border-radius: 4px; text-transform: uppercase; }
-        .admin-btn { background: #ff4444 !important; margin-top: 10px; }
-        @media (max-width: 768px) { body { flex-direction: column; } nav { width: 100%; height: auto; position: relative; padding: 1rem; border-right: none; } main { margin-left: 0; padding: 1.5rem; } }
-    </style>
 </head>
 <body>
 
@@ -50,7 +28,7 @@
             <h1 style="font-family: 'Barlow Condensed'; font-size: 2.5rem; margin-bottom: 1.5rem;">MUNDIAL 2026</h1>
             <input type="text" id="auth-user" class="auth-input" placeholder="Nombre de usuario">
             <input type="email" id="auth-email" class="auth-input" placeholder="Email">
-            <input type="password" id="auth-pass" class="auth-input" placeholder="Contraseña (mín. 6 caracteres)">
+            <input type="password" id="auth-pass" class="auth-input" placeholder="Contraseña">
             <button id="btn-auth" class="btn-primary">ENTRAR A JUGAR</button>
         </section>
 
@@ -73,128 +51,6 @@
         </section>
     </main>
 
-    <script>
-        const SB_URL = 'NEXT_PUBLIC_SB_URL'; 
-        const SB_KEY = 'NEXT_PUBLIC_SB_KEY';
-        const supabaseClient = supabase.createClient(SB_URL, SB_KEY);
-
-        let user = null;
-        let isAdmin = false;
-
-        document.getElementById('btn-auth').onclick = async (e) => {
-            const email = document.getElementById('auth-email').value;
-            const pass = document.getElementById('auth-pass').value;
-            const username = document.getElementById('auth-user').value;
-
-            // 1. Intentar Registro
-            const { data, error } = await supabaseClient.auth.signUp({
-                email, password: pass, options: { data: { username } }
-            });
-
-            if (error) {
-                // 2. Si ya existe, intentar Login
-                const { data: logData, error: logErr } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
-                if (logErr) return alert("Error: " + logErr.message);
-                initSession(logData.user);
-            } else {
-                alert("¡Usuario creado!");
-                initSession(data.user);
-            }
-        };
-
-        async function initSession(sessionData) {
-            user = sessionData;
-            const { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
-            if (profile && profile.is_admin) {
-                isAdmin = true;
-                document.getElementById('admin-nav').style.display = 'block';
-            }
-            document.getElementById('auth-view').style.display = 'none';
-            document.getElementById('sidebar').style.display = 'block';
-            showView('quiniela');
-        }
-
-        async function loadMatches(isAdminView = false) {
-            const { data: matches } = await supabaseClient.from('matches').select('*').order('id');
-            const { data: preds } = await supabaseClient.from('predictions').select('*').eq('user_id', user.id);
-            const container = document.getElementById(isAdminView ? 'admin-matches-container' : 'matches-container');
-            
-            container.innerHTML = matches.map(m => {
-                const p = preds.find(pr => pr.match_id === m.id) || { pred_s1: '', pred_s2: '' };
-                return `
-                <div class="match-card">
-                    <span class="group-label">${m.group_name}</span>
-                    <div class="teams-row">
-                        <div class="team-name" style="text-align:right">${m.team1}</div>
-                        <div style="display:flex; gap:8px;">
-                            <input type="number" value="${isAdminView ? (m.real_score1||0) : p.pred_s1}" 
-                                   onchange="${isAdminView ? `updateReal('${m.id}', this.value, 1)` : `savePred('${m.id}', this.value, 1)`}" 
-                                   ${!isAdminView && m.is_finished ? 'disabled' : ''}>
-                            <input type="number" value="${isAdminView ? (m.real_score2||0) : p.pred_s2}" 
-                                   onchange="${isAdminView ? `updateReal('${m.id}', this.value, 2)` : `savePred('${m.id}', this.value, 2)`}"
-                                   ${!isAdminView && m.is_finished ? 'disabled' : ''}>
-                        </div>
-                        <div class="team-name">${m.team2}</div>
-                    </div>
-                    ${isAdminView ? `<button class="btn-primary admin-btn" onclick="finalizeMatch('${m.id}')">FINALIZAR Y DAR PUNTOS</button>` : 
-                    (m.is_finished ? `<p style="color:var(--gold); margin-top:10px;">Final: ${m.real_score1}-${m.real_score2}</p>` : '')}
-                </div>`;
-            }).join('');
-        }
-
-        async function savePred(mid, val, slot) {
-            const field = slot === 1 ? 'pred_s1' : 'pred_s2';
-            await supabaseClient.from('predictions').upsert({ user_id: user.id, match_id: mid, [field]: parseInt(val) }, { onConflict: 'user_id, match_id' });
-        }
-
-        async function finalizeMatch(mid) {
-            const { data: match } = await supabaseClient.from('matches').select('*').eq('id', mid).single();
-            await supabaseClient.from('matches').update({ is_finished: true }).eq('id', mid);
-            const { data: allPreds } = await supabaseClient.from('predictions').select('*').eq('match_id', mid);
-
-            for (let p of allPreds) {
-                let pts = 0;
-                const rWin = match.real_score1 > match.real_score2 ? 1 : (match.real_score1 < match.real_score2 ? 2 : 0);
-                const pWin = p.pred_s1 > p.pred_s2 ? 1 : (p.pred_s1 < p.pred_s2 ? 2 : 0);
-                if (rWin === pWin) {
-                    pts += 5;
-                    if (match.real_score1 === p.pred_s1) pts += 1;
-                    if (match.real_score2 === p.pred_s2) pts += 1;
-                }
-                const { data: prof } = await supabaseClient.from('profiles').select('points').eq('id', p.user_id).single();
-                await supabaseClient.from('profiles').update({ points: (prof.points || 0) + pts }).eq('id', p.user_id);
-            }
-            alert("Partido cerrado y puntos repartidos.");
-        }
-
-        async function updateReal(mid, val, slot) {
-            const field = slot === 1 ? 'real_score1' : 'real_score2';
-            await supabaseClient.from('matches').update({ [field]: parseInt(val) }).eq('id', mid);
-        }
-
-        function showView(v) {
-            document.querySelectorAll('.view').forEach(el => el.style.display = 'none');
-            document.getElementById(v + '-view').style.display = 'block';
-            if (v === 'ranking') loadRanking();
-            else loadMatches(v === 'admin');
-        }
-
-        async function loadRanking() {
-            const { data } = await supabaseClient.from('profiles').select('username, points').order('points', { ascending: false });
-            document.getElementById('ranking-body').innerHTML = data.map(r => `
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                    <td style="padding: 15px;">${r.username}</td>
-                    <td style="padding: 15px; text-align: right; font-weight: 800;">${r.points} PTS</td>
-                </tr>`).join('');
-        }
-
-        function takeScreenshot() {
-            html2canvas(document.querySelector("#quiniela-view"), { backgroundColor: '#080c18', scale: 2 }).then(canvas => {
-                const link = document.createElement('a'); link.download = 'mi-quiniela.png'; link.href = canvas.toDataURL(); link.click();
-            });
-        }
-
-        function logout() { supabaseClient.auth.signOut(); location.reload(); }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
