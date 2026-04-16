@@ -4,28 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Quiniela Mundial 2026 | hectorhardy.com</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="quiniela.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-
     <nav id="sidebar" style="display: none;">
-        <h2>HECTOR HARDY</h2>
-        <a class="nav-link" onclick="showView('quiniela')">MI QUINIELA</a>
-        <a class="nav-link" onclick="showView('ranking')">CLASIFICACIÓN</a>
-        <a class="nav-link" id="admin-nav" style="display:none; color: #ff4444;" onclick="showView('admin')">PANEL ADMIN</a>
+        <h2 style="color:var(--gold); font-family:'Barlow Condensed'; margin-bottom:2rem;">HECTOR HARDY</h2>
+        <a class="nav-link" onclick="showView('quiniela')" style="display:block; color:#fff; margin-bottom:1rem; cursor:pointer;">MI QUINIELA</a>
+        <a class="nav-link" onclick="showView('ranking')" style="display:block; color:#fff; margin-bottom:1rem; cursor:pointer;">CLASIFICACIÓN</a>
+        <a id="admin-nav" onclick="showView('admin')" style="display:none; color:#ff4444; cursor:pointer;">PANEL ADMIN</a>
         <div style="margin-top: 3rem;">
-            <a href="index.html" class="nav-link" style="color: var(--muted); font-size: 0.9rem;">← VOLVER AL BLOG</a>
-            <a class="nav-link" onclick="logout()" style="color: #ff4444; font-size: 0.9rem;">CERRAR SESIÓN</a>
+            <a href="index.html" style="color:var(--muted); text-decoration:none; font-size:0.9rem;">← VOLVER AL BLOG</a>
         </div>
     </nav>
 
     <main>
         <section id="auth-view" class="auth-container">
-            <h1 style="font-family: 'Barlow Condensed'; font-size: 2.5rem; margin-bottom: 1.5rem;">MUNDIAL 2026</h1>
+            <h1 style="font-family:'Barlow Condensed'; font-size:3rem; margin-bottom:2rem;">MUNDIAL 2026</h1>
             <input type="text" id="auth-user" class="auth-input" placeholder="Nombre de usuario">
             <input type="email" id="auth-email" class="auth-input" placeholder="Email">
             <input type="password" id="auth-pass" class="auth-input" placeholder="Contraseña">
@@ -33,21 +30,19 @@
         </section>
 
         <section id="quiniela-view" class="view">
-            <h1 style="font-family: 'Barlow Condensed'; font-size: 2.5rem;">TUS PRONÓSTICOS</h1>
+            <h1 style="font-family:'Barlow Condensed'; font-size:2.5rem; margin-bottom:1.5rem;">TUS PRONÓSTICOS</h1>
             <div id="matches-container"></div>
-            <button class="btn-primary" style="margin-top: 2rem; background: #e1306c; color: #fff;" onclick="takeScreenshot()">DESCARGAR PARA INSTAGRAM</button>
-        </section>
-
-        <section id="admin-view" class="view">
-            <h1 style="font-family: 'Barlow Condensed'; font-size: 2.5rem; color: #ff4444;">RESULTADOS REALES</h1>
-            <div id="admin-matches-container"></div>
+            <button class="btn-primary" style="background:#e1306c; color:#fff; margin-top:2rem;" onclick="takeScreenshot()">DESCARGAR PARA INSTAGRAM</button>
         </section>
 
         <section id="ranking-view" class="view">
-            <h1 style="font-family: 'Barlow Condensed'; font-size: 2.5rem;">TABLA DE POSICIONES</h1>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 2rem;">
-                <tbody id="ranking-body"></tbody>
-            </table>
+            <h1 style="font-family:'Barlow Condensed'; font-size:2.5rem; margin-bottom:1.5rem;">CLASIFICACIÓN</h1>
+            <div id="ranking-body"></div>
+        </section>
+
+        <section id="admin-view" class="view">
+            <h1 style="color:#ff4444; font-family:'Barlow Condensed';">ADMIN: RESULTADOS REALES</h1>
+            <div id="admin-matches-container"></div>
         </section>
     </main>
 
