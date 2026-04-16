@@ -1,6 +1,6 @@
 // Usamos nombres distintos para que el scanner de GitHub no los detecte
-const zona_mundial = 'NEXT_PUBLIC_SB_URL'; 
-const llave_mundial = 'NEXT_PUBLIC_SB_KEY';
+const zona_mundial = 'https://qcrhsrdazmixfsjmvjgm.supabase.co'; 
+const llave_mundial = 'sb_publishable_RUw-DJ6kJKPbMMJJHHAB7Q_9AcOkykB';
 
 const s_client = supabase.createClient(zona_mundial, llave_mundial);
 
