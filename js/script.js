@@ -1968,26 +1968,524 @@ const teamArticles = {
       <div class="article-verdict">
         <strong>Veredicto</strong>: Tienen la liga más potente de Asia, lo que ha subido el nivel de sus locales. Serán un bloque muy difícil de romper.
       </div>`
-  }
+  },
 
-  // ─────────────────────────────────────────────────────────────────────
-  // PLANTILLA para nuevos artículos — descomenta y rellena:
-  // ─────────────────────────────────────────────────────────────────────
-  // "Nombre del Equipo 🏳️": {
-  //   content: `
-  //     <span class="article-flag">🏳️</span>
-  //     <h1>Título del artículo</h1>
-  //     <div class="article-meta">
-  //       <span>✍️ Hector Hardy</span><span>📅 Mes 2026</span>
-  //     </div>
-  //     <p class="article-lead">Introducción...</p>
-  //     <h2>Sección 1</h2>
-  //     <p>Contenido...</p>
-  //     <div class="article-verdict">
-  //       <strong>Veredicto de Hector Hardy</strong>
-  //       <p>Tu conclusión...</p>
-  //     </div>`
-  // },
+  "Suiza 🇨🇭": {
+    content: `
+      <span class="article-flag">🇨🇭</span>
+      <h1>Suiza: el reloj que nunca falla</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Sin grandes titulares pero con una eficiencia aterradora, Suiza llega a 2026 como el equipo que nadie quiere enfrentar en una eliminatoria directa.</p>
+      <h2>Orden, control y Granit Xhaka</h2>
+      <p>La selección helvética es la definición de "equipo rocoso". No te regalan un metro. Su sistema defensivo es una coreografía ensayada mil veces, y en la transición, saben castigar con la precisión de su industria relojera.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#19</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Cuartos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Granit Xhaka</strong> · Centrocampista</span><span class="player-role">El líder espiritual</span></li>
+        <li><span><strong>Manuel Akanji</strong> · Defensa central</span><span class="player-role">Muro de seguridad</span></li>
+        <li><span><strong>Gregor Kobel</strong> · Portero</span><span class="player-role">Uno de los mejores del mundo</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Suiza pasará de grupos. Lo hace siempre. La duda es si tienen el "punch" necesario para derribar a un top 5 en cuartos de final.</p>
+      </div>`
+  },
+
+  "Corea del Sur 🇰🇷": {
+    content: `
+      <span class="article-flag">🇰🇷</span>
+      <h1>Corea del Sur: más allá de Son Heung-min</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Los "Guerreros Taeguk" llegan con una disciplina táctica impecable y un despliegue físico que agota a cualquier rival.</p>
+      <h2>El equilibrio asiático</h2>
+      <p>Aunque Son sigue siendo el ídolo, Corea ha desarrollado un bloque medio-alto muy agresivo. Es un equipo que no te deja respirar y que utiliza la velocidad de sus extremos para matar al contragolpe.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#25</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">4º (2002)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo A</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>En el Grupo A junto a México, se jugarán la vida. Son un equipo incómodo que puede arruinarle el Mundial a cualquier favorito descuidado.</p>
+      </div>`
+  },
+
+  "Turquía 🇹🇷": {
+    content: `
+      <span class="article-flag">🇹🇷</span>
+      <h1>Turquía: el talento emergente de Arda Güler</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Con una nueva generación llena de descaro técnico, Turquía busca repetir las gestas de principios de siglo.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#22</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">3º (2002)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo D</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Arda Güler</strong> · Mediapunta</span><span class="player-role">La perla de Estambul</span></li>
+        <li><span><strong>Kenan Yıldız</strong> · Delantero</span><span class="player-role">Potencia y regate</span></li>
+        <li><span><strong>Hakan Çalhanoğlu</strong> · Mediocentro</span><span class="player-role">El guante en el pie</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Turquía es puro fuego. Si logran canalizar su intensidad emocional en fútbol, son candidatos a ser la revelación europea del torneo.</p>
+      </div>`
+  },
+
+  "Austria 🇦🇹": {
+    content: `
+      <span class="article-flag">🇦🇹</span>
+      <h1>Austria: el laboratorio de Rangnick</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Presión asfixiante y verticalidad absoluta. Austria es el equipo que mejor representa el fútbol moderno de transiciones.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#24</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">3º (1954)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: En el grupo de Argentina, Austria será un examen físico durísimo. Tienen sistema, tienen hambre y tienen a David Alaba liderando desde el campo o el banquillo.
+      </div>`
+  },
+
+  "Australia 🇦🇺": {
+    content: `
+      <span class="article-flag">🇦🇺</span>
+      <h1>Australia: el espíritu "Socceroo"</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Fuerza, juego aéreo y un corazón que no entiende de jerarquías. Australia viene a pelear cada balón como si fuera el último.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#27</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Octavos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo D</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>No tienen las estrellas de antaño, pero son un bloque granítico. Su éxito depende de aprovechar al máximo el balón parado.</p>
+      </div>`
+  },
+
+  "Egipto 🇪🇬": {
+    content: `
+      <span class="article-flag">🇪🇬</span>
+      <h1>Egipto: la última faraónica de Salah</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Todo gira en torno a Mohamed Salah. Egipto llega con un sistema diseñado para que su estrella decida partidos en una baldosa.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#29</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong> 
+        <p>Dependen demasiado de un solo hombre. Si Salah está inspirado, pueden soñar con octavos; si no, sufrirán ante el físico de sus rivales de grupo.</p>
+      </div>`
+  },
+
+  "Suecia 🇸🇪": {
+    content: `
+      <span class="article-flag">🇸🇪</span>
+      <h1>Suecia: dinamita en el área con Gyökeres</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Tras un tiempo en la sombra, Suecia vuelve con una delantera que asusta a cualquier defensa europea.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#38</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Finalista (1958)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo F</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Con Gyökeres e Isak arriba, el gol está asegurado. Si la defensa acompaña, Suecia puede ser el matagigantes de esta edición.</p>
+      </div>`
+  },
+
+  "Ghana 🇬🇭": {
+    content: `
+      <span class="article-flag">🇬🇭</span>
+      <h1>Ghana: las Estrellas Negras buscan revancha</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Velocidad, desparpajo y un Mohammed Kudus que llega en el mejor momento de su carrera para liderar a África.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#74</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Cuartos (2010)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo L</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Son impredecibles. Pueden ganar a Inglaterra y perder con una selección menor. Si encuentran estabilidad, darán mucho de qué hablar.
+      </div>`
+  },
+
+  "Argelia 🇩🇿": {
+    content: `
+      <span class="article-flag">🇩🇿</span>
+      <h1>Argelia: talento y orgullo magrebí</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Bajo la sombra de Mahrez, una nueva camada de jugadores formados en Europa busca poner a Argelia en el mapa mundial.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#28</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Octavos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: En el grupo de Argentina y Austria, lo tienen difícil. Necesitarán que su calidad individual aparezca en los momentos clave.
+      </div>`
+  },
+
+  "Paraguay 🇵🇾": {
+    content: `
+      <span class="article-flag">🇵🇾</span>
+      <h1>Paraguay: el retorno de la muralla guaraní</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Garra, juego aéreo y una defensa que muerde. Paraguay vuelve a un Mundial para ser el equipo más difícil de batir de Sudamérica.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#40</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Cuartos (2010)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo D</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Su estilo no es estético, pero es efectivo. Si logran anotar primero, son casi imposibles de remontar.
+      </div>`
+  },
+
+  "Catar 🇶🇦": {
+    content: `
+      <span class="article-flag">🇶🇦</span>
+      <h1>Catar: la madurez del campeón de Asia</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Ya sin los nervios de ser anfitrión, Catar llega como un equipo rodado, campeón continental y con ganas de borrar la imagen de 2022.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#55</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Akram Afif es un jugador de clase mundial. Si él fluye, Catar puede dar la sorpresa en el grupo de Suiza y Canadá.
+      </div>`
+  },
+
+  "Panamá 🇵🇦": {
+    content: `
+      <span class="article-flag">🇵🇦</span>
+      <h1>Panamá: el canal hacia el éxito</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Físicos, disciplinados y con la lección aprendida. Panamá llega a 2026 para demostrar que CONCACAF tiene más que dos potencias.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#33</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo L</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Tienen un grupo durísimo con Inglaterra y Croacia. Su meta es puntuar y dejar una imagen de competitividad absoluta.
+      </div>`
+  },
+
+  "Nueva Zelanda 🇳🇿": {
+    content: `
+      <span class="article-flag">🇳🇿</span>
+      <h1>Nueva Zelanda: los All Whites al abordaje</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Dominadores absolutos de Oceanía, llegan a Norteamérica con Chris Wood como faro y un espíritu de lucha inquebrantable.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#85</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Son el equipo con ranking más bajo, pero en 2010 se fueron invictos. Cuidado con despreciar su juego directo y potencia física.
+      </div>`
+  },
+
+  "Irán 🇮🇷": {
+    content: `
+      <span class="article-flag">🇮🇷</span>
+      <h1>Irán: el bloque de acero asiático</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Siempre difíciles de batir, siempre organizados. Irán llega con una delantera de nivel europeo y un sistema defensivo hermético.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#21</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Taremi es su gran baza. Si logran mantener la portería a cero, tienen opciones reales de pasar por primera vez a octavos.
+      </div>`
+  },
+
+  "Escocia 🏴󠁧󠁢󠁳󠁣󠁴󠁿": {
+    content: `
+      <span class="article-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+      <h1>Escocia: más que corazón y coraje</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Con una base de jugadores de Premier League, Escocia busca demostrar que su fútbol ha evolucionado hacia la inteligencia táctica.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#43</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Comparten grupo con Brasil y Marruecos. Necesitarán su mejor versión defensiva y aprovechar cada córner como si fuera un penalti.
+      </div>`
+  },
+
+  "Costa de Marfil 🇨🇮": {
+    content: `
+      <span class="article-flag">🇨🇮</span>
+      <h1>Costa de Marfil: el poderío de los elefantes</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Campeones de África en 2024, llegan con una mezcla explosiva de físico y técnica individual.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#34</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Tienen talento para estar en el Top 15. Si logran ser constantes durante los 90 minutos, son candidatos a octavos por encima de Alemania o Ecuador.
+      </div>`
+  },
+
+  "República Checa 🇨🇿": {
+    content: `
+      <span class="article-flag">🇨🇿</span>
+      <h1>República Checa: orden centroeuropeo</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Un equipo que nunca se descompone. Los checos llegan con la solidez por bandera y un Patrik Schick que vive por y para el gol en grandes citas.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#41</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Subcampeón</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo A</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Patrik Schick</strong> · Delantero</span><span class="player-role">Especialista en imposibles</span></li>
+        <li><span><strong>Tomáš Souček</strong> · Centrocampista</span><span class="player-role">El pulmón del equipo</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>En el Grupo A junto a México y Corea del Sur, son el equipo que nadie quiere tener enfrente en un partido cerrado. Si Schick está fino, pueden romper el grupo.</p>
+      </div>`
+  },
+
+  "Túnez 🇹🇳": {
+    content: `
+      <span class="article-flag">🇹🇳</span>
+      <h1>Túnez: el muro del Magreb</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Difíciles de batir, organizados y con un orgullo competitivo envidiable. Túnez no viene a participar, viene a desesperar al rival.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#44</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo F</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Su fortaleza es el colectivo. En el grupo de Países Bajos y Japón, su capacidad para mantener la portería a cero será su única vía de escape.
+      </div>`
+  },
+
+  "República Democrática del Congo 🇨🇩": {
+    content: `
+      <span class="article-flag">🇨🇩</span>
+      <h1>RD Congo: el rugido de los Leopardos</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Regresan al gran escenario con un fútbol vertical y una potencia física que puede cortocircuitar a cualquier defensa europea.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#46</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo K</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Tienen en Théo Bongonda la chispa necesaria. Si logran controlar su anarquía táctica, pueden pelear la segunda plaza del grupo tras Portugal.</p>
+      </div>`
+  },
+
+  "Uzbekistán 🇺🇿": {
+    content: `
+      <span class="article-flag">🇺🇿</span>
+      <h1>Uzbekistán: el lobo estepario debuta</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">La gran cenicienta de Asia central. Un equipo compacto, trabajador y con una disciplina que recuerda a los bloques del este de antaño.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#50</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Debut</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo K</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Eldor Shomurodov es su única referencia de élite. Todo lo que sea puntuar en su primer Mundial será un éxito nacional absoluto.
+      </div>`
+  },
+
+  "Irak 🇮🇶": {
+    content: `
+      <span class="article-flag">🇮🇶</span>
+      <h1>Irak: pasión sobre el césped</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Un equipo que juega por algo más que fútbol. Los Leones de Mesopotamia llegan con una fe inquebrantable y un bloque defensivo muy comprometido.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#57</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Están en el grupo de Francia y Noruega. Su objetivo es evitar goleadas y pescar algo ante Senegal. Tarea titánica.
+      </div>`
+  },
+
+  "Sudáfrica 🇿🇦": {
+    content: `
+      <span class="article-flag">🇿🇦</span>
+      <h1>Sudáfrica: Bafana Bafana vuelve a bailar</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Tras años de travesía por el desierto, Sudáfrica recupera su esencia: juego dinámico, descaro individual y mucha alegría.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#60</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo A</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>No son favoritos, pero son divertidísimos. Percy Tau puede poner en aprietos a cualquiera, aunque la falta de físico les penalizará contra los europeos del grupo.</p>
+      </div>`
+  },
+
+  "Jordania 🇯🇴": {
+    content: `
+      <span class="article-flag">🇯🇴</span>
+      <h1>Jordania: la sorpresa del desierto</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Tras su histórica final en la Copa Asia, Jordania llega con la moral por las nubes y nada que perder ante los gigantes.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#63</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Debut</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Musa Al-Taamari es el "Messi jordano" y de él depende toda su ofensiva. Contra Argentina será un duelo David contra Goliat.
+      </div>`
+  },
+
+  "Bosnia y Herzegovina 🇧🇦": {
+    content: `
+      <span class="article-flag">🇧🇦</span>
+      <h1>Bosnia: el último baile de Džeko</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">Un equipo veterano que se aferra a su calidad técnica para compensar el paso de los años en sus figuras clave.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#65</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Edin Džeko sigue teniendo el gol en la sangre. Si Suiza o Canadá se confían, Bosnia les bajará de la nube con un cabezazo letal.
+      </div>`
+  },
+
+  "Cabo Verde 🇨🇻": {
+    content: `
+      <span class="article-flag">🇨🇻</span>
+      <h1>Cabo Verde: los Tiburones Azules</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">La prueba de que el tamaño no importa. Un equipo pequeñito en geografía pero inmenso en organización y rigor táctico.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#69</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Debut</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: En un grupo con España y Uruguay, su Mundial es la experiencia. No obstante, son expertos en secar a delanteros de renombre.
+      </div>`
+  },
+
+  "Curazao 🇨🇼": {
+    content: `
+      <span class="article-flag">🇨🇼</span>
+      <h1>Curazao: aroma caribeño con toque neerlandés</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Un proyecto ambicioso que ha sabido captar talento de la Eredivisie para montar un equipo competitivo y con buen trato de balón.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#82</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Debut</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: No se van a encerrar. Intentarán jugar de tú a tú, lo cual puede ser valiente o suicida en el grupo de Alemania y Ecuador.
+      </div>`
+  },
+
+  "Haití 🇭🇹": {
+    content: `
+      <span class="article-flag">🇭🇹</span>
+      <h1>Haití: la resiliencia convertida en fútbol</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Regresan al Mundial tras más de medio siglo. Son pura potencia física y orgullo nacional, un equipo que juega cada minuto con el alma.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#83</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Están en el grupo de Brasil, Marruecos y Escocia. Su gran final será el partido contra los escoceses. Si logran un punto, será una fiesta nacional.</p>
+      </div>`
+  }
 };
 
 // Datos de todas las selecciones (ranking + grupo)
