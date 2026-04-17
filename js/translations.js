@@ -14,6 +14,7 @@ const TRANSLATIONS = {
   "nav.analisis": { es: "Análisis", en: "Analysis" },
   "nav.worldcup": { es: "Mundial 2026", en: "World Cup 2026" },
   "nav.jerseys": { es: "Camisetas", en: "Jerseys" },
+  "nav.quiniela": { es: "Quiniela Mundialista", en: "World Cup Pool" },
 
   // ── HERO ───────────────────────────────────────────────
   "hero.title": { es: "El deporte más allá del resultado", en: "Sport beyond the final score" },
