@@ -1549,6 +1549,427 @@ const teamArticles = {
       </div>`
   },
 
+  "Portugal 🇵🇹": {
+    content: `
+      <span class="article-flag">🇵🇹</span>
+      <h1>Portugal: el talento infinito y el último baile de Cristiano</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Roberto Martínez dirige a una de las generaciones doradas más profundas de Europa, con el eterno debate sobre cómo encajar a un Cristiano Ronaldo de 41 años en el puzzle.
+      </p>
+      <h2>Una orquesta con demasiados directores</h2>
+      <p>Si miras línea por línea, Portugal intimida. Tienen a los mejores cerebros de la Premier League y una defensa rocosa. El reto táctico es lograr que tantas piezas de mentalidad ofensiva y posesión no se estorben entre sí, y sobre todo, gestionar la transición de un equipo que históricamente jugaba para su capitán, a uno que debe jugar como un colectivo fluido.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#5</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">3º</span><span class="stat-lbl">Mundial (1966)</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo K</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Estilo de juego: posesión ofensiva</h2>
+      <p>Portugal quiere el balón. A diferencia de la era de Fernando Santos, donde primaba el pragmatismo, este equipo busca ahogar al rival en su propia área mediante triangulaciones rápidas y la constante rotación de sus mediapuntas.</p>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Cristiano Ronaldo</strong> · Delantero</span><span class="player-role">La leyenda incombustible</span></li>
+        <li><span><strong>Bruno Fernandes</strong> · Mediapunta</span><span class="player-role">El creador principal</span></li>
+        <li><span><strong>Bernardo Silva</strong> · Centrocampista</span><span class="player-role">Inteligencia táctica</span></li>
+        <li><span><strong>Rúben Dias</strong> · Defensa central</span><span class="player-role">El muro luso</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Tienen plantilla para ser campeones del mundo. La gran duda es si la gestión de egos y minutos en los momentos de máxima tensión sumará o restará. Si logran ser un bloque, son imparables.</p>
+      </div>`
+  },
+
+  "Alemania 🇩🇪": {
+    content: `
+      <span class="article-flag">🇩🇪</span>
+      <h1>Alemania: el gigante ha despertado</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 5 min</span>
+      </div>
+      <p class="article-lead">
+        Tras un par de ciclos mundialistas oscuros, la "Mannschaft" llega a Norteamérica revitalizada bajo el mando de Nagelsmann y al ritmo de sus dos niños prodigio.
+      </p>
+      <h2>La era de "Wusiala"</h2>
+      <p>El fútbol alemán se ha reinventado. Atrás quedó la crisis de identidad; hoy Alemania presiona alto, muerde y transita a una velocidad vertiginosa. El equipo gira en torno a la sinergia mágica entre Florian Wirtz y Jamal Musiala, dos jugadores capaces de destrozar cualquier esquema defensivo en una baldosa.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#10</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">4</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Estilo de juego: presión alta y juego directo</h2>
+      <p>Es un equipo vertical y agresivo. Nagelsmann ha instaurado un sistema que busca robar el balón lo más cerca posible de la portería rival, utilizando laterales profundos y mediocentros de contención que permiten a los talentos ofensivos jugar con total libertad de movimientos.</p>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Florian Wirtz</strong> · Mediapunta</span><span class="player-role">Visión y precisión letal</span></li>
+        <li><span><strong>Jamal Musiala</strong> · Extremo / mediapunta</span><span class="player-role">Regate indescifrable</span></li>
+        <li><span><strong>Antonio Rüdiger</strong> · Defensa central</span><span class="player-role">Jerarquía y agresividad</span></li>
+        <li><span><strong>Joshua Kimmich</strong> · Lateral / Pivote</span><span class="player-role">El termómetro del equipo</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Nunca des por muerta a Alemania. Han recuperado el aura competitiva y tienen a los jóvenes más ilusionantes del torneo. Son candidatos reales a levantar su quinta Copa del Mundo.</p>
+      </div>`
+  },
+
+  "Uruguay 🇺🇾": {
+    content: `
+      <span class="article-flag">🇺🇾</span>
+      <h1>Uruguay: la garra se vuelve vértigo</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Marcelo Bielsa ha transformado a la histórica selección charrúa en una máquina de presión asfixiante que combina su tradicional dureza defensiva con un ritmo de juego infernal.
+      </p>
+      <h2>La revolución del "Loco"</h2>
+      <p>Uruguay siempre ha sido un equipo incómodo, pero ahora también es dominante. Han dejado de ser una selección que espera el fallo del rival para convertirse en un equipo que lo provoca. El mediocampo, liderado por Fede Valverde, es posiblemente el más físico e intenso de todo el panorama internacional.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#17</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">2</span><span class="stat-lbl">Mundiales ganados</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Estilo de juego: solidez y transiciones letales</h2>
+      <p>Ritmo altísimo, marcas al hombre en todo el campo y verticalidad absoluta en cuanto se recupera el balón. Exigen a los rivales un nivel de desgaste físico que pocos equipos pueden soportar durante 90 minutos completos.</p>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Federico Valverde</strong> · Centrocampista</span><span class="player-role">El motor incansable</span></li>
+        <li><span><strong>Darwin Núñez</strong> · Delantero centro</span><span class="player-role">Potencia y desmarque</span></li>
+        <li><span><strong>Ronald Araújo</strong> · Defensa central</span><span class="player-role">Impasable en el 1vs1</span></li>
+        <li><span><strong>Manuel Ugarte</strong> · Pivote defensivo</span><span class="player-role">El recuperador</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>En un torneo corto, cruzarse con esta Uruguay es una pesadilla. Si el físico les aguanta el nivel de exigencia de Bielsa, son el "caballo negro" que nadie quiere ver en su lado del cuadro de eliminatorias.</p>
+      </div>`
+  },
+
+  "Países Bajos 🇳🇱": {
+    content: `
+      <span class="article-flag">🇳🇱</span>
+      <h1>Países Bajos: en busca del paraíso perdido</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Los eternos subcampeones llegan con una de las defensas más sólidas del mundo y un ataque joven y dinámico, buscando finalmente desterrar la maldición de las finales.
+      </p>
+      <h2>El equilibrio del nuevo Fútbol Total</h2>
+      <p>Históricamente conocidos por su brillantez ofensiva y fragilidad atrás, la "Oranje" actual es una paradoja: construyen su equipo desde la que probablemente sea la mejor línea de centrales del campeonato. A partir de esa seguridad, confían en la magia de mediocampo hacia adelante.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#7</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Final (x3)</span><span class="stat-lbl">Mejor resultado</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo F</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Virgil van Dijk</strong> · Defensa central</span><span class="player-role">El capitán y líder absoluto</span></li>
+        <li><span><strong>Xavi Simons</strong> · Mediapunta</span><span class="player-role">El talento diferencial</span></li>
+        <li><span><strong>Frenkie de Jong</strong> · Centrocampista</span><span class="player-role">El director de orquesta</span></li>
+        <li><span><strong>Cody Gakpo</strong> · Delantero</span><span class="player-role">Peligro constante al espacio</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Tienen la madurez necesaria para competir contra cualquiera. Su éxito dependerá de si sus atacantes logran la eficacia necesaria en los partidos cerrados. No son los principales favoritos, pero siempre compiten hasta el final.</p>
+      </div>`
+  },
+
+  "Marruecos 🇲🇦": {
+    content: `
+      <span class="article-flag">🇲🇦</span>
+      <h1>Marruecos: la potencia africana llegó para quedarse</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Hicieron historia en Qatar 2022 alcanzando las semifinales. Ahora, ya no son la cenicienta del torneo, sino un rival temido por todos y respetado por la élite.
+      </p>
+      <h2>El arte de defender atacando</h2>
+      <p>Regragui construyó un bloque bajo inexpugnable hace cuatro años, pero el equipo ha evolucionado. Con la incorporación de perfiles más ofensivos, Marruecos ya no solo defiende de maravilla, sino que domina la posesión frente a rivales de su misma talla y penaliza al contraataque contra los gigantes.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#8</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">4º (2022)</span><span class="stat-lbl">Mejor resultado</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Achraf Hakimi</strong> · Lateral derecho</span><span class="player-role">Profundidad de élite mundial</span></li>
+        <li><span><strong>Brahim Díaz</strong> · Mediapunta</span><span class="player-role">Desborde y creatividad pura</span></li>
+        <li><span><strong>Sofyan Amrabat</strong> · Pivote</span><span class="player-role">El pulmón del equipo</span></li>
+        <li><span><strong>Yassine Bounou</strong> · Portero</span><span class="player-role">Un seguro de vida bajo palos</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>El factor sorpresa ya no existe, y esa será su mayor prueba de fuego. Sin embargo, su solidez táctica y el talento individual los colocan legítimamente en el top 10 mundial. Llegar a cuartos debería ser su objetivo mínimo.</p>
+      </div>`
+  },
+
+  "Estados Unidos 🇺🇸": {
+    content: `
+      <span class="article-flag">🇺🇸</span>
+      <h1>Estados Unidos: la presión de trascender en casa</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        El país anfitrión llega con la generación más talentosa de su historia y la obligación absoluta de firmar un papel digno frente a su público. Es ahora o nunca.
+      </p>
+      <h2>Atletismo y madurez</h2>
+      <p>La época en que el "Team USA" solo competía a base de esfuerzo físico quedó atrás. Hoy, la gran mayoría de su once titular juega en las ligas más competitivas de Europa. Sin embargo, su principal baza sigue siendo su envidiable condición física, capaz de ahogar a los rivales en partidos de ida y vuelta.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#16</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">3º (1930)</span><span class="stat-lbl">Mejor resultado</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo D</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Christian Pulisic</strong> · Extremo</span><span class="player-role">El Capitán América</span></li>
+        <li><span><strong>Weston McKennie</strong> · Centrocampista</span><span class="player-role">Fuerza y llegada al área</span></li>
+        <li><span><strong>Folarin Balogun</strong> · Delantero centro</span><span class="player-role">El finalizador</span></li>
+        <li><span><strong>Antonee Robinson</strong> · Lateral izquierdo</span><span class="player-role">Incombustible por la banda</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Jugar en casa puede darte alas o paralizarte. Tienen el nivel para meterse en octavos e incluso asustar en cuartos de final, pero su falta de consistencia táctica contra las potencias europeas y sudamericanas sigue siendo su gran cuenta pendiente.</p>
+      </div>`
+  },
+
+  "Bélgica 🇧🇪"“: {“
+    content: `
+      <span class="article-flag">🇧🇪</span>
+      <h1>Bélgica: el último servicio de los arquitectos</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Con Kevin De Bruyne como último gran exponente de la generación de oro, Bélgica llega a 2026 en plena transición, mezclando veteranía con jóvenes promesas de la Premier League.
+      </p>
+      <h2>Entre la nostalgia y el futuro</h2>
+      <p>Ya no son los favoritos indiscutibles de 2018, pero subestimar a los 'Diablos Rojos' es un error. Tedesco ha inyectado una dosis de pragmatismo y potencia física que el equipo necesitaba tras el fin de la era Martínez.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#9</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">3º (2018)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Kevin De Bruyne</strong> · Centrocampista</span><span class="player-role">El último arquitecto</span></li>
+        <li><span><strong>Jérémy Doku</strong> · Extremo</span><span class="player-role">Electricidad pura</span></li>
+        <li><span><strong>Loïs Openda</strong> · Delantero</span><span class="player-role">Velocidad de ruptura</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Bélgica será el juez de este Mundial. Quizás no tengan profundidad para ganar siete partidos, pero pueden eliminar a cualquier gigante en una tarde inspirada de KDB.</p>
+      </div>`
+  },
+
+"Colombia 🇨🇴": {
+  content: `
+      <span class="article-flag">🇨🇴</span>
+      <h1>Colombia: la fiebre amarilla recupera su brillo</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Tras la ausencia en 2022, Colombia regresa al escenario mundial con Luis Díaz como estrella global y un bloque que ha vuelto a enamorar a Sudamérica.
+      </p>
+      <h2>El orden dentro del talento</h2>
+      <p>Néstor Lorenzo ha logrado lo que parecía imposible: que Colombia sea un equipo sólido sin perder la alegría en el juego. Su presión tras pérdida y su velocidad en las bandas los convierten en un equipo extremadamente incómodo para las potencias europeas.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#13</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Cuartos (2014)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo K</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Luis Díaz</strong> · Extremo izquierdo</span><span class="player-role">El desequilibrio total</span></li>
+        <li><span><strong>James Rodríguez</strong> · Mediapunta</span><span class="player-role">El último 10 clásico</span></li>
+        <li><span><strong>Richard Ríos</strong> · Centrocampista</span><span class="player-role">Despliegue y elegancia</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Colombia tiene aroma a semifinalista. Si James mantiene su nivel de Copa América y Lucho Díaz es decisivo, nadie querrá cruzarse con ellos en eliminatorias.</p>
+      </div>`
+},
+
+"México 🇲🇽": {
+  content: `
+      <span class="article-flag">🇲🇽</span>
+      <h1>México: la obligación de hacer historia en casa</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 5 min</span>
+      </div>
+      <p class="article-lead">
+        México afronta su tercer mundial como anfitrión con la presión de superar finalmente la barrera de los cuartos de final y una afición que exige resultados inmediatos.
+      </p>
+      <h2>Un proyecto bajo la lupa</h2>
+      <p>El "Tri" llega en un proceso de renovación generacional. Con Santiago Giménez como punta de lanza, México busca un estilo más directo y físico que le permita competir de tú a tú con la élite mundial bajo el calor de su gente.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#15</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Cuartos (1986)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo A</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Santiago Giménez</strong> · Delantero centro</span><span class="player-role">El goleador de la esperanza</span></li>
+        <li><span><strong>Edson Álvarez</strong> · Centrocampista</span><span class="player-role">El mariscal del centro</span></li>
+        <li><span><strong>César Montes</strong> · Defensa</span><span class="player-role">Liderazgo aéreo</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>México jugará con doce. El Estadio Azteca será su mayor aliado, pero el equipo debe demostrar madurez mental cuando el marcador se ponga en contra.</p>
+      </div>`
+},
+
+"Japón 🇯🇵": {
+  content: `
+      <span class="article-flag">🇯🇵</span>
+      <h1>Japón: la revolución de los samuráis azules</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Japón ya no es solo disciplina y orden; ahora es también talento puro en las mejores ligas de Europa. Cuidado con el gigante asiático.
+      </p>
+      <h2>Disciplina táctica y velocidad</h2>
+      <p>Su capacidad para mutar sistemas durante el partido es asombrosa. Pueden defender en bloque bajo y, en tres toques, plantarse en el área rival con una precisión quirúrgica.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#18</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Octavos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo F</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Takefusa Kubo</strong> · Mediapunta</span><span class="player-role">Magia y visión</span></li>
+        <li><span><strong>Kaoru Mitoma</strong> · Extremo</span><span class="player-role">El maestro del regate</span></li>
+        <li><span><strong>Wataru Endo</strong> · Pivote</span><span class="player-role">El corazón del equipo</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Están listos para dar el salto. Si logran superar la barrera psicológica de los octavos de final, pueden ser la gran sorpresa del Mundial.</p>
+      </div>`
+},
+
+"Noruega 🇳🇴": {
+  content: `
+      <span class="article-flag">🇳🇴</span>
+      <h1>Noruega: Haaland llega al gran escenario</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">
+        Finalmente, el mundo podrá ver a Erling Haaland en una Copa del Mundo. Noruega llega con el mejor delantero del planeta y ganas de sacudir el orden establecido.
+      </p>
+      <h2>Dependencia de las estrellas</h2>
+      <p>Noruega es un equipo de dos velocidades: la genialidad de Ødegaard y Haaland, y un bloque trabajador pero limitado en defensa. Su éxito dependerá de cuánto puedan proteger su propia área.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#31</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Octavos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Erling Haaland</strong> · Delantero</span><span class="player-role">El cyborg del gol</span></li>
+        <li><span><strong>Martin Ødegaard</strong> · Mediapunta</span><span class="player-role">El cerebro</span></li>
+        <li><span><strong>Antonio Nusa</strong> · Extremo</span><span class="player-role">La joven perla</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Si Haaland tiene el día, Noruega puede ganar a cualquiera. El problema es qué pasa si lo anulan. Su camino termina donde termine la puntería de su 9.</p>
+      </div>`
+},
+
+"Senegal 🇸🇳": {
+  content: `
+      <span class="article-flag">🇸🇳</span>
+      <h1>Senegal: los leones de la Teranga</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">El estandarte de África. Un equipo físico, experimentado y con jugadores que son pilares en las grandes ligas europeas.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#14</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Cuartos (2002)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Físicamente son un muro. Si Sadio Mané llega con un último aliento de magia, son candidatos a repetir los cuartos de final de 2002.
+      </div>`
+},
+
+"Ecuador 🇪🇨": {
+  content: `
+      <span class="article-flag">🇪🇨</span>
+      <h1>Ecuador: juventud y vigor en la mitad del mundo</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">La selección con mayor crecimiento físico de CONMEBOL. Un bloque joven que ya no le teme a nadie.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#23</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Octavos (2006)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Con Moisés Caicedo al mando, Ecuador es un equipo modernísimo. No tienen techo, pero les falta experiencia en las rondas de eliminación.
+      </div>`
+},
+
+"Canadá 🇨🇦": {
+  content: `
+      <span class="article-flag">🇨🇦</span>
+      <h1>Canadá: el rayo del norte</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Velocidad pura. Canadá ya no es una sorpresa, es una realidad basada en transiciones que parecen de atletismo.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#30</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Alphonso Davies es el motor. Si logran controlar el caos defensivo, serán un equipo divertidísimo de ver y muy peligroso.
+      </div>`
+},
+
+"Croacia 🇭🇷": {
+  content: `
+      <span class="article-flag">🇭🇷</span>
+      <h1>Croacia: la resistencia eterna</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead">¿Cómo lo hacen? Un país pequeño que siempre se cuela en la mesa de los grandes. Modrić busca el último milagro.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#11</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Finalista (2018)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo L</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Nunca los descartes. Si llegan a la prórroga, ya han ganado. Su gestión emocional del partido es única en el mundo.
+      </div>`
+},
+
+"Arabia Saudita 🇸🇦": {
+  content: `
+      <span class="article-flag">🇸🇦</span>
+      <h1>Arabia Saudita: el orgullo del desierto</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
+      </div>
+      <p class="article-lead">Tras vencer a Argentina en 2022, los halcones verdes quieren demostrar que aquello no fue una casualidad.</p>
+      <div class="article-stat-grid">
+        <div class="stat-box"><span class="stat-val">#61</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Octavos (1994)</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <div class="article-verdict">
+        <strong>Veredicto</strong>: Tienen la liga más potente de Asia, lo que ha subido el nivel de sus locales. Serán un bloque muy difícil de romper.
+      </div>`
+}
+
   // ─────────────────────────────────────────────────────────────────────
   // PLANTILLA para nuevos artículos — descomenta y rellena:
   // ─────────────────────────────────────────────────────────────────────
@@ -1897,7 +2318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========
 
 // Configuración de conexión
-const url_base = 'NEXT_PUBLIC_SB_URL'; 
+const url_base = 'NEXT_PUBLIC_SB_URL';
 const key_base = 'NEXT_PUBLIC_SB_KEY';
 
 const supabaseClient = supabase.createClient(url_base, key_base);
@@ -1907,93 +2328,93 @@ let isAdmin = false;
 
 // Manejo de autenticación
 document.getElementById('btn-auth').onclick = async (e) => {
-    const email = document.getElementById('auth-email').value;
-    const pass = document.getElementById('auth-pass').value;
-    const username = document.getElementById('auth-user').value;
+  const email = document.getElementById('auth-email').value;
+  const pass = document.getElementById('auth-pass').value;
+  const username = document.getElementById('auth-user').value;
 
-    if(!email || !pass) return alert("Llena los datos");
+  if (!email || !pass) return alert("Llena los datos");
 
-    const { data, error } = await supabaseClient.auth.signUp({
-        email, password: pass, options: { data: { username } }
-    });
+  const { data, error } = await supabaseClient.auth.signUp({
+    email, password: pass, options: { data: { username } }
+  });
 
-    if (error) {
-        const { data: logData, error: logErr } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
-        if (logErr) return alert("Error: " + logErr.message);
-        initSession(logData.user);
-    } else {
-        alert("¡Cuenta creada!");
-        initSession(data.user);
-    }
+  if (error) {
+    const { data: logData, error: logErr } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
+    if (logErr) return alert("Error: " + logErr.message);
+    initSession(logData.user);
+  } else {
+    alert("¡Cuenta creada!");
+    initSession(data.user);
+  }
 };
 
 async function initSession(sessionData) {
-    user = sessionData;
-    const { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
-    if (profile && profile.is_admin) {
-        isAdmin = true;
-        document.getElementById('admin-nav').style.display = 'block';
-    }
-    document.getElementById('auth-view').style.display = 'none';
-    document.getElementById('sidebar').style.display = 'block';
-    showView('quiniela');
+  user = sessionData;
+  const { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
+  if (profile && profile.is_admin) {
+    isAdmin = true;
+    document.getElementById('admin-nav').style.display = 'block';
+  }
+  document.getElementById('auth-view').style.display = 'none';
+  document.getElementById('sidebar').style.display = 'block';
+  showView('quiniela');
 }
 
 async function loadMatches(isAdminView = false) {
-    const { data: matches } = await supabaseClient.from('matches').select('*').order('id');
-    const { data: preds } = await supabaseClient.from('predictions').select('*').eq('user_id', user.id);
-    const container = document.getElementById(isAdminView ? 'admin-matches-container' : 'matches-container');
-    
-    container.innerHTML = matches.map(m => {
-        const p = preds.find(pr => pr.match_id === m.id) || { pred_s1: '', pred_s2: '' };
-        return `
+  const { data: matches } = await supabaseClient.from('matches').select('*').order('id');
+  const { data: preds } = await supabaseClient.from('predictions').select('*').eq('user_id', user.id);
+  const container = document.getElementById(isAdminView ? 'admin-matches-container' : 'matches-container');
+
+  container.innerHTML = matches.map(m => {
+    const p = preds.find(pr => pr.match_id === m.id) || { pred_s1: '', pred_s2: '' };
+    return `
         <div class="match-card">
             <span class="group-label">${m.group_name}</span>
             <div class="teams-row">
                 <div class="team-name" style="text-align:right">${m.team1}</div>
                 <div style="display:flex; gap:8px;">
-                    <input type="number" value="${isAdminView ? (m.real_score1||0) : p.pred_s1}" 
+                    <input type="number" value="${isAdminView ? (m.real_score1 || 0) : p.pred_s1}" 
                            onchange="${isAdminView ? `updateReal('${m.id}', this.value, 1)` : `savePred('${m.id}', this.value, 1)`}" 
                            ${!isAdminView && m.is_finished ? 'disabled' : ''}>
-                    <input type="number" value="${isAdminView ? (m.real_score2||0) : p.pred_s2}" 
+                    <input type="number" value="${isAdminView ? (m.real_score2 || 0) : p.pred_s2}" 
                            onchange="${isAdminView ? `updateReal('${m.id}', this.value, 2)` : `savePred('${m.id}', this.value, 2)`}"
                            ${!isAdminView && m.is_finished ? 'disabled' : ''}>
                 </div>
                 <div class="team-name">${m.team2}</div>
             </div>
-            ${isAdminView ? `<button class="btn-primary admin-btn" onclick="finalizeMatch('${m.id}')">FINALIZAR PARTIDO</button>` : 
-            (m.is_finished ? `<p style="color:var(--gold); margin-top:10px;">Final: ${m.real_score1}-${m.real_score2}</p>` : '')}
+            ${isAdminView ? `<button class="btn-primary admin-btn" onclick="finalizeMatch('${m.id}')">FINALIZAR PARTIDO</button>` :
+        (m.is_finished ? `<p style="color:var(--gold); margin-top:10px;">Final: ${m.real_score1}-${m.real_score2}</p>` : '')}
         </div>`;
-    }).join('');
+  }).join('');
 }
 
 async function savePred(mid, val, slot) {
-    const field = slot === 1 ? 'pred_s1' : 'pred_s2';
-    await supabaseClient.from('predictions').upsert({ user_id: user.id, match_id: mid, [field]: parseInt(val) }, { onConflict: 'user_id, match_id' });
+  const field = slot === 1 ? 'pred_s1' : 'pred_s2';
+  await supabaseClient.from('predictions').upsert({ user_id: user.id, match_id: mid, [field]: parseInt(val) }, { onConflict: 'user_id, match_id' });
 }
 
 async function updateReal(mid, val, slot) {
-    const field = slot === 1 ? 'real_score1' : 'real_score2';
-    await supabaseClient.from('matches').update({ [field]: parseInt(val) }).eq('id', mid);
+  const field = slot === 1 ? 'real_score1' : 'real_score2';
+  await supabaseClient.from('matches').update({ [field]: parseInt(val) }).eq('id', mid);
 }
 
 async function finalizeMatch(mid) {
-    await supabaseClient.from('matches').update({ is_finished: true }).eq('id', mid);
-    alert("Partido finalizado. Los puntos se actualizan en el ranking.");
-    loadMatches(true);
+  await supabaseClient.from('matches').update({ is_finished: true }).eq('id', mid);
+  alert("Partido finalizado. Los puntos se actualizan en el ranking.");
+  loadMatches(true);
 }
 
 function showView(v) {
-    document.querySelectorAll('.view').forEach(el => el.style.display = 'none');
-    const target = document.getElementById(v + '-view');
-    if(target) target.style.display = 'block';
-    if (v === 'ranking') loadRanking();
-    else loadMatches(v === 'admin');
+  document.querySelectorAll('.view').forEach(el => el.style.display = 'none');
+  const target = document.getElementById(v + '-view');
+  if (target) target.style.display = 'block';
+  if (v === 'ranking') loadRanking();
+  else loadMatches(v === 'admin');
 }
 
 async function loadRanking() {
-    const { data } = await supabaseClient.from('profiles').select('username, points').order('points', { ascending: false });
-    document.getElementById('ranking-body').innerHTML = data.map(r => `
+  const { data } = await supabaseClient.from('profiles').select('username, points').order('points', { ascending: false });
+  document.getElementById('ranking-body').innerHTML = data.map(r => `
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
             <td style="padding: 15px;">${r.username}</td>
             <td style="padding: 15px; text-align: right; font-weight: 800;">${r.points} PTS</td>
@@ -2001,9 +2422,9 @@ async function loadRanking() {
 }
 
 function takeScreenshot() {
-    html2canvas(document.querySelector("#quiniela-view"), { backgroundColor: '#080c18', scale: 2 }).then(canvas => {
-        const link = document.createElement('a'); link.download = 'mi-quiniela.png'; link.href = canvas.toDataURL(); link.click();
-    });
+  html2canvas(document.querySelector("#quiniela-view"), { backgroundColor: '#080c18', scale: 2 }).then(canvas => {
+    const link = document.createElement('a'); link.download = 'mi-quiniela.png'; link.href = canvas.toDataURL(); link.click();
+  });
 }
 
 function logout() { supabaseClient.auth.signOut(); location.reload(); }
