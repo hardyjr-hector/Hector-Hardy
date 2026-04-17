@@ -560,6 +560,154 @@
       font-size: 1rem
     }
 
+    .bni-admin {
+      display: none
+    }
+
+    .bni-admin.show {
+      display: flex;
+      color: var(--acc)
+    }
+
+    /* Phase divider in matches */
+    .phase-divider {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      margin: 1.5rem 0 1rem;
+      font-size: .68rem;
+      font-weight: 700;
+      color: var(--m2);
+      letter-spacing: .09em;
+      text-transform: uppercase
+    }
+
+    .phase-divider::before,
+    .phase-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--bdr2)
+    }
+
+    /* KO match card */
+    .ko-mc {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: .45rem;
+      max-width: 480px;
+      transition: border-color .2s
+    }
+
+    .ko-mc.filled {
+      border-color: rgba(232, 184, 75, .2)
+    }
+
+    .ko-mc-lbl {
+      font-size: .6rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .07em;
+      padding: .32rem .75rem;
+      border-bottom: 1px solid var(--bdr);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .ko-team {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .6rem .75rem;
+      cursor: pointer;
+      transition: all .12s;
+      border-bottom: 1px solid var(--bdr);
+      font-size: .82rem
+    }
+
+    .ko-team:last-child {
+      border-bottom: none
+    }
+
+    .ko-team:not(.tbd):hover {
+      background: var(--surf2)
+    }
+
+    .ko-team.winner {
+      background: rgba(232, 184, 75, .07);
+      font-weight: 600
+    }
+
+    .ko-team.winner .ko-ck {
+      color: var(--acc)
+    }
+
+    .ko-team.tbd {
+      color: var(--muted);
+      cursor: default;
+      font-style: italic
+    }
+
+    .ko-fl {
+      font-size: 1rem;
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center
+    }
+
+    .ko-nm {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .ko-ck {
+      margin-left: auto;
+      font-size: .7rem;
+      color: transparent;
+      flex-shrink: 0
+    }
+
+    .ko-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: .55rem
+    }
+
+    .champ-banner {
+      text-align: center;
+      padding: 1.25rem 1rem;
+      margin-top: 1rem;
+      background: rgba(232, 184, 75, .05);
+      border: 1px solid rgba(232, 184, 75, .15);
+      border-radius: 12px
+    }
+
+    .champ-banner .ct {
+      font-size: 2rem;
+      margin-bottom: .25rem;
+      animation: pulse 1.6s infinite alternate
+    }
+
+    .champ-banner .cl {
+      font-size: .68rem;
+      font-weight: 700;
+      color: var(--m2);
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    .champ-banner .cn {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--acc)
+    }
+
     .gtabs {
       display: flex;
       gap: .3rem;
@@ -1435,7 +1583,7 @@
       .main {
         height: calc(100vh - 53px);
         overflow-y: auto;
-        padding-bottom: 65px
+        padding-bottom: 70px
       }
 
       .bnav {
@@ -1448,6 +1596,10 @@
 
       .sg {
         grid-template-columns: repeat(2, 1fr)
+      }
+
+      .ko-grid {
+        grid-template-columns: 1fr
       }
 
       .bkt-matches-grid {
@@ -1496,7 +1648,7 @@
         <button class="btn-p" id="btn-reg" onclick="doRegister()" data-es="Crear cuenta →"
           data-en="Create account →">Crear cuenta →</button>
         <div class="asw" id="sw-to-login"
-          data-es="¿Ya tienes cuenta? <span onclick=&quot;switchTab('login')&quot;> Entra aquí </span>"
+          data-es="¿Ya tienes cuenta? <span onclick=&quot;switchTab('login')&quot;>Entra aquí</span>"
           data-en="Have an account? <span onclick=&quot;switchTab('login')&quot;>Sign in</span>">¿Ya tienes cuenta?
           <span onclick="switchTab('login')">Entra aquí</span>
         </div>
@@ -1578,10 +1730,8 @@
                 data-en="Full fixture, team analysis and live data">Fixture completo, análisis de selecciones y datos en
                 tiempo real</p>
             </div>
-            <div class="mbn-l">
-              <a class="mbl" href="index.html#worldcup" id="mbl-an" data-es="Sección Mundialista"
-                data-en="World Cup Section">Sección Mundialista</a>
-            </div>
+            <div class="mbn-l"><a class="mbl" href="index.html#worldcup" id="mbl-fix" data-es="📅 Fixture"
+                data-en="📅 Fixture">📅 Fixture</a></div>
           </div>
           <div class="sg" id="dash-stats"></div>
           <div
@@ -1625,15 +1775,20 @@
           </div>
         </div>
 
-        <!-- MATCHES -->
+        <!-- MATCHES + KNOCKOUT -->
         <div class="sc" id="sc-matches">
-          <div class="sc-title" id="mt-title" data-es="Predicción de Partidos" data-en="Match Predictions">Predicción de
-            Partidos</div>
-          <div class="sc-sub" id="mt-sub" data-es="Introduce el marcador que predices para cada partido"
-            data-en="Enter the score you predict for each match">Introduce el marcador que predices para cada partido
-          </div>
+          <div class="sc-title" id="mt-title" data-es="Partidos" data-en="Matches">Partidos</div>
+          <div class="sc-sub" id="mt-sub" data-es="Fase de grupos y llave eliminatoria"
+            data-en="Group stage and knockout bracket">Fase de grupos y llave eliminatoria</div>
+          <!-- Group stage -->
+          <div class="phase-divider" id="ph-div-grp" data-es="FASE DE GRUPOS" data-en="GROUP STAGE">FASE DE GRUPOS</div>
           <div class="gtabs" id="tabs-m"></div>
           <div id="matches-c"></div>
+          <!-- Knockout -->
+          <div class="phase-divider" id="ph-div-ko" data-es="FASE ELIMINATORIA" data-en="KNOCKOUT STAGE">FASE
+            ELIMINATORIA</div>
+          <div class="gtabs" id="tabs-ko"></div>
+          <div id="knockout-c"></div>
         </div>
 
         <!-- GROUPS -->
@@ -1800,10 +1955,12 @@
           data-en="Matches">Partidos</span></div>
       <div class="bni" id="bni-groups" onclick="goTo('groups')"><span class="ico">📋</span><span data-es="Grupos"
           data-en="Groups">Grupos</span></div>
-      <div class="bni" id="bni-bracket" onclick="goTo('bracket')"><span class="ico">🏆</span><span data-es="Llave"
-          data-en="Bracket">Llave</span></div>
       <div class="bni" id="bni-rank" onclick="goTo('rank')"><span class="ico">🏅</span><span data-es="Ranking"
           data-en="Ranking">Ranking</span></div>
+      <div class="bni" id="bni-downloads" onclick="goTo('downloads')"><span class="ico">📥</span><span
+          data-es="Compartir" data-en="Share">Compartir</span></div>
+      <div class="bni bni-admin" id="bni-admin-mob" onclick="window.location.href='admin.html'"><span
+          class="ico">⚙️</span><span>Admin</span></div>
       <div class="bni-out" onclick="doLogout()" id="mob-logout" title="Cerrar sesión"><span class="ico">↩</span><span
           data-es="Salir" data-en="Out">Salir</span></div>
     </div>
@@ -2038,13 +2195,16 @@
       document.getElementById('sb-un').textContent = un;
       document.getElementById('d-un').textContent = un;
       document.getElementById('nav-u').innerHTML = `<div class="nav-av">${ini}</div><span style="font-size:.8rem">${un}</span>`;
-      // Show admin link only for admins
       if (profile?.is_admin) {
         document.getElementById('sni-admin').style.display = 'flex';
+        // Show admin button in mobile nav too
+        const mob = document.getElementById('bni-admin-mob');
+        if (mob) mob.classList.add('show');
       }
     }
 
     // ══════════ NAVIGATION ══════════
+    let koRound = 'r32'; // current knockout round tab
     function goTo(s, langChange = false) {
       currentScreen = s;
       document.querySelectorAll('.sc').forEach(e => e.classList.remove('on'));
@@ -2052,18 +2212,30 @@
       document.getElementById('sc-' + s).classList.add('on');
       ['sni-' + s, 'bni-' + s].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('on') });
       document.getElementById('main-area').scrollTop = 0;
-      if (s === 'matches') renderMatches(ag);
+      if (s === 'matches') { renderMatches(ag); buildKoTabs(); renderKnockout(); }
       if (s === 'groups') renderGroups(ag);
       if (s === 'home') updateDash();
       if (s === 'rank') loadLB();
       if (s === 'specials') renderSpecials();
       if (s === 'bracket') renderBracket();
+      if (s === 'downloads') renderDownloads();
     }
     function buildTabs(cid, fn) {
       document.getElementById(cid).innerHTML = GD.map(g => `<div class="gtab${g.id === ag ? ' on' : ''}" onclick="${fn}('${g.id}')">Grp ${g.id}</div>`).join('');
     }
+    const KO_ROUNDS = [
+      { key: 'r32', es: '16avos', en: 'Rd of 32' },
+      { key: 'r16', es: 'Octavos', en: 'Rd of 16' },
+      { key: 'qf', es: 'Cuartos', en: 'Quarters' },
+      { key: 'sf', es: 'Semis', en: 'Semis' },
+      { key: 'final', es: 'Final', en: 'Final' },
+    ];
+    function buildKoTabs() {
+      document.getElementById('tabs-ko').innerHTML = KO_ROUNDS.map(r => `<div class="gtab${koRound === r.key ? ' on' : ''}" onclick="swKo('${r.key}')">${lang === 'es' ? r.es : r.en}</div>`).join('');
+    }
     function swM(g) { ag = g; buildTabs('tabs-m', 'swM'); renderMatches(g) }
     function swG(g) { ag = g; buildTabs('tabs-g', 'swG'); renderGroups(g) }
+    function swKo(r) { koRound = r; buildKoTabs(); renderKnockout(); }
 
     // ══════════ MATCHES ══════════
     function renderMatches(gid) {
@@ -2107,7 +2279,104 @@
         await sb.from('predictions').upsert({ user_id: CU.id, match_id: mid, score_home: p.s1, score_away: p.s2, updated_at: new Date().toISOString() }, { onConflict: 'user_id,match_id' });
     }
 
-    // ══════════ LIVE GROUP TABLE ══════════
+    // ══════════ KNOCKOUT INLINE ══════════
+    function renderKnockout() {
+      const el = document.getElementById('knockout-c');
+      if (!el) return;
+      // thirds picker only needed for r32
+      let thirdsHtml = '';
+      if (koRound === 'r32') {
+        const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
+        const thirdsCount = bkt.thirds.filter(Boolean).length;
+        if (allThirds.length > 0) {
+          const items = allThirds.map(({ gid, tm }) => {
+            const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n);
+            const dis = thirdsCount >= 8 && !sel;
+            return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
+          <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px;flex-shrink:0">${gid}</span>
+          <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}
+        </div>`;
+          }).join('');
+          thirdsHtml = `<div style="margin-bottom:1.1rem">
+        <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lang === 'es' ? 'Mejores terceros (elige 8)' : 'Best 3rd-place teams (pick 8)'}</div>
+        <div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${bkt.thirds.filter(Boolean).length}/8 ${lang === 'es' ? 'elegidos' : 'selected'}</div>
+        <div class="thirds-pick">${items}</div>
+      </div>`;
+        } else {
+          thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros disponibles.' : 'Complete group standings to see available best third-place teams.'}</div>`;
+        }
+      }
+      let matchesHtml = '';
+      if (koRound === 'r32') {
+        matchesHtml = `<div class="ko-grid">${R32_DEF.map((def, i) => mkKoMatch(i, bktTeam(def[0]), bktTeam(def[1]), bkt.r32[i], 'r32')).join('')}</div>`;
+      } else if (koRound === 'r16') {
+        matchesHtml = `<div class="ko-grid">${R16_P.map((pair, i) => mkKoMatch(i, bkt.r32[pair[0]], bkt.r32[pair[1]], bkt.r16[i], 'r16')).join('')}</div>`;
+      } else if (koRound === 'qf') {
+        matchesHtml = `<div class="ko-grid">${QF_P.map((pair, i) => mkKoMatch(i, bkt.r16[pair[0]], bkt.r16[pair[1]], bkt.qf[i], 'qf')).join('')}</div>`;
+      } else if (koRound === 'sf') {
+        matchesHtml = `<div class="ko-grid">${SF_P.map((pair, i) => mkKoMatch(i, bkt.qf[pair[0]], bkt.qf[pair[1]], bkt.sf[i], 'sf')).join('')}</div>`;
+      } else if (koRound === 'final') {
+        // SF losers for 3rd place
+        const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(tx => tx && bkt.sf[0] && tx.n !== bkt.sf[0].n) : null;
+        const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(tx => tx && bkt.sf[1] && tx.n !== bkt.sf[1].n) : null;
+        const champBanner = bkt.final ? `<div class="champ-banner"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
+        matchesHtml = `<div class="ko-grid">
+      <div>
+        <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? 'FINAL' : 'FINAL'}</div>
+        ${mkKoMatch(0, bkt.sf[0], bkt.sf[1], bkt.final, 'final')}
+      </div>
+      <div>
+        <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? '3° Y 4° LUGAR' : '3RD PLACE'}</div>
+        ${mkKoMatch(0, lo0, lo1, bkt.third, 'third')}
+      </div>
+    </div>${champBanner}`;
+      }
+      el.innerHTML = thirdsHtml + matchesHtml;
+    }
+
+    function mkKoMatch(idx, t1, t2, winner, roundKey) {
+      const lbl = roundKey === 'r32' ? `M${idx + 1}` : roundKey === 'r16' ? `${lang === 'es' ? 'Octavos' : 'R16'} ${idx + 1}` : roundKey === 'qf' ? `${lang === 'es' ? 'Cuartos' : 'QF'} ${idx + 1}` : roundKey === 'sf' ? `${lang === 'es' ? 'Semifinal' : 'SF'} ${idx + 1}` : roundKey === 'third' ? `${lang === 'es' ? '3° Lugar' : '3rd Place'}` : `${lang === 'es' ? 'Final' : 'Final'}`;
+      const mkT = (tm) => {
+        if (!tm) return `<div class="ko-team tbd"><span class="ko-nm">${t('tbd')}</span></div>`;
+        const isW = winner && winner.n === tm.n;
+        return `<div class="ko-team${isW ? ' winner' : ''}" onclick="advBkt('${roundKey}',${idx},'${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
+      <span class="ko-fl">${tm.f}</span><span class="ko-nm">${tm.n}</span><span class="ko-ck">✓</span>
+    </div>`;
+      };
+      return `<div class="ko-mc${winner ? ' filled' : ''}"><div class="ko-mc-lbl"><span>${lbl}</span>${winner ? `<span style="font-size:.58rem;color:var(--grn)">${winner.f} ${winner.n}</span>` : ''}</div>${mkT(t1)}${mkT(t2)}</div>`;
+    }
+
+    // Override advBkt to also refresh inline knockout
+    const _origAdvBkt = window.advBkt;
+    function advBkt(roundKey, idx, name, flag) {
+      const tm = { n: name, f: flag };
+      if (roundKey === 'r32') { bkt.r32[idx] = bkt.r32[idx]?.n === name ? null : tm; bkt.r16 = Array(8).fill(null); bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null; }
+      else if (roundKey === 'r16') { bkt.r16[idx] = bkt.r16[idx]?.n === name ? null : tm; bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null; }
+      else if (roundKey === 'qf') { bkt.qf[idx] = bkt.qf[idx]?.n === name ? null : tm; bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null; }
+      else if (roundKey === 'sf') { bkt.sf[idx] = bkt.sf[idx]?.n === name ? null : tm; bkt.final = null; bkt.third = null; }
+      else if (roundKey === 'final') { bkt.final = bkt.final?.n === name ? null : tm; }
+      else if (roundKey === 'third') { bkt.third = bkt.third?.n === name ? null : tm; }
+      saveBkt();
+      // Refresh whichever view is active
+      if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
+      else { renderBracket(); }
+    }
+    function clickThird(gid, name, flag) {
+      const tm = { n: name, f: flag, gid };
+      const idx = bkt.thirds.findIndex(t3 => t3 && t3.n === name);
+      if (idx !== -1) bkt.thirds[idx] = null;
+      else { const empty = bkt.thirds.findIndex(t3 => !t3); if (empty !== -1) bkt.thirds[empty] = tm; }
+      bkt.r32 = Array(16).fill(null); bkt.r16 = Array(8).fill(null); bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null;
+      saveBkt();
+      if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
+      else renderBracket();
+    }
+
+    // ══════════ DOWNLOADS SCREEN ══════════
+    function renderDownloads() {
+      // already rendered statically, nothing dynamic needed
+    }
+
     function calcGs(gid) {
       const g = GD.find(x => x.id === gid), st = {};
       g.t.forEach(t => { st[t.n] = { t, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0 } });
@@ -2188,141 +2457,31 @@
       spT[key] = setTimeout(async () => await sb.from('special_predictions').upsert({ user_id: CU.id, champion: specials.champion || null, champion_flag: specials.champion_flag || null, top_scorer: specials.top_scorer || null, golden_ball: specials.golden_ball || null, updated_at: new Date().toISOString() }, { onConflict: 'user_id' }), 700);
     }
 
-    // ══════════ BRACKET ══════════
+    // ══════════ BRACKET (standalone screen - reuses same data) ══════════
     function bktTeam(src) {
-      if (src.g !== undefined) {
-        const grp = GD.find(g => g.id === src.g), ranks = gRanks[src.g] || [];
-        const idx = ranks[src.p]; return idx !== undefined ? grp.t[idx] : null;
-      }
+      if (src.g !== undefined) { const grp = GD.find(g => g.id === src.g), ranks = gRanks[src.g] || []; const idx = ranks[src.p]; return idx !== undefined ? grp.t[idx] : null }
       if (src.x !== undefined) return bkt.thirds[src.x] || null;
       return null;
     }
-
     function renderBracket() {
-      const rounds = [
-        { key: 'r32', lbl: t('round_r32') }, { key: 'r16', lbl: t('round_r16') },
-        { key: 'qf', lbl: t('round_qf') }, { key: 'sf', lbl: t('round_sf') }, { key: 'final', lbl: t('round_f') }
-      ];
-      const tabs = rounds.map(r => `<div class="bkt-rtab${bktRound === r.key ? ' on' : ''}" onclick="swBktRound('${r.key}')">${r.lbl}</div>`).join('');
-      let content = '';
-      if (bktRound === 'r32') content = renderR32();
-      else if (bktRound === 'r16') content = renderKnockRound(bkt.r32, R16_P, bkt.r16, 'r16', t('round_r16'));
-      else if (bktRound === 'qf') content = renderKnockRound(bkt.r16, QF_P, bkt.qf, 'qf', t('round_qf'));
-      else if (bktRound === 'sf') content = renderKnockRound(bkt.qf, SF_P, bkt.sf, 'sf', t('round_sf'));
-      else if (bktRound === 'final') content = renderFinalRound();
-      document.getElementById('bracket-c').innerHTML = `
-    <div class="bkt-info">${t('bkt_click')}</div>
-    <div class="bkt-rounds-wrap">${tabs}</div>
-    ${content}`;
-    }
-
-    function swBktRound(r) { bktRound = r; renderBracket() }
-
-    function renderR32() {
-      // Step 1: thirds picker
-      const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
-      const thirdsCount = bkt.thirds.filter(Boolean).length;
-      let thirdsHtml = '';
-      if (allThirds.length > 0) {
-        const items = allThirds.map(({ gid, tm }) => {
-          const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n);
-          const disabled = thirdsCount >= 8 && !sel;
-          return `<div class="tp-item${sel ? ' sel' : ''}${disabled ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
-        <span style="font-size:.65rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px">${gid} 3°</span>
-        <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto;font-size:.7rem">✓</span>' : ''}
-      </div>`;
-        }).join('');
-        thirdsHtml = `<div style="margin-bottom:1.25rem">
-      <div style="font-size:.72rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${t('bkt_third_hdr')}</div>
-      <div class="thirds-count">${t('thirds_count_pre')}: <span>${thirdsCount}</span> ${t('thirds_count_post')}</div>
-      <div class="thirds-pick">${items}</div>
-    </div>`;
-      } else {
-        thirdsHtml = `<div class="bkt-info" style="margin-bottom:1.25rem">⬆️ ${lang === 'es' ? 'Primero completa las posiciones de grupo para ver los mejores terceros disponibles.' : 'First complete the group standings to see available best-third-place teams.'}</div>`;
+      const rounds = KO_ROUNDS;
+      const tabs = rounds.map(r => `<div class="bkt-rtab${bktRound === r.key ? ' on' : ''}" onclick="swBktRound('${r.key}')">${lang === 'es' ? r.es : r.en}</div>`).join('');
+      koRound = bktRound;
+      let inner = '';
+      if (document.getElementById('bracket-c')) {
+        // Mirror the knockout content using the same render function
+        koRound = bktRound;
+        inner = `<div class="bkt-rounds-wrap">${tabs}</div><div id="knockout-bkt-c"></div>`;
+        document.getElementById('bracket-c').innerHTML = `<div class="bkt-info">${t('bkt_click')}</div>${inner}`;
+        // Temporarily use bracket-specific container
+        const tmp = document.getElementById('knockout-c');
+        const elBkt = document.getElementById('knockout-bkt-c');
+        document.getElementById('knockout-c') || document.body.appendChild(Object.assign(document.createElement('div'), { id: 'knockout-c', style: 'display:none' }));
+        renderKnockout();
+        elBkt.innerHTML = document.getElementById('knockout-c').innerHTML;
       }
-      // Step 2: matches
-      const matchesHtml = R32_DEF.map((def, i) => {
-        const t1 = bktTeam(def[0]), t2 = bktTeam(def[1]), winner = bkt.r32[i];
-        return mkBktMatch(i, t1, t2, winner, 'r32');
-      }).join('');
-      return `${thirdsHtml}
-    <div style="font-size:.72rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.65rem">${t('bkt_match_hdr')}</div>
-    <div class="bkt-matches-grid">${matchesHtml}</div>`;
     }
-
-    function renderKnockRound(prevWinners, pairs, curWinners, roundKey, roundName) {
-      const matchesHtml = pairs.map((pair, i) => {
-        const t1 = prevWinners[pair[0]], t2 = prevWinners[pair[1]], winner = curWinners[i];
-        return mkBktMatch(i, t1, t2, winner, roundKey);
-      }).join('');
-      return `<div class="bkt-matches-grid">${matchesHtml}</div>`;
-    }
-
-    function renderFinalRound() {
-      // SF losers for 3rd place
-      const sfLoser0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(t3 => t3 && bkt.sf[0] && t3.n !== bkt.sf[0].n) : null;
-      const sfLoser1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(t3 => t3 && bkt.sf[1] && t3.n !== bkt.sf[1].n) : null;
-      const t1f = bkt.sf[0], t2f = bkt.sf[1], t1t = sfLoser0, t2t = sfLoser1;
-      const champBanner = bkt.final ? `<div class="champ-area show"><div class="champ-trophy">🏆</div><div class="champ-lbl">${t('champ')}</div><div class="champ-team">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
-      return `
-    <div style="font-size:.72rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.65rem">${t('round_f')}</div>
-    <div class="bkt-matches-grid">
-      ${mkBktMatch(0, t1f, t2f, bkt.final, 'final')}
-      <div>
-        <div style="font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.08em;margin-bottom:.4rem">${t('third_place')}</div>
-        ${mkBktMatch(0, t1t, t2t, bkt.third, 'third')}
-      </div>
-    </div>
-    ${champBanner}`;
-    }
-
-    function mkBktMatch(idx, t1, t2, winner, roundKey) {
-      const mkTeam = (tm, side) => {
-        if (!tm) return `<div class="bkt-team tbd"><span class="bkt-nm">${t('tbd')}</span></div>`;
-        const isW = winner && winner.n === tm.n;
-        const onclick = `advBkt('${roundKey}',${idx},'${tm.n.replace(/'/g, "\\'")}','${tm.f}')`;
-        return `<div class="bkt-team${isW ? ' winner' : ''}" onclick="${onclick}">
-      <span class="bkt-fl">${tm.f}</span><span class="bkt-nm">${tm.n}</span><span class="bkt-ck">✓</span>
-    </div>`;
-      };
-      return `<div class="bkt-match"><div class="bkt-match-lbl">${roundKey === 'r32' ? 'M' + (idx + 1) : roundKey.toUpperCase() + ' ' + (idx + 1)}</div>${mkTeam(t1, 'h')}${mkTeam(t2, 'a')}</div>`;
-    }
-
-    function advBkt(roundKey, idx, name, flag) {
-      const tm = { n: name, f: flag };
-      if (roundKey === 'r32') {
-        bkt.r32[idx] = bkt.r32[idx]?.n === name ? null : tm;
-        // Clear downstream if changed
-        bkt.r16 = Array(8).fill(null); bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null;
-      } else if (roundKey === 'r16') {
-        bkt.r16[idx] = bkt.r16[idx]?.n === name ? null : tm;
-        bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null;
-      } else if (roundKey === 'qf') {
-        bkt.qf[idx] = bkt.qf[idx]?.n === name ? null : tm;
-        bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null;
-      } else if (roundKey === 'sf') {
-        bkt.sf[idx] = bkt.sf[idx]?.n === name ? null : tm;
-        bkt.final = null; bkt.third = null;
-      } else if (roundKey === 'final') {
-        bkt.final = bkt.final?.n === name ? null : tm;
-      } else if (roundKey === 'third') {
-        bkt.third = bkt.third?.n === name ? null : tm;
-      }
-      saveBkt(); renderBracket();
-    }
-
-    function clickThird(gid, name, flag) {
-      const tm = { n: name, f: flag, gid };
-      const idx = bkt.thirds.findIndex(t3 => t3 && t3.n === name);
-      if (idx !== -1) { bkt.thirds[idx] = null; }
-      else {
-        const empty = bkt.thirds.findIndex(t3 => !t3);
-        if (empty !== -1) bkt.thirds[empty] = tm;
-      }
-      // Clear bracket downstream
-      bkt.r32 = Array(16).fill(null); bkt.r16 = Array(8).fill(null); bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null;
-      saveBkt(); renderBracket();
-    }
+    function swBktRound(r) { bktRound = r; koRound = r; renderBracket() }
 
     // ══════════ DASHBOARD ══════════
     function updateDash() {
