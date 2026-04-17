@@ -1735,7 +1735,7 @@ const teamArticles = {
       </div>`
   },
 
-  "Bélgica 🇧🇪"“: {“
+  "Bélgica 🇧🇪": {
     content: `
       <span class="article-flag">🇧🇪</span>
       <h1>Bélgica: el último servicio de los arquitectos</h1>
@@ -1764,8 +1764,8 @@ const teamArticles = {
       </div>`
   },
 
-"Colombia 🇨🇴": {
-  content: `
+  "Colombia 🇨🇴": {
+    content: `
       <span class="article-flag">🇨🇴</span>
       <h1>Colombia: la fiebre amarilla recupera su brillo</h1>
       <div class="article-meta">
@@ -1791,10 +1791,10 @@ const teamArticles = {
         <strong>Veredicto de Hector Hardy</strong>
         <p>Colombia tiene aroma a semifinalista. Si James mantiene su nivel de Copa América y Lucho Díaz es decisivo, nadie querrá cruzarse con ellos en eliminatorias.</p>
       </div>`
-},
+  },
 
-"México 🇲🇽": {
-  content: `
+  "México 🇲🇽": {
+    content: `
       <span class="article-flag">🇲🇽</span>
       <h1>México: la obligación de hacer historia en casa</h1>
       <div class="article-meta">
@@ -1820,10 +1820,10 @@ const teamArticles = {
         <strong>Veredicto de Hector Hardy</strong>
         <p>México jugará con doce. El Estadio Azteca será su mayor aliado, pero el equipo debe demostrar madurez mental cuando el marcador se ponga en contra.</p>
       </div>`
-},
+  },
 
-"Japón 🇯🇵": {
-  content: `
+  "Japón 🇯🇵": {
+    content: `
       <span class="article-flag">🇯🇵</span>
       <h1>Japón: la revolución de los samuráis azules</h1>
       <div class="article-meta">
@@ -1849,10 +1849,10 @@ const teamArticles = {
         <strong>Veredicto de Hector Hardy</strong>
         <p>Están listos para dar el salto. Si logran superar la barrera psicológica de los octavos de final, pueden ser la gran sorpresa del Mundial.</p>
       </div>`
-},
+  },
 
-"Noruega 🇳🇴": {
-  content: `
+  "Noruega 🇳🇴": {
+    content: `
       <span class="article-flag">🇳🇴</span>
       <h1>Noruega: Haaland llega al gran escenario</h1>
       <div class="article-meta">
@@ -1878,10 +1878,10 @@ const teamArticles = {
         <strong>Veredicto de Hector Hardy</strong>
         <p>Si Haaland tiene el día, Noruega puede ganar a cualquiera. El problema es qué pasa si lo anulan. Su camino termina donde termine la puntería de su 9.</p>
       </div>`
-},
+  },
 
-"Senegal 🇸🇳": {
-  content: `
+  "Senegal 🇸🇳": {
+    content: `
       <span class="article-flag">🇸🇳</span>
       <h1>Senegal: los leones de la Teranga</h1>
       <div class="article-meta">
@@ -1896,10 +1896,10 @@ const teamArticles = {
       <div class="article-verdict">
         <strong>Veredicto</strong>: Físicamente son un muro. Si Sadio Mané llega con un último aliento de magia, son candidatos a repetir los cuartos de final de 2002.
       </div>`
-},
+  },
 
-"Ecuador 🇪🇨": {
-  content: `
+  "Ecuador 🇪🇨": {
+    content: `
       <span class="article-flag">🇪🇨</span>
       <h1>Ecuador: juventud y vigor en la mitad del mundo</h1>
       <div class="article-meta">
@@ -1914,10 +1914,10 @@ const teamArticles = {
       <div class="article-verdict">
         <strong>Veredicto</strong>: Con Moisés Caicedo al mando, Ecuador es un equipo modernísimo. No tienen techo, pero les falta experiencia en las rondas de eliminación.
       </div>`
-},
+  },
 
-"Canadá 🇨🇦": {
-  content: `
+  "Canadá 🇨🇦": {
+    content: `
       <span class="article-flag">🇨🇦</span>
       <h1>Canadá: el rayo del norte</h1>
       <div class="article-meta">
@@ -1932,10 +1932,10 @@ const teamArticles = {
       <div class="article-verdict">
         <strong>Veredicto</strong>: Alphonso Davies es el motor. Si logran controlar el caos defensivo, serán un equipo divertidísimo de ver y muy peligroso.
       </div>`
-},
+  },
 
-"Croacia 🇭🇷": {
-  content: `
+  "Croacia 🇭🇷": {
+    content: `
       <span class="article-flag">🇭🇷</span>
       <h1>Croacia: la resistencia eterna</h1>
       <div class="article-meta">
@@ -1950,10 +1950,10 @@ const teamArticles = {
       <div class="article-verdict">
         <strong>Veredicto</strong>: Nunca los descartes. Si llegan a la prórroga, ya han ganado. Su gestión emocional del partido es única en el mundo.
       </div>`
-},
+  },
 
-"Arabia Saudita 🇸🇦": {
-  content: `
+  "Arabia Saudita 🇸🇦": {
+    content: `
       <span class="article-flag">🇸🇦</span>
       <h1>Arabia Saudita: el orgullo del desierto</h1>
       <div class="article-meta">
@@ -1968,7 +1968,7 @@ const teamArticles = {
       <div class="article-verdict">
         <strong>Veredicto</strong>: Tienen la liga más potente de Asia, lo que ha subido el nivel de sus locales. Serán un bloque muy difícil de romper.
       </div>`
-}
+  }
 
   // ─────────────────────────────────────────────────────────────────────
   // PLANTILLA para nuevos artículos — descomenta y rellena:
