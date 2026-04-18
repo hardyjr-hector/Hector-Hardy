@@ -1816,6 +1816,8 @@
                 tiempo real</p>
             </div>
             <div class="mbn-l">
+              <!--<a class="mbl" href="index.html#worldcup" id="mbl-fix" data-es="📅 Fixture"
+                data-en="📅 Fixture">📅 Fixture</a>-->
               <a class="mbl" href="index.html#worldcup" id="mbl-an" data-es="📊 Análisis" data-en="📊 Analysis">📊
                 Análisis</a>
             </div>
@@ -2008,6 +2010,9 @@
           <div class="rule-s">
             <h3 id="ru-h2" data-es="📋 Reglas Generales" data-en="📋 General Rules">📋 Reglas Generales</h3>
             <ul style="padding-left:1.1rem;font-size:.83rem;line-height:2.1;color:var(--m2)" id="ru-list">
+              <li data-es="Puedes modificar predicciones hasta el inicio de cada partido."
+                data-en="You can change predictions until each match starts.">Puedes modificar predicciones <strong
+                  style="color:var(--text)">hasta el inicio de cada partido</strong>.</li>
               <li data-es="Sin acierto de resultado → 0 puntos de goles." data-en="Wrong result → 0 goal points.">Sin
                 acierto de resultado → 0 puntos de goles.</li>
               <li data-es="Posiciones de grupo se puntúan al final de la fase de grupos."
@@ -2264,8 +2269,15 @@
       document.getElementById('app').classList.add('on');
       await Promise.all([loadProfile(), loadPreds(), loadGRanks(), loadSpecials(), loadResults()]);
       loadBkt();
+      // Check if standings were already auto-calc'd (all gRanks filled from DB)
+      autoCalcDone = GD.every(g => (gRanks[g.id] || []).length === 4);
       renderNav(); buildTabs('tabs-m', 'swM'); buildTabs('tabs-g', 'swG'); updateDash(); loadLB(); goTo('home');
       sb.channel('pts').on('postgres_changes', { event: '*', schema: 'public', table: 'user_points' }, () => loadLB()).subscribe();
+      // Silent auto-calc if all 72 filled but gRanks not yet complete
+      if (!autoCalcDone) {
+        const filled = MD.filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
+        if (filled === 72) tryAutoCalc();
+      }
     }
     async function loadProfile() {
       const { data } = await sb.from('profiles').select('*').eq('id', CU.id).single();
@@ -2377,8 +2389,11 @@
       if (card) { const p = preds[mid]; card.classList.toggle('filled', p && p.s1 != null && p.s2 != null) }
       const m = MD.find(x => x.id === mid); if (m) updGTable(m.g); updateDash();
       const p = preds[mid];
-      if (p.s1 != null && p.s2 != null)
+      if (p.s1 != null && p.s2 != null) {
         await sb.from('predictions').upsert({ user_id: CU.id, match_id: mid, score_home: p.s1, score_away: p.s2, updated_at: new Date().toISOString() }, { onConflict: 'user_id,match_id' });
+      }
+      // Try auto-calculating standings when all 72 are done
+      tryAutoCalc();
     }
 
     // ══════════ KNOCKOUT INLINE (matches screen) ══════════
@@ -2386,27 +2401,36 @@
       const el = document.getElementById('knockout-c');
       if (!el) return;
       try {
-        // thirds picker only needed for r32
         let thirdsHtml = '';
         if (koRound === 'r32') {
-          const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
-          const thirdsCount = bkt.thirds.filter(Boolean).length;
-          if (allThirds.length > 0) {
-            const items = allThirds.map(({ gid, tm }) => {
-              const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n);
-              const dis = thirdsCount >= 8 && !sel;
-              return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
-          <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px;flex-shrink:0">${gid}</span>
-          <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}
+          if (autoCalcDone) {
+            const pickedThirds = bkt.thirds.filter(Boolean);
+            if (pickedThirds.length === 8) {
+              thirdsHtml = `<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding:.6rem .85rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:8px;font-size:.78rem">
+          <span>✅</span>
+          <div><strong style="color:var(--grn)">${lang === 'es' ? '8 mejores terceros calculados automáticamente' : '8 best third-place teams auto-calculated'}</strong><br>
+          <span style="color:var(--m2);font-size:.7rem">${pickedThirds.map(x => x.f + ' ' + x.n).join(' · ')}</span></div>
         </div>`;
-            }).join('');
-            thirdsHtml = `<div style="margin-bottom:1.1rem">
-        <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lang === 'es' ? 'Mejores terceros (elige 8)' : 'Best 3rd-place teams (pick 8)'}</div>
-        <div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${bkt.thirds.filter(Boolean).length}/8 ${lang === 'es' ? 'elegidos' : 'selected'}</div>
-        <div class="thirds-pick">${items}</div>
-      </div>`;
+            }
           } else {
-            thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros disponibles.' : 'Complete group standings to see available best third-place teams.'}</div>`;
+            const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
+            const thirdsCount = bkt.thirds.filter(Boolean).length;
+            if (allThirds.length > 0) {
+              const items = allThirds.map(({ gid, tm }) => {
+                const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n), dis = thirdsCount >= 8 && !sel;
+                return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
+            <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px;flex-shrink:0">${gid}</span>
+            <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}
+          </div>`;
+              }).join('');
+              thirdsHtml = `<div style="margin-bottom:1.1rem">
+          <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lang === 'es' ? 'Mejores terceros (elige 8)' : 'Best 3rd-place teams (pick 8)'}</div>
+          <div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${thirdsCount}/8 ${lang === 'es' ? 'elegidos' : 'selected'}</div>
+          <div class="thirds-pick">${items}</div>
+        </div>`;
+            } else {
+              thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros.' : 'Complete group standings to see best third-place teams.'}</div>`;
+            }
           }
         }
         let matchesHtml = '';
@@ -2419,23 +2443,16 @@
         } else if (koRound === 'sf') {
           matchesHtml = `<div class="ko-grid">${SF_P.map((pair, i) => mkKoMatch(i, bkt.qf[pair[0]], bkt.qf[pair[1]], bkt.sf[i], 'sf')).join('')}</div>`;
         } else if (koRound === 'final') {
-          // SF losers for 3rd place
           const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(tx => tx && bkt.sf[0] && tx.n !== bkt.sf[0].n) : null;
           const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(tx => tx && bkt.sf[1] && tx.n !== bkt.sf[1].n) : null;
           const champBanner = bkt.final ? `<div class="champ-banner"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
           matchesHtml = `<div class="ko-grid">
-      <div>
-        <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? 'FINAL' : 'FINAL'}</div>
-        ${mkKoMatch(0, bkt.sf[0], bkt.sf[1], bkt.final, 'final')}
-      </div>
-      <div>
-        <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? '3° Y 4° LUGAR' : '3RD PLACE'}</div>
-        ${mkKoMatch(0, lo0, lo1, bkt.third, 'third')}
-      </div>
+      <div><div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">FINAL</div>${mkKoMatch(0, bkt.sf[0], bkt.sf[1], bkt.final, 'final')}</div>
+      <div><div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? '3° Y 4° LUGAR' : '3RD PLACE'}</div>${mkKoMatch(0, lo0, lo1, bkt.third, 'third')}</div>
     </div>${champBanner}`;
         }
         el.innerHTML = thirdsHtml + matchesHtml;
-      } catch (e) { console.error('renderKnockout error', e); el.innerHTML = `<div class="callout">Error cargando llave: ${e.message}</div>`; }
+      } catch (e) { console.error('renderKnockout error', e); el.innerHTML = `<div class="callout">Error: ${e.message}</div>`; }
     }
 
     // Remove dead _origAdvBkt reference - advBkt is defined once
@@ -2508,24 +2525,196 @@
     <div style="font-size:.63rem;color:var(--m2);padding:.4rem .75rem .5rem"><span class="cg">●</span> ${lang === 'es' ? 'Clasifica' : 'Qualifies'} &nbsp;<span class="c3">●</span> ${lang === 'es' ? 'Posible 3°' : 'Possible 3rd'} &nbsp;<span style="color:var(--muted)">●</span> ${lang === 'es' ? 'Eliminado' : 'Eliminated'}</div></div>`;
     }
 
+    // ══════════ AUTO-CALC ENGINE ══════════
+    // Tiebreaker criteria for 3rd place ranking (FIFA):
+    // 1. Points  2. GD  3. GF  4. GA (lower better)
+    function cmpTeam(a, b) {
+      const pa = a.pg * 3 + a.pe, pb = b.pg * 3 + b.pe;
+      if (pa !== pb) return pb - pa;
+      const da = a.gf - a.gc, db = b.gf - b.gc;
+      if (da !== db) return db - da;
+      if (a.gf !== b.gf) return b.gf - a.gf;
+      return a.gc - b.gc;
+    }
+
+    function calcAllGroups() {
+      // Returns { groupId: [sorted team objects with index] }
+      const result = {};
+      GD.forEach(g => {
+        const st = {};
+        g.t.forEach((tm, i) => { st[i] = { tm, i, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0 } });
+        MD.filter(m => m.g === g.id).forEach(m => {
+          const p = preds[m.id];
+          if (!p || p.s1 == null || p.s2 == null) return;
+          const s1 = +p.s1, s2 = +p.s2; if (isNaN(s1) || isNaN(s2)) return;
+          const hi = g.t.findIndex(x => x.n === m.h), ai = g.t.findIndex(x => x.n === m.a);
+          const h = st[hi], a = st[ai];
+          h.pj++; a.pj++; h.gf += s1; h.gc += s2; a.gf += s2; a.gc += s1;
+          s1 > s2 ? (h.pg++, a.pp++) : s2 > s1 ? (a.pg++, h.pp++) : (h.pe++, a.pe++);
+        });
+        result[g.id] = Object.values(st).sort(cmpTeam);
+      });
+      return result;
+    }
+
+    function groupComplete(gid) {
+      return MD.filter(m => m.g === gid).every(m => {
+        const p = preds[m.id]; return p && p.s1 != null && p.s2 != null;
+      });
+    }
+
+    function allGroupsComplete() {
+      return GD.every(g => groupComplete(g.id));
+    }
+
+    function autoCalcStandings() {
+      // Only auto-fill if all 72 group matches are predicted
+      if (!allGroupsComplete()) return false;
+
+      const standings = calcAllGroups();
+
+      // 1. Update gRanks for all groups
+      GD.forEach(g => {
+        gRanks[g.id] = standings[g.id].map(s => s.i);
+      });
+
+      // 2. Find 8 best 3rd-place teams
+      const thirds = GD.map(g => {
+        const row = standings[g.id][2]; // position index 2 = 3rd place
+        return { gid: g.id, tm: row.tm, i: row.i, ...row };
+      });
+      // Sort by performance
+      thirds.sort(cmpTeam);
+      const best8 = thirds.slice(0, 8);
+
+      // 3. Fill bkt.thirds
+      bkt.thirds = Array(8).fill(null);
+      best8.forEach((row, slot) => {
+        bkt.thirds[slot] = { n: row.tm.n, f: row.tm.f, gid: row.gid };
+      });
+
+      // 4. Save everything
+      saveBkt();
+      saveGRanksToSupabase();
+
+      return true;
+    }
+
+    async function saveGRanksToSupabase() {
+      try {
+        const upserts = GD.map(g => ({
+          user_id: CU.id, group_id: g.id, rankings: gRanks[g.id] || [], updated_at: new Date().toISOString()
+        }));
+        await sb.from('group_rankings').upsert(upserts, { onConflict: 'user_id,group_id' });
+      } catch (e) { console.error('saveGRanks error', e); }
+    }
+
+    let autoCalcDone = false;
+
+    function tryAutoCalc() {
+      if (autoCalcDone) return;
+      const filled = MD.filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
+      if (filled < 72) return;
+      const did = autoCalcStandings();
+      if (did) {
+        autoCalcDone = true;
+        // Clear downstream bracket picks since standings changed
+        bkt.r32 = Array(16).fill(null); bkt.r16 = Array(8).fill(null);
+        bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null);
+        bkt.final = null; bkt.third = null;
+        saveBkt();
+        // Show toast and refresh current view
+        toast(lang === 'es' ? '✅ Posiciones calculadas automáticamente — ¡completa la llave!' : '✅ Standings auto-calculated — complete the bracket!');
+        updateDash();
+        if (currentScreen === 'matches') {
+          buildTabs('tabs-m', 'swM');
+          renderMatches(ag);
+          buildKoTabs(); renderKnockout();
+        } else if (currentScreen === 'groups') {
+          buildTabs('tabs-g', 'swG');
+          renderGroups(ag);
+        } else if (currentScreen === 'bracket') {
+          renderBracket();
+        }
+      }
+    }
+
     // ══════════ GROUPS RANKING ══════════
     function renderGroups(gid) {
       const container = document.getElementById('groups-c');
       if (!container) return;
       try {
         const g = GD.find(x => x.id === gid), ranks = gRanks[gid] || [];
-        let html = `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
+        const isAuto = autoCalcDone && groupComplete(gid);
+        const allFilled = allGroupsComplete();
+
+        // Header with auto badge and recalc button
+        let header = '';
+        if (isAuto) {
+          header = `<div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.85rem;padding:.6rem .85rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:8px">
+        <span style="font-size:.9rem">✅</span>
+        <div style="flex:1">
+          <div style="font-size:.78rem;font-weight:600;color:var(--grn)">${lang === 'es' ? 'Calculado automáticamente' : 'Auto-calculated'}</div>
+          <div style="font-size:.7rem;color:var(--m2)">${lang === 'es' ? 'Basado en tus 72 predicciones de grupo' : 'Based on your 72 group predictions'}</div>
+        </div>
+        ${!SUBMITTED ? `<button onclick="manualRecalc()" style="font-size:.7rem;padding:.28rem .65rem;border-radius:6px;border:1px solid var(--bdr2);background:transparent;color:var(--m2);cursor:pointer;font-family:inherit" title="${lang === 'es' ? 'Recalcular con tus predicciones actuales' : 'Recalculate from current predictions'}">${lang === 'es' ? '↺ Recalcular' : '↺ Recalculate'}</button>` : ''}
+      </div>`;
+        } else if (allFilled && !autoCalcDone) {
+          header = `<div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.85rem;padding:.6rem .85rem;background:rgba(232,184,75,.07);border:1px solid rgba(232,184,75,.2);border-radius:8px">
+        <span style="font-size:.9rem">⚡</span>
+        <div style="flex:1">
+          <div style="font-size:.78rem;font-weight:600;color:var(--acc)">${lang === 'es' ? '72 partidos completados' : '72 matches completed'}</div>
+          <div style="font-size:.7rem;color:var(--m2)">${lang === 'es' ? 'Pulsa para calcular posiciones automáticamente' : 'Press to auto-calculate standings'}</div>
+        </div>
+        <button onclick="manualRecalc()" style="font-size:.75rem;font-weight:600;padding:.35rem .8rem;border-radius:6px;border:none;background:var(--acc);color:#000;cursor:pointer;font-family:inherit">${lang === 'es' ? '⚡ Auto-calcular' : '⚡ Auto-calc'}</button>
+      </div>`;
+        } else if (!allFilled) {
+          const filled = MD.filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
+          header = `<div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem;font-size:.77rem;color:var(--m2)">
+        <span>💡</span>
+        <span>${lang === 'es' ? `Completa los 72 partidos para auto-calcular (${filled}/72)` : `Complete 72 matches to auto-calculate (${filled}/72)`}</span>
+      </div>`;
+        }
+
+        let html = header;
+        if (!isAuto) {
+          html += `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
+        }
         g.t.forEach((tm, i) => {
           const pos = ranks.indexOf(i), rc = pos === 0 ? 'r1' : pos === 1 ? 'r2' : pos === 2 ? 'r3' : '';
-          html += `<div class="rk" onclick="clickRk('${gid}',${i})">
+          const clickable = !SUBMITTED && !isAuto;
+          html += `<div class="rk${clickable ? ' ' : ' '}" ${clickable ? `onclick="clickRk('${gid}',${i})"` : ''}
+        style="${isAuto ? 'cursor:default;' : ''}">
         <div class="rkb ${rc}">${pos >= 0 ? pos + 1 + '°' : '?'}</div>
-        <span style="font-size:1.05rem">${tm.f}</span><span style="font-size:.82rem;font-weight:500">${tm.n}</span>
+        <span style="font-size:1.05rem">${tm.f}</span>
+        <span style="font-size:.82rem;font-weight:500">${tm.n}</span>
         ${pos === 0 || pos === 1 ? `<span class="pill pill-g">${lang === 'es' ? 'Clasifica' : 'Qualifies'}</span>` : ''}
         ${pos === 2 ? `<span class="pill pill-3">${lang === 'es' ? '3° lugar' : '3rd place'}</span>` : ''}
       </div>`;
         });
         container.innerHTML = html;
       } catch (e) { console.error('renderGroups error', e); container.innerHTML = `<div class="callout">Error: ${e.message}</div>`; }
+    }
+
+    function manualRecalc() {
+      if (!allGroupsComplete()) {
+        toast(lang === 'es' ? 'Faltan partidos por predecir' : 'Some matches still need predictions');
+        return;
+      }
+      autoCalcDone = false;
+      const did = autoCalcStandings();
+      if (did) {
+        autoCalcDone = true;
+        bkt.r32 = Array(16).fill(null); bkt.r16 = Array(8).fill(null);
+        bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null);
+        bkt.final = null; bkt.third = null;
+        saveBkt();
+        toast(lang === 'es' ? '✅ Posiciones recalculadas' : '✅ Standings recalculated');
+        updateDash();
+        renderGroups(ag);
+        if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
+        else if (currentScreen === 'bracket') renderBracket();
+      }
     }
     async function clickRk(gid, idx) {
       if (SUBMITTED) return; // locked
@@ -2598,27 +2787,34 @@
     function swBktRound(r) { bktRound = r; koRound = r; renderBracket(); }
 
     function renderBktR32() {
-      const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
-      const thirdsCount = bkt.thirds.filter(Boolean).length;
       let thirdsHtml = '';
-      if (allThirds.length > 0) {
-        const items = allThirds.map(({ gid, tm }) => {
-          const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n), dis = thirdsCount >= 8 && !sel;
-          return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
-        <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px">${gid} 3°</span>
-        <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}
-      </div>`;
-        }).join('');
-        thirdsHtml = `<div style="margin-bottom:1.1rem">
-      <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lang === 'es' ? 'Mejores terceros (elige 8)' : 'Best 3rd-place teams (pick 8)'}</div>
-      <div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${thirdsCount}/8 ${lang === 'es' ? 'elegidos' : 'selected'}</div>
-      <div class="thirds-pick">${items}</div>
-    </div>`;
+      if (autoCalcDone) {
+        const pickedThirds = bkt.thirds.filter(Boolean);
+        if (pickedThirds.length === 8) {
+          const lbl = typeof lang !== 'undefined' && lang === 'en' ? '8 best third-place teams auto-calculated' : '8 mejores terceros calculados automáticamente';
+          const sub = pickedThirds.map(x => x.f + ' ' + x.n).join(' · ');
+          thirdsHtml = `<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding:.6rem .85rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:8px;font-size:.78rem"><span>✅</span><div><strong style="color:var(--grn)">${lbl}</strong><br><span style="color:var(--m2);font-size:.7rem">${sub}</span></div></div>`;
+        }
       } else {
-        thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros.' : 'Complete group standings to see best third-place teams.'}</div>`;
+        const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
+        const thirdsCount = bkt.thirds.filter(Boolean).length;
+        if (allThirds.length > 0) {
+          const items = allThirds.map(({ gid, tm }) => {
+            const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n), dis = thirdsCount >= 8 && !sel;
+            return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\'")}','${tm.f}')">
+          <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px">${gid} 3°</span>
+          <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}</div>`;
+          }).join('');
+          const lbl2 = typeof lang !== 'undefined' && lang === 'en' ? 'Best 3rd-place teams (pick 8)' : 'Mejores terceros (elige 8)';
+          const sel2 = typeof lang !== 'undefined' && lang === 'en' ? 'selected' : 'elegidos';
+          thirdsHtml = `<div style="margin-bottom:1.1rem"><div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lbl2}</div><div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${thirdsCount}/8 ${sel2}</div><div class="thirds-pick">${items}</div></div>`;
+        } else {
+          const msg = typeof lang !== 'undefined' && lang === 'en' ? 'Complete group standings to see best third-place teams.' : 'Completa las posiciones de grupo para ver los mejores terceros.';
+          thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${msg}</div>`;
+        }
       }
       const matchesHtml = R32_DEF.map((def, i) => mkKoMatch(i, bktTeam(def[0]), bktTeam(def[1]), bkt.r32[i], 'r32')).join('');
-      return `${thirdsHtml}<div class="bkt-matches-grid">${matchesHtml}</div>`;
+      return thirdsHtml + `<div class="bkt-matches-grid">${matchesHtml}</div>`;
     }
     function renderBktRound(prevW, pairs, curW, rk) {
       return `<div class="bkt-matches-grid">${pairs.map((pair, i) => mkKoMatch(i, prevW[pair[0]], prevW[pair[1]], curW[i], rk)).join('')}</div>`;
