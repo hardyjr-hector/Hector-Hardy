@@ -1894,7 +1894,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Físicamente son un muro. Si Sadio Mané llega con un último aliento de magia, son candidatos a repetir los cuartos de final de 2002.
+        <strong>Veredicto de Hector Hardy</strong> Físicamente son un muro. Si Sadio Mané llega con un último aliento de magia, son candidatos a repetir los cuartos de final de 2002.
       </div>`
   },
 
@@ -1912,7 +1912,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Con Moisés Caicedo al mando, Ecuador es un equipo modernísimo. No tienen techo, pero les falta experiencia en las rondas de eliminación.
+        <strong>Veredicto de Hector Hardy</strong> Con Moisés Caicedo al mando, Ecuador es un equipo modernísimo. No tienen techo, pero les falta experiencia en las rondas de eliminación.
       </div>`
   },
 
@@ -1930,7 +1930,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Alphonso Davies es el motor. Si logran controlar el caos defensivo, serán un equipo divertidísimo de ver y muy peligroso.
+        <strong>Veredicto de Hector Hardy</strong> Alphonso Davies es el motor. Si logran controlar el caos defensivo, serán un equipo divertidísimo de ver y muy peligroso.
       </div>`
   },
 
@@ -1948,7 +1948,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo L</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Nunca los descartes. Si llegan a la prórroga, ya han ganado. Su gestión emocional del partido es única en el mundo.
+        <strong>Veredicto de Hector Hardy</strong> Nunca los descartes. Si llegan a la prórroga, ya han ganado. Su gestión emocional del partido es única en el mundo.
       </div>`
   },
 
@@ -1966,7 +1966,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Tienen la liga más potente de Asia, lo que ha subido el nivel de sus locales. Serán un bloque muy difícil de romper.
+        <strong>Veredicto de Hector Hardy</strong> Tienen la liga más potente de Asia, lo que ha subido el nivel de sus locales. Serán un bloque muy difícil de romper.
       </div>`
   },
 
@@ -2057,7 +2057,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: En el grupo de Argentina, Austria será un examen físico durísimo. Tienen sistema, tienen hambre y tienen a David Alaba liderando desde el campo o el banquillo.
+        <strong>Veredicto de Hector Hardy</strong>  En el grupo de Argentina, Austria será un examen físico durísimo. Tienen sistema, tienen hambre y tienen a David Alaba liderando desde el campo o el banquillo.
       </div>`
   },
 
@@ -2132,7 +2132,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo L</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Son impredecibles. Pueden ganar a Inglaterra y perder con una selección menor. Si encuentran estabilidad, darán mucho de qué hablar.
+        <strong>Veredicto de Hector Hardy</strong> Son impredecibles. Pueden ganar a Inglaterra y perder con una selección menor. Si encuentran estabilidad, darán mucho de qué hablar.
       </div>`
   },
 
@@ -2150,7 +2150,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: En el grupo de Argentina y Austria, lo tienen difícil. Necesitarán que su calidad individual aparezca en los momentos clave.
+        <strong>Veredicto de Hector Hardy</strong> En el grupo de Argentina y Austria, lo tienen difícil. Necesitarán que su calidad individual aparezca en los momentos clave.
       </div>`
   },
 
@@ -2168,7 +2168,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo D</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Su estilo no es estético, pero es efectivo. Si logran anotar primero, son casi imposibles de remontar.
+        <strong>Veredicto de Hector Hardy</strong> Su estilo no es estético, pero es efectivo. Si logran anotar primero, son casi imposibles de remontar.
       </div>`
   },
 
@@ -2186,7 +2186,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Akram Afif es un jugador de clase mundial. Si él fluye, Catar puede dar la sorpresa en el grupo de Suiza y Canadá.
+        <strong>Veredicto de Hector Hardy</strong> Akram Afif es un jugador de clase mundial. Si él fluye, Catar puede dar la sorpresa en el grupo de Suiza y Canadá.
       </div>`
   },
 
@@ -2204,7 +2204,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo L</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Tienen un grupo durísimo con Inglaterra y Croacia. Su meta es puntuar y dejar una imagen de competitividad absoluta.
+        <strong>Veredicto de Hector Hardy</strong> Tienen un grupo durísimo con Inglaterra y Croacia. Su meta es puntuar y dejar una imagen de competitividad absoluta.
       </div>`
   },
 
@@ -2222,7 +2222,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Son el equipo con ranking más bajo, pero en 2010 se fueron invictos. Cuidado con despreciar su juego directo y potencia física.
+        <strong>Veredicto de Hector Hardy</strong> Son el equipo con ranking más bajo, pero en 2010 se fueron invictos. Cuidado con despreciar su juego directo y potencia física.
       </div>`
   },
 
@@ -2240,7 +2240,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo G</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Taremi es su gran baza. Si logran mantener la portería a cero, tienen opciones reales de pasar por primera vez a octavos.
+        <strong>Veredicto de Hector Hardy</strong> Taremi es su gran baza. Si logran mantener la portería a cero, tienen opciones reales de pasar por primera vez a octavos.
       </div>`
   },
 
@@ -2258,7 +2258,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Comparten grupo con Brasil y Marruecos. Necesitarán su mejor versión defensiva y aprovechar cada córner como si fuera un penalti.
+        <strong>Veredicto de Hector Hardy</strong> Comparten grupo con Brasil y Marruecos. Necesitarán su mejor versión defensiva y aprovechar cada córner como si fuera un penalti.
       </div>`
   },
 
@@ -2276,7 +2276,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Tienen talento para estar en el Top 15. Si logran ser constantes durante los 90 minutos, son candidatos a octavos por encima de Alemania o Ecuador.
+        <strong>Veredicto de Hector Hardy</strong> Tienen talento para estar en el Top 15. Si logran ser constantes durante los 90 minutos, son candidatos a octavos por encima de Alemania o Ecuador.
       </div>`
   },
 
@@ -2318,7 +2318,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo F</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Su fortaleza es el colectivo. En el grupo de Países Bajos y Japón, su capacidad para mantener la portería a cero será su única vía de escape.
+        <strong>Veredicto de Hector Hardy</strong> Su fortaleza es el colectivo. En el grupo de Países Bajos y Japón, su capacidad para mantener la portería a cero será su única vía de escape.
       </div>`
   },
 
@@ -2355,7 +2355,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo K</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Eldor Shomurodov es su única referencia de élite. Todo lo que sea puntuar en su primer Mundial será un éxito nacional absoluto.
+        <strong>Veredicto de Hector Hardy</strong> Eldor Shomurodov es su única referencia de élite. Todo lo que sea puntuar en su primer Mundial será un éxito nacional absoluto.
       </div>`
   },
 
@@ -2373,7 +2373,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo I</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Están en el grupo de Francia y Noruega. Su objetivo es evitar goleadas y pescar algo ante Senegal. Tarea titánica.
+        <strong>Veredicto de Hector Hardy</strong> Están en el grupo de Francia y Noruega. Su objetivo es evitar goleadas y pescar algo ante Senegal. Tarea titánica.
       </div>`
   },
 
@@ -2410,7 +2410,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo J</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Musa Al-Taamari es el "Messi jordano" y de él depende toda su ofensiva. Contra Argentina será un duelo David contra Goliat.
+        <strong>Veredicto de Hector Hardy</strong> Musa Al-Taamari es el "Messi jordano" y de él depende toda su ofensiva. Contra Argentina será un duelo David contra Goliat.
       </div>`
   },
 
@@ -2428,7 +2428,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo B</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: Edin Džeko sigue teniendo el gol en la sangre. Si Suiza o Canadá se confían, Bosnia les bajará de la nube con un cabezazo letal.
+        <strong>Veredicto de Hector Hardy</strong> Edin Džeko sigue teniendo el gol en la sangre. Si Suiza o Canadá se confían, Bosnia les bajará de la nube con un cabezazo letal.
       </div>`
   },
 
@@ -2446,7 +2446,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo H</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: En un grupo con España y Uruguay, su Mundial es la experiencia. No obstante, son expertos en secar a delanteros de renombre.
+        <strong>Veredicto de Hector Hardy</strong> En un grupo con España y Uruguay, su Mundial es la experiencia. No obstante, son expertos en secar a delanteros de renombre.
       </div>`
   },
 
@@ -2464,7 +2464,7 @@ const teamArticles = {
         <div class="stat-box"><span class="stat-val">Grupo E</span><span class="stat-lbl">Fase de grupos</span></div>
       </div>
       <div class="article-verdict">
-        <strong>Veredicto</strong>: No se van a encerrar. Intentarán jugar de tú a tú, lo cual puede ser valiente o suicida en el grupo de Alemania y Ecuador.
+        <strong>Veredicto de Hector Hardy</strong> No se van a encerrar. Intentarán jugar de tú a tú, lo cual puede ser valiente o suicida en el grupo de Alemania y Ecuador.
       </div>`
   },
 
