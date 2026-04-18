@@ -2244,24 +2244,6 @@ const teamArticles = {
       </div>`
   },
 
-  "Escocia 🏴󠁧󠁢󠁳󠁣󠁴󠁿": {
-    content: `
-      <span class="article-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
-      <h1>Escocia: más que corazón y coraje</h1>
-      <div class="article-meta">
-        <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 3 min</span>
-      </div>
-      <p class="article-lead">Con una base de jugadores de Premier League, Escocia busca demostrar que su fútbol ha evolucionado hacia la inteligencia táctica.</p>
-      <div class="article-stat-grid">
-        <div class="stat-box"><span class="stat-val">#43</span><span class="stat-lbl">Ranking FIFA</span></div>
-        <div class="stat-box"><span class="stat-val">Fase Grupos</span><span class="stat-lbl">Mejor puesto</span></div>
-        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
-      </div>
-      <div class="article-verdict">
-        <strong>Veredicto de Hector Hardy</strong> Comparten grupo con Brasil y Marruecos. Necesitarán su mejor versión defensiva y aprovechar cada córner como si fuera un penalti.
-      </div>`
-  },
-
   "Costa de Marfil 🇨🇮": {
     content: `
       <span class="article-flag">🇨🇮</span>
