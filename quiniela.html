@@ -1735,7 +1735,8 @@
         <div class="asw" id="sw-to-login"
           data-es="¿Ya tienes cuenta? <span onclick=&quot;switchTab('login')&quot;>Entra aquí</span>"
           data-en="Have an account? <span onclick=&quot;switchTab('login')&quot;>Sign in</span>">¿Ya tienes cuenta?
-          <span onclick="switchTab('login')">Entra aquí</span></div>
+          <span onclick="switchTab('login')">Entra aquí</span>
+        </div>
       </div>
     </div>
     <!-- Email confirm state (shown instead of form) -->
@@ -1814,222 +1815,220 @@
                 data-en="Full fixture, team analysis and live data">Fixture completo, análisis de selecciones y datos en
                 tiempo real</p>
             </div>
-            <div class="mbn-l"><a class="mbl" href="index.html#worldcup" id="mbl-fix" data-es="📅 Fixture"
-                data-en="📅 Fixture">📅 Fixture</a>
+            <div class="mbn-l">
+              <a class="mbl" href="index.html#worldcup" id="mbl-an" data-es="📊 Análisis" data-en="📊 Analysis">📊
+                Análisis</a>
             </div>
-            <div class="sg" id="dash-stats"></div>
-            <div
-              style="font-size:.68rem;font-weight:600;color:var(--m2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.65rem"
-              id="ql-lbl" data-es="ACCESO RÁPIDO" data-en="QUICK ACCESS">ACCESO RÁPIDO</div>
-            <div class="qlg">
-              <div class="ql" onclick="goTo('matches')">
-                <div class="ql-i">⚽</div>
-                <div class="ql-t" data-es="Predecir partidos" data-en="Predict matches">Predecir partidos</div>
-                <div class="ql-s" data-es="72 partidos de grupo" data-en="72 group stage matches">72 partidos de grupo
-                </div>
-              </div>
-              <div class="ql" onclick="goTo('groups')">
-                <div class="ql-i">📋</div>
-                <div class="ql-t" data-es="Posiciones de grupo" data-en="Group standings">Posiciones de grupo</div>
-                <div class="ql-s" data-es="Ordena 1°–4° por grupo" data-en="Rank teams 1st–4th per group">Ordena 1°–4°
-                  por grupo</div>
-              </div>
-              <div class="ql" onclick="goTo('specials')">
-                <div class="ql-i">⭐</div>
-                <div class="ql-t" data-es="Especiales" data-en="Specials">Especiales</div>
-                <div class="ql-s" data-es="Campeón · Goleador · Balón de Oro"
-                  data-en="Champion · Top Scorer · Golden Ball">Campeón · Goleador · Balón de Oro</div>
-              </div>
-              <div class="ql" onclick="goTo('bracket')">
-                <div class="ql-i">🏆</div>
-                <div class="ql-t" data-es="Llave eliminatoria" data-en="Knockout bracket">Llave eliminatoria</div>
-                <div class="ql-s" data-es="16avos → Final" data-en="Rd of 32 → Final">16avos → Final</div>
-              </div>
-              <div class="ql" onclick="goTo('rank')">
-                <div class="ql-i">🏅</div>
-                <div class="ql-t" data-es="Clasificación" data-en="Standings">Clasificación</div>
-                <div class="ql-s" data-es="Ranking en tiempo real" data-en="Live ranking">Ranking en tiempo real</div>
-              </div>
-            </div>
-            <div class="callout" style="margin-top:1.5rem" id="home-callout"
-              data-es="🏆 Torneo amistoso. El ganador se lleva una camiseta de la selección campeona. ¡Solo una vez cada 4 años!"
-              data-en="🏆 Friendly tournament. The winner gets a shirt of the world champion team. Once every 4 years!">
-              🏆 <em>Torneo amistoso. El ganador se lleva una <strong style="color:var(--acc)">camiseta de la selección
-                  campeona</strong>. ¡Solo una vez cada 4 años!</em></div>
-            <div id="home-submit-zone" style="margin-top:1rem"></div>
           </div>
+          <div class="sg" id="dash-stats"></div>
+          <div
+            style="font-size:.68rem;font-weight:600;color:var(--m2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.65rem"
+            id="ql-lbl" data-es="ACCESO RÁPIDO" data-en="QUICK ACCESS">ACCESO RÁPIDO</div>
+          <div class="qlg">
+            <div class="ql" onclick="goTo('matches')">
+              <div class="ql-i">⚽</div>
+              <div class="ql-t" data-es="Predecir partidos" data-en="Predict matches">Predecir partidos</div>
+              <div class="ql-s" data-es="72 partidos de grupo" data-en="72 group stage matches">72 partidos de grupo
+              </div>
+            </div>
+            <div class="ql" onclick="goTo('groups')">
+              <div class="ql-i">📋</div>
+              <div class="ql-t" data-es="Posiciones de grupo" data-en="Group standings">Posiciones de grupo</div>
+              <div class="ql-s" data-es="Ordena 1°–4° por grupo" data-en="Rank teams 1st–4th per group">Ordena 1°–4° por
+                grupo</div>
+            </div>
+            <div class="ql" onclick="goTo('specials')">
+              <div class="ql-i">⭐</div>
+              <div class="ql-t" data-es="Especiales" data-en="Specials">Especiales</div>
+              <div class="ql-s" data-es="Campeón · Goleador · Balón de Oro"
+                data-en="Champion · Top Scorer · Golden Ball">Campeón · Goleador · Balón de Oro</div>
+            </div>
+            <div class="ql" onclick="goTo('bracket')">
+              <div class="ql-i">🏆</div>
+              <div class="ql-t" data-es="Llave eliminatoria" data-en="Knockout bracket">Llave eliminatoria</div>
+              <div class="ql-s" data-es="16avos → Final" data-en="Rd of 32 → Final">16avos → Final</div>
+            </div>
+            <div class="ql" onclick="goTo('rank')">
+              <div class="ql-i">🏅</div>
+              <div class="ql-t" data-es="Clasificación" data-en="Standings">Clasificación</div>
+              <div class="ql-s" data-es="Ranking en tiempo real" data-en="Live ranking">Ranking en tiempo real</div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:1.5rem" id="home-callout"
+            data-es="🏆 Torneo amistoso. El ganador se lleva una camiseta de la selección campeona. ¡Solo una vez cada 4 años!"
+            data-en="🏆 Friendly tournament. The winner gets a shirt of the world champion team. Once every 4 years!">🏆
+            <em>Torneo amistoso. El ganador se lleva una <strong style="color:var(--acc)">camiseta de la selección
+                campeona</strong>. ¡Solo una vez cada 4 años!</em>
+          </div>
+          <div id="home-submit-zone" style="margin-top:1rem"></div>
+        </div>
 
-          <!-- MATCHES + KNOCKOUT -->
-          <div class="sc" id="sc-matches">
-            <div class="sc-title" id="mt-title" data-es="Partidos" data-en="Matches">Partidos</div>
-            <div class="sc-sub" id="mt-sub" data-es="Fase de grupos y llave eliminatoria"
-              data-en="Group stage and knockout bracket">Fase de grupos y llave eliminatoria</div>
-            <!-- Group stage -->
-            <div class="phase-divider" id="ph-div-grp" data-es="FASE DE GRUPOS" data-en="GROUP STAGE">FASE DE GRUPOS
-            </div>
-            <div class="gtabs" id="tabs-m"></div>
-            <div id="matches-c"></div>
-            <!-- Knockout -->
-            <div class="phase-divider" id="ph-div-ko" data-es="FASE ELIMINATORIA" data-en="KNOCKOUT STAGE">FASE
-              ELIMINATORIA</div>
-            <div class="gtabs" id="tabs-ko"></div>
-            <div id="knockout-c"></div>
-          </div>
+        <!-- MATCHES + KNOCKOUT -->
+        <div class="sc" id="sc-matches">
+          <div class="sc-title" id="mt-title" data-es="Partidos" data-en="Matches">Partidos</div>
+          <div class="sc-sub" id="mt-sub" data-es="Fase de grupos y llave eliminatoria"
+            data-en="Group stage and knockout bracket">Fase de grupos y llave eliminatoria</div>
+          <!-- Group stage -->
+          <div class="phase-divider" id="ph-div-grp" data-es="FASE DE GRUPOS" data-en="GROUP STAGE">FASE DE GRUPOS</div>
+          <div class="gtabs" id="tabs-m"></div>
+          <div id="matches-c"></div>
+          <!-- Knockout -->
+          <div class="phase-divider" id="ph-div-ko" data-es="FASE ELIMINATORIA" data-en="KNOCKOUT STAGE">FASE
+            ELIMINATORIA</div>
+          <div class="gtabs" id="tabs-ko"></div>
+          <div id="knockout-c"></div>
+        </div>
 
-          <!-- GROUPS -->
-          <div class="sc" id="sc-groups">
-            <div class="sc-title" id="gr-title" data-es="Posiciones de Grupo" data-en="Group Standings">Posiciones de
-              Grupo</div>
-            <div class="sc-sub" id="gr-sub" data-es="Haz clic para ordenar cada grupo del 1° al 4°"
-              data-en="Click to rank teams 1st to 4th in each group">Haz clic para ordenar cada grupo del 1° al 4°</div>
-            <div class="gtabs" id="tabs-g"></div>
-            <div id="groups-c"></div>
-          </div>
+        <!-- GROUPS -->
+        <div class="sc" id="sc-groups">
+          <div class="sc-title" id="gr-title" data-es="Posiciones de Grupo" data-en="Group Standings">Posiciones de
+            Grupo</div>
+          <div class="sc-sub" id="gr-sub" data-es="Haz clic para ordenar cada grupo del 1° al 4°"
+            data-en="Click to rank teams 1st to 4th in each group">Haz clic para ordenar cada grupo del 1° al 4°</div>
+          <div class="gtabs" id="tabs-g"></div>
+          <div id="groups-c"></div>
+        </div>
 
-          <!-- SPECIALS -->
-          <div class="sc" id="sc-specials">
-            <div class="sc-title" id="sp-title" data-es="Predicciones Especiales" data-en="Special Predictions">
-              Predicciones Especiales</div>
-            <div class="sc-sub" id="sp-sub" data-es="Las apuestas más valiosas del torneo"
-              data-en="The most valuable bets of the tournament">Las apuestas más valiosas del torneo</div>
-            <div id="specials-c"></div>
-          </div>
+        <!-- SPECIALS -->
+        <div class="sc" id="sc-specials">
+          <div class="sc-title" id="sp-title" data-es="Predicciones Especiales" data-en="Special Predictions">
+            Predicciones Especiales</div>
+          <div class="sc-sub" id="sp-sub" data-es="Las apuestas más valiosas del torneo"
+            data-en="The most valuable bets of the tournament">Las apuestas más valiosas del torneo</div>
+          <div id="specials-c"></div>
+        </div>
 
-          <!-- BRACKET -->
-          <div class="sc" id="sc-bracket">
-            <div class="sc-title" id="bk-title" data-es="Llave Eliminatoria" data-en="Knockout Bracket">Llave
-              Eliminatoria</div>
-            <div class="sc-sub" id="bk-sub" data-es="Predice el camino hasta la final · Mundial 2026"
-              data-en="Predict the path to the final · World Cup 2026">Predice el camino hasta la final · Mundial 2026
-            </div>
-            <div id="bracket-c"></div>
+        <!-- BRACKET -->
+        <div class="sc" id="sc-bracket">
+          <div class="sc-title" id="bk-title" data-es="Llave Eliminatoria" data-en="Knockout Bracket">Llave Eliminatoria
           </div>
+          <div class="sc-sub" id="bk-sub" data-es="Predice el camino hasta la final · Mundial 2026"
+            data-en="Predict the path to the final · World Cup 2026">Predice el camino hasta la final · Mundial 2026
+          </div>
+          <div id="bracket-c"></div>
+        </div>
 
-          <!-- RANK -->
-          <div class="sc" id="sc-rank">
-            <div class="sc-title" id="rk-title" data-es="Clasificación" data-en="Standings">Clasificación</div>
-            <div class="sc-sub" id="rk-sub" data-es="Puntos actualizados tras cada jornada · Tiempo real"
-              data-en="Points updated after each matchday · Live">Puntos actualizados tras cada jornada · Tiempo real
-            </div>
-            <div class="lbc">
-              <table class="lbt" id="lb-t"></table>
-            </div>
+        <!-- RANK -->
+        <div class="sc" id="sc-rank">
+          <div class="sc-title" id="rk-title" data-es="Clasificación" data-en="Standings">Clasificación</div>
+          <div class="sc-sub" id="rk-sub" data-es="Puntos actualizados tras cada jornada · Tiempo real"
+            data-en="Points updated after each matchday · Live">Puntos actualizados tras cada jornada · Tiempo real
           </div>
+          <div class="lbc">
+            <table class="lbt" id="lb-t"></table>
+          </div>
+        </div>
 
-          <!-- DOWNLOADS -->
-          <div class="sc" id="sc-downloads">
-            <div class="sc-title" id="dl-title" data-es="Descargas" data-en="Downloads">Descargas</div>
-            <div class="sc-sub" id="dl-sub" data-es="Descarga o comparte tu quiniela y la clasificación"
-              data-en="Download or share your predictions and standings">Descarga o comparte tu quiniela y la
-              clasificación</div>
-            <div
-              style="font-size:.72rem;font-weight:600;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.5rem"
-              id="dl-my" data-es="MI QUINIELA" data-en="MY PREDICTIONS">MI QUINIELA</div>
-            <div class="dlg">
-              <div class="dlc" onclick="dlPDF()">
-                <div class="dlc-i">📄</div>
-                <div class="dlc-n">PDF</div>
-                <div class="dlc-s" data-es="Mi predicción completa" data-en="My full prediction">Mi predicción completa
-                </div>
-              </div>
-              <div class="dlc" onclick="dlExcel()">
-                <div class="dlc-i">📊</div>
-                <div class="dlc-n">Excel (.xlsx)</div>
-                <div class="dlc-s" data-es="Todas mis predicciones" data-en="All my predictions">Todas mis predicciones
-                </div>
-              </div>
-              <div class="dlc" onclick="dlIG()">
-                <div class="dlc-i">📸</div>
-                <div class="dlc-n" data-es="Instagram Story" data-en="Instagram Story">Instagram Story</div>
-                <div class="dlc-s" data-es="Imagen lista para compartir" data-en="Image ready to share">Imagen lista
-                  para compartir</div>
+        <!-- DOWNLOADS -->
+        <div class="sc" id="sc-downloads">
+          <div class="sc-title" id="dl-title" data-es="Descargas" data-en="Downloads">Descargas</div>
+          <div class="sc-sub" id="dl-sub" data-es="Descarga o comparte tu quiniela y la clasificación"
+            data-en="Download or share your predictions and standings">Descarga o comparte tu quiniela y la
+            clasificación</div>
+          <div
+            style="font-size:.72rem;font-weight:600;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.5rem"
+            id="dl-my" data-es="MI QUINIELA" data-en="MY PREDICTIONS">MI QUINIELA</div>
+          <div class="dlg">
+            <div class="dlc" onclick="dlPDF()">
+              <div class="dlc-i">📄</div>
+              <div class="dlc-n">PDF</div>
+              <div class="dlc-s" data-es="Mi predicción completa" data-en="My full prediction">Mi predicción completa
               </div>
             </div>
-            <div
-              style="font-size:.72rem;font-weight:600;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-top:1.5rem;margin-bottom:.5rem"
-              id="dl-lb" data-es="CLASIFICACIÓN" data-en="STANDINGS">CLASIFICACIÓN</div>
-            <div class="dlg">
-              <div class="dlc" onclick="dlRankPDF()">
-                <div class="dlc-i">🏅</div>
-                <div class="dlc-n">PDF Ranking</div>
-                <div class="dlc-s" data-es="Tabla de clasificación" data-en="Standings table">Tabla de clasificación
-                </div>
+            <div class="dlc" onclick="dlExcel()">
+              <div class="dlc-i">📊</div>
+              <div class="dlc-n">Excel (.xlsx)</div>
+              <div class="dlc-s" data-es="Todas mis predicciones" data-en="All my predictions">Todas mis predicciones
               </div>
-              <div class="dlc" onclick="dlRankExcel()">
-                <div class="dlc-i">📊</div>
-                <div class="dlc-n">Excel Ranking</div>
-                <div class="dlc-s" data-es="Exportar tabla completa" data-en="Export full table">Exportar tabla completa
-                </div>
+            </div>
+            <div class="dlc" onclick="dlIG()">
+              <div class="dlc-i">📸</div>
+              <div class="dlc-n" data-es="Instagram Story" data-en="Instagram Story">Instagram Story</div>
+              <div class="dlc-s" data-es="Imagen lista para compartir" data-en="Image ready to share">Imagen lista para
+                compartir</div>
+            </div>
+          </div>
+          <div
+            style="font-size:.72rem;font-weight:600;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-top:1.5rem;margin-bottom:.5rem"
+            id="dl-lb" data-es="CLASIFICACIÓN" data-en="STANDINGS">CLASIFICACIÓN</div>
+          <div class="dlg">
+            <div class="dlc" onclick="dlRankPDF()">
+              <div class="dlc-i">🏅</div>
+              <div class="dlc-n">PDF Ranking</div>
+              <div class="dlc-s" data-es="Tabla de clasificación" data-en="Standings table">Tabla de clasificación</div>
+            </div>
+            <div class="dlc" onclick="dlRankExcel()">
+              <div class="dlc-i">📊</div>
+              <div class="dlc-n">Excel Ranking</div>
+              <div class="dlc-s" data-es="Exportar tabla completa" data-en="Export full table">Exportar tabla completa
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- RULES -->
-          <div class="sc" id="sc-rules">
-            <div class="sc-title" id="ru-title" data-es="Reglas de la Quiniela" data-en="Pool Rules">Reglas de la
-              Quiniela</div>
-            <div class="sc-sub" id="ru-sub" data-es="Cómo jugar y cómo se calculan los puntos"
-              data-en="How to play and how points are calculated">Cómo jugar y cómo se calculan los puntos</div>
-            <div class="rule-s">
-              <h3 id="ru-h1" data-es="🎯 Sistema de Puntuación" data-en="🎯 Scoring System">🎯 Sistema de Puntuación
-              </h3>
-              <div class="pts-r"><span id="ru-r1" data-es="Acierto de resultado (ganador o empate)"
-                  data-en="Correct result (winner or draw)">Acierto de resultado (ganador o empate)</span><span
-                  class="pts-v">5 pts</span></div>
-              <div class="pts-r"><span id="ru-r2" data-es="Gol exacto por equipo (solo si aciertas resultado)"
-                  data-en="Exact goals per team (only if correct result)">Gol exacto por equipo <em
-                    style="color:var(--m2)">(solo si aciertas resultado)</em></span><span class="pts-v">1 pt c/u</span>
-              </div>
-              <div class="pts-r"><span id="ru-r3" data-es="Posición exacta en grupo (por equipo acertado)"
-                  data-en="Exact group position (per correct team)">Posición exacta en grupo <em
-                    style="color:var(--m2)">(por equipo acertado)</em></span><span class="pts-v">1 pt</span></div>
-              <div class="pts-r"><span id="ru-r4" data-es="Campeón del Mundo" data-en="World Champion">Campeón del
-                  Mundo</span><span class="pts-v">20 pts</span></div>
-              <div class="pts-r"><span id="ru-r5" data-es="Goleador del torneo"
-                  data-en="Top Scorer of the tournament">Goleador del torneo</span><span class="pts-v">10 pts</span>
-              </div>
-              <div class="pts-r"><span id="ru-r6" data-es="Balón de Oro del torneo"
-                  data-en="Golden Ball of the tournament">Balón de Oro del torneo</span><span class="pts-v">10
-                  pts</span></div>
-              <div class="exb">
-                <span class="h" id="ru-ex-lbl" data-es="Partido real: Eqp1 (2) – Eqp2 (1)"
-                  data-en="Real match: Team1 (2) – Team2 (1)">Partido real: Eqp1 (2) – Eqp2 (1)</span><br><br>
-                <span id="ru-ex1" data-es="Tu pred 2–1 → +5 resultado + 1+1 goles = 7 pts ✓✓"
-                  data-en="Your pred 2–1 → +5 result + 1+1 goals = 7 pts ✓✓">Tu pred <span class="h">2–1</span> → <span
-                    class="g">+5 resultado + 1+1 goles = 7 pts ✓✓</span></span><br>
-                <span id="ru-ex2" data-es="Tu pred 2–0 → +5 resultado + 1 gol = 6 pts ✓"
-                  data-en="Your pred 2–0 → +5 result + 1 goal = 6 pts ✓">Tu pred <span class="h">2–0</span> → <span
-                    class="g">+5 resultado + 1 gol = 6 pts ✓</span></span><br>
-                <span id="ru-ex3" data-es="Tu pred 1–3 → 0 pts — resultado incorrecto"
-                  data-en="Your pred 1–3 → 0 pts — wrong result">Tu pred <span class="h">1–3</span> → <span class="r">0
-                    pts — resultado incorrecto, no suman goles</span></span>
-              </div>
+        <!-- RULES -->
+        <div class="sc" id="sc-rules">
+          <div class="sc-title" id="ru-title" data-es="Reglas de la Quiniela" data-en="Pool Rules">Reglas de la Quiniela
+          </div>
+          <div class="sc-sub" id="ru-sub" data-es="Cómo jugar y cómo se calculan los puntos"
+            data-en="How to play and how points are calculated">Cómo jugar y cómo se calculan los puntos</div>
+          <div class="rule-s">
+            <h3 id="ru-h1" data-es="🎯 Sistema de Puntuación" data-en="🎯 Scoring System">🎯 Sistema de Puntuación</h3>
+            <div class="pts-r"><span id="ru-r1" data-es="Acierto de resultado (ganador o empate)"
+                data-en="Correct result (winner or draw)">Acierto de resultado (ganador o empate)</span><span
+                class="pts-v">5 pts</span></div>
+            <div class="pts-r"><span id="ru-r2" data-es="Gol exacto por equipo (solo si aciertas resultado)"
+                data-en="Exact goals per team (only if correct result)">Gol exacto por equipo <em
+                  style="color:var(--m2)">(solo si aciertas resultado)</em></span><span class="pts-v">1 pt c/u</span>
             </div>
-            <div class="rule-s">
-              <h3 id="ru-h2" data-es="📋 Reglas Generales" data-en="📋 General Rules">📋 Reglas Generales</h3>
-              <ul style="padding-left:1.1rem;font-size:.83rem;line-height:2.1;color:var(--m2)" id="ru-list">
-                <li data-es="Puedes modificar predicciones hasta el inicio de cada partido."
-                  data-en="You can change predictions until each match starts.">Puedes modificar predicciones <strong
-                    style="color:var(--text)">hasta el inicio de cada partido</strong>.</li>
-                <li data-es="Sin acierto de resultado → 0 puntos de goles." data-en="Wrong result → 0 goal points.">Sin
-                  acierto de resultado → 0 puntos de goles.</li>
-                <li data-es="Posiciones de grupo se puntúan al final de la fase de grupos."
-                  data-en="Group standings are scored at the end of the group stage.">Posiciones de grupo se puntúan al
-                  final de la fase de grupos.</li>
-                <li data-es="Empate → gana quien tenga más aciertos exactos de marcador."
-                  data-en="Tie → most exact scores wins.">Empate → gana quien tenga más aciertos exactos de marcador.
-                </li>
-                <li data-es="El ganador se lleva una camiseta de la selección campeona."
-                  data-en="Winner gets a shirt of the World Champion team.">🏆 <strong style="color:var(--acc)">El
-                    ganador se lleva una camiseta de la selección campeona.</strong></li>
-              </ul>
+            <div class="pts-r"><span id="ru-r3" data-es="Posición exacta en grupo (por equipo acertado)"
+                data-en="Exact group position (per correct team)">Posición exacta en grupo <em
+                  style="color:var(--m2)">(por equipo acertado)</em></span><span class="pts-v">1 pt</span></div>
+            <div class="pts-r"><span id="ru-r4" data-es="Campeón del Mundo" data-en="World Champion">Campeón del
+                Mundo</span><span class="pts-v">20 pts</span></div>
+            <div class="pts-r"><span id="ru-r5" data-es="Goleador del torneo"
+                data-en="Top Scorer of the tournament">Goleador del torneo</span><span class="pts-v">10 pts</span></div>
+            <div class="pts-r"><span id="ru-r6" data-es="Balón de Oro del torneo"
+                data-en="Golden Ball of the tournament">Balón de Oro del torneo</span><span class="pts-v">10 pts</span>
             </div>
-            <div class="callout" id="ru-footer"
-              data-es="Torneo amistoso para darle aún más emoción a la fiesta mundialista. ¡Solo una vez cada 4 años!"
-              data-en="Friendly tournament to make the World Cup experience even more exciting. Once every 4 years!">
-              <em>"Torneo amistoso para darle aún más emoción a la fiesta mundialista. Solo una vez cada 4 años."</em>
+            <div class="exb">
+              <span class="h" id="ru-ex-lbl" data-es="Partido real: Eqp1 (2) – Eqp2 (1)"
+                data-en="Real match: Team1 (2) – Team2 (1)">Partido real: Eqp1 (2) – Eqp2 (1)</span><br><br>
+              <span id="ru-ex1" data-es="Tu pred 2–1 → +5 resultado + 1+1 goles = 7 pts ✓✓"
+                data-en="Your pred 2–1 → +5 result + 1+1 goals = 7 pts ✓✓">Tu pred <span class="h">2–1</span> → <span
+                  class="g">+5 resultado + 1+1 goles = 7 pts ✓✓</span></span><br>
+              <span id="ru-ex2" data-es="Tu pred 2–0 → +5 resultado + 1 gol = 6 pts ✓"
+                data-en="Your pred 2–0 → +5 result + 1 goal = 6 pts ✓">Tu pred <span class="h">2–0</span> → <span
+                  class="g">+5 resultado + 1 gol = 6 pts ✓</span></span><br>
+              <span id="ru-ex3" data-es="Tu pred 1–3 → 0 pts — resultado incorrecto"
+                data-en="Your pred 1–3 → 0 pts — wrong result">Tu pred <span class="h">1–3</span> → <span class="r">0
+                  pts — resultado incorrecto, no suman goles</span></span>
             </div>
           </div>
+          <div class="rule-s">
+            <h3 id="ru-h2" data-es="📋 Reglas Generales" data-en="📋 General Rules">📋 Reglas Generales</h3>
+            <ul style="padding-left:1.1rem;font-size:.83rem;line-height:2.1;color:var(--m2)" id="ru-list">
+              <li data-es="Puedes modificar predicciones hasta el inicio de cada partido."
+                data-en="You can change predictions until each match starts.">Puedes modificar predicciones <strong
+                  style="color:var(--text)">hasta el inicio de cada partido</strong>.</li>
+              <li data-es="Sin acierto de resultado → 0 puntos de goles." data-en="Wrong result → 0 goal points.">Sin
+                acierto de resultado → 0 puntos de goles.</li>
+              <li data-es="Posiciones de grupo se puntúan al final de la fase de grupos."
+                data-en="Group standings are scored at the end of the group stage.">Posiciones de grupo se puntúan al
+                final de la fase de grupos.</li>
+              <li data-es="Empate → gana quien tenga más aciertos exactos de marcador."
+                data-en="Tie → most exact scores wins.">Empate → gana quien tenga más aciertos exactos de marcador.</li>
+              <li data-es="El ganador se lleva una camiseta de la selección campeona."
+                data-en="Winner gets a shirt of the World Champion team.">🏆 <strong style="color:var(--acc)">El ganador
+                  se lleva una camiseta de la selección campeona.</strong></li>
+            </ul>
+          </div>
+          <div class="callout" id="ru-footer"
+            data-es="Torneo amistoso para darle aún más emoción a la fiesta mundialista. ¡Solo una vez cada 4 años!"
+            data-en="Friendly tournament to make the World Cup experience even more exciting. Once every 4 years!">
+            <em>"Torneo amistoso para darle aún más emoción a la fiesta mundialista. Solo una vez cada 4 años."</em>
+          </div>
+        </div>
 
       </main>
     </div>
@@ -2305,16 +2304,19 @@
       currentScreen = s;
       document.querySelectorAll('.sc').forEach(e => e.classList.remove('on'));
       document.querySelectorAll('.sni,.bni').forEach(e => e.classList.remove('on'));
-      document.getElementById('sc-' + s).classList.add('on');
+      const scEl = document.getElementById('sc-' + s);
+      if (scEl) scEl.classList.add('on');
       ['sni-' + s, 'bni-' + s].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('on') });
-      document.getElementById('main-area').scrollTop = 0;
-      if (s === 'matches') { renderMatches(ag); buildKoTabs(); renderKnockout(); }
-      if (s === 'groups') renderGroups(ag);
-      if (s === 'home') updateDash();
-      if (s === 'rank') loadLB();
-      if (s === 'specials') renderSpecials();
-      if (s === 'bracket') renderBracket();
-      if (s === 'downloads') renderDownloads();
+      const mainEl = document.getElementById('main-area');
+      if (mainEl) mainEl.scrollTop = 0;
+      try {
+        if (s === 'matches') { renderMatches(ag); buildKoTabs(); renderKnockout(); }
+        else if (s === 'groups') renderGroups(ag);
+        else if (s === 'home') updateDash();
+        else if (s === 'rank') loadLB();
+        else if (s === 'specials') renderSpecials();
+        else if (s === 'bracket') renderBracket();
+      } catch (e) { console.error('goTo error on screen', s, e); }
     }
     function buildTabs(cid, fn) {
       document.getElementById(cid).innerHTML = GD.map(g => `<div class="gtab${g.id === ag ? ' on' : ''}" onclick="${fn}('${g.id}')">Grp ${g.id}</div>`).join('');
@@ -2335,32 +2337,36 @@
 
     // ══════════ MATCHES ══════════
     function renderMatches(gid) {
-      let lockBanner = '';
-      if (SUBMITTED) lockBanner = `<div class="locked-banner" style="margin-bottom:.85rem"><span class="li">🔒</span><div><h4>${lang === 'es' ? 'Quiniela cerrada' : 'Predictions locked'}</h4><p>${lang === 'es' ? 'Ya no puedes modificar tus predicciones.' : 'You can no longer edit your predictions.'}</p></div></div>`;
-      let html = lockBanner;
-      MD.filter(m => m.g === gid).forEach(m => {
-        const p = preds[m.id] || {}, s1 = p.s1 != null ? p.s1 : '', s2 = p.s2 != null ? p.s2 : '';
-        const filled = s1 !== '' && s2 !== '', res = results[m.id], played = res?.played;
-        let pts = 0, state = '';
-        if (played && filled) {
-          pts = calcPts({ s1: +s1, s2: +s2 }, { sh: res.sh, sa: res.sa });
-          const pr = +s1 > +s2 ? 1 : +s1 < +s2 ? -1 : 0, rr = res.sh > res.sa ? 1 : res.sh < res.sa ? -1 : 0; state = pr === rr ? 'correct' : 'wrong'
-        }
-        const ih = played ? `<span class="si" style="background:none;border-color:transparent;text-align:center;font-weight:700">${s1 !== '' ? s1 : '–'}</span>`
-          : `<input class="si" type="number" min="0" max="99" value="${s1}" placeholder="–" oninput="sp('${m.id}','s1',this.value)"${SUBMITTED ? ' disabled style="opacity:.55;cursor:not-allowed"' : ''}>`;
-        const ia = played ? `<span class="si" style="background:none;border-color:transparent;text-align:center;font-weight:700">${s2 !== '' ? s2 : '–'}</span>`
-          : `<input class="si" type="number" min="0" max="99" value="${s2}" placeholder="–" oninput="sp('${m.id}','s2',this.value)"${SUBMITTED ? ' disabled style="opacity:.55;cursor:not-allowed"' : ''}>`;
-        html += `<div class="mc${filled ? ' filled' : ''}${played && state ? ' ' + state : ''}" data-mid="${m.id}">
+      const container = document.getElementById('matches-c');
+      if (!container) return;
+      try {
+        let lockBanner = '';
+        if (SUBMITTED) lockBanner = `<div class="locked-banner" style="margin-bottom:.85rem"><span class="li">🔒</span><div><h4>${lang === 'es' ? 'Quiniela cerrada' : 'Predictions locked'}</h4><p>${lang === 'es' ? 'Ya no puedes modificar tus predicciones.' : 'You can no longer edit your predictions.'}</p></div></div>`;
+        let html = lockBanner;
+        MD.filter(m => m.g === gid).forEach(m => {
+          const p = preds[m.id] || {}, s1 = p.s1 != null ? p.s1 : '', s2 = p.s2 != null ? p.s2 : '';
+          const filled = s1 !== '' && s2 !== '', res = results[m.id], played = res?.played;
+          let pts = 0, state = '';
+          if (played && filled) {
+            pts = calcPts({ s1: +s1, s2: +s2 }, { sh: res.sh, sa: res.sa });
+            const pr = +s1 > +s2 ? 1 : +s1 < +s2 ? -1 : 0, rr = res.sh > res.sa ? 1 : res.sh < res.sa ? -1 : 0; state = pr === rr ? 'correct' : 'wrong'
+          }
+          const ih = played ? `<span class="si" style="background:none;border-color:transparent;text-align:center;font-weight:700">${s1 !== '' ? s1 : '–'}</span>`
+            : `<input class="si" type="number" min="0" max="99" value="${s1}" placeholder="–" oninput="sp('${m.id}','s1',this.value)"${SUBMITTED ? ' disabled' : ''}>`;
+          const ia = played ? `<span class="si" style="background:none;border-color:transparent;text-align:center;font-weight:700">${s2 !== '' ? s2 : '–'}</span>`
+            : `<input class="si" type="number" min="0" max="99" value="${s2}" placeholder="–" oninput="sp('${m.id}','s2',this.value)"${SUBMITTED ? ' disabled' : ''}>`;
+          html += `<div class="mc${filled ? ' filled' : ''}${played && state ? ' ' + state : ''}" data-mid="${m.id}">
       <span class="md">${m.d}</span>
       <div class="mt"><span class="fl">${m.hf}</span><span class="nm">${m.h}</span></div>
       ${ih}<span class="sep">–</span>${ia}
       <div class="mt aw"><span class="fl">${m.af}</span><span class="nm">${m.a}</span></div>
       ${played ? `<span class="rb ${state === 'correct' ? 'rb-ok' : 'rb-no'}">${state === 'correct' ? '✓' : '✗'}</span><span class="rb-pts">${pts > 0 ? '+' + pts : pts}pts</span>` : ''}
     </div>`;
-      });
-      html += `<div id="gtbl-${gid}"></div>`;
-      document.getElementById('matches-c').innerHTML = html;
-      updGTable(gid);
+        });
+        html += `<div id="gtbl-${gid}"></div>`;
+        container.innerHTML = html;
+        updGTable(gid);
+      } catch (e) { console.error('renderMatches error', e); container.innerHTML = `<div class="callout">Error cargando partidos: ${e.message}</div>`; }
     }
     function calcPts(pred, real) {
       if (!real || real.sh == null) return 0;
@@ -2378,48 +2384,49 @@
         await sb.from('predictions').upsert({ user_id: CU.id, match_id: mid, score_home: p.s1, score_away: p.s2, updated_at: new Date().toISOString() }, { onConflict: 'user_id,match_id' });
     }
 
-    // ══════════ KNOCKOUT INLINE ══════════
+    // ══════════ KNOCKOUT INLINE (matches screen) ══════════
     function renderKnockout() {
       const el = document.getElementById('knockout-c');
       if (!el) return;
-      // thirds picker only needed for r32
-      let thirdsHtml = '';
-      if (koRound === 'r32') {
-        const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
-        const thirdsCount = bkt.thirds.filter(Boolean).length;
-        if (allThirds.length > 0) {
-          const items = allThirds.map(({ gid, tm }) => {
-            const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n);
-            const dis = thirdsCount >= 8 && !sel;
-            return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
+      try {
+        // thirds picker only needed for r32
+        let thirdsHtml = '';
+        if (koRound === 'r32') {
+          const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
+          const thirdsCount = bkt.thirds.filter(Boolean).length;
+          if (allThirds.length > 0) {
+            const items = allThirds.map(({ gid, tm }) => {
+              const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n);
+              const dis = thirdsCount >= 8 && !sel;
+              return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
           <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px;flex-shrink:0">${gid}</span>
           <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}
         </div>`;
-          }).join('');
-          thirdsHtml = `<div style="margin-bottom:1.1rem">
+            }).join('');
+            thirdsHtml = `<div style="margin-bottom:1.1rem">
         <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lang === 'es' ? 'Mejores terceros (elige 8)' : 'Best 3rd-place teams (pick 8)'}</div>
         <div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${bkt.thirds.filter(Boolean).length}/8 ${lang === 'es' ? 'elegidos' : 'selected'}</div>
         <div class="thirds-pick">${items}</div>
       </div>`;
-        } else {
-          thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros disponibles.' : 'Complete group standings to see available best third-place teams.'}</div>`;
+          } else {
+            thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros disponibles.' : 'Complete group standings to see available best third-place teams.'}</div>`;
+          }
         }
-      }
-      let matchesHtml = '';
-      if (koRound === 'r32') {
-        matchesHtml = `<div class="ko-grid">${R32_DEF.map((def, i) => mkKoMatch(i, bktTeam(def[0]), bktTeam(def[1]), bkt.r32[i], 'r32')).join('')}</div>`;
-      } else if (koRound === 'r16') {
-        matchesHtml = `<div class="ko-grid">${R16_P.map((pair, i) => mkKoMatch(i, bkt.r32[pair[0]], bkt.r32[pair[1]], bkt.r16[i], 'r16')).join('')}</div>`;
-      } else if (koRound === 'qf') {
-        matchesHtml = `<div class="ko-grid">${QF_P.map((pair, i) => mkKoMatch(i, bkt.r16[pair[0]], bkt.r16[pair[1]], bkt.qf[i], 'qf')).join('')}</div>`;
-      } else if (koRound === 'sf') {
-        matchesHtml = `<div class="ko-grid">${SF_P.map((pair, i) => mkKoMatch(i, bkt.qf[pair[0]], bkt.qf[pair[1]], bkt.sf[i], 'sf')).join('')}</div>`;
-      } else if (koRound === 'final') {
-        // SF losers for 3rd place
-        const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(tx => tx && bkt.sf[0] && tx.n !== bkt.sf[0].n) : null;
-        const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(tx => tx && bkt.sf[1] && tx.n !== bkt.sf[1].n) : null;
-        const champBanner = bkt.final ? `<div class="champ-banner"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
-        matchesHtml = `<div class="ko-grid">
+        let matchesHtml = '';
+        if (koRound === 'r32') {
+          matchesHtml = `<div class="ko-grid">${R32_DEF.map((def, i) => mkKoMatch(i, bktTeam(def[0]), bktTeam(def[1]), bkt.r32[i], 'r32')).join('')}</div>`;
+        } else if (koRound === 'r16') {
+          matchesHtml = `<div class="ko-grid">${R16_P.map((pair, i) => mkKoMatch(i, bkt.r32[pair[0]], bkt.r32[pair[1]], bkt.r16[i], 'r16')).join('')}</div>`;
+        } else if (koRound === 'qf') {
+          matchesHtml = `<div class="ko-grid">${QF_P.map((pair, i) => mkKoMatch(i, bkt.r16[pair[0]], bkt.r16[pair[1]], bkt.qf[i], 'qf')).join('')}</div>`;
+        } else if (koRound === 'sf') {
+          matchesHtml = `<div class="ko-grid">${SF_P.map((pair, i) => mkKoMatch(i, bkt.qf[pair[0]], bkt.qf[pair[1]], bkt.sf[i], 'sf')).join('')}</div>`;
+        } else if (koRound === 'final') {
+          // SF losers for 3rd place
+          const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(tx => tx && bkt.sf[0] && tx.n !== bkt.sf[0].n) : null;
+          const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(tx => tx && bkt.sf[1] && tx.n !== bkt.sf[1].n) : null;
+          const champBanner = bkt.final ? `<div class="champ-banner"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
+          matchesHtml = `<div class="ko-grid">
       <div>
         <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? 'FINAL' : 'FINAL'}</div>
         ${mkKoMatch(0, bkt.sf[0], bkt.sf[1], bkt.final, 'final')}
@@ -2429,10 +2436,12 @@
         ${mkKoMatch(0, lo0, lo1, bkt.third, 'third')}
       </div>
     </div>${champBanner}`;
-      }
-      el.innerHTML = thirdsHtml + matchesHtml;
+        }
+        el.innerHTML = thirdsHtml + matchesHtml;
+      } catch (e) { console.error('renderKnockout error', e); el.innerHTML = `<div class="callout">Error cargando llave: ${e.message}</div>`; }
     }
 
+    // Remove dead _origAdvBkt reference - advBkt is defined once
     function mkKoMatch(idx, t1, t2, winner, roundKey) {
       const lbl = roundKey === 'r32' ? `M${idx + 1}` : roundKey === 'r16' ? `${lang === 'es' ? 'Octavos' : 'R16'} ${idx + 1}` : roundKey === 'qf' ? `${lang === 'es' ? 'Cuartos' : 'QF'} ${idx + 1}` : roundKey === 'sf' ? `${lang === 'es' ? 'Semifinal' : 'SF'} ${idx + 1}` : roundKey === 'third' ? `${lang === 'es' ? '3° Lugar' : '3rd Place'}` : `${lang === 'es' ? 'Final' : 'Final'}`;
       const mkT = (tm) => {
@@ -2445,8 +2454,7 @@
       return `<div class="ko-mc${winner ? ' filled' : ''}"><div class="ko-mc-lbl"><span>${lbl}</span>${winner ? `<span style="font-size:.58rem;color:var(--grn)">${winner.f} ${winner.n}</span>` : ''}</div>${mkT(t1)}${mkT(t2)}</div>`;
     }
 
-    // Override advBkt to also refresh inline knockout
-    const _origAdvBkt = window.advBkt;
+    // ══════════ BRACKET ADVANCE / THIRDS ══════════
     function advBkt(roundKey, idx, name, flag) {
       if (SUBMITTED) return; // locked
       const tm = { n: name, f: flag };
@@ -2505,18 +2513,22 @@
 
     // ══════════ GROUPS RANKING ══════════
     function renderGroups(gid) {
-      const g = GD.find(x => x.id === gid), ranks = gRanks[gid] || [];
-      let html = `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
-      g.t.forEach((tm, i) => {
-        const pos = ranks.indexOf(i), rc = pos === 0 ? 'r1' : pos === 1 ? 'r2' : pos === 2 ? 'r3' : '';
-        html += `<div class="rk" onclick="clickRk('${gid}',${i})">
-      <div class="rkb ${rc}">${pos >= 0 ? pos + 1 + '°' : '?'}</div>
-      <span style="font-size:1.05rem">${tm.f}</span><span style="font-size:.82rem;font-weight:500">${tm.n}</span>
-      ${pos === 0 || pos === 1 ? `<span class="pill pill-g">${lang === 'es' ? 'Clasifica' : 'Qualifies'}</span>` : ''}
-      ${pos === 2 ? `<span class="pill pill-3">${lang === 'es' ? '3° lugar' : '3rd place'}</span>` : ''}
-    </div>`;
-      });
-      document.getElementById('groups-c').innerHTML = html;
+      const container = document.getElementById('groups-c');
+      if (!container) return;
+      try {
+        const g = GD.find(x => x.id === gid), ranks = gRanks[gid] || [];
+        let html = `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
+        g.t.forEach((tm, i) => {
+          const pos = ranks.indexOf(i), rc = pos === 0 ? 'r1' : pos === 1 ? 'r2' : pos === 2 ? 'r3' : '';
+          html += `<div class="rk" onclick="clickRk('${gid}',${i})">
+        <div class="rkb ${rc}">${pos >= 0 ? pos + 1 + '°' : '?'}</div>
+        <span style="font-size:1.05rem">${tm.f}</span><span style="font-size:.82rem;font-weight:500">${tm.n}</span>
+        ${pos === 0 || pos === 1 ? `<span class="pill pill-g">${lang === 'es' ? 'Clasifica' : 'Qualifies'}</span>` : ''}
+        ${pos === 2 ? `<span class="pill pill-3">${lang === 'es' ? '3° lugar' : '3rd place'}</span>` : ''}
+      </div>`;
+        });
+        container.innerHTML = html;
+      } catch (e) { console.error('renderGroups error', e); container.innerHTML = `<div class="callout">Error: ${e.message}</div>`; }
     }
     async function clickRk(gid, idx) {
       if (SUBMITTED) return; // locked
@@ -2562,31 +2574,73 @@
       spT[key] = setTimeout(async () => await sb.from('special_predictions').upsert({ user_id: CU.id, champion: specials.champion || null, champion_flag: specials.champion_flag || null, top_scorer: specials.top_scorer || null, golden_ball: specials.golden_ball || null, updated_at: new Date().toISOString() }, { onConflict: 'user_id' }), 700);
     }
 
-    // ══════════ BRACKET (standalone screen - reuses same data) ══════════
+    // ══════════ BRACKET (standalone screen) ══════════
     function bktTeam(src) {
-      if (src.g !== undefined) { const grp = GD.find(g => g.id === src.g), ranks = gRanks[src.g] || []; const idx = ranks[src.p]; return idx !== undefined ? grp.t[idx] : null }
-      if (src.x !== undefined) return bkt.thirds[src.x] || null;
+      try {
+        if (src.g !== undefined) { const grp = GD.find(g => g.id === src.g), ranks = gRanks[src.g] || []; const idx = ranks[src.p]; return idx !== undefined ? grp.t[idx] : null }
+        if (src.x !== undefined) return bkt.thirds[src.x] || null;
+      } catch (e) { }
       return null;
     }
+
     function renderBracket() {
-      const rounds = KO_ROUNDS;
-      const tabs = rounds.map(r => `<div class="bkt-rtab${bktRound === r.key ? ' on' : ''}" onclick="swBktRound('${r.key}')">${lang === 'es' ? r.es : r.en}</div>`).join('');
-      koRound = bktRound;
-      let inner = '';
-      if (document.getElementById('bracket-c')) {
-        // Mirror the knockout content using the same render function
-        koRound = bktRound;
-        inner = `<div class="bkt-rounds-wrap">${tabs}</div><div id="knockout-bkt-c"></div>`;
-        document.getElementById('bracket-c').innerHTML = `<div class="bkt-info">${t('bkt_click')}</div>${inner}`;
-        // Temporarily use bracket-specific container
-        const tmp = document.getElementById('knockout-c');
-        const elBkt = document.getElementById('knockout-bkt-c');
-        document.getElementById('knockout-c') || document.body.appendChild(Object.assign(document.createElement('div'), { id: 'knockout-c', style: 'display:none' }));
-        renderKnockout();
-        elBkt.innerHTML = document.getElementById('knockout-c').innerHTML;
-      }
+      const el = document.getElementById('bracket-c');
+      if (!el) return;
+      try {
+        const rounds = KO_ROUNDS;
+        const tabs = rounds.map(r => `<div class="bkt-rtab${bktRound === r.key ? ' on' : ''}" onclick="swBktRound('${r.key}')">${lang === 'es' ? r.es : r.en}</div>`).join('');
+        let body = '';
+        if (bktRound === 'r32') body = renderBktR32();
+        else if (bktRound === 'r16') body = renderBktRound(bkt.r32, R16_P, bkt.r16, 'r16');
+        else if (bktRound === 'qf') body = renderBktRound(bkt.r16, QF_P, bkt.qf, 'qf');
+        else if (bktRound === 'sf') body = renderBktRound(bkt.qf, SF_P, bkt.sf, 'sf');
+        else if (bktRound === 'final') body = renderBktFinal();
+        el.innerHTML = `<div class="bkt-info">${t('bkt_click')}</div><div class="bkt-rounds-wrap">${tabs}</div>${body}`;
+      } catch (e) { el.innerHTML = `<div class="callout">Error: ${e.message}</div>`; }
     }
-    function swBktRound(r) { bktRound = r; koRound = r; renderBracket() }
+    function swBktRound(r) { bktRound = r; koRound = r; renderBracket(); }
+
+    function renderBktR32() {
+      const allThirds = GD.map(g => { const r = gRanks[g.id] || []; if (r.length < 3) return null; return { gid: g.id, tm: g.t[r[2]] } }).filter(Boolean);
+      const thirdsCount = bkt.thirds.filter(Boolean).length;
+      let thirdsHtml = '';
+      if (allThirds.length > 0) {
+        const items = allThirds.map(({ gid, tm }) => {
+          const sel = bkt.thirds.some(t3 => t3 && t3.n === tm.n), dis = thirdsCount >= 8 && !sel;
+          return `<div class="tp-item${sel ? ' sel' : ''}${dis ? ' disabled' : ''}" onclick="clickThird('${gid}','${tm.n.replace(/'/g, "\\'")}','${tm.f}')">
+        <span style="font-size:.6rem;font-weight:700;background:var(--surf3);color:var(--acc);padding:1px 4px;border-radius:3px">${gid} 3°</span>
+        <span>${tm.f}</span><span>${tm.n}</span>${sel ? '<span style="margin-left:auto">✓</span>' : ''}
+      </div>`;
+        }).join('');
+        thirdsHtml = `<div style="margin-bottom:1.1rem">
+      <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem">${lang === 'es' ? 'Mejores terceros (elige 8)' : 'Best 3rd-place teams (pick 8)'}</div>
+      <div style="font-size:.72rem;color:var(--acc);font-weight:600;margin-bottom:.45rem">${thirdsCount}/8 ${lang === 'es' ? 'elegidos' : 'selected'}</div>
+      <div class="thirds-pick">${items}</div>
+    </div>`;
+      } else {
+        thirdsHtml = `<div class="callout" style="margin-bottom:1rem">⬆️ ${lang === 'es' ? 'Completa las posiciones de grupo para ver los mejores terceros.' : 'Complete group standings to see best third-place teams.'}</div>`;
+      }
+      const matchesHtml = R32_DEF.map((def, i) => mkKoMatch(i, bktTeam(def[0]), bktTeam(def[1]), bkt.r32[i], 'r32')).join('');
+      return `${thirdsHtml}<div class="bkt-matches-grid">${matchesHtml}</div>`;
+    }
+    function renderBktRound(prevW, pairs, curW, rk) {
+      return `<div class="bkt-matches-grid">${pairs.map((pair, i) => mkKoMatch(i, prevW[pair[0]], prevW[pair[1]], curW[i], rk)).join('')}</div>`;
+    }
+    function renderBktFinal() {
+      const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(x => x && bkt.sf[0] && x.n !== bkt.sf[0].n) : null;
+      const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(x => x && bkt.sf[1] && x.n !== bkt.sf[1].n) : null;
+      const champBanner = bkt.final ? `<div class="champ-banner" style="margin-top:1rem"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
+      return `<div class="bkt-matches-grid">
+    <div>
+      <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">FINAL</div>
+      ${mkKoMatch(0, bkt.sf[0], bkt.sf[1], bkt.final, 'final')}
+    </div>
+    <div>
+      <div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? '3° Y 4° LUGAR' : '3RD PLACE'}</div>
+      ${mkKoMatch(0, lo0, lo1, bkt.third, 'third')}
+    </div>
+  </div>${champBanner}`;
+    }
 
     // ══════════ DASHBOARD ══════════
     function updateDash() {
