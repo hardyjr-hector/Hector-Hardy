@@ -2192,13 +2192,36 @@
     ];
 
     // Bracket matchup definitions — {g,p} = group G position P; {x:N} = N-th best 3rd slot
+    // ── Official FIFA WC 2026 R32 bracket (matches P73–P88) ──
+    // Sources: FIFA official calendar + ESPN/Olympics confirmed pairings
     const R32_DEF = [
-      [{ g: 'A', p: 0 }, { g: 'B', p: 1 }], [{ g: 'C', p: 0 }, { g: 'D', p: 1 }], [{ g: 'E', p: 0 }, { g: 'F', p: 1 }], [{ g: 'G', p: 0 }, { g: 'H', p: 1 }],
-      [{ g: 'I', p: 0 }, { g: 'J', p: 1 }], [{ g: 'K', p: 0 }, { g: 'L', p: 1 }], [{ g: 'B', p: 0 }, { g: 'A', p: 1 }], [{ g: 'D', p: 0 }, { g: 'C', p: 1 }],
-      [{ g: 'F', p: 0 }, { g: 'E', p: 1 }], [{ g: 'H', p: 0 }, { g: 'G', p: 1 }], [{ g: 'J', p: 0 }, { g: 'I', p: 1 }], [{ g: 'L', p: 0 }, { g: 'K', p: 1 }],
-      [{ x: 0 }, { x: 1 }], [{ x: 2 }, { x: 3 }], [{ x: 4 }, { x: 5 }], [{ x: 6 }, { x: 7 }]
+      [{ g: 'A', p: 1 }, { g: 'B', p: 1 }],   // P73: 2A vs 2B
+      [{ g: 'E', p: 0 }, { x: 0 }],          // P74: 1E vs best3(A/B/C/D/F)
+      [{ g: 'F', p: 0 }, { g: 'C', p: 1 }],   // P75: 1F vs 2C
+      [{ g: 'D', p: 0 }, { g: 'F', p: 1 }],   // P76: 1D vs 2F
+      [{ g: 'I', p: 0 }, { x: 1 }],          // P77: 1I vs best3(C/D/F/G/H)
+      [{ g: 'E', p: 1 }, { g: 'I', p: 1 }],   // P78: 2E vs 2I
+      [{ g: 'A', p: 0 }, { x: 2 }],          // P79: 1A vs best3(C/E/F/H/I)
+      [{ g: 'L', p: 0 }, { x: 3 }],          // P80: 1L vs best3(E/H/I/J/K)
+      [{ g: 'C', p: 0 }, { x: 4 }],          // P81: 1C vs best3
+      [{ g: 'G', p: 0 }, { x: 5 }],          // P82: 1G vs best3
+      [{ g: 'K', p: 1 }, { g: 'L', p: 1 }],   // P83: 2K vs 2L
+      [{ g: 'H', p: 0 }, { g: 'J', p: 1 }],   // P84: 1H vs 2J
+      [{ g: 'B', p: 0 }, { x: 6 }],          // P85: 1B vs best3
+      [{ g: 'J', p: 0 }, { g: 'H', p: 1 }],   // P86: 1J vs 2H
+      [{ g: 'K', p: 0 }, { x: 7 }],          // P87: 1K vs best3
+      [{ g: 'D', p: 1 }, { g: 'G', p: 1 }],   // P88: 2D vs 2G
     ];
-    const R16_P = [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9], [10, 11], [12, 13], [14, 15]];
+    // R16: P89–P96 — official octavos de final bracket
+    // P89: W(P74) vs W(P77) → idx 1 vs idx 4
+    // P90: W(P73) vs W(P75) → idx 0 vs idx 2
+    // P91: W(P76) vs W(P78) → idx 3 vs idx 5
+    // P92: W(P79) vs W(P80) → idx 6 vs idx 7
+    // P93: W(P83) vs W(P84) → idx 10 vs idx 11
+    // P94: W(P81) vs W(P82) → idx 8 vs idx 9
+    // P95: W(P85) vs W(P86) → idx 12 vs idx 13
+    // P96: W(P87) vs W(P88) → idx 14 vs idx 15
+    const R16_P = [[1, 4], [0, 2], [3, 5], [6, 7], [10, 11], [8, 9], [12, 13], [14, 15]];
     const QF_P = [[0, 1], [2, 3], [4, 5], [6, 7]];
     const SF_P = [[0, 1], [2, 3]];
 
@@ -2269,15 +2292,43 @@
       document.getElementById('app').classList.add('on');
       await Promise.all([loadProfile(), loadPreds(), loadGRanks(), loadSpecials(), loadResults()]);
       loadBkt();
-      // Check if standings were already auto-calc'd (all gRanks filled from DB)
+      // Auto-calc any group that's fully predicted but missing from gRanks
+      GD.forEach(g => {
+        if (groupComplete(g.id) && (!(gRanks[g.id] || []).length || gRanks[g.id].length < 4)) {
+          autoCalcGroup(g.id);
+        }
+      });
       autoCalcDone = GD.every(g => (gRanks[g.id] || []).length === 4);
+      // If gRanks full but thirds not populated (e.g. first load after predictions), rebuild them
+      if (autoCalcDone && bkt.thirds.filter(Boolean).length < 8) {
+        rebuildThirdsFromRanks();
+      }
       renderNav(); buildTabs('tabs-m', 'swM'); buildTabs('tabs-g', 'swG'); updateDash(); loadLB(); goTo('home');
       sb.channel('pts').on('postgres_changes', { event: '*', schema: 'public', table: 'user_points' }, () => loadLB()).subscribe();
-      // Silent auto-calc if all 72 filled but gRanks not yet complete
       if (!autoCalcDone) {
         const filled = MD.filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
         if (filled === 72) tryAutoCalc();
       }
+    }
+
+    // Rebuild bkt.thirds from existing gRanks (used on reload when thirds are missing)
+    function rebuildThirdsFromRanks() {
+      const thirds = GD.map(g => {
+        const ranks = gRanks[g.id] || [];
+        if (ranks.length < 3) return null;
+        const idx = ranks[2]; // 3rd place index
+        const tm = g.t[idx];
+        // Get performance stats from predictions
+        const rows = calcGs(g.id);
+        const stats = rows.find(s => s.t.n === tm.n) || { pg: 0, pe: 0, gf: 0, gc: 0, pj: 0 };
+        return { gid: g.id, tm, i: idx, pg: stats.pg || 0, pe: stats.pe || 0, pj: stats.pj || 0, gf: stats.gf || 0, gc: stats.gc || 0 };
+      }).filter(Boolean);
+      thirds.sort(cmpTeam);
+      bkt.thirds = Array(8).fill(null);
+      thirds.slice(0, 8).forEach((row, slot) => {
+        bkt.thirds[slot] = { n: row.tm.n, f: row.tm.f, gid: row.gid };
+      });
+      saveBkt();
     }
     async function loadProfile() {
       const { data } = await sb.from('profiles').select('*').eq('id', CU.id).single();
@@ -2383,17 +2434,46 @@
       if (pr !== rr) return 0; let p = 5; if (pred.s1 === real.sh) p++; if (pred.s2 === real.sa) p++; return p;
     }
     async function sp(mid, key, val) {
-      if (SUBMITTED) return; // locked
+      if (SUBMITTED) return;
       if (!preds[mid]) preds[mid] = {}; preds[mid][key] = val === '' ? null : +val;
       const card = document.querySelector(`[data-mid="${mid}"]`);
       if (card) { const p = preds[mid]; card.classList.toggle('filled', p && p.s1 != null && p.s2 != null) }
-      const m = MD.find(x => x.id === mid); if (m) updGTable(m.g); updateDash();
+      const m = MD.find(x => x.id === mid);
+      if (m) {
+        updGTable(m.g);
+        // Per-group auto-calc: if all 6 matches in this group are now predicted, auto-sort it
+        if (groupComplete(m.g)) {
+          autoCalcGroup(m.g);
+          // Refresh groups view if that group is showing
+          if (currentScreen === 'groups' && ag === m.g) renderGroups(ag);
+          else if (currentScreen === 'matches') renderKnockout();
+        }
+      }
+      updateDash();
       const p = preds[mid];
       if (p.s1 != null && p.s2 != null) {
         await sb.from('predictions').upsert({ user_id: CU.id, match_id: mid, score_home: p.s1, score_away: p.s2, updated_at: new Date().toISOString() }, { onConflict: 'user_id,match_id' });
       }
-      // Try auto-calculating standings when all 72 are done
       tryAutoCalc();
+    }
+
+    // Auto-calc a single group's standings from match predictions
+    function autoCalcGroup(gid) {
+      const g = GD.find(x => x.id === gid), st = {};
+      g.t.forEach((tm, i) => { st[i] = { i, pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0 } });
+      MD.filter(m => m.g === gid).forEach(m => {
+        const p = preds[m.id]; if (!p || p.s1 == null || p.s2 == null) return;
+        const s1 = +p.s1, s2 = +p.s2; if (isNaN(s1) || isNaN(s2)) return;
+        const hi = g.t.findIndex(x => x.n === m.h), ai = g.t.findIndex(x => x.n === m.a);
+        const h = st[hi], a = st[ai];
+        h.pj++; a.pj++; h.gf += s1; h.gc += s2; a.gf += s2; a.gc += s1;
+        s1 > s2 ? (h.pg++, a.pp++) : s2 > s1 ? (a.pg++, h.pp++) : (h.pe++, a.pe++);
+      });
+      const sorted = Object.values(st).sort(cmpTeam);
+      gRanks[gid] = sorted.map(s => s.i);
+      // Save to Supabase (debounced)
+      clearTimeout(sp._grTimer);
+      sp._grTimer = setTimeout(() => saveGRanksToSupabase(), 600);
     }
 
     // ══════════ KNOCKOUT INLINE (matches screen) ══════════
@@ -2645,46 +2725,34 @@
       if (!container) return;
       try {
         const g = GD.find(x => x.id === gid), ranks = gRanks[gid] || [];
-        const isAuto = autoCalcDone && groupComplete(gid);
+        const grpComplete = groupComplete(gid);
         const allFilled = allGroupsComplete();
 
-        // Header with auto badge and recalc button
         let header = '';
-        if (isAuto) {
-          header = `<div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.85rem;padding:.6rem .85rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:8px">
-        <span style="font-size:.9rem">✅</span>
-        <div style="flex:1">
-          <div style="font-size:.78rem;font-weight:600;color:var(--grn)">${lang === 'es' ? 'Calculado automáticamente' : 'Auto-calculated'}</div>
-          <div style="font-size:.7rem;color:var(--m2)">${lang === 'es' ? 'Basado en tus 72 predicciones de grupo' : 'Based on your 72 group predictions'}</div>
-        </div>
-        ${!SUBMITTED ? `<button onclick="manualRecalc()" style="font-size:.7rem;padding:.28rem .65rem;border-radius:6px;border:1px solid var(--bdr2);background:transparent;color:var(--m2);cursor:pointer;font-family:inherit" title="${lang === 'es' ? 'Recalcular con tus predicciones actuales' : 'Recalculate from current predictions'}">${lang === 'es' ? '↺ Recalcular' : '↺ Recalculate'}</button>` : ''}
+        if (grpComplete) {
+          // All 6 matches predicted for this group → auto-sorted, show badge
+          const recalcBtn = !SUBMITTED ? `<button onclick="manualRecalcGroup('${gid}')" style="font-size:.68rem;padding:.24rem .6rem;border-radius:5px;border:1px solid var(--bdr2);background:transparent;color:var(--m2);cursor:pointer;font-family:inherit">↺</button>` : '';
+          header = `<div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem;padding:.5rem .8rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:7px;font-size:.77rem">
+        <span>✅</span>
+        <span style="color:var(--grn);font-weight:600">${lang === 'es' ? 'Calculado desde tus partidos' : 'Calculated from your matches'}</span>
+        ${recalcBtn}
       </div>`;
-        } else if (allFilled && !autoCalcDone) {
-          header = `<div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.85rem;padding:.6rem .85rem;background:rgba(232,184,75,.07);border:1px solid rgba(232,184,75,.2);border-radius:8px">
-        <span style="font-size:.9rem">⚡</span>
-        <div style="flex:1">
-          <div style="font-size:.78rem;font-weight:600;color:var(--acc)">${lang === 'es' ? '72 partidos completados' : '72 matches completed'}</div>
-          <div style="font-size:.7rem;color:var(--m2)">${lang === 'es' ? 'Pulsa para calcular posiciones automáticamente' : 'Press to auto-calculate standings'}</div>
-        </div>
-        <button onclick="manualRecalc()" style="font-size:.75rem;font-weight:600;padding:.35rem .8rem;border-radius:6px;border:none;background:var(--acc);color:#000;cursor:pointer;font-family:inherit">${lang === 'es' ? '⚡ Auto-calcular' : '⚡ Auto-calc'}</button>
-      </div>`;
-        } else if (!allFilled) {
-          const filled = MD.filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
-          header = `<div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem;font-size:.77rem;color:var(--m2)">
-        <span>💡</span>
-        <span>${lang === 'es' ? `Completa los 72 partidos para auto-calcular (${filled}/72)` : `Complete 72 matches to auto-calculate (${filled}/72)`}</span>
-      </div>`;
+        } else {
+          const filled6 = MD.filter(m => m.g === gid).filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
+          if (filled6 > 0 && !grpComplete) {
+            header = `<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;font-size:.74rem;color:var(--m2)">
+          <span>⏳</span><span>${lang === 'es' ? `${filled6}/6 partidos predichos — se ordenará al completar` : `${filled6}/6 matches predicted — will auto-sort when complete`}</span>
+        </div>`;
+          } else {
+            header = `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
+          }
         }
 
         let html = header;
-        if (!isAuto) {
-          html += `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
-        }
         g.t.forEach((tm, i) => {
           const pos = ranks.indexOf(i), rc = pos === 0 ? 'r1' : pos === 1 ? 'r2' : pos === 2 ? 'r3' : '';
-          const clickable = !SUBMITTED && !isAuto;
-          html += `<div class="rk${clickable ? ' ' : ' '}" ${clickable ? `onclick="clickRk('${gid}',${i})"` : ''}
-        style="${isAuto ? 'cursor:default;' : ''}">
+          const clickable = !SUBMITTED && !grpComplete;
+          html += `<div class="rk" ${clickable ? `onclick="clickRk('${gid}',${i})"` : ''} style="${grpComplete ? 'cursor:default' : ''}">
         <div class="rkb ${rc}">${pos >= 0 ? pos + 1 + '°' : '?'}</div>
         <span style="font-size:1.05rem">${tm.f}</span>
         <span style="font-size:.82rem;font-weight:500">${tm.n}</span>
@@ -2696,25 +2764,12 @@
       } catch (e) { console.error('renderGroups error', e); container.innerHTML = `<div class="callout">Error: ${e.message}</div>`; }
     }
 
-    function manualRecalc() {
-      if (!allGroupsComplete()) {
-        toast(lang === 'es' ? 'Faltan partidos por predecir' : 'Some matches still need predictions');
-        return;
-      }
-      autoCalcDone = false;
-      const did = autoCalcStandings();
-      if (did) {
-        autoCalcDone = true;
-        bkt.r32 = Array(16).fill(null); bkt.r16 = Array(8).fill(null);
-        bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null);
-        bkt.final = null; bkt.third = null;
-        saveBkt();
-        toast(lang === 'es' ? '✅ Posiciones recalculadas' : '✅ Standings recalculated');
-        updateDash();
-        renderGroups(ag);
-        if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
-        else if (currentScreen === 'bracket') renderBracket();
-      }
+    function manualRecalcGroup(gid) {
+      if (!groupComplete(gid)) { toast(lang === 'es' ? 'Faltan partidos en este grupo' : 'Some group matches missing'); return; }
+      autoCalcGroup(gid);
+      renderGroups(gid);
+      if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
+      toast(lang === 'es' ? `✅ Grupo ${gid} recalculado` : `✅ Group ${gid} recalculated`);
     }
     async function clickRk(gid, idx) {
       if (SUBMITTED) return; // locked
@@ -2953,30 +3008,105 @@
       XLSX.writeFile(wb, `quiniela-${un}-mundial2026.xlsx`); toast(t('saved_xls'));
     }
     async function dlIG() {
-      const un = profile?.username || CU.email, el = document.getElementById('ig-el');
-      const champ = bkt.final ? `${bkt.final.f} ${bkt.final.n}` : (specials.champion ? `${specials.champion_flag || ''} ${specials.champion}` : (lang === 'es' ? 'Por definir' : 'TBD'));
-      el.innerHTML = `<div style="font-size:48px;text-align:center;margin-bottom:28px">⚽🏆</div>
-    <h1 style="text-align:center;font-size:52px;font-weight:700;color:#e8b84b;letter-spacing:-2px;margin-bottom:8px">${lang === 'es' ? 'QUINIELA MUNDIAL 2026' : 'WORLD CUP POOL 2026'}</h1>
-    <p style="text-align:center;font-size:26px;color:#8490b0;margin-bottom:44px">@${un} · hectorhardy.com</p>
-    <div style="background:#181c24;border-radius:14px;padding:28px 32px;margin-bottom:32px">
-      <div style="font-size:28px;font-weight:600;color:#e8b84b;margin-bottom:10px">🏆 ${lang === 'es' ? 'Campeón' : 'Champion'}: ${champ}</div>
-      <div style="font-size:20px;color:#5a6480;margin-bottom:6px">⚽ ${lang === 'es' ? 'Goleador' : 'Top Scorer'}: ${specials.top_scorer || '?'}</div>
-      <div style="font-size:20px;color:#5a6480">🥇 ${lang === 'es' ? 'Balón de Oro' : 'Golden Ball'}: ${specials.golden_ball || '?'}</div>
+      const un = profile?.username || CU.email;
+      const el = document.getElementById('ig-el');
+      const isEs = lang === 'es';
+      const champ = bkt.final ? `${bkt.final.f} ${bkt.final.n}` : (specials.champion ? `${specials.champion_flag || ''} ${specials.champion}` : (isEs ? 'Por definir' : 'TBD'));
+
+      // Helper: render a small match card for the image
+      function igMatch(t1, t2, winner, label) {
+        const n1 = t1 ? t1.f + ' ' + t1.n : (isEs ? '?' : '?');
+        const n2 = t2 ? t2.f + ' ' + t2.n : (isEs ? '?' : '?');
+        const w1 = winner && t1 && winner.n === t1.n;
+        const w2 = winner && t2 && winner.n === t2.n;
+        return `<div style="background:#111318;border-radius:7px;padding:8px 10px;margin-bottom:5px">
+      <div style="font-size:11px;color:#3a3f55;margin-bottom:5px">${label}</div>
+      <div style="font-size:14px;color:${w1 ? '#e8b84b' : t1 ? '#f0f0f0' : '#3a3f55'};font-weight:${w1 ? 700 : 400};margin-bottom:2px">${n1}</div>
+      <div style="font-size:10px;color:#2a2f45;margin-bottom:2px">vs</div>
+      <div style="font-size:14px;color:${w2 ? '#e8b84b' : t2 ? '#f0f0f0' : '#3a3f55'};font-weight:${w2 ? 700 : 400}">${n2}</div>
+    </div>`;
+      }
+
+      // R32 in 2 columns
+      const r32html = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+    ${R32_DEF.map((def, i) => {
+        const t1 = bktTeam(def[0]), t2 = bktTeam(def[1]);
+        return igMatch(t1, t2, bkt.r32[i], `M${i + 1}`);
+      }).join('')}
+  </div>`;
+
+      // R16 in 2 columns
+      const r16html = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+    ${R16_P.map((pair, i) => {
+        const t1 = bkt.r32[pair[0]], t2 = bkt.r32[pair[1]];
+        return igMatch(t1, t2, bkt.r16[i], `${isEs ? 'Oct' : 'R16'} ${i + 1}`);
+      }).join('')}
+  </div>`;
+
+      // QF in 2 columns
+      const qfhtml = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+    ${QF_P.map((pair, i) => {
+        const t1 = bkt.r16[pair[0]], t2 = bkt.r16[pair[1]];
+        return igMatch(t1, t2, bkt.qf[i], `${isEs ? 'Cuartos' : 'QF'} ${i + 1}`);
+      }).join('')}
+  </div>`;
+
+      // SF and Final side by side
+      const sfhtml = SF_P.map((pair, i) => {
+        const t1 = bkt.qf[pair[0]], t2 = bkt.qf[pair[1]];
+        return igMatch(t1, t2, bkt.sf[i], `${isEs ? 'Semi' : 'SF'} ${i + 1}`);
+      }).join('');
+
+      // Final
+      const finalHtml = bkt.sf[0] || bkt.sf[1] ? igMatch(bkt.sf[0], bkt.sf[1], bkt.final, 'FINAL') : '';
+
+      el.innerHTML = `
+    <div style="font-size:38px;text-align:center;margin-bottom:16px">⚽ 🏆</div>
+    <h1 style="text-align:center;font-size:40px;font-weight:700;color:#e8b84b;letter-spacing:-1px;margin-bottom:6px">${isEs ? 'MI QUINIELA' : 'MY POOL'} 2026</h1>
+    <p style="text-align:center;font-size:19px;color:#8490b0;margin-bottom:28px">@${un} · hectorhardy.com</p>
+
+    <div style="background:#111318;border-radius:10px;padding:16px 18px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <div>
+        <div style="font-size:12px;color:#5a6480;margin-bottom:3px;text-transform:uppercase;letter-spacing:.06em">${isEs ? 'Mi campeón' : 'My champion'}</div>
+        <div style="font-size:28px;font-weight:700;color:#e8b84b">${champ}</div>
+      </div>
+      <div style="text-align:right;font-size:13px;color:#5a6480">
+        <div>⚽ ${specials.top_scorer || '?'}</div>
+        <div>🥇 ${specials.golden_ball || '?'}</div>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:28px">
-      ${GD.slice(0, 6).map(g => { const r = gRanks[g.id] || []; return `<div style="background:#181c24;border-radius:10px;padding:14px 10px"><div style="color:#e8b84b;font-weight:700;font-size:17px;margin-bottom:6px">${lang === 'es' ? 'Grp' : 'Grp'} ${g.id}</div>${r.slice(0, 4).map((i, p) => `<div style="font-size:14px;color:${p < 2 ? '#f0f0f0' : '#5a6480'};margin-bottom:2px">${p + 1}° ${g.t[i]?.f || ''} ${g.t[i]?.n || '?'}</div>`).join('')}</div>` }).join('')}
+
+    <div style="font-size:11px;font-weight:700;color:#5a6480;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">16AVOS</div>
+    ${r32html}
+
+    <div style="font-size:11px;font-weight:700;color:#5a6480;letter-spacing:.1em;text-transform:uppercase;margin:16px 0 8px">${isEs ? 'OCTAVOS' : 'RD OF 16'}</div>
+    ${r16html}
+
+    <div style="font-size:11px;font-weight:700;color:#5a6480;letter-spacing:.1em;text-transform:uppercase;margin:16px 0 8px">${isEs ? 'CUARTOS' : 'QUARTERS'}</div>
+    ${qfhtml}
+
+    <div style="font-size:11px;font-weight:700;color:#5a6480;letter-spacing:.1em;text-transform:uppercase;margin:16px 0 8px">${isEs ? 'SEMIS Y FINAL' : 'SEMIS & FINAL'}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+      ${sfhtml}${finalHtml}
     </div>
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:40px">
-      ${GD.slice(6, 12).map(g => { const r = gRanks[g.id] || []; return `<div style="background:#181c24;border-radius:10px;padding:14px 10px"><div style="color:#e8b84b;font-weight:700;font-size:17px;margin-bottom:6px">Grp ${g.id}</div>${r.slice(0, 4).map((i, p) => `<div style="font-size:14px;color:${p < 2 ? '#f0f0f0' : '#5a6480'};margin-bottom:2px">${p + 1}° ${g.t[i]?.f || ''} ${g.t[i]?.n || '?'}</div>`).join('')}</div>` }).join('')}
-    </div>
-    <p style="text-align:center;font-size:22px;color:#2a2f45">hectorhardy.com · Mundial 2026</p>`;
+
+    ${bkt.final ? `<div style="text-align:center;margin-top:20px;padding:16px;background:rgba(232,184,75,.08);border:1px solid rgba(232,184,75,.25);border-radius:10px">
+      <div style="font-size:28px;margin-bottom:4px">🏆</div>
+      <div style="font-size:22px;font-weight:700;color:#e8b84b">${bkt.final.f} ${bkt.final.n}</div>
+    </div>`: ''}
+
+    <p style="text-align:center;font-size:16px;color:#2a2f45;margin-top:24px">hectorhardy.com</p>`;
+
       el.style.display = 'block';
       try {
         const canvas = await html2canvas(el, { scale: 1, backgroundColor: '#0a0b0f', useCORS: true });
         el.style.display = 'none';
-        const lnk = document.createElement('a'); lnk.download = `quiniela-ig-${un}.png`; lnk.href = canvas.toDataURL('image/png'); lnk.click();
+        const lnk = document.createElement('a');
+        lnk.download = `quiniela-ig-${un}.png`;
+        lnk.href = canvas.toDataURL('image/png');
+        lnk.click();
         toast(t('saved_ig'));
-      } catch { el.style.display = 'none'; toast(t('err_ig')) }
+      } catch (e) { el.style.display = 'none'; console.error(e); toast(t('err_ig')); }
     }
     async function dlRankPDF() {
       const { jsPDF } = window.jspdf; const doc = new jsPDF('p', 'mm', 'a4');
