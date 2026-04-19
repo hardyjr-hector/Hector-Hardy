@@ -3132,29 +3132,46 @@
         const code = (tm) => tm ? (tm.n.length <= 3 ? tm.n.toUpperCase() : tm.n.slice(0,3).toUpperCase()) : '---';
         const flag = (tm) => tm ? tm.f : '🏳️';
 
-        // ── 2) DATOS DEL BRACKET ────────────────────────────────────────
-        // R16 = bkt.r32 (16 equipos que pasan a octavos). Lo dividimos 8 izq / 8 der
-        // siguiendo el ORDEN de los pares R16_P para que los conectores tengan sentido.
-        // R16_P: 8 pares; los primeros 4 forman lado izquierdo, los últimos 4 lado derecho.
-        const leftR16Pairs  = R16_P.slice(0, 4);   // 4 pares -> 8 equipos izq
-        const rightR16Pairs = R16_P.slice(4, 8);   // 4 pares -> 8 equipos der
-        const leftR16  = leftR16Pairs.flatMap(([a,b]) => [bkt.r32[a], bkt.r32[b]]);
-        const rightR16 = rightR16Pairs.flatMap(([a,b]) => [bkt.r32[a], bkt.r32[b]]);
+        // ── 2) DATOS DEL BRACKET (siguiendo el FIXTURE REAL) ───────────
+        // QF_P = [[0,1],[4,5],[2,3],[6,7]] → QF[0]=R16[0]∪R16[1], QF[1]=R16[4]∪R16[5],
+        // QF[2]=R16[2]∪R16[3], QF[3]=R16[6]∪R16[7].
+        // SF_P = [[0,1],[2,3]] → SF[0]=QF[0]∪QF[1] (lado izq), SF[1]=QF[2]∪QF[3] (lado der).
+        // Por tanto:
+        //   IZQUIERDA del bracket: QF[0],QF[1] → R16[0,1,4,5] → pares R16_P[0,1,4,5]
+        //   DERECHA  del bracket: QF[2],QF[3] → R16[2,3,6,7] → pares R16_P[2,3,6,7]
 
-        // Cuartos: 8 ganadores R16 (bkt.r16). 4 izq / 4 der.
-        const leftQF  = [bkt.r16[0], bkt.r16[1], bkt.r16[2], bkt.r16[3]];
-        const rightQF = [bkt.r16[4], bkt.r16[5], bkt.r16[6], bkt.r16[7]];
+        // Mapeo QF visual (top→bottom por lado) → índice real de bkt.qf
+        const leftQFIdx  = [0, 1];   // QF[0] arriba, QF[1] abajo (lado izq)
+        const rightQFIdx = [2, 3];   // QF[2] arriba, QF[3] abajo (lado der)
 
-        // Semis: 4 ganadores QF (bkt.qf). 2 izq / 2 der.
-        const leftSF  = [bkt.qf[0], bkt.qf[1]];
-        const rightSF = [bkt.qf[2], bkt.qf[3]];
+        // Mapeo R16 visual (top→bottom por lado) → índice real de bkt.r16
+        // Cada QF se compone de dos R16 (los pares R16 visuales son consecutivos)
+        const leftR16Idx  = [0, 1, 4, 5];  // QF[0]=R16[0]+R16[1] arriba, QF[1]=R16[4]+R16[5] abajo
+        const rightR16Idx = [2, 3, 6, 7];
 
-        // Final: bkt.sf (2 equipos)
+        // Para cada R16 visual, sus dos equipos vienen de R16_P[idx]
+        const leftR32Pairs  = leftR16Idx.map(i => R16_P[i]);   // 4 pares de octavos
+        const rightR32Pairs = rightR16Idx.map(i => R16_P[i]);
+        const leftR16Teams  = leftR32Pairs.flatMap(([a,b]) => [bkt.r32[a], bkt.r32[b]]);
+        const rightR16Teams = rightR32Pairs.flatMap(([a,b]) => [bkt.r32[a], bkt.r32[b]]);
+
+        // Cuartos visuales (4 izq, 4 der) → ganadores R16
+        const leftQF  = leftR16Idx.map(i  => bkt.r16[i]);
+        const rightQF = rightR16Idx.map(i => bkt.r16[i]);
+
+        // Semis visuales (2 izq, 2 der) → ganadores QF
+        const leftSF  = leftQFIdx.map(i  => bkt.qf[i]);
+        const rightSF = rightQFIdx.map(i => bkt.qf[i]);
+
+        // Final: bkt.sf[0] = ganador SF[0] (lado izq), bkt.sf[1] = ganador SF[1] (lado der)
         const finalLeft  = bkt.sf[0] || null;
         const finalRight = bkt.sf[1] || null;
 
-        const champFlag = bkt.final ? bkt.final.f : '';
-        const champName = bkt.final ? bkt.final.n : (isEs ? 'POR DEFINIR' : 'TBD');
+        // CAMPEÓN: prioriza bkt.final; si no, usa specials.champion (texto del país)
+        const champFlag = bkt.final ? bkt.final.f : '🏆';
+        const champName = bkt.final ? bkt.final.n
+                        : (specials && specials.champion ? specials.champion
+                        : (isEs ? 'POR DEFINIR' : 'TBD'));
 
         // ── 3) LAYOUT ABSOLUTO 1080x1920 ────────────────────────────────
         // Header: 0-360
@@ -3335,8 +3352,8 @@
         bracketHTML += roundLabel(isEs?'OCTAVOS':'R16',  xR16R, BR_TOP, R16_W);
 
         // Octavos
-        for (let i = 0; i < 8; i++) bracketHTML += r16Box(leftR16[i],  xR16L, r16Y(i));
-        for (let i = 0; i < 8; i++) bracketHTML += r16Box(rightR16[i], xR16R, r16Y(i));
+        for (let i = 0; i < 8; i++) bracketHTML += r16Box(leftR16Teams[i],  xR16L, r16Y(i));
+        for (let i = 0; i < 8; i++) bracketHTML += r16Box(rightR16Teams[i], xR16R, r16Y(i));
         // Cuartos
         for (let i = 0; i < 4; i++) bracketHTML += singleBox(leftQF[i],  xQFL, qfY(i), QF_W, QF_H, 15, 19);
         for (let i = 0; i < 4; i++) bracketHTML += singleBox(rightQF[i], xQFR, qfY(i), QF_W, QF_H, 15, 19);
@@ -3407,16 +3424,19 @@
             <div style="position:absolute;left:0;top:1050px;width:100%;text-align:center">
               <div style="font-size:200px;line-height:1;
                           filter:drop-shadow(0 16px 32px rgba(232,184,75,.7))">🏆</div>
+            </div>
 
-              <div style="margin-top:30px;display:inline-flex;align-items:center;gap:28px;
+            <!-- Caja del CAMPEÓN: wrapper flex centrado para que html2canvas mida bien -->
+            <div style="position:absolute;left:0;top:1330px;width:100%;display:flex;justify-content:center;align-items:center">
+              <div style="display:flex;align-items:center;gap:28px;
                           background:linear-gradient(180deg,#1a1408,#0a0904);
                           border:3px solid ${GOLD};border-radius:20px;padding:24px 56px;
                           box-shadow:0 10px 32px rgba(0,0,0,.8),0 0 38px rgba(232,184,75,.55),0 0 0 1px rgba(232,184,75,.4) inset">
                 <div style="font-style:italic;font-weight:900;font-size:34px;color:${GOLD};
-                            letter-spacing:.22em;line-height:1;text-shadow:0 0 14px rgba(232,184,75,.55)">${isEs ? 'EL CAMPEÓN' : 'CHAMPION'}</div>
-                <div style="width:2px;height:48px;background:${GOLD_DK}"></div>
-                <span style="font-size:54px;line-height:1">${champFlag}</span>
-                <span style="color:#fff;font-weight:900;font-size:40px;letter-spacing:.14em;text-transform:uppercase">${champName}</span>
+                            letter-spacing:.22em;line-height:1;text-shadow:0 0 14px rgba(232,184,75,.55);white-space:nowrap">${isEs ? 'EL CAMPEÓN' : 'CHAMPION'}</div>
+                <div style="width:2px;height:48px;background:${GOLD_DK};flex-shrink:0"></div>
+                <div style="font-size:54px;line-height:1;flex-shrink:0">${champFlag}</div>
+                <div style="color:#fff;font-weight:900;font-size:40px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">${champName}</div>
               </div>
             </div>
 
