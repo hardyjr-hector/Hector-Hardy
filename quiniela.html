@@ -1955,43 +1955,11 @@
           <div class="sc-sub" id="dl-sub" data-es="Descarga o comparte tu quiniela y la clasificación"
             data-en="Download or share your predictions and standings">Descarga o comparte tu quiniela y la
             clasificación</div>
-          <div
-            style="font-size:.72rem;font-weight:600;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.5rem"
-            id="dl-my" data-es="MI QUINIELA" data-en="MY PREDICTIONS">MI QUINIELA</div>
           <div class="dlg">
-            <div class="dlc" onclick="dlPDF()">
-              <div class="dlc-i">📄</div>
-              <div class="dlc-n">PDF</div>
-              <div class="dlc-s" data-es="Mi predicción completa" data-en="My full prediction">Mi predicción completa
-              </div>
-            </div>
-            <div class="dlc" onclick="dlExcel()">
-              <div class="dlc-i">📊</div>
-              <div class="dlc-n">Excel (.xlsx)</div>
-              <div class="dlc-s" data-es="Todas mis predicciones" data-en="All my predictions">Todas mis predicciones
-              </div>
-            </div>
             <div class="dlc" onclick="dlIG()">
               <div class="dlc-i">📸</div>
-              <div class="dlc-n" data-es="Instagram Story" data-en="Instagram Story">Instagram Story</div>
-              <div class="dlc-s" data-es="Imagen lista para compartir" data-en="Image ready to share">Imagen lista para
-                compartir</div>
-            </div>
-          </div>
-          <div
-            style="font-size:.72rem;font-weight:600;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-top:1.5rem;margin-bottom:.5rem"
-            id="dl-lb" data-es="CLASIFICACIÓN" data-en="STANDINGS">CLASIFICACIÓN</div>
-          <div class="dlg">
-            <div class="dlc" onclick="dlRankPDF()">
-              <div class="dlc-i">🏅</div>
-              <div class="dlc-n">PDF Ranking</div>
-              <div class="dlc-s" data-es="Tabla de clasificación" data-en="Standings table">Tabla de clasificación</div>
-            </div>
-            <div class="dlc" onclick="dlRankExcel()">
-              <div class="dlc-i">📊</div>
-              <div class="dlc-n">Excel Ranking</div>
-              <div class="dlc-s" data-es="Exportar tabla completa" data-en="Export full table">Exportar tabla completa
-              </div>
+              <div class="dlc-n" data-es="Descargar imagen" data-en="Download image">Descargar imagen</div>
+              <div class="dlc-s" data-es="Imagen lista para compartir (solo si tu quiniela está completa)" data-en="Image ready to share (only when your predictions are complete)">Imagen lista para compartir (solo si tu quiniela está completa)</div>
             </div>
           </div>
         </div>
@@ -2124,7 +2092,7 @@
         grp_order: 'Toca para asignar posición. Toca de nuevo para desmarcar.',
         pred_title: 'Clasificación estimada', needs_group: 'Completa las posiciones de grupo para ver este enfrentamiento',
         err_fields: 'Completa todos los campos', err_un: 'Usuario: mínimo 3 caracteres', err_pw: 'Contraseña: mínimo 6 caracteres',
-        saved_pdf: 'PDF descargado ✓', saved_xls: 'Excel descargado ✓', saved_ig: 'Imagen Instagram descargada ✓', err_ig: 'Error generando imagen — prueba desde escritorio',
+        saved_pdf: 'PDF descargado ✓', saved_xls: 'Excel descargado ✓', saved_ig: 'Imagen descargada ✓', err_ig: 'Error generando imagen — prueba desde escritorio',
         admin_link: 'Panel de Administración →',
       },
       en: {
@@ -2142,7 +2110,7 @@
         grp_order: 'Tap to assign position. Tap again to deselect.',
         pred_title: 'Estimated standings', needs_group: 'Complete group predictions to see this match',
         err_fields: 'Please fill in all fields', err_un: 'Username: minimum 3 characters', err_pw: 'Password: minimum 6 characters',
-        saved_pdf: 'PDF downloaded ✓', saved_xls: 'Excel downloaded ✓', saved_ig: 'Instagram image downloaded ✓', err_ig: 'Error generating image — try on desktop',
+        saved_pdf: 'PDF downloaded ✓', saved_xls: 'Excel downloaded ✓', saved_ig: 'Image downloaded ✓', err_ig: 'Error generating image — try on desktop',
         admin_link: 'Admin Panel →',
       }
     };
@@ -2595,11 +2563,11 @@
             if (ready && !SUBMITTED) {
               finalCta = `<div class="champ-cta" style="margin-top:1.2rem">
                 <button class="btn-submit" onclick="submitQuiniela()">🔒 ${lang === 'es' ? 'Enviar y cerrar mi quiniela' : 'Submit & lock my predictions'}</button>
-                <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+                <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Descargar imagen' : 'Download image'}</button>
               </div>`;
             } else if (SUBMITTED) {
               finalCta = `<div class="champ-cta" style="margin-top:1.2rem">
-                <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+                <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Descargar imagen' : 'Download image'}</button>
               </div>`;
             } else {
               finalCta = `<div style="margin-top:1rem;padding:.85rem 1rem;background:rgba(132,144,176,.08);border:1px dashed rgba(132,144,176,.3);border-radius:10px;font-size:.78rem;color:var(--m2);text-align:center">${lang === 'es' ? 'Completa todos los partidos de grupo, posiciones y especiales para enviar tu quiniela.' : 'Complete all group matches, standings and specials to submit your predictions.'}</div>`;
@@ -3026,7 +2994,7 @@
       </div>
     </div>
     <div class="champ-cta">
-      <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+      <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Descargar imagen' : 'Download image'}</button>
     </div>`;
       } else {
         const allGroup = groupFilled === 72, allGroups = gDone === 12, allSpec = spDone === 4, allKo = bkt.final != null;
@@ -3041,7 +3009,7 @@
       </div>
       <div class="champ-cta">
         <button class="btn-submit" onclick="submitQuiniela()">🔒 ${lang === 'es' ? 'Enviar y cerrar mi quiniela' : 'Submit & lock my predictions'}</button>
-        <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+        <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Descargar imagen' : 'Download image'}</button>
       </div>`;
         } else {
           submitEl.innerHTML = `<div class="submit-zone">
@@ -3423,17 +3391,19 @@
             </div>
           </div>`;
 
-        // ── 4) Posicionar para captura (visible pero invisible al ojo) ─
-        el.style.left   = '0px';
-        el.style.top    = '0px';
+        // ── 4) Posicionar para captura fuera de pantalla (sin hacerlo transparente) ─
+        el.style.left = '-20000px';
+        el.style.top = '0px';
         el.style.zIndex = '99999';
-        el.style.opacity = '0';
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
         el.style.pointerEvents = 'none';
         el.style.display = 'block';
 
         // Esperar a que layout / fonts asienten
         await document.fonts?.ready;
-        await new Promise(r => setTimeout(r, 200));
+        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+        await new Promise(r => setTimeout(r, 120));
 
         if (typeof html2canvas !== 'function') throw new Error('html2canvas not loaded');
 
@@ -3449,13 +3419,16 @@
           windowWidth: 1080,
           windowHeight: 1920,
           scrollX: 0,
-          scrollY: 0
+          scrollY: 0,
+          x: 0,
+          y: 0
         });
 
         // Restaurar contenedor (ocultar fuera de pantalla)
         el.style.left = '-99999px';
         el.style.top = '0px';
         el.style.opacity = '';
+        el.style.visibility = '';
         el.style.pointerEvents = '';
         el.style.zIndex = '';
         el.style.display = 'none';
