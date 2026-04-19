@@ -3132,10 +3132,24 @@
         const allKo   = !!bkt.final && !!bkt.third && r32Full && r16Full && qfFull && sfFull;
         const ready   = groupFilled === 72 && gDone === 12 && spDone === 4 && allKo;
         if (!ready) {
-          toast(isEs
-            ? '⚠️ Completa toda la quiniela antes de descargar la imagen'
-            : '⚠️ Complete all predictions before downloading the image');
-          return;
+          // Detalle de lo que falta para ayudar al usuario
+          const missing = [];
+          if (groupFilled !== 72) missing.push(isEs ? `partidos de grupos (${groupFilled}/72)` : `group matches (${groupFilled}/72)`);
+          if (gDone !== 12)       missing.push(isEs ? `clasificación de grupos (${gDone}/12)` : `group standings (${gDone}/12)`);
+          if (spDone !== 4)       missing.push(isEs ? `especiales (${spDone}/4)` : `specials (${spDone}/4)`);
+          if (!r32Full)           missing.push(isEs ? '32avos' : 'Round of 32');
+          if (!r16Full)           missing.push(isEs ? 'octavos' : 'Round of 16');
+          if (!qfFull)            missing.push(isEs ? 'cuartos' : 'Quarter-finals');
+          if (!sfFull)            missing.push(isEs ? 'semis' : 'Semi-finals');
+          if (!bkt.third)         missing.push(isEs ? '3er puesto' : '3rd place');
+          if (!bkt.final)         missing.push(isEs ? 'final/campeón' : 'final/champion');
+
+          const msg = (isEs ? 'Falta: ' : 'Missing: ') + missing.join(', ');
+          // Permitir descargar igualmente si el usuario confirma
+          const proceed = confirm(msg + '\n\n' + (isEs
+            ? '¿Quieres descargar la imagen de todos modos con lo que tienes hasta ahora?'
+            : 'Download the image anyway with what you have so far?'));
+          if (!proceed) { toast(msg); return; }
         }
 
         const un = profile?.username || (CU?.email ? CU.email.split('@')[0] : 'anon');
