@@ -522,8 +522,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: .5rem .2rem .4rem;
-      font-size: .55rem;
+      padding: .5rem .15rem .4rem;
+      font-size: .52rem;
       color: var(--muted);
       cursor: pointer;
       gap: 2px;
@@ -747,6 +747,35 @@
 
     .btn-submit:hover {
       background: #4dcc7e
+    }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .6rem 1.4rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: .88rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 4px 14px rgba(220, 39, 67, .35)
+    }
+
+    .btn-ig:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(220, 39, 67, .5)
+    }
+
+    .champ-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-top: 1rem;
+      justify-content: center
     }
 
     .locked-banner {
@@ -1975,6 +2004,7 @@
             data-en="How to play and how points are calculated">Cómo jugar y cómo se calculan los puntos</div>
           <div class="rule-s">
             <h3 id="ru-h1" data-es="🎯 Sistema de Puntuación" data-en="🎯 Scoring System">🎯 Sistema de Puntuación</h3>
+            <div style="font-size:.78rem;font-weight:700;color:var(--acc);margin:.4rem 0 .3rem;letter-spacing:.05em" data-es="FASE DE GRUPOS" data-en="GROUP STAGE">FASE DE GRUPOS</div>
             <div class="pts-r"><span id="ru-r1" data-es="Acierto de resultado (ganador o empate)"
                 data-en="Correct result (winner or draw)">Acierto de resultado (ganador o empate)</span><span
                 class="pts-v">5 pts</span></div>
@@ -1985,6 +2015,10 @@
             <div class="pts-r"><span id="ru-r3" data-es="Posición exacta en grupo (por equipo acertado)"
                 data-en="Exact group position (per correct team)">Posición exacta en grupo <em
                   style="color:var(--m2)">(por equipo acertado)</em></span><span class="pts-v">1 pt</span></div>
+            <div style="font-size:.78rem;font-weight:700;color:var(--acc);margin:.9rem 0 .3rem;letter-spacing:.05em" data-es="ELIMINATORIAS (DIECISEISAVOS EN ADELANTE)" data-en="KNOCKOUTS (ROUND OF 32 ONWARDS)">ELIMINATORIAS (DIECISEISAVOS EN ADELANTE)</div>
+            <div class="pts-r"><span data-es="Acertar quién avanza (sin goles exactos)" data-en="Predict who advances (no exact score bonus)">Acertar quién avanza <em style="color:var(--m2)">(sin goles exactos · solo gana o pierde)</em></span><span class="pts-v">5 pts</span></div>
+            <div style="font-size:.74rem;color:var(--m2);margin:.3rem 0 .9rem;font-style:italic" data-es="En eliminatorias NO suman los puntos extra por marcador exacto. Solo cuenta acertar el ganador (o empate que llega a penales acaba con quien clasifica)." data-en="In knockouts there are NO bonus points for exact score. Only the winner (the team that advances) counts.">En eliminatorias <strong>NO</strong> suman los 2 puntos extra por marcador exacto. Solo cuenta acertar quién clasifica.</div>
+            <div style="font-size:.78rem;font-weight:700;color:var(--acc);margin:.4rem 0 .3rem;letter-spacing:.05em" data-es="ESPECIALES" data-en="SPECIALS">ESPECIALES</div>
             <div class="pts-r"><span id="ru-r4" data-es="Campeón del Mundo" data-en="World Champion">Campeón del
                 Mundo</span><span class="pts-v">20 pts</span></div>
             <div class="pts-r"><span id="ru-r5" data-es="Goleador del torneo"
@@ -1992,9 +2026,12 @@
             <div class="pts-r"><span id="ru-r6" data-es="Balón de Oro del torneo"
                 data-en="Golden Ball of the tournament">Balón de Oro del torneo</span><span class="pts-v">10 pts</span>
             </div>
+            <div class="pts-r"><span id="ru-r7" data-es="Guante de Oro (mejor arquero)"
+                data-en="Golden Glove (best goalkeeper)">Guante de Oro <em style="color:var(--m2)">(mejor arquero)</em></span><span class="pts-v">10 pts</span>
+            </div>
             <div class="exb">
-              <span class="h" id="ru-ex-lbl" data-es="Partido real: Eqp1 (2) – Eqp2 (1)"
-                data-en="Real match: Team1 (2) – Team2 (1)">Partido real: Eqp1 (2) – Eqp2 (1)</span><br><br>
+              <span class="h" id="ru-ex-lbl" data-es="Ej. Fase de grupos · Partido real: Eqp1 (2) – Eqp2 (1)"
+                data-en="Ex. Group stage · Real match: Team1 (2) – Team2 (1)">Ej. Fase de grupos · Partido real: Eqp1 (2) – Eqp2 (1)</span><br><br>
               <span id="ru-ex1" data-es="Tu pred 2–1 → +5 resultado + 1+1 goles = 7 pts ✓✓"
                 data-en="Your pred 2–1 → +5 result + 1+1 goals = 7 pts ✓✓">Tu pred <span class="h">2–1</span> → <span
                   class="g">+5 resultado + 1+1 goles = 7 pts ✓✓</span></span><br>
@@ -2003,7 +2040,10 @@
                   class="g">+5 resultado + 1 gol = 6 pts ✓</span></span><br>
               <span id="ru-ex3" data-es="Tu pred 1–3 → 0 pts — resultado incorrecto"
                 data-en="Your pred 1–3 → 0 pts — wrong result">Tu pred <span class="h">1–3</span> → <span class="r">0
-                  pts — resultado incorrecto, no suman goles</span></span>
+                  pts — resultado incorrecto, no suman goles</span></span><br><br>
+              <span class="h" data-es="Ej. Eliminatorias · Partido real: Eqp1 (1) – Eqp2 (0)" data-en="Ex. Knockouts · Real match: Team1 (1) – Team2 (0)">Ej. Eliminatorias · Partido real: Eqp1 (1) – Eqp2 (0)</span><br>
+              <span data-es="Tu pred 1–0 o 3–1 → +5 pts (mismo ganador) ✓" data-en="Your pred 1–0 or 3–1 → +5 pts (same winner) ✓">Tu pred <span class="h">1–0</span> o <span class="h">3–1</span> → <span class="g">+5 pts (mismo ganador) ✓</span></span><br>
+              <span data-es="Tu pred 0–2 → 0 pts (ganador equivocado)" data-en="Your pred 0–2 → 0 pts (wrong winner)">Tu pred <span class="h">0–2</span> → <span class="r">0 pts (ganador equivocado)</span></span>
             </div>
           </div>
           <div class="rule-s">
@@ -2046,6 +2086,8 @@
           data-en="Groups">Grupos</span></div>
       <div class="bni" id="bni-rank" onclick="goTo('rank')"><span class="ico">🏅</span><span data-es="Ranking"
           data-en="Ranking">Ranking</span></div>
+      <div class="bni" id="bni-rules" onclick="goTo('rules')"><span class="ico">📖</span><span data-es="Reglas"
+          data-en="Rules">Reglas</span></div>
       <div class="bni" id="bni-downloads" onclick="goTo('downloads')"><span class="ico">📥</span><span
           data-es="Compartir" data-en="Share">Compartir</span></div>
       <div class="bni bni-admin" id="bni-admin-mob" onclick="window.location.href='admin.html'"><span
@@ -2348,7 +2390,7 @@
     }
     async function loadPreds() { const { data } = await sb.from('predictions').select('*').eq('user_id', CU.id); if (data) data.forEach(r => { preds[r.match_id] = { s1: r.score_home, s2: r.score_away } }) }
     async function loadGRanks() { const { data } = await sb.from('group_rankings').select('*').eq('user_id', CU.id); if (data) data.forEach(r => { gRanks[r.group_id] = r.rankings }) }
-    async function loadSpecials() { const { data } = await sb.from('special_predictions').select('*').eq('user_id', CU.id).single(); if (data) specials = data }
+    async function loadSpecials() { const { data } = await sb.from('special_predictions').select('*').eq('user_id', CU.id).single(); if (data) specials = data; if (CU && !specials.golden_glove) { try { const v = localStorage.getItem('gg_' + CU.id); if (v) specials.golden_glove = v; } catch (e) { } } }
     async function loadResults() { const { data } = await sb.from('match_results').select('*'); if (data) data.forEach(r => { results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played } }) }
     function loadBkt() { try { const s = localStorage.getItem('q26_bkt_' + CU?.id); if (s) bkt = JSON.parse(s) } catch (e) { } }
     function saveBkt() { try { localStorage.setItem('q26_bkt_' + CU?.id, JSON.stringify(bkt)) } catch (e) { } }
@@ -2417,7 +2459,7 @@
           const filled = s1 !== '' && s2 !== '', res = results[m.id], played = res?.played;
           let pts = 0, state = '';
           if (played && filled) {
-            pts = calcPts({ s1: +s1, s2: +s2 }, { sh: res.sh, sa: res.sa });
+            pts = calcPts({ s1: +s1, s2: +s2 }, { sh: res.sh, sa: res.sa }, m.id);
             const pr = +s1 > +s2 ? 1 : +s1 < +s2 ? -1 : 0, rr = res.sh > res.sa ? 1 : res.sh < res.sa ? -1 : 0; state = pr === rr ? 'correct' : 'wrong'
           }
           const ih = played ? `<span class="si" style="background:none;border-color:transparent;text-align:center;font-weight:700">${s1 !== '' ? s1 : '–'}</span>`
@@ -2437,10 +2479,15 @@
         updGTable(gid);
       } catch (e) { console.error('renderMatches error', e); container.innerHTML = `<div class="callout">Error cargando partidos: ${e.message}</div>`; }
     }
-    function calcPts(pred, real) {
+    function calcPts(pred, real, mid) {
       if (!real || real.sh == null) return 0;
       const pr = pred.s1 > pred.s2 ? 1 : pred.s1 < pred.s2 ? -1 : 0, rr = real.sh > real.sa ? 1 : real.sh < real.sa ? -1 : 0;
-      if (pr !== rr) return 0; let p = 5; if (pred.s1 === real.sh) p++; if (pred.s2 === real.sa) p++; return p;
+      if (pr !== rr) return 0;
+      // Knockout matches (R32+): only 5 pts for getting the winner right, no extras for exact score
+      const m = mid ? MD.find(x => x.id === mid) : null;
+      const isKO = m && m.g == null;
+      if (isKO) return 5;
+      let p = 5; if (pred.s1 === real.sh) p++; if (pred.s2 === real.sa) p++; return p;
     }
     async function sp(mid, key, val) {
       if (SUBMITTED) return;
@@ -2796,8 +2843,10 @@
       const champLbl = lang === 'es' ? 'Campeón del Mundo' : 'World Champion';
       const scorerLbl = lang === 'es' ? 'Goleador del torneo' : 'Top Scorer';
       const goldenLbl = lang === 'es' ? 'Balón de Oro del torneo' : 'Golden Ball';
+      const gloveLbl = lang === 'es' ? 'Guante de Oro (mejor arquero)' : 'Golden Glove (best goalkeeper)';
       const playerPh = lang === 'es' ? 'ej. Kylian Mbappé' : 'e.g. Kylian Mbappé';
       const goldenPh = lang === 'es' ? 'ej. Lionel Messi' : 'e.g. Lionel Messi';
+      const glovePh = lang === 'es' ? 'ej. Emiliano Martínez' : 'e.g. Emiliano Martínez';
       const dis = SUBMITTED ? ' disabled style="opacity:.55;cursor:not-allowed"' : '';
       document.getElementById('specials-c').innerHTML = `
     <div class="spc"><div class="sph"><span class="spl">🏆 ${champLbl}</span><span class="sp-pts">+20 pts</span>${SUBMITTED ? '<span class="locked-chip">🔒 Cerrada</span>' : ''}</div>
@@ -2810,18 +2859,32 @@
     <div class="spc"><div class="sph"><span class="spl">🥇 ${goldenLbl}</span><span class="sp-pts">+10 pts</span></div>
       <input class="fi" type="text" placeholder="${goldenPh}" value="${specials.golden_ball || ''}" oninput="saveSpec('golden_ball',this.value)" style="max-width:340px"${dis}>
       ${specials.golden_ball ? `<div style="font-size:.72rem;color:var(--grn);margin-top:.3rem">✓ ${specials.golden_ball}</div>` : ''}
+    </div>
+    <div class="spc"><div class="sph"><span class="spl">🧤 ${gloveLbl}</span><span class="sp-pts">+10 pts</span></div>
+      <input class="fi" type="text" placeholder="${glovePh}" value="${specials.golden_glove || ''}" oninput="saveSpec('golden_glove',this.value)" style="max-width:340px"${dis}>
+      ${specials.golden_glove ? `<div style="font-size:.72rem;color:var(--grn);margin-top:.3rem">✓ ${specials.golden_glove}</div>` : ''}
     </div>`;
+    }
+    async function saveSpecialsRow() {
+      const row = { user_id: CU.id, champion: specials.champion || null, champion_flag: specials.champion_flag || null, top_scorer: specials.top_scorer || null, golden_ball: specials.golden_ball || null, golden_glove: specials.golden_glove || null, updated_at: new Date().toISOString() };
+      const { error } = await sb.from('special_predictions').upsert(row, { onConflict: 'user_id' });
+      if (error && /golden_glove/i.test(error.message || '')) {
+        // Column missing in DB → fallback to localStorage for the glove
+        try { localStorage.setItem('gg_' + CU.id, specials.golden_glove || ''); } catch (e) { }
+        delete row.golden_glove;
+        await sb.from('special_predictions').upsert(row, { onConflict: 'user_id' });
+      }
     }
     async function pickC(name, flag) {
       if (SUBMITTED) return; // locked
       specials.champion === name ? (specials.champion = null, specials.champion_flag = null) : (specials.champion = name, specials.champion_flag = flag);
       renderSpecials(); updateDash();
-      await sb.from('special_predictions').upsert({ user_id: CU.id, champion: specials.champion || null, champion_flag: specials.champion_flag || null, top_scorer: specials.top_scorer || null, golden_ball: specials.golden_ball || null, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+      await saveSpecialsRow();
     }
     async function saveSpec(key, val) {
       if (SUBMITTED) return; // locked
       specials[key] = val; updateDash(); clearTimeout(spT[key]);
-      spT[key] = setTimeout(async () => await sb.from('special_predictions').upsert({ user_id: CU.id, champion: specials.champion || null, champion_flag: specials.champion_flag || null, top_scorer: specials.top_scorer || null, golden_ball: specials.golden_ball || null, updated_at: new Date().toISOString() }, { onConflict: 'user_id' }), 700);
+      spT[key] = setTimeout(saveSpecialsRow, 700);
     }
 
     // ══════════ BRACKET (standalone screen) ══════════
@@ -2907,15 +2970,15 @@
       const totalFilled = groupFilled + koPicked;
       const TOTAL_MATCHES = 104;
       const gDone = GD.filter(g => (gRanks[g.id] || []).length === 4).length;
-      const spDone = [specials.champion, specials.top_scorer, specials.golden_ball].filter(Boolean).length;
-      const totalPts = MD.reduce((acc, m) => { const p = preds[m.id], r = results[m.id]; return (!r?.played || !p || p.s1 == null || p.s2 == null) ? acc : acc + calcPts({ s1: p.s1, s2: p.s2 }, { sh: r.sh, sa: r.sa }) }, 0);
+      const spDone = [specials.champion, specials.top_scorer, specials.golden_ball, specials.golden_glove].filter(Boolean).length;
+      const totalPts = MD.reduce((acc, m) => { const p = preds[m.id], r = results[m.id]; return (!r?.played || !p || p.s1 == null || p.s2 == null) ? acc : acc + calcPts({ s1: p.s1, s2: p.s2 }, { sh: r.sh, sa: r.sa }, m.id) }, 0);
       document.getElementById('sb-pts').textContent = `${totalPts} ${t('pts')}`;
       const pct = (v, tt) => Math.round(v / tt * 100);
       const labels = lang === 'es' ? ['Partidos predichos', 'Grupos completados', 'Especiales', 'Puntos totales'] : ['Matches predicted', 'Groups completed', 'Specials', 'Total points'];
       document.getElementById('dash-stats').innerHTML = `
     <div class="sb2"><div class="sv">${totalFilled}<span style="font-size:.85rem;color:var(--m2)">/${TOTAL_MATCHES}</span></div><div class="sl2">${labels[0]}</div><div class="pbar"><div class="pfill" style="width:${pct(totalFilled, TOTAL_MATCHES)}%"></div></div></div>
     <div class="sb2"><div class="sv">${gDone}<span style="font-size:.85rem;color:var(--m2)">/12</span></div><div class="sl2">${labels[1]}</div><div class="pbar"><div class="pfill" style="width:${pct(gDone, 12)}%"></div></div></div>
-    <div class="sb2"><div class="sv">${spDone}<span style="font-size:.85rem;color:var(--m2)">/3</span></div><div class="sl2">${labels[2]}</div><div class="pbar"><div class="pfill" style="width:${pct(spDone, 3)}%"></div></div></div>
+    <div class="sb2"><div class="sv">${spDone}<span style="font-size:.85rem;color:var(--m2)">/4</span></div><div class="sl2">${labels[2]}</div><div class="pbar"><div class="pfill" style="width:${pct(spDone, 4)}%"></div></div></div>
     <div class="sb2"><div class="sv" style="color:var(--acc)">${totalPts}</div><div class="sl2">${labels[3]}</div><div class="pbar"><div class="pfill" style="width:100%"></div></div></div>`;
       // Lock banner or submit zone
       const submitEl = document.getElementById('home-submit-zone');
@@ -2923,26 +2986,42 @@
       if (SUBMITTED) {
         submitEl.innerHTML = `<div class="locked-banner">
       <span class="li">🔒</span>
-      <div>
+      <div style="flex:1">
         <h4>${lang === 'es' ? 'Quiniela enviada y cerrada' : 'Predictions submitted & locked'}</h4>
         <p>${lang === 'es' ? 'Ya no puedes modificar tus predicciones. ¡Suerte!' : 'You can no longer edit your predictions. Good luck!'}</p>
       </div>
+    </div>
+    <div class="champ-cta">
+      <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
     </div>`;
       } else {
-        const allGroup = groupFilled === 72, allGroups = gDone === 12, allSpec = spDone === 3, allKo = bkt.final != null;
+        const allGroup = groupFilled === 72, allGroups = gDone === 12, allSpec = spDone === 4, allKo = bkt.final != null;
         const ready = allGroup && allGroups && allSpec && allKo;
-        submitEl.innerHTML = `<div class="submit-zone">
-      <h3>${lang === 'es' ? '📤 Enviar quiniela' : '📤 Submit predictions'}</h3>
-      <p>${lang === 'es' ? 'Cuando termines de rellenar todas tus predicciones, envía tu quiniela. Una vez enviada <strong>no podrás modificarla</strong>.' : 'When you\'ve filled in all predictions, submit your pool. Once submitted <strong>you cannot edit it</strong>.'}</p>
-      <div style="font-size:.75rem;color:var(--m2);margin-bottom:.85rem;line-height:1.8">
-        ${allGroup ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? `72 partidos de grupo (${groupFilled}/72)` : `72 group matches (${groupFilled}/72)`}<br>
-        ${allGroups ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? `12 grupos ordenados (${gDone}/12)` : `12 groups ranked (${gDone}/12)`}<br>
-        ${allSpec ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? `3 especiales (${spDone}/3)` : `3 specials (${spDone}/3)`}<br>
-        ${allKo ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? 'Campeón final elegido' : 'Final champion picked'}
+        if (ready) {
+          // Champion celebration banner with submit + IG CTAs
+          submitEl.innerHTML = `<div class="champ-banner">
+        <div class="ct">🏆</div>
+        <div class="cl">${lang === 'es' ? '¡QUINIELA COMPLETA!' : 'PREDICTIONS COMPLETE!'}</div>
+        <div class="cn">${bkt.final.f} ${bkt.final.n}</div>
+        <div style="font-size:.78rem;color:var(--m2);margin-top:.4rem">${lang === 'es' ? 'Tu campeón mundial 2026' : 'Your World Champion 2026'}</div>
       </div>
-      ${ready ? `<button class="btn-submit" onclick="submitQuiniela()">🔒 ${lang === 'es' ? 'Enviar y cerrar mi quiniela' : 'Submit & lock my predictions'}</button>` :
-            `<button class="btn-submit" disabled style="opacity:.4;cursor:not-allowed">🔒 ${lang === 'es' ? 'Completa todo para enviar' : 'Complete all to submit'}</button>`}
-    </div>`;
+      <div class="champ-cta">
+        <button class="btn-submit" onclick="submitQuiniela()">🔒 ${lang === 'es' ? 'Enviar y cerrar mi quiniela' : 'Submit & lock my predictions'}</button>
+        <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+      </div>`;
+        } else {
+          submitEl.innerHTML = `<div class="submit-zone">
+        <h3>${lang === 'es' ? '📤 Enviar quiniela' : '📤 Submit predictions'}</h3>
+        <p>${lang === 'es' ? 'Cuando termines de rellenar todas tus predicciones, envía tu quiniela. Una vez enviada <strong>no podrás modificarla</strong>.' : 'When you\'ve filled in all predictions, submit your pool. Once submitted <strong>you cannot edit it</strong>.'}</p>
+        <div style="font-size:.75rem;color:var(--m2);margin-bottom:.85rem;line-height:1.8">
+          ${allGroup ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? `72 partidos de grupo (${groupFilled}/72)` : `72 group matches (${groupFilled}/72)`}<br>
+          ${allGroups ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? `12 grupos ordenados (${gDone}/12)` : `12 groups ranked (${gDone}/12)`}<br>
+          ${allSpec ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? `4 especiales (${spDone}/4)` : `4 specials (${spDone}/4)`}<br>
+          ${allKo ? `<span style="color:var(--grn)">✓</span>` : `<span style="color:var(--red)">✗</span>`} ${lang === 'es' ? 'Campeón final elegido' : 'Final champion picked'}
+        </div>
+        <button class="btn-submit" disabled style="opacity:.4;cursor:not-allowed">🔒 ${lang === 'es' ? 'Completa todo para enviar' : 'Complete all to submit'}</button>
+      </div>`;
+        }
       }
     }
 
@@ -3001,7 +3080,8 @@
       doc.setTextColor(200, 200, 210); doc.setFontSize(9); doc.setFont('helvetica', 'normal');
       if (specials.champion) doc.text(`${lang === 'es' ? 'Campeon' : 'Champion'}: ${specials.champion}`, 15, y), y += 5;
       if (specials.top_scorer) doc.text(`${lang === 'es' ? 'Goleador' : 'Top Scorer'}: ${specials.top_scorer}`, 15, y), y += 5;
-      if (specials.golden_ball) doc.text(`${lang === 'es' ? 'Balon de Oro' : 'Golden Ball'}: ${specials.golden_ball}`, 15, y);
+      if (specials.golden_ball) doc.text(`${lang === 'es' ? 'Balon de Oro' : 'Golden Ball'}: ${specials.golden_ball}`, 15, y), y += 5;
+      if (specials.golden_glove) doc.text(`${lang === 'es' ? 'Guante de Oro' : 'Golden Glove'}: ${specials.golden_glove}`, 15, y);
       if (bkt.final) { y += 10; doc.setTextColor(232, 184, 75); doc.setFontSize(12); doc.setFont('helvetica', 'bold'); doc.text(lang === 'es' ? 'CAMPEÓN PREDICHO' : 'PREDICTED CHAMPION', 15, y); y += 7; doc.setTextColor(200, 200, 210); doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.text(`${bkt.final.f} ${bkt.final.n}`, 15, y) }
       doc.save(`quiniela-${un}-mundial2026.pdf`); toast(t('saved_pdf'));
     }
@@ -3013,7 +3093,7 @@
       const gRows = [[lang === 'es' ? 'Grupo' : 'Group', '1°', '2°', '3°', '4°']];
       GD.forEach(g => { const r = gRanks[g.id] || []; gRows.push([`${lang === 'es' ? 'Grupo' : 'Group'} ${g.id}`, ...[0, 1, 2, 3].map(i => r[i] != null ? g.t[r[i]].n : '')]) });
       XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(gRows), lang === 'es' ? 'Grupos' : 'Groups');
-      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([[lang === 'es' ? 'Campeón' : 'Champion', specials.champion || ''], [lang === 'es' ? 'Goleador' : 'Top Scorer', specials.top_scorer || ''], [lang === 'es' ? 'Balón de Oro' : 'Golden Ball', specials.golden_ball || '']]), 'Specials');
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([[lang === 'es' ? 'Campeón' : 'Champion', specials.champion || ''], [lang === 'es' ? 'Goleador' : 'Top Scorer', specials.top_scorer || ''], [lang === 'es' ? 'Balón de Oro' : 'Golden Ball', specials.golden_ball || ''], [lang === 'es' ? 'Guante de Oro' : 'Golden Glove', specials.golden_glove || '']]), 'Specials');
       XLSX.writeFile(wb, `quiniela-${un}-mundial2026.xlsx`); toast(t('saved_xls'));
     }
     async function dlIG() {
