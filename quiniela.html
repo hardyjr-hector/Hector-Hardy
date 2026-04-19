@@ -2579,13 +2579,36 @@
         } else if (koRound === 'sf') {
           matchesHtml = `<div class="ko-grid">${SF_P.map((pair, i) => mkKoMatch(i, bkt.qf[pair[0]], bkt.qf[pair[1]], bkt.sf[i], 'sf')).join('')}</div>`;
         } else if (koRound === 'final') {
-          const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(tx => tx && bkt.sf[0] && tx.n !== bkt.sf[0].n) : null;
-          const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(tx => tx && bkt.sf[1] && tx.n !== bkt.sf[1].n) : null;
+          // 3rd place losers: SF_P pairs QF teams into each SF. Loser = the QF team that is NOT the SF winner.
+          const sfPair0 = [bkt.qf[SF_P[0][0]], bkt.qf[SF_P[0][1]]];
+          const sfPair1 = [bkt.qf[SF_P[1][0]], bkt.qf[SF_P[1][1]]];
+          const lo0 = (bkt.sf[0] && sfPair0[0] && sfPair0[1]) ? (sfPair0[0].n === bkt.sf[0].n ? sfPair0[1] : sfPair0[0]) : null;
+          const lo1 = (bkt.sf[1] && sfPair1[0] && sfPair1[1]) ? (sfPair1[0].n === bkt.sf[1].n ? sfPair1[1] : sfPair1[0]) : null;
           const champBanner = bkt.final ? `<div class="champ-banner"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
+          // Submit / Share CTA right under the champion banner when everything is complete
+          let finalCta = '';
+          if (bkt.final && bkt.third) {
+            const groupFilled = MD.filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
+            const gDone = GD.filter(g => gRanks[g.id] && gRanks[g.id].length === g.t.length).length;
+            const spDone = ['champion', 'top_scorer', 'golden_ball', 'golden_glove'].filter(k => specials[k]).length;
+            const ready = groupFilled === 72 && gDone === 12 && spDone === 4;
+            if (ready && !SUBMITTED) {
+              finalCta = `<div class="champ-cta" style="margin-top:1.2rem">
+                <button class="btn-submit" onclick="submitQuiniela()">🔒 ${lang === 'es' ? 'Enviar y cerrar mi quiniela' : 'Submit & lock my predictions'}</button>
+                <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+              </div>`;
+            } else if (SUBMITTED) {
+              finalCta = `<div class="champ-cta" style="margin-top:1.2rem">
+                <button class="btn-ig" onclick="dlIG()">📸 ${lang === 'es' ? 'Compartir en Instagram' : 'Share on Instagram'}</button>
+              </div>`;
+            } else {
+              finalCta = `<div style="margin-top:1rem;padding:.85rem 1rem;background:rgba(132,144,176,.08);border:1px dashed rgba(132,144,176,.3);border-radius:10px;font-size:.78rem;color:var(--m2);text-align:center">${lang === 'es' ? 'Completa todos los partidos de grupo, posiciones y especiales para enviar tu quiniela.' : 'Complete all group matches, standings and specials to submit your predictions.'}</div>`;
+            }
+          }
           matchesHtml = `<div class="ko-grid">
       <div><div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">FINAL</div>${mkKoMatch(0, bkt.sf[0], bkt.sf[1], bkt.final, 'final')}</div>
       <div><div style="font-size:.68rem;font-weight:700;color:var(--m2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem">${lang === 'es' ? '3° Y 4° LUGAR' : '3RD PLACE'}</div>${mkKoMatch(0, lo0, lo1, bkt.third, 'third')}</div>
-    </div>${champBanner}`;
+    </div>${champBanner}${finalCta}`;
         }
         el.innerHTML = thirdsHtml + matchesHtml;
       } catch (e) { console.error('renderKnockout error', e); el.innerHTML = `<div class="callout">Error: ${e.message}</div>`; }
@@ -2608,6 +2631,7 @@
     function advBkt(roundKey, idx, name, flag) {
       if (SUBMITTED) return; // locked
       const tm = { n: name, f: flag };
+      const wasFilled = roundKey === 'r32' ? bkt.r32[idx]?.n === name : roundKey === 'r16' ? bkt.r16[idx]?.n === name : roundKey === 'qf' ? bkt.qf[idx]?.n === name : roundKey === 'sf' ? bkt.sf[idx]?.n === name : roundKey === 'final' ? bkt.final?.n === name : roundKey === 'third' ? bkt.third?.n === name : false;
       if (roundKey === 'r32') { bkt.r32[idx] = bkt.r32[idx]?.n === name ? null : tm; bkt.r16 = Array(8).fill(null); bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null; }
       else if (roundKey === 'r16') { bkt.r16[idx] = bkt.r16[idx]?.n === name ? null : tm; bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null; }
       else if (roundKey === 'qf') { bkt.qf[idx] = bkt.qf[idx]?.n === name ? null : tm; bkt.sf = Array(2).fill(null); bkt.final = null; bkt.third = null; }
@@ -2615,6 +2639,16 @@
       else if (roundKey === 'final') { bkt.final = bkt.final?.n === name ? null : tm; }
       else if (roundKey === 'third') { bkt.third = bkt.third?.n === name ? null : tm; }
       saveBkt();
+      // Auto-advance to next stage when the current round becomes fully completed (only when adding a pick)
+      if (!wasFilled && currentScreen === 'matches') {
+        const nextOf = { r32: 'r16', r16: 'qf', qf: 'sf', sf: 'final' };
+        const sizeOf = { r32: 16, r16: 8, qf: 4, sf: 2 };
+        const nxt = nextOf[roundKey];
+        if (nxt && bkt[roundKey].filter(Boolean).length === sizeOf[roundKey] && koRound === roundKey) {
+          koRound = nxt;
+          setTimeout(() => { try { document.getElementById('knockout-c')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) { } }, 80);
+        }
+      }
       // Refresh whichever view is active
       if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
       else { renderBracket(); }
@@ -3237,15 +3271,35 @@
       </div>`;
 
       el.style.left = '0';
+      el.style.top = '0';
       el.style.display = 'block';
+      el.style.zIndex = '-1';
       try {
-        const canvas = await html2canvas(el, { scale: 1, backgroundColor: '#05070d', useCORS: true, width: 1080, height: 1920, windowWidth: 1080, windowHeight: 1920 });
+        // Wait a tick so layout/fonts settle
+        await new Promise(r => setTimeout(r, 120));
+        if (typeof html2canvas !== 'function') { throw new Error('html2canvas not loaded'); }
+        const canvas = await html2canvas(el, { scale: 1, backgroundColor: '#05070d', useCORS: true, allowTaint: true, logging: false, width: 1080, height: 1920, windowWidth: 1080, windowHeight: 1920 });
         el.style.left = '-9999px';
         el.style.display = 'none';
-        const lnk = document.createElement('a');
-        lnk.download = `quiniela-ig-${un}.png`;
-        lnk.href = canvas.toDataURL('image/png');
-        lnk.click();
+        const fileName = `quiniela-ig-${un}.png`;
+        const triggerDownload = (href) => {
+          const lnk = document.createElement('a');
+          lnk.download = fileName;
+          lnk.href = href;
+          lnk.style.display = 'none';
+          document.body.appendChild(lnk);
+          lnk.click();
+          setTimeout(() => { try { document.body.removeChild(lnk); } catch (_) { } }, 200);
+        };
+        // Prefer Blob (handles large PNGs better than data URLs on mobile/Safari)
+        const blob = await new Promise(res => canvas.toBlob(res, 'image/png', 0.95));
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          triggerDownload(url);
+          setTimeout(() => URL.revokeObjectURL(url), 60000);
+        } else {
+          triggerDownload(canvas.toDataURL('image/png'));
+        }
         toast(t('saved_ig'));
         // Open Instagram so user can upload as story
         setTimeout(() => {
@@ -3256,8 +3310,13 @@
           } else {
             window.open('https://www.instagram.com/', '_blank');
           }
-        }, 600);
-      } catch (e) { el.style.left = '-9999px'; el.style.display = 'none'; console.error(e); toast(t('err_ig')); }
+        }, 900);
+      } catch (e) {
+        el.style.left = '-9999px';
+        el.style.display = 'none';
+        console.error('dlIG error', e);
+        toast((typeof t === 'function' ? t('err_ig') : 'Error') + ': ' + (e?.message || e));
+      }
     }
     async function dlRankPDF() {
       const { jsPDF } = window.jspdf; const doc = new jsPDF('p', 'mm', 'a4');
