@@ -2967,8 +2967,8 @@
       return `<div class="bkt-matches-grid">${pairs.map((pair, i) => mkKoMatch(i, prevW[pair[0]], prevW[pair[1]], curW[i], rk)).join('')}</div>`;
     }
     function renderBktFinal() {
-      const lo0 = bkt.sf[0] && bkt.qf[QF_P[0][0]] && bkt.qf[QF_P[0][1]] ? [bkt.qf[QF_P[0][0]], bkt.qf[QF_P[0][1]]].find(x => x && bkt.sf[0] && x.n !== bkt.sf[0].n) : null;
-      const lo1 = bkt.sf[1] && bkt.qf[QF_P[1][0]] && bkt.qf[QF_P[1][1]] ? [bkt.qf[QF_P[1][0]], bkt.qf[QF_P[1][1]]].find(x => x && bkt.sf[1] && x.n !== bkt.sf[1].n) : null;
+      const lo0 = bkt.sf[0] && bkt.qf[SF_P[0][0]] && bkt.qf[SF_P[0][1]] ? [bkt.qf[SF_P[0][0]], bkt.qf[SF_P[0][1]]].find(x => x && bkt.sf[0] && x.n !== bkt.sf[0].n) : null;
+      const lo1 = bkt.sf[1] && bkt.qf[SF_P[1][0]] && bkt.qf[SF_P[1][1]] ? [bkt.qf[SF_P[1][0]], bkt.qf[SF_P[1][1]]].find(x => x && bkt.sf[1] && x.n !== bkt.sf[1].n) : null;
       const champBanner = bkt.final ? `<div class="champ-banner" style="margin-top:1rem"><div class="ct">🏆</div><div class="cl">${lang === 'es' ? 'CAMPEÓN MUNDIAL 2026' : 'WORLD CHAMPION 2026'}</div><div class="cn">${bkt.final.f} ${bkt.final.n}</div></div>` : '';
       return `<div class="bkt-matches-grid">
     <div>
