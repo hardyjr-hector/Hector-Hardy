@@ -3132,103 +3132,118 @@
         const code = (tm) => tm ? (tm.n.length <= 3 ? tm.n.toUpperCase() : tm.n.slice(0,3).toUpperCase()) : '---';
         const flag = (tm) => tm ? tm.f : '🏳️';
 
-        // ── 2) Datos del bracket ────────────────────────────────────────
-        const r16Teams  = bkt.r32;                           // 16 equipos en octavos
-        const leftR16   = r16Teams.slice(0, 8);              // 8 izquierda
-        const rightR16  = r16Teams.slice(8, 16);             // 8 derecha
-        // Cuartos: ganadores R16 según R16_P pairs
-        const qfPairs   = R16_P.map(([a,b]) => [bkt.r16[a] || null, bkt.r16[b] || null]);
-        // Semis: ganadores QF según QF_P pairs
-        const sfPairs   = QF_P.map(([a,b]) => [bkt.qf[a] || null, bkt.qf[b] || null]);
-        // Final
-        const finalPair = [bkt.sf[0] || null, bkt.sf[1] || null];
+        // ── 2) DATOS DEL BRACKET ────────────────────────────────────────
+        // R16 = bkt.r32 (16 equipos que pasan a octavos). Lo dividimos 8 izq / 8 der
+        // siguiendo el ORDEN de los pares R16_P para que los conectores tengan sentido.
+        // R16_P: 8 pares; los primeros 4 forman lado izquierdo, los últimos 4 lado derecho.
+        const leftR16Pairs  = R16_P.slice(0, 4);   // 4 pares -> 8 equipos izq
+        const rightR16Pairs = R16_P.slice(4, 8);   // 4 pares -> 8 equipos der
+        const leftR16  = leftR16Pairs.flatMap(([a,b]) => [bkt.r32[a], bkt.r32[b]]);
+        const rightR16 = rightR16Pairs.flatMap(([a,b]) => [bkt.r32[a], bkt.r32[b]]);
+
+        // Cuartos: 8 ganadores R16 (bkt.r16). 4 izq / 4 der.
+        const leftQF  = [bkt.r16[0], bkt.r16[1], bkt.r16[2], bkt.r16[3]];
+        const rightQF = [bkt.r16[4], bkt.r16[5], bkt.r16[6], bkt.r16[7]];
+
+        // Semis: 4 ganadores QF (bkt.qf). 2 izq / 2 der.
+        const leftSF  = [bkt.qf[0], bkt.qf[1]];
+        const rightSF = [bkt.qf[2], bkt.qf[3]];
+
+        // Final: bkt.sf (2 equipos)
+        const finalLeft  = bkt.sf[0] || null;
+        const finalRight = bkt.sf[1] || null;
+
         const champFlag = bkt.final ? bkt.final.f : '';
         const champName = bkt.final ? bkt.final.n : (isEs ? 'POR DEFINIR' : 'TBD');
 
-        // ── 3) Layout absoluto del bracket ──────────────────────────────
-        // Canvas total 1080x1920. Bracket ocupa y∈[420..1280], x∈[0..1080]
-        const BR_TOP    = 430;     // y inicio bracket
-        const BR_HEIGHT = 760;     // alto total bracket
-        const R16_W = 168, R16_H = 44, R16_GAP = 12;
-        const QF_W  = 152, QF_H  = 56;
-        const SF_W  = 148, SF_H  = 60;
-        const F_W   = 200, F_H   = 70;
+        // ── 3) LAYOUT ABSOLUTO 1080x1920 ────────────────────────────────
+        // Header: 0-360
+        // Bracket: 380-1240  (alto 860)
+        // Trofeo+Campeón: 1260-1520
+        // Premios: 1540-1740
+        // Footer: 1760-1920
+        const BR_TOP    = 400;
+        const BR_HEIGHT = 820;
+
+        // Tamaños cajas (alargado vertical para llenar mejor)
+        const R16_W = 158, R16_H = 50, R16_GAP = 16;
+        const QF_W  = 144, QF_H  = 64;
+        const SF_W  = 138, SF_H  = 72;
+        const F_W   = 230, F_H   = 100;
 
         // 8 octavos por lado: distribución uniforme vertical
-        const totalR16Block = 8 * R16_H + 7 * R16_GAP;          // 408
-        const r16StartY     = BR_TOP + (BR_HEIGHT - totalR16Block) / 2; // ≈606? recalc abajo
-
-        // Centramos verticalmente dentro de BR_HEIGHT
-        const r16Y = (i) => BR_TOP + (BR_HEIGHT - totalR16Block)/2 + i * (R16_H + R16_GAP);
+        const totalR16Block = 8 * R16_H + 7 * R16_GAP;          // 304+70 = 374
+        const r16Top        = BR_TOP + 30;                       // dejar espacio a labels
+        const r16Y = (i) => r16Top + i * (R16_H + R16_GAP);
 
         // X positions
-        const PAD = 36;
+        const PAD = 28;
         const xR16L = PAD;
         const xR16R = 1080 - PAD - R16_W;
-        const xQFL  = xR16L + R16_W + 30;
-        const xQFR  = xR16R - QF_W - 30;
-        const xSFL  = xQFL + QF_W + 26;
-        const xSFR  = xQFR - SF_W - 26;
-        const xF    = (1080 - F_W)/2;
+        const xQFL  = xR16L + R16_W + 26;
+        const xQFR  = xR16R - QF_W - 26;
+        const xSFL  = xQFL + QF_W + 22;
+        const xSFR  = xQFR - SF_W - 22;
+        const xF    = (1080 - F_W) / 2;
 
         // Y de cuartos = promedio entre dos octavos consecutivos
         const qfY = (i) => (r16Y(i*2) + r16Y(i*2+1) + R16_H)/2 - QF_H/2;
         // Y de semis = promedio entre dos cuartos
         const sfY = (i) => (qfY(i*2) + qfY(i*2+1) + QF_H)/2 - SF_H/2;
-        // Y de final
-        const yF = (sfY(0) + sfY(0) + SF_H)/2 - F_H/2; // no se usa, la final va arriba centrada
+        // Y de final = promedio entre las dos semis (ambos lados están a la misma Y)
+        const yF  = (sfY(0) + sfY(1) + SF_H)/2 - F_H/2;
 
-        // ── 4) Helper para SVG ──────────────────────────────────────────
-        // Línea conectora estilo bracket (horizontal-vertical-horizontal)
-        function connector(x1, y1, x2, y2) {
+        // ── 4) Helper SVG conector estilo bracket ───────────────────────
+        function connector(x1, y1, x2, y2, color = NEON, w = 2, opacity = .75, filter = 'glowLine') {
           const midX = (x1 + x2) / 2;
           return `<path d="M${x1},${y1} L${midX},${y1} L${midX},${y2} L${x2},${y2}"
-                       fill="none" stroke="${NEON}" stroke-width="2"
-                       stroke-opacity=".75" filter="url(#glowLine)"/>`;
+                       fill="none" stroke="${color}" stroke-width="${w}"
+                       stroke-opacity="${opacity}" stroke-linecap="round" stroke-linejoin="round"
+                       filter="url(#${filter})"/>`;
         }
 
-        // Construir todas las conexiones SVG
         let svgConnectors = '';
-        // Izquierda: cada par de octavos → cuarto correspondiente
+
+        // IZQUIERDA: cada par de octavos → cuarto correspondiente
         for (let i = 0; i < 4; i++) {
-          const yT = r16Y(i*2)     + R16_H/2;
-          const yB = r16Y(i*2+1)   + R16_H/2;
-          const yQ = qfY(i)        + QF_H/2;
-          // top R16 → QF
+          const yT = r16Y(i*2)   + R16_H/2;
+          const yB = r16Y(i*2+1) + R16_H/2;
+          const yQ = qfY(i)      + QF_H/2;
           svgConnectors += connector(xR16L + R16_W, yT, xQFL, yQ);
-          // bottom R16 → QF
           svgConnectors += connector(xR16L + R16_W, yB, xQFL, yQ);
         }
-        // Izquierda: cuartos → semis
+        // IZQUIERDA: cuartos → semis
         for (let i = 0; i < 2; i++) {
-          const yT = qfY(i*2)     + QF_H/2;
-          const yB = qfY(i*2+1)   + QF_H/2;
-          const yS = sfY(i)       + SF_H/2;
+          const yT = qfY(i*2)   + QF_H/2;
+          const yB = qfY(i*2+1) + QF_H/2;
+          const yS = sfY(i)     + SF_H/2;
           svgConnectors += connector(xQFL + QF_W, yT, xSFL, yS);
           svgConnectors += connector(xQFL + QF_W, yB, xSFL, yS);
         }
-        // Izquierda: semis → final (la final está arriba, dibujamos línea desde semis subiendo al final)
-        const yFinalCenterRight = BR_TOP - 60 + F_H/2; // posición vertical de la caja final
-        // En su lugar, posicionamos final ARRIBA del bracket (dentro del header bajo)
-        // y conectamos la SF derecha e izquierda hasta la final
-        // (las líneas no se ven obligatorias hacia la final dado que está arriba).
+        // IZQUIERDA: semi → final (dorado)
+        const yLSF = sfY(0) + SF_H/2;
+        const yFinalMid = yF + F_H/2;
+        svgConnectors += connector(xSFL + SF_W, yLSF, xF, yFinalMid, GOLD, 2.5, .9, 'glowGold');
 
-        // Derecha: cada par de octavos → cuarto correspondiente
+        // DERECHA: cada par de octavos → cuarto correspondiente
         for (let i = 0; i < 4; i++) {
-          const yT = r16Y(i*2)     + R16_H/2;
-          const yB = r16Y(i*2+1)   + R16_H/2;
-          const yQ = qfY(i)        + QF_H/2;
+          const yT = r16Y(i*2)   + R16_H/2;
+          const yB = r16Y(i*2+1) + R16_H/2;
+          const yQ = qfY(i)      + QF_H/2;
           svgConnectors += connector(xR16R, yT, xQFR + QF_W, yQ);
           svgConnectors += connector(xR16R, yB, xQFR + QF_W, yQ);
         }
-        // Derecha: cuartos → semis
+        // DERECHA: cuartos → semis
         for (let i = 0; i < 2; i++) {
-          const yT = qfY(i*2)     + QF_H/2;
-          const yB = qfY(i*2+1)   + QF_H/2;
-          const yS = sfY(i)       + SF_H/2;
+          const yT = qfY(i*2)   + QF_H/2;
+          const yB = qfY(i*2+1) + QF_H/2;
+          const yS = sfY(i)     + SF_H/2;
           svgConnectors += connector(xQFR, yT, xSFR + SF_W, yS);
           svgConnectors += connector(xQFR, yB, xSFR + SF_W, yS);
         }
+        // DERECHA: semi → final (dorado)
+        const yRSF = sfY(1) + SF_H/2;
+        svgConnectors += connector(xSFR, yRSF, xF + F_W, yFinalMid, GOLD, 2.5, .9, 'glowGold');
 
         // ── 5) Helpers HTML para cajas absolutamente posicionadas ───────
         const baseBox = `background:linear-gradient(180deg,#0d1f3a 0%,#08121f 100%);
@@ -3239,51 +3254,53 @@
         function r16Box(tm, x, y) {
           return `
             <div style="position:absolute;left:${x}px;top:${y}px;width:${R16_W}px;height:${R16_H}px;
-                        ${baseBox};display:flex;align-items:center;gap:9px;padding:0 12px">
-              <span style="font-size:22px;line-height:1">${flag(tm)}</span>
-              <span style="font-size:17px;font-weight:900;letter-spacing:.06em;font-style:italic;flex:1">${code(tm)}</span>
+                        ${baseBox};display:flex;align-items:center;gap:8px;padding:0 11px">
+              <span style="font-size:18px;line-height:1">${flag(tm)}</span>
+              <span style="font-size:15px;font-weight:900;letter-spacing:.06em;font-style:italic;flex:1">${code(tm)}</span>
             </div>`;
         }
-        function dualBox(t1, t2, x, y, w, h) {
-          const rowH = h / 2;
-          const row = (tm) => `
-            <div style="display:flex;align-items:center;gap:7px;padding:0 9px;height:${rowH}px;box-sizing:border-box">
-              <span style="font-size:17px;line-height:1;width:20px">${tm ? flag(tm) : ''}</span>
-              <span style="font-size:13px;font-weight:900;color:#fff;letter-spacing:.05em;font-style:italic;flex:1">${tm ? code(tm) : '---'}</span>
-            </div>`;
+        // Caja singular para QF/SF (mostramos solo el ganador con su round name)
+        function singleBox(tm, x, y, w, h, fontSize = 16, flagSize = 20) {
           return `
             <div style="position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;
-                        ${baseBox};overflow:hidden">
-              ${row(t1)}<div style="height:1px;background:rgba(63,169,255,.4)"></div>${row(t2)}
+                        ${baseBox};display:flex;align-items:center;justify-content:center;gap:9px;padding:0 10px">
+              <span style="font-size:${flagSize}px;line-height:1">${flag(tm)}</span>
+              <span style="font-size:${fontSize}px;font-weight:900;color:#fff;letter-spacing:.07em;font-style:italic">${code(tm)}</span>
             </div>`;
         }
 
-        // FINAL box (más grande, con borde dorado)
+        // FINAL box (más grande, con borde dorado, los DOS finalistas)
         function finalBox(t1, t2, x, y, w, h) {
-          const rowH = (h - 24) / 2;
-          const row = (tm) => `
-            <div style="display:flex;align-items:center;gap:10px;padding:0 12px;height:${rowH}px;box-sizing:border-box">
-              <span style="font-size:22px;line-height:1;width:26px">${tm ? flag(tm) : ''}</span>
-              <span style="font-size:17px;font-weight:900;color:#fff;letter-spacing:.07em;font-style:italic;flex:1">${tm ? code(tm) : '---'}</span>
+          const headerH = 26;
+          const rowH = (h - headerH) / 2;
+          const row = (tm, isWinner) => `
+            <div style="display:flex;align-items:center;gap:12px;padding:0 14px;height:${rowH}px;box-sizing:border-box;
+                        ${isWinner ? `background:linear-gradient(90deg,rgba(232,184,75,.18),rgba(232,184,75,0))` : ''}">
+              <span style="font-size:24px;line-height:1;width:28px">${tm ? flag(tm) : ''}</span>
+              <span style="font-size:18px;font-weight:900;color:${isWinner ? GOLD : '#fff'};letter-spacing:.08em;font-style:italic;flex:1">${tm ? code(tm) : '---'}</span>
+              ${isWinner ? `<span style="font-size:16px">👑</span>` : ''}
             </div>`;
+          const champ = bkt.final;
+          const w1 = champ && t1 && champ.n === t1.n;
+          const w2 = champ && t2 && champ.n === t2.n;
           return `
             <div style="position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;
                         background:linear-gradient(180deg,#1a1408 0%,#0a0904 100%);
-                        border:2.5px solid ${GOLD};border-radius:10px;
-                        box-shadow:0 0 22px rgba(232,184,75,.45),0 0 0 1px rgba(232,184,75,.3) inset;
+                        border:2.5px solid ${GOLD};border-radius:12px;
+                        box-shadow:0 0 28px rgba(232,184,75,.55),0 0 0 1px rgba(232,184,75,.3) inset;
                         box-sizing:border-box;color:#fff;font-family:'Inter',Arial,sans-serif;overflow:hidden">
-              <div style="height:24px;background:linear-gradient(180deg,${GOLD} 0%,#a87f1c 100%);
+              <div style="height:${headerH}px;background:linear-gradient(180deg,${GOLD} 0%,#a87f1c 100%);
                           color:#1a1408;text-align:center;font-style:italic;font-weight:900;
-                          font-size:13px;letter-spacing:.18em;line-height:24px">FINAL</div>
-              ${row(t1)}<div style="height:1px;background:${GOLD_DK}"></div>${row(t2)}
+                          font-size:13px;letter-spacing:.22em;line-height:${headerH}px">FINAL</div>
+              ${row(t1, w1)}<div style="height:1px;background:${GOLD_DK}"></div>${row(t2, w2)}
             </div>`;
         }
 
         // Etiqueta de ronda (encima de la columna)
         function roundLabel(txt, x, y, w) {
           return `<div style="position:absolute;left:${x}px;top:${y}px;width:${w}px;
-                              text-align:center;font-style:italic;font-weight:900;font-size:12px;
-                              color:${GOLD};letter-spacing:.14em;text-transform:uppercase;
+                              text-align:center;font-style:italic;font-weight:900;font-size:11px;
+                              color:${GOLD};letter-spacing:.18em;text-transform:uppercase;
                               text-shadow:0 0 8px rgba(232,184,75,.4)">${txt}</div>`;
         }
 
@@ -3291,61 +3308,43 @@
         function award(icon, label, value) {
           return `
             <div style="flex:1;background:linear-gradient(180deg,#1a1408 0%,#0a0904 100%);
-                        border:2px solid ${GOLD};border-radius:14px;padding:16px 12px;
+                        border:2px solid ${GOLD};border-radius:14px;padding:18px 14px;
                         box-shadow:0 4px 18px rgba(0,0,0,.6),0 0 14px rgba(232,184,75,.2),0 0 0 1px rgba(232,184,75,.25) inset">
               <div style="display:flex;align-items:center;justify-content:center;gap:10px;
-                          padding-bottom:10px;border-bottom:1.5px solid ${GOLD_DK};margin-bottom:10px">
-                <span style="font-size:24px;line-height:1">${icon}</span>
-                <span style="font-style:italic;font-weight:900;font-size:15px;color:${GOLD};letter-spacing:.05em;text-transform:uppercase">${label}</span>
+                          padding-bottom:12px;border-bottom:1.5px solid ${GOLD_DK};margin-bottom:12px">
+                <span style="font-size:28px;line-height:1">${icon}</span>
+                <span style="font-style:italic;font-weight:900;font-size:14px;color:${GOLD};letter-spacing:.06em;text-transform:uppercase">${label}</span>
               </div>
-              <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:.06em;text-align:center;
+              <div style="font-size:14px;font-weight:800;color:#fff;letter-spacing:.06em;text-align:center;
                           white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase">${value || '—'}</div>
             </div>`;
         }
 
         // ── 6) Construir bracket completo ───────────────────────────────
-        const FINAL_X = (1080 - F_W) / 2;
-        const FINAL_Y = BR_TOP - 30;          // final centrada arriba del bracket
-
         let bracketHTML = '';
 
         // Etiquetas de ronda IZQUIERDA
-        bracketHTML += roundLabel(isEs?'OCTAVOS':'R16',         xR16L,         BR_TOP-26, R16_W);
-        bracketHTML += roundLabel(isEs?'CUARTOS':'QF',          xQFL,          BR_TOP-26, QF_W);
-        bracketHTML += roundLabel(isEs?'SEMIS':'SF',            xSFL,          BR_TOP-26, SF_W);
+        bracketHTML += roundLabel(isEs?'OCTAVOS':'R16',  xR16L, BR_TOP, R16_W);
+        bracketHTML += roundLabel(isEs?'CUARTOS':'QF',   xQFL,  BR_TOP, QF_W);
+        bracketHTML += roundLabel(isEs?'SEMIS':'SF',     xSFL,  BR_TOP, SF_W);
+        // Etiqueta CENTRAL FINAL
+        bracketHTML += roundLabel(isEs?'FINAL':'FINAL',  xF,    BR_TOP, F_W);
         // Etiquetas de ronda DERECHA
-        bracketHTML += roundLabel(isEs?'SEMIS':'SF',            xSFR,          BR_TOP-26, SF_W);
-        bracketHTML += roundLabel(isEs?'CUARTOS':'QF',          xQFR,          BR_TOP-26, QF_W);
-        bracketHTML += roundLabel(isEs?'OCTAVOS':'R16',         xR16R,         BR_TOP-26, R16_W);
+        bracketHTML += roundLabel(isEs?'SEMIS':'SF',     xSFR,  BR_TOP, SF_W);
+        bracketHTML += roundLabel(isEs?'CUARTOS':'QF',   xQFR,  BR_TOP, QF_W);
+        bracketHTML += roundLabel(isEs?'OCTAVOS':'R16',  xR16R, BR_TOP, R16_W);
 
         // Octavos
         for (let i = 0; i < 8; i++) bracketHTML += r16Box(leftR16[i],  xR16L, r16Y(i));
         for (let i = 0; i < 8; i++) bracketHTML += r16Box(rightR16[i], xR16R, r16Y(i));
         // Cuartos
-        for (let i = 0; i < 4; i++) bracketHTML += dualBox(qfPairs[i][0], qfPairs[i][1], xQFL, qfY(i), QF_W, QF_H);
-        for (let i = 4; i < 8; i++) bracketHTML += dualBox(qfPairs[i][0], qfPairs[i][1], xQFR, qfY(i-4), QF_W, QF_H);
-        // ↑ ojo: solo hay 4 cuartos por lado del bracket original; aquí qfPairs.length==8
-        // R16_P tiene 8 entradas (4 izq + 4 der). Lo dibujamos correctamente.
-
+        for (let i = 0; i < 4; i++) bracketHTML += singleBox(leftQF[i],  xQFL, qfY(i), QF_W, QF_H, 15, 19);
+        for (let i = 0; i < 4; i++) bracketHTML += singleBox(rightQF[i], xQFR, qfY(i), QF_W, QF_H, 15, 19);
         // Semis
-        for (let i = 0; i < 2; i++) bracketHTML += dualBox(sfPairs[i][0], sfPairs[i][1], xSFL, sfY(i), SF_W, SF_H);
-        for (let i = 2; i < 4; i++) bracketHTML += dualBox(sfPairs[i][0], sfPairs[i][1], xSFR, sfY(i-2), SF_W, SF_H);
-
-        // FINAL (centrada arriba)
-        bracketHTML += finalBox(finalPair[0], finalPair[1], FINAL_X, FINAL_Y, F_W, F_H);
-
-        // Conector de semis hacia la final (líneas verticales subiendo al centro)
-        const ySFL_mid = sfY(0) + SF_H/2;
-        const ySFR_mid = sfY(2) + SF_H/2;
-        const xSFL_end = xSFL + SF_W;
-        const xSFR_end = xSFR;
-        const yFinalBottom = FINAL_Y + F_H;
-        // izq → final
-        svgConnectors += `<path d="M${xSFL_end},${ySFL_mid} L${FINAL_X-10},${ySFL_mid} L${FINAL_X-10},${yFinalBottom-12} L${FINAL_X},${yFinalBottom-12}"
-                                fill="none" stroke="${GOLD}" stroke-width="2.5" stroke-opacity=".85" filter="url(#glowGold)"/>`;
-        // der → final
-        svgConnectors += `<path d="M${xSFR_end},${ySFR_mid} L${FINAL_X+F_W+10},${ySFR_mid} L${FINAL_X+F_W+10},${yFinalBottom-12} L${FINAL_X+F_W},${yFinalBottom-12}"
-                                fill="none" stroke="${GOLD}" stroke-width="2.5" stroke-opacity=".85" filter="url(#glowGold)"/>`;
+        for (let i = 0; i < 2; i++) bracketHTML += singleBox(leftSF[i],  xSFL, sfY(i), SF_W, SF_H, 17, 22);
+        for (let i = 0; i < 2; i++) bracketHTML += singleBox(rightSF[i], xSFR, sfY(i), SF_W, SF_H, 17, 22);
+        // FINAL
+        bracketHTML += finalBox(finalLeft, finalRight, xF, yF, F_W, F_H);
 
         // ── 7) HTML COMPLETO ────────────────────────────────────────────
         el.innerHTML = `
@@ -3367,26 +3366,26 @@
                           radial-gradient(circle at 50% 90%, ${NEON} 0, transparent 2px)"></div>
 
             <!-- HEADER -->
-            <div style="position:absolute;left:0;top:0;width:100%;padding:42px 60px 0 60px;text-align:center;box-sizing:border-box">
-              <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:22px">
+            <div style="position:absolute;left:0;top:0;width:100%;padding:38px 60px 0 60px;text-align:center;box-sizing:border-box">
+              <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px">
                 <div style="display:inline-flex;align-items:flex-end;gap:3px;font-family:Georgia,'Times New Roman',serif;line-height:.85">
-                  <span style="font-size:50px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
-                  <span style="display:inline-block;width:4px;height:44px;background:#fff;margin:0 2px"></span>
-                  <span style="font-size:50px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
+                  <span style="font-size:48px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
+                  <span style="display:inline-block;width:4px;height:42px;background:#fff;margin:0 2px"></span>
+                  <span style="font-size:48px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
                 </div>
-                <div style="font-size:14px;font-weight:800;letter-spacing:.28em;color:#fff;border-left:2px solid ${GOLD};padding-left:12px;text-align:left">HECTOR<br/>HARDY</div>
+                <div style="font-size:13px;font-weight:800;letter-spacing:.28em;color:#fff;border-left:2px solid ${GOLD};padding-left:12px;text-align:left">HECTOR<br/>HARDY</div>
               </div>
 
-              <div style="font-size:62px;font-weight:900;color:#fff;letter-spacing:.05em;line-height:1;
+              <div style="font-size:60px;font-weight:900;color:#fff;letter-spacing:.05em;line-height:1;
                           text-shadow:0 2px 12px rgba(0,0,0,.7)">${isEs ? 'MIS PREDICCIONES' : 'MY PREDICTIONS'}</div>
-              <div style="font-size:42px;font-weight:900;color:${GOLD};letter-spacing:.22em;margin-top:12px;
+              <div style="font-size:40px;font-weight:900;color:${GOLD};letter-spacing:.22em;margin-top:10px;
                           text-shadow:0 0 18px rgba(232,184,75,.5),0 2px 8px rgba(0,0,0,.6)">MUNDIAL 2026</div>
-              <div style="font-size:14px;color:${TXT_DIM};margin-top:10px;letter-spacing:.05em">
+              <div style="font-size:13px;color:${TXT_DIM};margin-top:8px;letter-spacing:.05em">
                 ${isEs ? 'Cargado desde' : 'Loaded from'} hectorhardy.com · @${un}
               </div>
             </div>
 
-            <!-- SVG con conectores y bracket -->
+            <!-- SVG con conectores -->
             <svg width="1080" height="1920" viewBox="0 0 1080 1920" style="position:absolute;left:0;top:0;pointer-events:none">
               <defs>
                 <filter id="glowLine" x="-50%" y="-50%" width="200%" height="200%">
@@ -3404,25 +3403,20 @@
             <!-- Bracket boxes posicionadas absolutamente -->
             ${bracketHTML}
 
-            <!-- TROFEO + EL CAMPEÓN (debajo del bracket) -->
-            <div style="position:absolute;left:0;top:1230px;width:100%;text-align:center">
-              <div style="font-size:120px;line-height:1;
-                          filter:drop-shadow(0 10px 18px rgba(232,184,75,.55))">🏆</div>
+            <!-- TROFEO + EL CAMPEÓN (centrado en hueco entre bracket y premios) -->
+            <div style="position:absolute;left:0;top:1050px;width:100%;text-align:center">
+              <div style="font-size:200px;line-height:1;
+                          filter:drop-shadow(0 16px 32px rgba(232,184,75,.7))">🏆</div>
 
-              <div style="margin-top:14px;display:inline-block;
+              <div style="margin-top:30px;display:inline-flex;align-items:center;gap:28px;
                           background:linear-gradient(180deg,#1a1408,#0a0904);
-                          border:2.5px solid ${GOLD};border-radius:14px;padding:14px 42px;
-                          box-shadow:0 6px 22px rgba(0,0,0,.7),0 0 22px rgba(232,184,75,.4),0 0 0 1px rgba(232,184,75,.3) inset">
-                <div style="font-style:italic;font-weight:900;font-size:28px;color:${GOLD};
-                            letter-spacing:.16em;line-height:1">${isEs ? 'EL CAMPEÓN' : 'THE CHAMPION'}</div>
-              </div>
-
-              <div style="margin-top:14px;display:inline-flex;align-items:center;gap:18px;
-                          background:linear-gradient(180deg,#0d1f3a,#08121f);
-                          border:2px solid ${NEON};border-radius:12px;padding:14px 32px;
-                          box-shadow:0 0 22px ${NEON_DIM},0 0 0 1px rgba(63,169,255,.25) inset">
-                <span style="font-size:38px;line-height:1">${champFlag}</span>
-                <span style="color:#fff;font-weight:900;font-size:26px;letter-spacing:.12em;text-transform:uppercase">${champName}</span>
+                          border:3px solid ${GOLD};border-radius:20px;padding:24px 56px;
+                          box-shadow:0 10px 32px rgba(0,0,0,.8),0 0 38px rgba(232,184,75,.55),0 0 0 1px rgba(232,184,75,.4) inset">
+                <div style="font-style:italic;font-weight:900;font-size:34px;color:${GOLD};
+                            letter-spacing:.22em;line-height:1;text-shadow:0 0 14px rgba(232,184,75,.55)">${isEs ? 'EL CAMPEÓN' : 'CHAMPION'}</div>
+                <div style="width:2px;height:48px;background:${GOLD_DK}"></div>
+                <span style="font-size:54px;line-height:1">${champFlag}</span>
+                <span style="color:#fff;font-weight:900;font-size:40px;letter-spacing:.14em;text-transform:uppercase">${champName}</span>
               </div>
             </div>
 
@@ -3446,7 +3440,7 @@
             </div>
           </div>`;
 
-        // ── 8) Posicionar fuera de pantalla ─────────────────────────────
+        // ── 8) Posicionar fuera de pantalla y capturar ─────────────────
         el.style.left = '-20000px';
         el.style.top = '0px';
         el.style.zIndex = '99999';
