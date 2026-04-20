@@ -3271,10 +3271,18 @@
           svgConnectors += connector(xQFL + QF_W, yT, xSFL, yS);
           svgConnectors += connector(xQFL + QF_W, yB, xSFL, yS);
         }
-        // IZQUIERDA: semi → final (dorado)
-        const yLSF = sfY(0) + SF_H/2;
-        const yFinalMid = yF + F_H/2;
-        svgConnectors += connector(xSFL + SF_W, yLSF, xF, yFinalMid, GOLD, 2.5, .9, 'glowGold');
+        // IZQUIERDA: semi (ganador) → fila TOP de la FINAL (dorado)
+        // La línea debe salir del equipo GANADOR de las semis izquierdas, no siempre de la caja superior.
+        const headerH_F = 26;
+        const rowH_F   = (F_H - headerH_F) / 2;
+        const yFinalTopRow    = yF + headerH_F + rowH_F/2;
+        const yFinalBottomRow = yF + headerH_F + rowH_F + rowH_F/2;
+        // Índice del ganador izquierdo dentro de leftSF (0 = caja arriba, 1 = caja abajo)
+        let leftWinnerIdx = 0;
+        if (finalLeft && leftSF[1] && leftSF[1].n === finalLeft.n) leftWinnerIdx = 1;
+        else if (finalLeft && leftSF[0] && leftSF[0].n === finalLeft.n) leftWinnerIdx = 0;
+        const yLSF = sfY(leftWinnerIdx) + SF_H/2;
+        svgConnectors += connector(xSFL + SF_W, yLSF, xF, yFinalTopRow, GOLD, 2.5, .9, 'glowGold');
 
         // DERECHA: cada par de octavos → cuarto correspondiente
         for (let i = 0; i < 4; i++) {
@@ -3292,9 +3300,12 @@
           svgConnectors += connector(xQFR, yT, xSFR + SF_W, yS);
           svgConnectors += connector(xQFR, yB, xSFR + SF_W, yS);
         }
-        // DERECHA: semi → final (dorado)
-        const yRSF = sfY(1) + SF_H/2;
-        svgConnectors += connector(xSFR, yRSF, xF + F_W, yFinalMid, GOLD, 2.5, .9, 'glowGold');
+        // DERECHA: semi (ganador) → fila BOTTOM de la FINAL (dorado)
+        let rightWinnerIdx = 0;
+        if (finalRight && rightSF[1] && rightSF[1].n === finalRight.n) rightWinnerIdx = 1;
+        else if (finalRight && rightSF[0] && rightSF[0].n === finalRight.n) rightWinnerIdx = 0;
+        const yRSF = sfY(rightWinnerIdx) + SF_H/2;
+        svgConnectors += connector(xSFR, yRSF, xF + F_W, yFinalBottomRow, GOLD, 2.5, .9, 'glowGold');
 
         // ── 5) Helpers HTML para cajas absolutamente posicionadas ───────
         const baseBox = `background:linear-gradient(180deg,#0d1f3a 0%,#08121f 100%);
@@ -3397,13 +3408,44 @@
         // FINAL
         bracketHTML += finalBox(finalLeft, finalRight, xF, yF, F_W, F_H);
 
+        // ── 6.5) Pre-cargar imágenes (logo + fondo hero) como data URLs ──
+        // html2canvas no puede capturar imágenes externas si hay problemas de CORS.
+        // Convertimos a base64 antes de pintar para garantizar que se rendericen.
+        async function toDataURL(url, fallback = '') {
+          try {
+            const res = await fetch(url, { mode: 'cors', cache: 'force-cache' });
+            if (!res.ok) return fallback;
+            const blob = await res.blob();
+            return await new Promise((resolve) => {
+              const fr = new FileReader();
+              fr.onload = () => resolve(fr.result);
+              fr.onerror = () => resolve(fallback);
+              fr.readAsDataURL(blob);
+            });
+          } catch (_) { return fallback; }
+        }
+        const ORIGIN = (typeof window !== 'undefined' && window.location.origin.includes('hectorhardy'))
+          ? window.location.origin
+          : 'https://hectorhardy.com';
+        const [heroDataUrl, logoDataUrl] = await Promise.all([
+          toDataURL(ORIGIN + '/assets/images/hero.webp'),
+          toDataURL(ORIGIN + '/assets/images/logo_horizontal.svg'),
+        ]);
+
         // ── 7) HTML COMPLETO ────────────────────────────────────────────
         el.innerHTML = `
           <div style="position:relative;width:1080px;height:1920px;
                       background:
-                        radial-gradient(ellipse at 50% 38%, rgba(63,169,255,.10) 0%, transparent 55%),
-                        radial-gradient(circle at 12% 82%, rgba(232,184,75,.07), transparent 45%),
-                        linear-gradient(180deg,#000 0%,#04101e 22%,#06182d 55%,#04101e 85%,#000 100%);
+                        linear-gradient(180deg, rgba(5,7,13,.78) 0%, rgba(5,7,13,.62) 35%, rgba(5,7,13,.78) 70%, rgba(0,0,0,.92) 100%),
+                        ${heroDataUrl ? `url('${heroDataUrl}') center / cover no-repeat` : `linear-gradient(180deg,#000 0%,#04101e 22%,#06182d 55%,#04101e 85%,#000 100%)`};
+                      box-sizing:border-box;font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+                      color:#fff;overflow:hidden">
+
+            <!-- Sutil viñeta y acentos para mantener el lenguaje visual -->
+            <div style="position:absolute;inset:0;pointer-events:none;
+                        background:
+                          radial-gradient(ellipse at 50% 38%, rgba(63,169,255,.10) 0%, transparent 55%),
+                          radial-gradient(circle at 12% 82%, rgba(232,184,75,.08), transparent 45%)"></div>
                       box-sizing:border-box;font-family:'Inter','Helvetica Neue',Arial,sans-serif;
                       color:#fff;overflow:hidden">
 
@@ -3418,13 +3460,16 @@
 
             <!-- HEADER -->
             <div style="position:absolute;left:0;top:0;width:100%;padding:38px 60px 0 60px;text-align:center;box-sizing:border-box">
-              <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px">
-                <div style="display:inline-flex;align-items:flex-end;gap:3px;font-family:Georgia,'Times New Roman',serif;line-height:.85">
-                  <span style="font-size:48px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
-                  <span style="display:inline-block;width:4px;height:42px;background:#fff;margin:0 2px"></span>
-                  <span style="font-size:48px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
-                </div>
-                <div style="font-size:13px;font-weight:800;letter-spacing:.28em;color:#fff;border-left:2px solid ${GOLD};padding-left:12px;text-align:left">HECTOR<br/>HARDY</div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px;min-height:80px">
+                ${logoDataUrl
+                  ? `<img src="${logoDataUrl}" alt="Hector Hardy" style="height:80px;width:auto;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))" />`
+                  : `<div style="display:inline-flex;align-items:flex-end;gap:3px;font-family:Georgia,'Times New Roman',serif;line-height:.85">
+                       <span style="font-size:48px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
+                       <span style="display:inline-block;width:4px;height:42px;background:#fff;margin:0 2px"></span>
+                       <span style="font-size:48px;font-weight:900;color:#fff;letter-spacing:-.05em">H</span>
+                     </div>
+                     <div style="font-size:13px;font-weight:800;letter-spacing:.28em;color:#fff;border-left:2px solid ${GOLD};padding-left:12px;text-align:left">HECTOR<br/>HARDY</div>`
+                }
               </div>
 
               <div style="font-size:60px;font-weight:900;color:#fff;letter-spacing:.05em;line-height:1;
