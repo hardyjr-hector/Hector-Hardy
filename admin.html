@@ -567,6 +567,14 @@
         automáticamente los puntos de campeón, goleador y balón de oro de todos los jugadores.</div>
       <div id="specials-admin"></div>
 
+      <!-- DELETE PREDICTIONS -->
+      <div class="stitle" style="margin-top:2.25rem">🗑️ Borrar Quiniela de un Jugador</div>
+      <div class="info-box">Selecciona un jugador y elimina <strong style="color:var(--text)">todas</strong> sus predicciones (partidos, grupos, especiales y puntos). Esta acción no se puede deshacer.</div>
+      <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem">
+        <select class="fi" id="del-user" style="flex:1;max-width:320px"><option value="">— Selecciona un jugador —</option></select>
+        <button class="sp-sav" style="background:var(--red);color:#fff" onclick="deleteUserPredictions()">🗑️ Borrar quiniela</button>
+      </div>
+
       <!-- LEADERBOARD -->
       <div class="stitle" style="margin-top:2.25rem">🏅 Clasificación Actual</div>
       <div class="lbc">
@@ -629,7 +637,7 @@
       document.getElementById('auth-screen').style.display = 'none';
       document.getElementById('admin').style.display = 'block';
       document.getElementById('a-un').textContent = data.user.email;
-      await loadResults(); await loadSpRes(); renderTabs(); renderMatches(ag); renderSpecialsAdmin(); renderLB();
+      await loadResults(); await loadSpRes(); renderTabs(); renderMatches(ag); renderSpecialsAdmin(); renderLB(); loadDelUsers();
     }
     async function adminLogout() { await sb.auth.signOut(); window.location.reload() }
     function showErr(m) { const e = document.getElementById('aerr'); e.textContent = m; e.style.display = 'block' }
@@ -780,6 +788,33 @@
       spRes[field] = val;
       await sb.from('special_results').update({ [field]: val || null, updated_at: new Date().toISOString() }).eq('id', 1);
       renderSpecialsAdmin(); toast(`${field} guardado: "${val}" ✓`);
+    }
+
+    // ── DELETE USER PREDICTIONS ──────────────────
+    async function loadDelUsers() {
+      const { data } = await sb.from('profiles').select('id,username').order('username');
+      const sel = document.getElementById('del-user');
+      if (!sel || !data) return;
+      sel.innerHTML = '<option value="">— Selecciona un jugador —</option>' +
+        data.map(u => `<option value="${u.id}">${u.username || u.id}</option>`).join('');
+    }
+    async function deleteUserPredictions() {
+      const sel = document.getElementById('del-user');
+      const uid = sel.value;
+      if (!uid) { toast('Selecciona un jugador primero'); return }
+      const uname = sel.options[sel.selectedIndex].textContent;
+      if (!confirm(`¿Borrar TODA la quiniela de "${uname}"?\n\nSe eliminarán sus predicciones de partidos, grupos, especiales y sus puntos.\n\nEsta acción NO se puede deshacer.`)) return;
+      try {
+        await sb.from('predictions').delete().eq('user_id', uid);
+        await sb.from('group_rankings').delete().eq('user_id', uid);
+        await sb.from('special_predictions').delete().eq('user_id', uid);
+        await sb.from('user_points').delete().eq('user_id', uid);
+        toast(`Quiniela de "${uname}" borrada ✓`);
+        sel.value = '';
+        renderLB();
+      } catch (e) {
+        toast('Error: ' + (e.message || e));
+      }
     }
 
     // ── LEADERBOARD ──────────────────────────────
