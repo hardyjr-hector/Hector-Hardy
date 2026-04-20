@@ -843,7 +843,8 @@
 
         const seen = new Set();
         const filtered = users
-          .filter(u => u?.id && u.id !== CU?.id && !seen.has(u.id) && seen.add(u.id))
+          .filter(u => u?.id && !seen.has(u.id) && seen.add(u.id))
+          .map(u => u.id === CU?.id ? { ...u, username: `${u.username} (tú · admin)`, isSelf: true } : u)
           .sort((a, b) => (a.username || '').localeCompare(b.username || '', 'es', { sensitivity: 'base' }));
 
         if (!filtered.length) {
@@ -867,7 +868,9 @@
       const userId = sel?.value;
       const username = sel?.options?.[sel.selectedIndex]?.text || 'este jugador';
       if (!userId) { toast('Selecciona un jugador'); return; }
+      const isSelf = userId === CU?.id;
       if (!confirm(`¿Seguro que quieres borrar la quiniela de ${username}?`)) return;
+      if (isSelf && !confirm('⚠️ Estás a punto de borrar TU PROPIA quiniela de admin. Esta acción no se puede deshacer. ¿Continuar?')) return;
 
       btn.disabled = true;
       btn.textContent = 'Borrando...';
