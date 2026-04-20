@@ -2125,7 +2125,7 @@ const teamArticles = {
       <div class="article-meta">
         <span>✍️ Hector Hardy</span><span>📅 Junio 2026</span><span>⏱ 4 min</span>
       </div>
-      <p class="article-lead">Velocidad, desparpajo y un Mohammed Kudus que llega en el mejor momento de su carrera para liderar a África.</p>
+      <p class="article-lead">Velocidad, desparpajo y un Antoine Semenyo que llega en el mejor momento de su carrera para liderar a África.</p>
       <div class="article-stat-grid">
         <div class="stat-box"><span class="stat-val">#74</span><span class="stat-lbl">Ranking FIFA</span></div>
         <div class="stat-box"><span class="stat-val">Cuartos (2010)</span><span class="stat-lbl">Mejor puesto</span></div>
@@ -2133,6 +2133,37 @@ const teamArticles = {
       </div>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong> Son impredecibles. Pueden ganar a Inglaterra y perder con una selección menor. Si encuentran estabilidad, darán mucho de qué hablar.
+      </div>`
+  },
+
+  "Escocia 🏴󠁧󠁢󠁳󠁣󠁴󠁿": {
+    content: `
+      <span class="article-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+      <h1>Escocia: el rugido de las Highlands<</h1>
+      <div class="article-meta">
+        <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
+      </div>
+      <p class="article-lead"> Más que gaita y corazón. Escocia llega a 2026 con la generación más competitiva de las últimas tres décadas, 
+        dispuesta a demostrar que su fútbol ha evolucionado más allá del choque y el balón largo.</p>
+      <h2>La identidad del bloque de granito</h2>
+      <p>Bajo el mando de Steve Clarke, Escocia se ha convertido en un equipo extremadamente difícil de batir. No tienen el brillo individual de sus vecinos del sur, pero poseen una ética de trabajo colectiva que desespera a los rivales. Es un equipo construido desde la solidez de sus jugadores de Premier League, capaces de aguantar el asedio y morder en la única oportunidad que tengan.</p>
+      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="stat-box"><span class="stat-val">#43</span><span class="stat-lbl">Ranking FIFA</span></div>
+        <div class="stat-box"><span class="stat-val">Fase grupos</span><span class="stat-lbl">Mejor puesto</span></div>
+        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
+      </div>
+      <h2>Estilo de juego: físico y presión asfixiante</h2>
+      <p>Escocia no te deja pensar. Su sistema se basa en una presión media-alta muy agresiva y un despliegue físico envidiable. Son letales a balón parado y en transiciones rápidas por banda, aprovechando la llegada de sus centrocampistas desde segunda línea.</p>
+      <h2>Jugadores a seguir</h2>
+      <ul class="player-list">
+        <li><span><strong>Scott McTominay</strong> · Centrocampista</span><span class="player-role">El llegador y máximo goleador</span></li>
+        <li><span><strong>Andrew Robertson</strong> · Lateral izquierdo</span><span class="player-role">Capitán y alma del equipo</span></li>
+        <li><span><strong>John McGinn</strong> · Centrocampista</span><span class="player-role">El motor y la pausa</span></li>
+        <li><span><strong>Billy Gilmour</strong> · Mediocentro</span><span class="player-role">La brújula técnica</span></li>
+      </ul>
+      <div class="article-verdict">
+        <strong>Veredicto de Hector Hardy</strong>
+        <p>Están en el grupo de Brasil y Marruecos, lo cual parece una sentencia, pero Escocia vive de romper pronósticos. Si logran puntuar ante los marroquíes, el partido contra Haití podría darles un pase histórico a la siguiente ronda. Corazón les sobra.</p>
       </div>`
   },
 
@@ -2447,39 +2478,6 @@ const teamArticles = {
       </div>
       <div class="article-verdict">
         <strong>Veredicto de Hector Hardy</strong> No se van a encerrar. Intentarán jugar de tú a tú, lo cual puede ser valiente o suicida en el grupo de Alemania y Ecuador.
-      </div>`
-  },
-
-  "Escocia 🏴󠁧󠁢󠁳󠁣󠁴󠁿": {
-    content: `
-      <span class="article-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
-      <h1>Escocia: el rugido de las Highlands</h1>
-      <div class="article-meta">
-        <span>✍️ Hector Hardy</span><span>📅 Mayo 2026</span><span>⏱ 4 min</span>
-      </div>
-      <p class="article-lead">
-        Más que gaita y corazón. Escocia llega a 2026 con la generación más competitiva de las últimas tres décadas, 
-        dispuesta a demostrar que su fútbol ha evolucionado más allá del choque y el balón largo.
-      </p>
-      <h2>La identidad del bloque de granito</h2>
-      <p>Bajo el mando de Steve Clarke, Escocia se ha convertido en un equipo extremadamente difícil de batir. No tienen el brillo individual de sus vecinos del sur, pero poseen una ética de trabajo colectiva que desespera a los rivales. Es un equipo construido desde la solidez de sus jugadores de Premier League, capaces de aguantar el asedio y morder en la única oportunidad que tengan.</p>
-      <div class="article-stat-grid" style="grid-template-columns:repeat(3,1fr)">
-        <div class="stat-box"><span class="stat-val">#43</span><span class="stat-lbl">Ranking FIFA</span></div>
-        <div class="stat-box"><span class="stat-val">Fase grupos</span><span class="stat-lbl">Mejor puesto</span></div>
-        <div class="stat-box"><span class="stat-val">Grupo C</span><span class="stat-lbl">Fase de grupos</span></div>
-      </div>
-      <h2>Estilo de juego: físico y presión asfixiante</h2>
-      <p>Escocia no te deja pensar. Su sistema se basa en una presión media-alta muy agresiva y un despliegue físico envidiable. Son letales a balón parado y en transiciones rápidas por banda, aprovechando la llegada de sus centrocampistas desde segunda línea.</p>
-      <h2>Jugadores a seguir</h2>
-      <ul class="player-list">
-        <li><span><strong>Scott McTominay</strong> · Centrocampista</span><span class="player-role">El llegador y máximo goleador</span></li>
-        <li><span><strong>Andrew Robertson</strong> · Lateral izquierdo</span><span class="player-role">Capitán y alma del equipo</span></li>
-        <li><span><strong>John McGinn</strong> · Centrocampista</span><span class="player-role">El motor y la pausa</span></li>
-        <li><span><strong>Billy Gilmour</strong> · Mediocentro</span><span class="player-role">La brújula técnica</span></li>
-      </ul>
-      <div class="article-verdict">
-        <strong>Veredicto de Hector Hardy</strong>
-        <p>Están en el grupo de Brasil y Marruecos, lo cual parece una sentencia, pero Escocia vive de romper pronósticos. Si logran puntuar ante los marroquíes, el partido contra Haití podría darles un pase histórico a la siguiente ronda. Corazón les sobra.</p>
       </div>`
   },
 
