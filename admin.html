@@ -792,11 +792,22 @@
 
     // ── DELETE USER PREDICTIONS ──────────────────
     async function loadDelUsers() {
-      const { data } = await sb.from('profiles').select('id,username').order('username');
       const sel = document.getElementById('del-user');
-      if (!sel || !data) return;
+      if (!sel) return;
+      const { data, error } = await sb.from('profiles').select('id,username,is_admin').order('username');
+      if (error) {
+        console.error('loadDelUsers error:', error);
+        sel.innerHTML = `<option value="">Error: ${error.message}</option>`;
+        toast('Error cargando jugadores: ' + error.message);
+        return;
+      }
+      if (!data || data.length === 0) {
+        sel.innerHTML = '<option value="">No hay jugadores</option>';
+        return;
+      }
+      const list = data.filter(u => u.id !== CU?.id); // no permitir borrarse a sí mismo
       sel.innerHTML = '<option value="">— Selecciona un jugador —</option>' +
-        data.map(u => `<option value="${u.id}">${u.username || u.id}</option>`).join('');
+        list.map(u => `<option value="${u.id}">${u.username || u.id}${u.is_admin ? ' (admin)' : ''}</option>`).join('');
     }
     async function deleteUserPredictions() {
       const sel = document.getElementById('del-user');
