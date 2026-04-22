@@ -2562,8 +2562,49 @@ function initWorldCup() {
 }
 
 // ==========================
-// RENDER TEAMS
+// RENDER TEAMS — FIFA-style cards
 // ==========================
+
+// Helper: ranking FIFA -> OVR (1..99)
+function rankingToOVR(rank) {
+  if (rank <= 1)  return 99;
+  if (rank <= 3)  return 97;
+  if (rank <= 5)  return 95;
+  if (rank <= 8)  return 92;
+  if (rank <= 12) return 89;
+  if (rank <= 16) return 86;
+  if (rank <= 20) return 84;
+  if (rank <= 25) return 82;
+  if (rank <= 30) return 80;
+  if (rank <= 35) return 78;
+  if (rank <= 45) return 76;
+  if (rank <= 55) return 74;
+  if (rank <= 65) return 72;
+  if (rank <= 75) return 70;
+  return 68;
+}
+
+// Posición/etiqueta táctica derivada del estilo
+function styleToPos(style) {
+  const s = (style || '').toLowerCase();
+  if (s.includes('contra') || s.includes('transici')) return 'CA';
+  if (s.includes('pose'))    return 'POS';
+  if (s.includes('presi'))   return 'PRE';
+  if (s.includes('físico') || s.includes('fisico') || s.includes('directo')) return 'FIS';
+  if (s.includes('orden') || s.includes('discip') || s.includes('compact') || s.includes('sólid') || s.includes('solid') || s.includes('organiz')) return 'DEF';
+  return 'EQU';
+}
+
+function tierClass(rank) {
+  if (rank <= 8)  return 'tier-icon';
+  if (rank <= 24) return 'tier-gold';
+  return 'tier-silver';
+}
+
+function stripFlag(name) {
+  return name.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim();
+}
+
 function renderTeams() {
   const container = document.getElementById('teamAnalysisContainer');
   if (!container) return;
@@ -2571,18 +2612,38 @@ function renderTeams() {
   const grid = document.createElement('div');
   grid.className = 'teams-grid';
 
-  teamsData.forEach(team => {
+  // Ordena por ranking FIFA (mejor primero)
+  const sorted = [...teamsData].sort((a, b) => a.ranking - b.ranking);
+
+  sorted.forEach(team => {
     const hasArticle = !!teamArticles[team.name];
+    const ovr        = rankingToOVR(team.ranking);
+    const pos        = styleToPos(team.style);
+    const tier       = tierClass(team.ranking);
+    const displayName = stripFlag(team.name);
+
     const card = document.createElement('div');
-    card.className = `team-card${hasArticle ? ' has-article' : ''}`;
-    // Strip flag emoji from display name for cleanliness
-    const displayName = team.name.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim();
+    card.className = `team-card ${tier}${hasArticle ? ' has-article' : ''}`;
     card.innerHTML = `
-      <span class="team-card-flag">${team.flag}</span>
-      <div class="team-card-name">${displayName}</div>
-      <div class="team-card-ranking">Ranking #${team.ranking} · Grupo ${team.group}</div>
-      <div class="team-card-player">${team.player}</div>
-      <span class="team-read-more">${hasArticle ? 'Leer análisis →' : 'Próximamente →'}</span>
+      <div class="tc-top">
+        <div class="tc-ovr">${ovr}</div>
+        <div class="tc-meta">
+          <span class="tc-pos">${pos}</span>
+          <span class="tc-group">Grupo ${team.group}</span>
+        </div>
+      </div>
+      <div class="tc-flag">${team.flag}</div>
+      <div class="tc-name">${displayName}</div>
+      <div class="tc-stats">
+        <span class="lbl">Ranking</span><span class="val">#${team.ranking}</span>
+        <span class="lbl">Grupo</span><span class="val">${team.group}</span>
+      </div>
+      <div class="tc-style">${team.style}</div>
+      <div class="tc-player">
+        <small>Estrella</small>
+        ${team.player}
+      </div>
+      <div class="tc-cta">${hasArticle ? 'Leer análisis →' : 'Próximamente'}</div>
     `;
     card.addEventListener('click', () => openTeamArticle(team.name));
     grid.appendChild(card);
