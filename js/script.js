@@ -2508,7 +2508,7 @@ const teamsData = [
   { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 3, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
   { name: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, player: "Jude Bellingham", group: "L", style: "Físico y balones al área" },
   { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 5, player: "Cristiano Ronaldo", group: "K", style: "Posesión ofensiva" },
-  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
+  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Raphinha", group: "C", style: "Ataque vertical y talento" },
   { name: "Países Bajos 🇳🇱", flag: "🇳🇱", ranking: 7, player: "Virgil van Dijk", group: "F", style: "Fútbol total moderno" },
   { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 8, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
   { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Kevin De Bruyne", group: "G", style: "Potencia y calidad" },
@@ -2518,7 +2518,7 @@ const teamsData = [
   { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 14, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
   { name: "México 🇲🇽", flag: "🇲🇽", ranking: 15, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
   { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 16, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
-  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
+  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Federico Valverde", group: "H", style: "Solidez defensiva" },
   { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 18, player: "Takefusa Kubo", group: "F", style: "Presión y disciplina táctica" },
   { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
   { name: "Irán 🇮🇷", flag: "🇮🇷", ranking: 21, player: "Mehdi Taremi", group: "G", style: "Sólido y organizado" },
@@ -2547,7 +2547,7 @@ const teamsData = [
   { name: "Jordania 🇯🇴", flag: "🇯🇴", ranking: 63, player: "Musa Al-Taamari", group: "J", style: "Organizado y compacto" },
   { name: "Bosnia y Herzegovina 🇧🇦", flag: "🇧🇦", ranking: 65, player: "Edin Džeko", group: "B", style: "Contragolpe y físico" },
   { name: "Cabo Verde 🇨🇻", flag: "🇨🇻", ranking: 69, player: "Garry Rodrigues", group: "H", style: "Compacto y organizado" },
-  { name: "Ghana 🇬🇭", flag: "🇬🇭", ranking: 74, player: "Mohammed Kudus", group: "L", style: "Ataque rápido y físico" },
+  { name: "Ghana 🇬🇭", flag: "🇬🇭", ranking: 74, player: "Antoine Semenyo", group: "L", style: "Ataque rápido y físico" },
   { name: "Curazao 🇨🇼", flag: "🇨🇼", ranking: 82, player: "Leandro Bacuna", group: "E", style: "Organizado y ambicioso" },
   { name: "Haití 🇭🇹", flag: "🇭🇹", ranking: 83, player: "Frantzdy Pierrot", group: "C", style: "Compacto y transiciones" },
   { name: "Nueva Zelanda 🇳🇿", flag: "🇳🇿", ranking: 85, player: "Chris Wood", group: "G", style: "Físico y combativo" },
@@ -2567,10 +2567,10 @@ function initWorldCup() {
 
 // Helper: ranking FIFA -> OVR (1..99)
 function rankingToOVR(rank) {
-  if (rank <= 1)  return 99;
-  if (rank <= 3)  return 97;
-  if (rank <= 5)  return 95;
-  if (rank <= 8)  return 92;
+  if (rank <= 1) return 99;
+  if (rank <= 3) return 97;
+  if (rank <= 5) return 95;
+  if (rank <= 8) return 92;
   if (rank <= 12) return 89;
   if (rank <= 16) return 86;
   if (rank <= 20) return 84;
@@ -2588,15 +2588,15 @@ function rankingToOVR(rank) {
 function styleToPos(style) {
   const s = (style || '').toLowerCase();
   if (s.includes('contra') || s.includes('transici')) return 'CA';
-  if (s.includes('pose'))    return 'POS';
-  if (s.includes('presi'))   return 'PRE';
+  if (s.includes('pose')) return 'POS';
+  if (s.includes('presi')) return 'PRE';
   if (s.includes('físico') || s.includes('fisico') || s.includes('directo')) return 'FIS';
   if (s.includes('orden') || s.includes('discip') || s.includes('compact') || s.includes('sólid') || s.includes('solid') || s.includes('organiz')) return 'DEF';
   return 'EQU';
 }
 
 function tierClass(rank) {
-  if (rank <= 8)  return 'tier-icon';
+  if (rank <= 8) return 'tier-icon';
   if (rank <= 24) return 'tier-gold';
   return 'tier-silver';
 }
@@ -2617,9 +2617,9 @@ function renderTeams() {
 
   sorted.forEach(team => {
     const hasArticle = !!teamArticles[team.name];
-    const ovr        = rankingToOVR(team.ranking);
-    const pos        = styleToPos(team.style);
-    const tier       = tierClass(team.ranking);
+    const ovr = rankingToOVR(team.ranking);
+    const pos = styleToPos(team.style);
+    const tier = tierClass(team.ranking);
     const displayName = stripFlag(team.name);
 
     const card = document.createElement('div');
