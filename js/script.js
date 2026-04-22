@@ -1495,7 +1495,7 @@ const teamArticles = {
         <span>✍️ Hector Hardy</span><span>📅 Abril 2026</span><span>⏱ 4 min</span>
       </div>
       <p class="article-lead">
-        24 años sin una Copa del Mundo. Brasil llega a 2026 con Vinícius Jr. como estandarte de
+        24 años sin una Copa del Mundo. Brasil llega a 2026 con Raphinha y Vinícius Jr. como estandartes de
         una generación que necesita reivindicarse ante su propia historia.
       </p>
       <h2>La pesada mochila de ser Brasil</h2>
@@ -1507,8 +1507,8 @@ const teamArticles = {
       </div>
       <h2>Jugadores a seguir</h2>
       <ul class="player-list">
-        <li><span><strong>Vinícius Jr.</strong> · Extremo</span><span class="player-role">El jugador más desequilibrante del mundo</span></li>
-        <li><span><strong>Raphinha</strong> · Extremo</span><span class="player-role">El socio perfecto de Vini</span></li>
+        <li><span><strong>Vinícius Jr.</strong> · Extremo</span><span class="player-role">Desequilibrio</span></li>
+        <li><span><strong>Raphinha</strong> · Extremo</span><span class="player-role">Puro corazón y garra</span></li>
         <li><span><strong>Bruno Guimarães</strong> · Centrocampista</span><span class="player-role">El motor del equipo</span></li>
         <li><span><strong>Marquinhos</strong> · Defensa central</span><span class="player-role">Capitán y líder en la zaga</span></li>
       </ul>
