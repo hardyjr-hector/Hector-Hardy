@@ -2501,100 +2501,6 @@ const teamArticles = {
   }
 };
 
-const teamsData = [
-  { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 1, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
-  { name: "España 🇪🇸", flag: "🇪🇸", ranking: 2, player: "Lamine Yamal", group: "H", style: "Posesión y presión alta" },
-  { name: "Argentina 🇦🇷", flag: "🇦🇷", ranking: 3, player: "Lionel Messi", group: "J", style: "Contraataque y presión" },
-  { name: "Inglaterra 🏴󠁧󠁢󠁥󠁮󠁧󠁿", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ranking: 4, player: "Jude Bellingham", group: "L", style: "Físico y balones al área" },
-  { name: "Portugal 🇵🇹", flag: "🇵🇹", ranking: 5, player: "Cristiano Ronaldo", group: "K", style: "Posesión ofensiva" },
-  { name: "Brasil 🇧🇷", flag: "🇧🇷", ranking: 6, player: "Vinícius Jr.", group: "C", style: "Ataque vertical y talento" },
-  { name: "Países Bajos 🇳🇱", flag: "🇳🇱", ranking: 7, player: "Virgil van Dijk", group: "F", style: "Fútbol total moderno" },
-  { name: "Marruecos 🇲🇦", flag: "🇲🇦", ranking: 8, player: "Achraf Hakimi", group: "C", style: "Bloque bajo + contragolpe" },
-  { name: "Bélgica 🇧🇪", flag: "🇧🇪", ranking: 9, player: "Kevin De Bruyne", group: "G", style: "Potencia y calidad" },
-  { name: "Alemania 🇩🇪", flag: "🇩🇪", ranking: 10, player: "Florian Wirtz", group: "E", style: "Presión alta y juego directo" },
-  { name: "Croacia 🇭🇷", flag: "🇭🇷", ranking: 11, player: "Luka Modrić", group: "L", style: "Posesión y gestión del partido" },
-  { name: "Colombia 🇨🇴", flag: "🇨🇴", ranking: 13, player: "Luis Díaz", group: "K", style: "Presión y velocidad" },
-  { name: "Senegal 🇸🇳", flag: "🇸🇳", ranking: 14, player: "Sadio Mané", group: "I", style: "Ataque directo y presión" },
-  { name: "México 🇲🇽", flag: "🇲🇽", ranking: 15, player: "Santiago Giménez", group: "A", style: "Presión y contraataque" },
-  { name: "Estados Unidos 🇺🇸", flag: "🇺🇸", ranking: 16, player: "Christian Pulisic", group: "D", style: "Atletismo y transiciones" },
-  { name: "Uruguay 🇺🇾", flag: "🇺🇾", ranking: 17, player: "Darwin Núñez", group: "H", style: "Solidez defensiva" },
-  { name: "Japón 🇯🇵", flag: "🇯🇵", ranking: 18, player: "Takefusa Kubo", group: "F", style: "Presión y disciplina táctica" },
-  { name: "Suiza 🇨🇭", flag: "🇨🇭", ranking: 19, player: "Granit Xhaka", group: "B", style: "Organización y solidez" },
-  { name: "Irán 🇮🇷", flag: "🇮🇷", ranking: 21, player: "Mehdi Taremi", group: "G", style: "Sólido y organizado" },
-  { name: "Turquía 🇹🇷", flag: "🇹🇷", ranking: 22, player: "Arda Güler", group: "D", style: "Ataque directo" },
-  { name: "Ecuador 🇪🇨", flag: "🇪🇨", ranking: 23, player: "Moisés Caicedo", group: "E", style: "Sólido y ordenado" },
-  { name: "Austria 🇦🇹", flag: "🇦🇹", ranking: 24, player: "David Alaba", group: "J", style: "Presión y verticalidad" },
-  { name: "Corea del Sur 🇰🇷", flag: "🇰🇷", ranking: 25, player: "Heung-min Son", group: "A", style: "Trabajo colectivo" },
-  { name: "Australia 🇦🇺", flag: "🇦🇺", ranking: 27, player: "Mitchell Duke", group: "D", style: "Físico y transiciones" },
-  { name: "Argelia 🇩🇿", flag: "🇩🇿", ranking: 28, player: "Riyad Mahrez", group: "J", style: "Talento individual + transiciones" },
-  { name: "Egipto 🇪🇬", flag: "🇪🇬", ranking: 29, player: "Mohamed Salah", group: "G", style: "Dependiente de Salah" },
-  { name: "Canadá 🇨🇦", flag: "🇨🇦", ranking: 30, player: "Alphonso Davies", group: "B", style: "Físico y presión" },
-  { name: "Noruega 🇳🇴", flag: "🇳🇴", ranking: 31, player: "Erling Haaland", group: "I", style: "Directo y poderoso" },
-  { name: "Panamá 🇵🇦", flag: "🇵🇦", ranking: 33, player: "Rolando Blackburn", group: "L", style: "Físico y disciplinado" },
-  { name: "Costa de Marfil 🇨🇮", flag: "🇨🇮", ranking: 34, player: "Sébastien Haller", group: "E", style: "Físico y directo" },
-  { name: "Suecia 🇸🇪", flag: "🇸🇪", ranking: 38, player: "Viktor Gyökeres", group: "F", style: "Físico y verticalidad" },
-  { name: "Paraguay 🇵🇾", flag: "🇵🇾", ranking: 40, player: "Miguel Almirón", group: "D", style: "Físico y sólido" },
-  { name: "República Checa 🇨🇿", flag: "🇨🇿", ranking: 41, player: "Patrik Schick", group: "A", style: "Sólido y eficiente" },
-  { name: "Escocia", flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", ranking: 43, player: "Scott McTominay", group: "C", style: "Físico y presión" },
-  { name: "Túnez 🇹🇳", flag: "🇹🇳", ranking: 44, player: "Wahbi Khazri", group: "F", style: "Organizado y difícil de batir" },
-  { name: "Rep. Dem. Congo 🇨🇩", flag: "🇨🇩", ranking: 46, player: "Théo Bongonda", group: "K", style: "Velocidad y ataque directo" },
-  { name: "Uzbekistán 🇺🇿", flag: "🇺🇿", ranking: 50, player: "Eldor Shomurodov", group: "K", style: "Compacto y trabajador" },
-  { name: "Catar 🇶🇦", flag: "🇶🇦", ranking: 55, player: "Akram Afif", group: "B", style: "Organizado y trabajador" },
-  { name: "Irak 🇮🇶", flag: "🇮🇶", ranking: 57, player: "Aymen Hussein", group: "I", style: "Organizado y comprometido" },
-  { name: "Sudáfrica 🇿🇦", flag: "🇿🇦", ranking: 60, player: "Percy Tau", group: "A", style: "Dinámico y combativo" },
-  { name: "Arabia Saudita 🇸🇦", flag: "🇸🇦", ranking: 61, player: "Salem Al-Dawsari", group: "H", style: "Bloque bajo + transiciones" },
-  { name: "Jordania 🇯🇴", flag: "🇯🇴", ranking: 63, player: "Musa Al-Taamari", group: "J", style: "Organizado y compacto" },
-  { name: "Bosnia 🇧🇦", flag: "🇧🇦", ranking: 65, player: "Edin Džeko", group: "B", style: "Contragolpe y físico" },
-  { name: "Cabo Verde 🇨🇻", flag: "🇨🇻", ranking: 69, player: "Garry Rodrigues", group: "H", style: "Compacto y organizado" },
-  { name: "Ghana 🇬🇭", flag: "🇬🇭", ranking: 74, player: "Mohammed Kudus", group: "L", style: "Ataque rápido y físico" },
-  { name: "Curazao 🇨🇼", flag: "🇨🇼", ranking: 82, player: "Leandro Bacuna", group: "E", style: "Organizado y ambicioso" },
-  { name: "Haití 🇭🇹", flag: "🇭🇹", ranking: 83, player: "Frantzdy Pierrot", group: "C", style: "Compacto y transiciones" },
-  { name: "Nueva Zelanda 🇳🇿", flag: "🇳🇿", ranking: 85, player: "Chris Wood", group: "G", style: "Físico y combativo" },
-];
-const teamArticles = { "Francia 🇫🇷": 1, "España 🇪🇸": 1, "Argentina 🇦🇷": 1, "Brasil 🇧🇷": 1 }; // demo
-
-function rankingToOVR(r) { if (r <= 1) return 99; if (r <= 3) return 97; if (r <= 5) return 95; if (r <= 8) return 92; if (r <= 12) return 89; if (r <= 16) return 86; if (r <= 20) return 84; if (r <= 25) return 82; if (r <= 30) return 80; if (r <= 35) return 78; if (r <= 45) return 76; if (r <= 55) return 74; if (r <= 65) return 72; if (r <= 75) return 70; return 68; }
-function styleToPos(s) { s = (s || '').toLowerCase(); if (s.includes('contra') || s.includes('transici')) return 'CA'; if (s.includes('pose')) return 'POS'; if (s.includes('presi')) return 'PRE'; if (s.includes('físico') || s.includes('fisico') || s.includes('directo')) return 'FIS'; if (s.includes('orden') || s.includes('discip') || s.includes('compact') || s.includes('sólid') || s.includes('solid') || s.includes('organiz')) return 'DEF'; return 'EQU'; }
-function tierClass(r) { if (r <= 8) return 'tier-icon'; if (r <= 24) return 'tier-gold'; return 'tier-silver'; }
-function stripFlag(n) { return n.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim(); }
-
-function renderTeams() {
-  const container = document.getElementById('teamAnalysisContainer');
-  const grid = document.createElement('div'); grid.className = 'teams-grid';
-  const sorted = [...teamsData].sort((a, b) => a.ranking - b.ranking);
-  sorted.forEach(team => {
-    const hasArticle = !!teamArticles[team.name];
-    const ovr = rankingToOVR(team.ranking);
-    const pos = styleToPos(team.style);
-    const tier = tierClass(team.ranking);
-    const displayName = stripFlag(team.name);
-    const card = document.createElement('div');
-    card.className = `team-card ${tier}${hasArticle ? ' has-article' : ''}`;
-    card.innerHTML = `
-      <div class="tc-top">
-        <div class="tc-ovr">${ovr}</div>
-        <div class="tc-meta">
-          <span class="tc-pos">${pos}</span>
-          <span class="tc-group">Grupo ${team.group}</span>
-        </div>
-      </div>
-      <div class="tc-flag">${team.flag}</div>
-      <div class="tc-name">${displayName}</div>
-      <div class="tc-stats">
-        <span class="lbl">Ranking</span><span class="val">#${team.ranking}</span>
-        <span class="lbl">Grupo</span><span class="val">${team.group}</span>
-      </div>
-      <div class="tc-style">${team.style}</div>
-      <div class="tc-player">
-        <small>Estrella</small>${team.player}
-      </div>
-      <div class="tc-cta">${hasArticle ? 'Leer análisis →' : 'Próximamente'}</div>`;
-    grid.appendChild(card);
-  });
-  container.appendChild(grid);
-}
-renderTeams();
-
 // Datos de todas las selecciones (ranking + grupo)
 const teamsData = [
   { name: "Francia 🇫🇷", flag: "🇫🇷", ranking: 1, player: "Kylian Mbappé", group: "I", style: "Transiciones verticales" },
@@ -2658,49 +2564,6 @@ function initWorldCup() {
 // ==========================
 // RENDER TEAMS
 // ==========================
-function rankingToOVR(rank) {
-  if (rank <= 1) return 99;
-  if (rank <= 3) return 97;
-  if (rank <= 5) return 95;
-  if (rank <= 8) return 92;
-  if (rank <= 12) return 89;
-  if (rank <= 16) return 86;
-  if (rank <= 20) return 84;
-  if (rank <= 25) return 82;
-  if (rank <= 30) return 80;
-  if (rank <= 35) return 78;
-  if (rank <= 45) return 76;
-  if (rank <= 55) return 74;
-  if (rank <= 65) return 72;
-  if (rank <= 75) return 70;
-  return 68;
-}
-
-// Posición/etiqueta táctica derivada del estilo o ranking
-function styleToPos(style) {
-  const s = (style || '').toLowerCase();
-  if (s.includes('contra') || s.includes('transici')) return 'CA';   // Contraataque
-  if (s.includes('pose')) return 'POS';                            // Posesión
-  if (s.includes('presi')) return 'PRE';                            // Presión
-  if (s.includes('físico') || s.includes('fisico') || s.includes('directo')) return 'FIS';
-  if (s.includes('orden') || s.includes('discip') || s.includes('compact') || s.includes('sólid') || s.includes('solid') || s.includes('organiz')) return 'DEF';
-  return 'EQU'; // Equilibrado
-}
-
-function tierClass(rank) {
-  if (rank <= 8) return 'tier-icon';
-  if (rank <= 24) return 'tier-gold';
-  return 'tier-silver';
-}
-
-// Limpia emojis-bandera del nombre para mostrarlo limpio
-function stripFlag(name) {
-  return name.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim();
-}
-
-// =============================================================
-// REEMPLAZA TU renderTeams() POR ESTA
-// =============================================================
 function renderTeams() {
   const container = document.getElementById('teamAnalysisContainer');
   if (!container) return;
@@ -2708,38 +2571,18 @@ function renderTeams() {
   const grid = document.createElement('div');
   grid.className = 'teams-grid';
 
-  // Ordena por ranking FIFA (mejor primero) — opcional, comenta si no quieres
-  const sorted = [...teamsData].sort((a, b) => a.ranking - b.ranking);
-
-  sorted.forEach(team => {
+  teamsData.forEach(team => {
     const hasArticle = !!teamArticles[team.name];
-    const ovr = rankingToOVR(team.ranking);
-    const pos = styleToPos(team.style);
-    const tier = tierClass(team.ranking);
-    const displayName = stripFlag(team.name);
-
     const card = document.createElement('div');
-    card.className = `team-card ${tier}${hasArticle ? ' has-article' : ''}`;
+    card.className = `team-card${hasArticle ? ' has-article' : ''}`;
+    // Strip flag emoji from display name for cleanliness
+    const displayName = team.name.replace(/[\u{1F1E0}-\u{1F1FF}]{2}|[\u{1F3F4}][\u{E0067}\u{E0062}][\u{E0065}-\u{E0077}]+[\u{E007F}]/gu, '').trim();
     card.innerHTML = `
-      <div class="tc-top">
-        <div class="tc-ovr">${ovr}</div>
-        <div class="tc-meta">
-          <span class="tc-pos">${pos}</span>
-          <span class="tc-group">Grupo ${team.group}</span>
-        </div>
-      </div>
-      <div class="tc-flag">${team.flag}</div>
-      <div class="tc-name">${displayName}</div>
-      <div class="tc-stats">
-        <span class="lbl">Ranking</span><span class="val">#${team.ranking}</span>
-        <span class="lbl">Grupo</span><span class="val">${team.group}</span>
-      </div>
-      <div class="tc-style">${team.style}</div>
-      <div class="tc-player">
-        <small>Estrella</small>
-        ${team.player}
-      </div>
-      <div class="tc-cta">${hasArticle ? 'Leer análisis →' : 'Próximamente'}</div>
+      <span class="team-card-flag">${team.flag}</span>
+      <div class="team-card-name">${displayName}</div>
+      <div class="team-card-ranking">Ranking #${team.ranking} · Grupo ${team.group}</div>
+      <div class="team-card-player">${team.player}</div>
+      <span class="team-read-more">${hasArticle ? 'Leer análisis →' : 'Próximamente →'}</span>
     `;
     card.addEventListener('click', () => openTeamArticle(team.name));
     grid.appendChild(card);
