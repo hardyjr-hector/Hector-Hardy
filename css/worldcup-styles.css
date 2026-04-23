@@ -43,9 +43,9 @@
 /* ---------- BASE CARD ---------- */
 .team-card {
   position: relative;
-  aspect-ratio: 3 / 4.4;
+  aspect-ratio: 3 / 4.9;
   border-radius: 18px;
-  padding: 18px 16px 16px;
+  padding: 16px 14px 14px;
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
@@ -184,10 +184,10 @@
 .tc-flag {
   position: relative;
   z-index: 3;
-  font-size: 78px;
+  font-size: 64px;
   line-height: 1;
   text-align: center;
-  margin: 4px 0 8px;
+  margin: 2px 0 6px;
   filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .55));
 }
 
@@ -196,13 +196,13 @@
   z-index: 3;
   font-family: 'Oswald', 'Inter', sans-serif;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: .5px;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border-bottom: 1px solid rgba(255, 255, 255, .18);
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .tc-stats {
@@ -210,11 +210,11 @@
   z-index: 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px 14px;
-  font-size: 11px;
+  gap: 3px 12px;
+  font-size: 10.5px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: auto;
+  margin-bottom: 8px;
 }
 
 .tc-stats .lbl {
@@ -234,11 +234,11 @@
 .tc-style {
   position: relative;
   z-index: 3;
-  font-size: 11px;
-  line-height: 1.35;
+  font-size: 10.5px;
+  line-height: 1.3;
   text-align: center;
   opacity: .85;
-  margin: 10px 0 8px;
+  margin: 6px 0;
   font-style: italic;
 }
 
@@ -246,11 +246,12 @@
   position: relative;
   z-index: 3;
   text-align: center;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  padding-top: 8px;
+  padding-top: 6px;
+  margin-top: auto;
   border-top: 1px solid rgba(255, 255, 255, .18);
   color: #fff;
 }
@@ -267,12 +268,13 @@
 .tc-cta {
   position: relative;
   z-index: 3;
-  margin-top: 10px;
-  padding: 7px 10px;
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding: 6px 10px;
   text-align: center;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.3px;
   text-transform: uppercase;
   color: #fff;
   opacity: .9;
@@ -306,19 +308,66 @@
 @media (max-width: 640px) {
   .teams-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .team-card {
+    aspect-ratio: 3 / 5.2;
+    padding: 12px 10px 12px;
   }
 
   .tc-ovr {
-    font-size: 38px;
+    font-size: 32px;
+  }
+
+  .tc-meta {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .tc-meta .tc-group {
+    font-size: 8.5px;
   }
 
   .tc-flag {
-    font-size: 60px;
+    font-size: 44px;
+    margin: 2px 0 4px;
   }
 
   .tc-name {
-    font-size: 15px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    padding-bottom: 5px;
+    letter-spacing: .3px;
+  }
+
+  .tc-stats {
+    font-size: 9px;
+    gap: 2px 8px;
+    margin-bottom: 6px;
+  }
+
+  .tc-style {
+    font-size: 9.5px;
+    margin: 4px 0;
+  }
+
+  .tc-player {
+    font-size: 10px;
+    letter-spacing: .8px;
+    padding-top: 5px;
+  }
+
+  .tc-player small {
+    font-size: 8px;
+    margin-bottom: 1px;
+  }
+
+  .tc-cta {
+    font-size: 9px;
+    letter-spacing: .8px;
+    padding: 5px 6px;
+    margin-top: 6px;
   }
 }
 
