@@ -1,4 +1,4 @@
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const API_URL = 'https://mi-chatbot-khaki.vercel.app/api/chat';
 
   const messages = [];
@@ -144,4 +144,4 @@
     sendBtn.disabled = false;
     input.focus();
   };
-})();
+});
