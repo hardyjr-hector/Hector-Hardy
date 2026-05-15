@@ -2890,8 +2890,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========
 
 // Configuración de conexión
-const url_base = 'NEXT_PUBLIC_SB_URL';
-const key_base = 'NEXT_PUBLIC_SB_KEY';
+const url_base = 'https://yjenwrvmcgvskqflemdl.supabase.co';
+const key_base = 'sb_publishable_Hfa_rvovyq1fEA224O9lXQ_50BxniJe';
 
 const supabaseClient = supabase.createClient(url_base, key_base);
 
