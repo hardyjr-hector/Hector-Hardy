@@ -60,7 +60,7 @@ function observeFadeElements() {
 // ==========================
 // SECTION NAVIGATION
 // ==========================
-const SECTION_IDS = ['about', 'articles', 'analisis', 'worldcup', 'jerseys'];
+const SECTION_IDS = ['about', 'articles', 'proyectos', 'analisis', 'worldcup', 'jerseys'];
 const sectionInitialized = {};
 
 function navigateTo(sectionId) {
@@ -3000,14 +3000,3 @@ function takeScreenshot() {
 }
 
 function logout() { supabaseClient.auth.signOut(); location.reload(); }
-
-// Scroll suave para #proyectos
-document.querySelectorAll('a[href="#proyectos"]').forEach(link => {
-  link.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.getElementById('proyectos');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
