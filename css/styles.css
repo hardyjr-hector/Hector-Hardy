@@ -778,6 +778,101 @@ section h2 {
   margin-top: 6px;
 }
 
+/* ── NutriIA Widget ── */
+.nutriia-card {
+  display: block;
+  text-decoration: none;
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.nutriia-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #1C3D2A, #2D5C3F);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.nutriia-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.nutriia-card:hover::before {
+  opacity: 1;
+}
+
+.nutriia-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.nutriia-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2D5C3F;
+  background: rgba(28, 61, 42, 0.15);
+  border: 1px solid rgba(28, 61, 42, 0.25);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.nutriia-arrow {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.nutriia-card:hover .nutriia-arrow {
+  transform: translateX(4px);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nutriia-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.nutriia-desc {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.65;
+  margin: 0 0 16px;
+  font-weight: 300;
+}
+
+.nutriia-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nutriia-tags span {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
 /* ===== FADE IN ANIMATION ===== */
 .fade-in {
   opacity: 0;
