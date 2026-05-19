@@ -11,6 +11,7 @@ const TRANSLATIONS = {
   // ── NAVBAR ─────────────────────────────────────────────
   "nav.about": { es: "Sobre mí", en: "About" },
   "nav.articles": { es: "Artículos", en: "Articles" },
+  "nav.proyectos": { es: "Proyectos", en: "Projects" },
   "nav.analisis": { es: "Análisis", en: "Analysis" },
   "nav.worldcup": { es: "Mundial 2026", en: "World Cup 2026" },
   "nav.jerseys": { es: "Camisetas", en: "Jerseys" },
