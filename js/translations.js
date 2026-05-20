@@ -120,7 +120,7 @@ const TRANSLATIONS = {
 
   // ── FOOTER ─────────────────────────────────────────────
   "footer.title": { es: "¿Hablamos?", en: "Get in touch" },
-  "footer.body": { es: "Buscando mi primer rol en como AI & Frontend Developer.", en: "I'm looking my new rol as AI & Frontend Developer." },
+  "footer.body": { es: "Buscando mi primer rol como AI & Frontend Developer.", en: "I'm looking my new rol as AI & Frontend Developer." },
   "footer.privacy": { es: "🔒 Política de Privacidad", en: "🔒 Privacy Policy" },
 
 };
