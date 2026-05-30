@@ -1,40 +1,19 @@
-Esta web es un proyecto personal desarrollado como parte de mi transición profesional hacia el sector tecnológico.
-Combina:
-Análisis deportivo.
-Desarrollo front-end.
-Construcción de producto digital.
-Experimentación con animaciones e interacción.
-Más que una web estática, es un entorno de práctica donde aplico conceptos reales de desarrollo y diseño con una temática clara y coherente.
+# Hola, soy Hector Hardy 👋
 
-Funcionalidades implementadas
-Diseño responsive (mobile-first).
-Layout estructurado con HTML semántico.
-Estética minimalista en modo oscuro.
-Animaciones basadas en scroll con Intersection Observer.
-Navbar fija (sticky navigation).
-Manipulación del DOM con JavaScript.
+**Frontend Developer & AI Engineer** Construyo webs con agentes inteligentes integrados, sistemas de pago y automatización.
 
-Lo que aprendo construyendo este proyecto
-Organización estructurada de archivos en un proyecto real.
-Separación de responsabilidades (HTML / CSS / JS).
-Uso eficiente del DOM.
-Implementación de animaciones sin librerías externas.
-Mejora progresiva de UI y experiencia de usuario.
-Pensar la web no solo como código, sino como producto.
+### 🛠️ Stack Principal
+* **Frontend:** React, Next.js, Tailwind CSS, HTML/CSS/JS
+* **Backend & Auth:** Supabase, REST APIs
+* **AI & Datos:** Groq API, Arquitectura RAG
+* **Deploy & Payments:** Vercel, Stripe, i18n
 
-Evolución del proyecto y próximas iteraciones previstas:
-Toggle modo claro / oscuro.
-Sistema de filtrado dinámico de artículos.
-Integración de datos deportivos con Python.
-Consumo de APIs externas.
-Optimización de rendimiento y accesibilidad.
+### 🚀 Proyectos Destacados
+* **[Plataforma de Análisis Deportivo](https://hectorhardy.com)** - Plataforma con datos en tiempo real de 6 ligas, fixture interactivo del Mundial 2026 con 104 partidos y un agente IA (RAG) integrado.
+* **[Quiniela Mundial 2026](https://hectorhardy.com/quiniela.html)** - App fullstack con autenticación multicapa, llaves eliminatorias interactivas y ranking en tiempo real.
+* **[Magma Bakery Lab](https://magma-bakery.vercel.app/)** - E-commerce de obrador artesanal con pagos mediante Stripe y soporte trilingüe.
 
-Objetivo profesional
-Mi objetivo es desarrollarme como profesional tecnológico en el ámbito del deporte, combinando:
-Desarrollo web.
-Análisis de datos.
-Comunicación deportiva.
-Este proyecto es la base para evolucionar hacia herramientas y productos digitales enfocados en análisis deportivo.
+### ⚡ Más allá del código
+Cuando no estoy programando, me dedico al análisis táctico de fútbol, colecciono camisetas y entreno boxeo y jiu-jitsu brasileño.
 
-Sobre mí
-Actualmente me estoy formando como programador y construyendo proyectos propios mientras busco una oportunidad profesional donde pueda aprender, aportar y crecer dentro del sector tecnológico.
+📫 **Contacto:** [info@hectorhardy.com](mailto:info@hectorhardy.com) | [hectorhardy.com](https://hectorhardy.com)
