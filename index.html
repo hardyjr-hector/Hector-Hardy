@@ -857,10 +857,11 @@
     <div class="cta-block">
       <div class="cta-left">
         <h2>Tu negocio merece<br>una web que <em>sostiene.</em></h2>
-        <p>Consulta gratuita · Sin compromiso</p>
+        <p>Consulta gratuita · Sin compromiso · Respondo en 24h</p>
       </div>
       <div class="cta-right">
         <a href="mailto:info@hectorhardy.com" class="btn-cta">info@hectorhardy.com →</a>
+        <a href="assets/CV_Hector_Hardy.pdf" download class="btn-cta-ghost">Descargar dossier</a>
       </div>
     </div>
   </div>
@@ -869,9 +870,8 @@
   <footer>
     <a href="#" class="logo">Hector Hardy</a>
     <ul class="footer-links">
-      <li><a href="#booking">Reservar llamada</a>
-        <a href="futbol.html">Fútbol & Datos</a>
-      </li>
+      <li><a href="#booking">Reservar llamada</a></li>
+      <li><a href="futbol.html">Fútbol & Datos</a></li>
       <li><a href="quiniela.html">Quiniela</a></li>
       <li><a href="privacidad.html">Privacidad</a></li>
       <li><a href="mailto:info@hectorhardy.com">Contacto</a></li>
@@ -920,16 +920,20 @@
         p(cal, ar);
       };
     })(window, "https://app.cal.com/embed/embed.js", "init");
-    Cal("init", { origin: "https://cal.com" });
-    Cal("inline", {
-      elementOrSelector: "cal-inline",
+
+    Cal("init", "booking", { origin: "https://cal.com" });
+
+    Cal.ns.booking("inline", {
+      elementOrSelector: "#cal-booking",
       calLink: "hector-hardy",
       layout: "month_view"
     });
-    Cal("ui", {
+
+    Cal.ns.booking("ui", {
       theme: "light",
-      styles: { branding: { brandColor: "#6b5340" } },
       hideEventTypeDetails: false,
+      layout: "month_view",
+      styles: { branding: { brandColor: "#6b5340" } }
     });
   </script>
 </body>
