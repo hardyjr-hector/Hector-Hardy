@@ -861,7 +861,6 @@
       </div>
       <div class="cta-right">
         <a href="mailto:info@hectorhardy.com" class="btn-cta">info@hectorhardy.com →</a>
-        <a href="assets/CV_Hector_Hardy.pdf" download class="btn-cta-ghost">Descargar dossier</a>
       </div>
     </div>
   </div>
@@ -890,52 +889,7 @@
   </script>
 
 
-  <script type="text/javascript">
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal;
-        let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["-", namespace, ar]);
-          } else {
-            p(cal, ar);
-            p(cal, ["-", ar]);
-          }
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
 
-    Cal("init", "booking", { origin: "https://cal.com" });
-
-    Cal.ns.booking("inline", {
-      elementOrSelector: "#cal-booking",
-      calLink: "hector-hardy",
-      layout: "month_view"
-    });
-
-    Cal.ns.booking("ui", {
-      theme: "light",
-      hideEventTypeDetails: false,
-      layout: "month_view",
-      styles: { branding: { brandColor: "#6b5340" } }
-    });
-  </script>
 </body>
 
 </html>
