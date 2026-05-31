@@ -655,8 +655,7 @@
   <nav>
     <a href="#" class="logo">Hector Hardy</a>
     <div class="nav-right">
-      <!-- <a href="futbol.html">Fútbol & Datos</a>
-      <a href="quiniela.html">Quiniela</a> -->
+      <a href="#booking">Reservar llamada</a>
       <a href="mailto:info@hectorhardy.com" class="nav-cta">Hablemos</a>
     </div>
   </nav>
@@ -858,11 +857,10 @@
     <div class="cta-block">
       <div class="cta-left">
         <h2>Tu negocio merece<br>una web que <em>sostiene.</em></h2>
-        <p>Consulta gratuita · Sin compromiso · Respondo en 24h</p>
+        <p>Consulta gratuita · Sin compromiso</p>
       </div>
       <div class="cta-right">
         <a href="mailto:info@hectorhardy.com" class="btn-cta">info@hectorhardy.com →</a>
-        <!--<a href="assets/CV_Hector_Hardy.pdf" download class="btn-cta-ghost">Descargar dossier</a>-->
       </div>
     </div>
   </div>
@@ -871,7 +869,9 @@
   <footer>
     <a href="#" class="logo">Hector Hardy</a>
     <ul class="footer-links">
-      <li><a href="futbol.html">Fútbol & Datos</a></li>
+      <li><a href="#booking">Reservar llamada</a>
+        <a href="futbol.html">Fútbol & Datos</a>
+      </li>
       <li><a href="quiniela.html">Quiniela</a></li>
       <li><a href="privacidad.html">Privacidad</a></li>
       <li><a href="mailto:info@hectorhardy.com">Contacto</a></li>
@@ -889,6 +889,49 @@
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
   </script>
 
+
+  <script type="text/javascript">
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["-", namespace, ar]);
+          } else {
+            p(cal, ar);
+            p(cal, ["-", ar]);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", { origin: "https://cal.com" });
+    Cal("inline", {
+      elementOrSelector: "cal-inline",
+      calLink: "hector-hardy",
+      layout: "month_view"
+    });
+    Cal("ui", {
+      theme: "light",
+      styles: { branding: { brandColor: "#6b5340" } },
+      hideEventTypeDetails: false,
+    });
+  </script>
 </body>
 
 </html>
