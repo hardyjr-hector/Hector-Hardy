@@ -6,13 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hector Hardy — Frontend Developer & AI Engineer · Barcelona</title>
   <meta name="description"
-    content="Construyo webs profesionales con IA integrada para pequeños negocios y startups. Barcelona.">
+    content="Construyo webs con agentes inteligentes integrados para negocios que quieren crecer. Barcelona.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Hector Hardy — Frontend Developer & AI Engineer">
-  <meta property="og:description" content="Webs que trabajan solas, con IA integrada.">
+  <meta property="og:description" content="Webs con agentes inteligentes integrados.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.hectorhardy.com">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+  <link rel="icon" type="image/png" href="assets/images/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+  <link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/images/favicon/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap"
@@ -53,7 +58,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: sticky;
       top: 0;
@@ -107,7 +112,7 @@
       opacity: 0.85 !important;
     }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       max-width: 1100px;
       margin: 0 auto;
@@ -117,37 +122,6 @@
       gap: 48px;
       align-items: end;
       border-bottom: 1px solid var(--border);
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 72px 20px 48px;
-        gap: 36px;
-      }
-
-      .hero-meta {
-        display: flex;
-        gap: 28px;
-        flex-wrap: wrap;
-        text-align: left;
-      }
-
-      .hero-meta-item {
-        font-size: 32px;
-      }
-
-      .hero-meta-label {
-        margin-bottom: 0;
-      }
-
-      h1 {
-        font-size: clamp(44px, 12vw, 72px);
-      }
-
-      .hero-sub {
-        font-size: 15px;
-      }
     }
 
     .hero-label {
@@ -250,7 +224,7 @@
       margin-bottom: 24px;
     }
 
-    /* ── SECTION SHARED ── */
+    /* SECTION SHARED */
     .section-eyebrow {
       font-size: 11px;
       font-weight: 500;
@@ -271,11 +245,17 @@
       background: var(--border);
     }
 
-    /* ── SERVICES ── */
+    /* SERVICES MARQUEE */
     .services {
       padding: 64px 0;
       border-bottom: 1px solid var(--border);
       overflow: hidden;
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     }
 
     .marquee-track {
@@ -288,14 +268,6 @@
 
     .marquee-track:hover {
       animation-play-state: paused;
-    }
-
-    .marquee-wrap {
-      display: flex;
-      gap: 16px;
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
     }
 
     @keyframes marquee {
@@ -312,7 +284,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 28px 28px;
+      padding: 28px;
       width: 260px;
       flex-shrink: 0;
       transition: background 0.2s, border-color 0.2s;
@@ -346,7 +318,7 @@
       line-height: 1.65;
     }
 
-    /* ── PROJECTS ── */
+    /* PROJECTS MARQUEE */
     .projects {
       padding: 64px 0;
       border-bottom: 1px solid var(--border);
@@ -410,7 +382,6 @@
       color: var(--muted);
       text-decoration: none;
       font-size: 16px;
-      font-family: var(--serif);
       transition: color 0.2s;
       flex-shrink: 0;
     }
@@ -471,7 +442,22 @@
       border: 1px solid var(--border);
     }
 
-    /* ── CTA ── */
+    /* BOOKING */
+    .booking {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #my-cal-inline {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      min-height: 600px;
+    }
+
+    /* CTA */
     .cta {
       max-width: 1100px;
       margin: 0 auto;
@@ -481,7 +467,7 @@
     .cta-block {
       background: var(--primary);
       border-radius: 24px;
-      padding: 56px 56px;
+      padding: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -527,33 +513,16 @@
       font-size: 14px;
       white-space: nowrap;
       transition: opacity 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
     }
 
     .btn-cta:hover {
       opacity: 0.9;
     }
 
-    .btn-cta-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      color: rgba(250, 248, 245, 0.7);
-      text-decoration: none;
-      padding: 13px 24px;
-      border-radius: 100px;
-      font-weight: 400;
-      font-size: 14px;
-      border: 1px solid rgba(250, 248, 245, 0.2);
-      white-space: nowrap;
-      transition: border-color 0.2s;
-    }
-
-    .btn-cta-ghost:hover {
-      border-color: var(--accent);
-    }
-
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 28px 48px;
@@ -562,10 +531,6 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-    }
-
-    footer .logo {
-      font-size: 16px;
     }
 
     .footer-links {
@@ -590,7 +555,6 @@
       font-size: 13px;
     }
 
-    /* ── FADE ── */
     .fade {
       opacity: 0;
       transform: translateY(16px);
@@ -602,7 +566,7 @@
       transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 860px) {
       nav {
         padding: 0 20px;
@@ -634,9 +598,14 @@
         font-size: clamp(26px, 6vw, 38px);
       }
 
+      .booking {
+        padding: 48px 20px;
+      }
+
       footer {
         padding: 24px 20px;
         flex-direction: column;
+        align-items: center;
         text-align: center;
       }
 
@@ -646,6 +615,37 @@
         gap: 16px;
       }
     }
+
+    @media (max-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 72px 20px 48px;
+        gap: 36px;
+      }
+
+      .hero-meta {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        text-align: left;
+      }
+
+      .hero-meta-item {
+        font-size: 32px;
+      }
+
+      .hero-meta-label {
+        margin-bottom: 0;
+      }
+
+      h1 {
+        font-size: clamp(44px, 12vw, 72px);
+      }
+
+      .hero-sub {
+        font-size: 15px;
+      }
+    }
   </style>
 </head>
 
@@ -653,9 +653,11 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="logo">Hector Hardy</a>
+    <a href="#" class="logo"><img src="assets/images/logo.svg" alt="Hector Hardy"
+        style="height:28px; display:block;"></a>
     <div class="nav-right">
-      <a href="cal.com/hector-hardy/consulta-gratuita-sin-compromiso">Reservar llamada</a>
+      <a href="#booking">Reservar llamada</a>
+      <a href="futbol.html">Fútbol & Datos</a>
       <a href="mailto:info@hectorhardy.com" class="nav-cta">Hablemos</a>
     </div>
   </nav>
@@ -664,10 +666,7 @@
   <div class="hero">
     <div>
       <div class="hero-label">Frontend Developer & AI Engineer · Barcelona</div>
-      <h1>
-        Hector<br>
-        <em>Hardy.</em>
-      </h1>
+      <h1>Hector<br><em>Hardy.</em></h1>
       <p class="hero-sub">
         Construyo webs con <strong>agentes inteligentes</strong> integrados.
         Sistemas de pago, asistentes entrenados con los datos de tu negocio y automatización — todo funcionando desde el
@@ -698,7 +697,7 @@
           <div class="svc-desc">Diseño y desarrollo desde cero. Rápida, responsive y con tu identidad visual.</div>
         </div>
         <div class="svc"><span class="svc-num">02</span>
-          <div class="svc-title">Chatbot con IA</div>
+          <div class="svc-title">Agente con IA</div>
           <div class="svc-desc">Asistente entrenado con los datos de tu negocio. Responde a tus clientes 24/7.</div>
         </div>
         <div class="svc"><span class="svc-num">03</span>
@@ -711,19 +710,18 @@
         </div>
         <div class="svc"><span class="svc-num">05</span>
           <div class="svc-title">Proyecto completo</div>
-          <div class="svc-desc">Web + IA + pagos + automatización. Todo integrado desde el primer día.</div>
+          <div class="svc-desc">Web + agente IA + pagos + automatización. Todo integrado desde el primer día.</div>
         </div>
         <div class="svc"><span class="svc-num">06</span>
           <div class="svc-title">Mantenimiento</div>
           <div class="svc-desc">Tu web siempre actualizada, segura y funcionando. Soporte incluido.</div>
         </div>
-        <!-- duplicado para loop infinito -->
         <div class="svc"><span class="svc-num">01</span>
           <div class="svc-title">Web profesional</div>
           <div class="svc-desc">Diseño y desarrollo desde cero. Rápida, responsive y con tu identidad visual.</div>
         </div>
         <div class="svc"><span class="svc-num">02</span>
-          <div class="svc-title">Chatbot con IA</div>
+          <div class="svc-title">Agente con IA</div>
           <div class="svc-desc">Asistente entrenado con los datos de tu negocio. Responde a tus clientes 24/7.</div>
         </div>
         <div class="svc"><span class="svc-num">03</span>
@@ -736,7 +734,7 @@
         </div>
         <div class="svc"><span class="svc-num">05</span>
           <div class="svc-title">Proyecto completo</div>
-          <div class="svc-desc">Web + IA + pagos + automatización. Todo integrado desde el primer día.</div>
+          <div class="svc-desc">Web + agente IA + pagos + automatización. Todo integrado desde el primer día.</div>
         </div>
         <div class="svc"><span class="svc-num">06</span>
           <div class="svc-title">Mantenimiento</div>
@@ -756,7 +754,7 @@
             <div class="proj-name">hectorhardy.com</div><a href="https://www.hectorhardy.com/futbol.html"
               target="_blank" class="proj-arrow">↗</a>
           </div>
-          <p class="proj-desc">Plataforma de análisis deportivo con datos en tiempo real de 6 ligas, chatbot IA con
+          <p class="proj-desc">Plataforma de análisis deportivo con datos en tiempo real de 6 ligas, agente IA con
             arquitectura RAG, fixture del Mundial 2026 y sistema i18n ES/EN.</p>
           <div class="proj-footer">
             <div class="proj-tags"><span class="tag">HTML/CSS/JS</span><span class="tag">REST APIs</span><span
@@ -799,13 +797,12 @@
                 class="tag">i18n</span></div><span class="status dev">En desarrollo</span>
           </div>
         </div>
-        <!-- duplicado para loop infinito -->
         <div class="proj">
           <div class="proj-head">
             <div class="proj-name">hectorhardy.com</div><a href="https://www.hectorhardy.com/futbol.html"
               target="_blank" class="proj-arrow">↗</a>
           </div>
-          <p class="proj-desc">Plataforma de análisis deportivo con datos en tiempo real de 6 ligas, chatbot IA con
+          <p class="proj-desc">Plataforma de análisis deportivo con datos en tiempo real de 6 ligas, agente IA con
             arquitectura RAG, fixture del Mundial 2026 y sistema i18n ES/EN.</p>
           <div class="proj-footer">
             <div class="proj-tags"><span class="tag">HTML/CSS/JS</span><span class="tag">REST APIs</span><span
@@ -852,25 +849,31 @@
     </div>
   </section>
 
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
+    <div class="section-eyebrow">Primera llamada gratuita</div>
+    <div id="my-cal-inline" style="width:100%; height:600px; overflow:scroll;"></div>
+  </section>
+
   <!-- CTA -->
   <div class="cta">
     <div class="cta-block">
       <div class="cta-left">
         <h2>Tu negocio merece<br>una web que <em>sostiene.</em></h2>
-        <p>Consulta gratuita · Sin compromiso</p>
+        <p>Consulta gratuita · Sin compromiso · Respondo en 24h</p>
       </div>
       <div class="cta-right">
         <a href="mailto:info@hectorhardy.com" class="btn-cta">info@hectorhardy.com →</a>
-        <a href="cal.com/hector-hardy/consulta-gratuita-sin-compromiso" class="btn-cta">Reservar llamada</a>
       </div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <a href="#" class="logo">Hector Hardy</a>
+    <a href="#" class="logo"><img src="assets/images/logo.svg" alt="Hector Hardy"
+        style="height:20px; display:block;"></a>
     <ul class="footer-links">
-      <li><a href="cal.com/hector-hardy/consulta-gratuita-sin-compromiso">Reservar llamada</a></li>
+      <li><a href="#booking">Reservar llamada</a></li>
       <li><a href="futbol.html">Fútbol & Datos</a></li>
       <li><a href="quiniela.html">Quiniela</a></li>
       <li><a href="privacidad.html">Privacidad</a></li>
@@ -885,10 +888,10 @@
         if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 80);
       });
     }, { threshold: 0.08 });
-
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
   </script>
 
+  <!-- Cal.com inline embed -->
   <script type="text/javascript">
     (function (C, A, L) {
       let p = function (a, ar) { a.q.push(ar); };
@@ -922,12 +925,10 @@
     Cal("inline", {
       elementOrSelector: "#my-cal-inline",
       calLink: "hector-hardy/consulta-gratuita-sin-compromiso",
-      config: {
-        theme: "light",
-        brandColor: "#6b5340"
-      },
+      config: { theme: "light" },
     });
   </script>
+
 </body>
 
 </html>
