@@ -34,7 +34,7 @@
 body {
   font-family: 'Inter', var(--sans), sans-serif;
   background-color: var(--bg-primary);
-  color: var(--text-primary);
+  color: var(--fg);
   line-height: 1.6;
 }
 
@@ -70,6 +70,7 @@ a {
 
 /* LOGO */
 .logo {
+  filter: invert(1) brightness(0);
   position: relative;
   width: 160px;
   height: 60px;
@@ -78,18 +79,21 @@ a {
 }
 
 .logo img {
+  filter: invert(1) brightness(0);
   position: absolute;
   left: 0;
   transition: all 0.4s ease;
 }
 
 .logo-full {
+  filter: invert(1) brightness(0);
   height: 60px;
   top: 0;
   opacity: 1;
 }
 
 .logo-icon {
+  filter: invert(1) brightness(0);
   height: 40px;
   top: 50%;
   transform: translateY(-50%);
@@ -97,11 +101,13 @@ a {
 }
 
 .navbar.scrolled .logo-full {
+  filter: invert(1) brightness(0);
   opacity: 0;
   transform: translateY(-5px) scale(0.95);
 }
 
 .navbar.scrolled .logo-icon {
+  filter: invert(1) brightness(0);
   opacity: 1;
 }
 
@@ -159,7 +165,6 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url("../assets/images/hero.webp");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -875,15 +880,18 @@ section h2 {
   }
 
   .logo {
+    filter: invert(1) brightness(0);
     width: 130px;
     height: 50px;
   }
 
   .logo-full {
+    filter: invert(1) brightness(0);
     height: 50px;
   }
 
   .logo-icon {
+    filter: invert(1) brightness(0);
     height: 35px;
   }
 
