@@ -2888,58 +2888,61 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========
 // QUINIELA
 // ==========
+document.addEventListener('DOMContentLoaded', () => {
+  // Este bloque solo se ejecuta si estamos en quiniela.html
+  if (!document.getElementById('btn-auth')) return;
 
-// Configuración de conexión
-const url_base = 'https://yjenwrvmcgvskqflemdl.supabase.co';
-const key_base = 'sb_publishable_Hfa_rvovyq1fEA224O9lXQ_50BxniJe';
+  // Configuración de conexión
+  const url_base = 'https://yjenwrvmcgvskqflemdl.supabase.co';
+  const key_base = 'sb_publishable_Hfa_rvovyq1fEA224O9lXQ_50BxniJe';
 
-const supabaseClient = supabase.createClient(url_base, key_base);
+  const supabaseClient = supabase.createClient(url_base, key_base);
 
-let user = null;
-let isAdmin = false;
+  let user = null;
+  let isAdmin = false;
 
-// Manejo de autenticación
-document.getElementById('btn-auth').onclick = async (e) => {
-  const email = document.getElementById('auth-email').value;
-  const pass = document.getElementById('auth-pass').value;
-  const username = document.getElementById('auth-user').value;
+  // Manejo de autenticación
+  document.getElementById('btn-auth').onclick = async (e) => {
+    const email = document.getElementById('auth-email').value;
+    const pass = document.getElementById('auth-pass').value;
+    const username = document.getElementById('auth-user').value;
 
-  if (!email || !pass) return alert("Llena los datos");
+    if (!email || !pass) return alert("Llena los datos");
 
-  const { data, error } = await supabaseClient.auth.signUp({
-    email, password: pass, options: { data: { username } }
-  });
+    const { data, error } = await supabaseClient.auth.signUp({
+      email, password: pass, options: { data: { username } }
+    });
 
-  if (error) {
-    const { data: logData, error: logErr } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
-    if (logErr) return alert("Error: " + logErr.message);
-    initSession(logData.user);
-  } else {
-    alert("¡Cuenta creada!");
-    initSession(data.user);
+    if (error) {
+      const { data: logData, error: logErr } = await supabaseClient.auth.signInWithPassword({ email, password: pass });
+      if (logErr) return alert("Error: " + logErr.message);
+      initSession(logData.user);
+    } else {
+      alert("¡Cuenta creada!");
+      initSession(data.user);
+    }
+  };
+
+  async function initSession(sessionData) {
+    user = sessionData;
+    const { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
+    if (profile && profile.is_admin) {
+      isAdmin = true;
+      document.getElementById('admin-nav').style.display = 'block';
+    }
+    document.getElementById('auth-view').style.display = 'none';
+    document.getElementById('sidebar').style.display = 'block';
+    showView('quiniela');
   }
-};
 
-async function initSession(sessionData) {
-  user = sessionData;
-  const { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
-  if (profile && profile.is_admin) {
-    isAdmin = true;
-    document.getElementById('admin-nav').style.display = 'block';
-  }
-  document.getElementById('auth-view').style.display = 'none';
-  document.getElementById('sidebar').style.display = 'block';
-  showView('quiniela');
-}
+  async function loadMatches(isAdminView = false) {
+    const { data: matches } = await supabaseClient.from('matches').select('*').order('id');
+    const { data: preds } = await supabaseClient.from('predictions').select('*').eq('user_id', user.id);
+    const container = document.getElementById(isAdminView ? 'admin-matches-container' : 'matches-container');
 
-async function loadMatches(isAdminView = false) {
-  const { data: matches } = await supabaseClient.from('matches').select('*').order('id');
-  const { data: preds } = await supabaseClient.from('predictions').select('*').eq('user_id', user.id);
-  const container = document.getElementById(isAdminView ? 'admin-matches-container' : 'matches-container');
-
-  container.innerHTML = matches.map(m => {
-    const p = preds.find(pr => pr.match_id === m.id) || { pred_s1: '', pred_s2: '' };
-    return `
+    container.innerHTML = matches.map(m => {
+      const p = preds.find(pr => pr.match_id === m.id) || { pred_s1: '', pred_s2: '' };
+      return `
         <div class="match-card">
             <span class="group-label">${m.group_name}</span>
             <div class="teams-row">
@@ -2955,48 +2958,50 @@ async function loadMatches(isAdminView = false) {
                 <div class="team-name">${m.team2}</div>
             </div>
             ${isAdminView ? `<button class="btn-primary admin-btn" onclick="finalizeMatch('${m.id}')">FINALIZAR PARTIDO</button>` :
-        (m.is_finished ? `<p style="color:var(--gold); margin-top:10px;">Final: ${m.real_score1}-${m.real_score2}</p>` : '')}
+          (m.is_finished ? `<p style="color:var(--gold); margin-top:10px;">Final: ${m.real_score1}-${m.real_score2}</p>` : '')}
         </div>`;
-  }).join('');
-}
+    }).join('');
+  }
 
-async function savePred(mid, val, slot) {
-  const field = slot === 1 ? 'pred_s1' : 'pred_s2';
-  await supabaseClient.from('predictions').upsert({ user_id: user.id, match_id: mid, [field]: parseInt(val) }, { onConflict: 'user_id, match_id' });
-}
+  async function savePred(mid, val, slot) {
+    const field = slot === 1 ? 'pred_s1' : 'pred_s2';
+    await supabaseClient.from('predictions').upsert({ user_id: user.id, match_id: mid, [field]: parseInt(val) }, { onConflict: 'user_id, match_id' });
+  }
 
-async function updateReal(mid, val, slot) {
-  const field = slot === 1 ? 'real_score1' : 'real_score2';
-  await supabaseClient.from('matches').update({ [field]: parseInt(val) }).eq('id', mid);
-}
+  async function updateReal(mid, val, slot) {
+    const field = slot === 1 ? 'real_score1' : 'real_score2';
+    await supabaseClient.from('matches').update({ [field]: parseInt(val) }).eq('id', mid);
+  }
 
-async function finalizeMatch(mid) {
-  await supabaseClient.from('matches').update({ is_finished: true }).eq('id', mid);
-  alert("Partido finalizado. Los puntos se actualizan en el ranking.");
-  loadMatches(true);
-}
+  async function finalizeMatch(mid) {
+    await supabaseClient.from('matches').update({ is_finished: true }).eq('id', mid);
+    alert("Partido finalizado. Los puntos se actualizan en el ranking.");
+    loadMatches(true);
+  }
 
-function showView(v) {
-  document.querySelectorAll('.view').forEach(el => el.style.display = 'none');
-  const target = document.getElementById(v + '-view');
-  if (target) target.style.display = 'block';
-  if (v === 'ranking') loadRanking();
-  else loadMatches(v === 'admin');
-}
+  function showView(v) {
+    document.querySelectorAll('.view').forEach(el => el.style.display = 'none');
+    const target = document.getElementById(v + '-view');
+    if (target) target.style.display = 'block';
+    if (v === 'ranking') loadRanking();
+    else loadMatches(v === 'admin');
+  }
 
-async function loadRanking() {
-  const { data } = await supabaseClient.from('profiles').select('username, points').order('points', { ascending: false });
-  document.getElementById('ranking-body').innerHTML = data.map(r => `
+  async function loadRanking() {
+    const { data } = await supabaseClient.from('profiles').select('username, points').order('points', { ascending: false });
+    document.getElementById('ranking-body').innerHTML = data.map(r => `
         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
             <td style="padding: 15px;">${r.username}</td>
             <td style="padding: 15px; text-align: right; font-weight: 800;">${r.points} PTS</td>
         </tr>`).join('');
-}
+  }
 
-function takeScreenshot() {
-  html2canvas(document.querySelector("#quiniela-view"), { backgroundColor: '#080c18', scale: 2 }).then(canvas => {
-    const link = document.createElement('a'); link.download = 'mi-quiniela.png'; link.href = canvas.toDataURL(); link.click();
-  });
-}
+  function takeScreenshot() {
+    html2canvas(document.querySelector("#quiniela-view"), { backgroundColor: '#080c18', scale: 2 }).then(canvas => {
+      const link = document.createElement('a'); link.download = 'mi-quiniela.png'; link.href = canvas.toDataURL(); link.click();
+    });
+  }
 
-function logout() { supabaseClient.auth.signOut(); location.reload(); }
+  function logout() { supabaseClient.auth.signOut(); location.reload(); }
+
+}); // fin DOMContentLoaded Quiniela
