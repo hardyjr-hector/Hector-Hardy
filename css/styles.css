@@ -6,21 +6,33 @@
 }
 
 :root {
-  --bg-primary: #0f0f0f;
-  --bg-secondary: #1a1a1a;
-  --bg-tertiary: #222;
-  --text-primary: #f5f5f5;
-  --text-secondary: #aaa;
-  --accent: #ffffff;
-  --accent-muted: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.08);
+  /* ── Brand tokens (mirror de index.html) ── */
+  --bg: #faf8f5;
+  --card: #ede9e2;
+  --fg: #1a1208;
+  --muted: #5a4d3e;
+  --border: #d4c9b8;
+  --accent: #a0845c;
+  --primary: #6b5340;
+  --pf: #faf8f5;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Work Sans', system-ui, sans-serif;
+
+  /* ── Aliases para compatibilidad con futbol.html ── */
+  --bg-primary: #faf8f5;
+  --bg-secondary: #ede9e2;
+  --bg-tertiary: #e0dbd2;
+  --text-primary: #1a1208;
+  --text-secondary: #5a4d3e;
+  --accent-muted: rgba(107, 83, 64, 0.08);
+
   --transition: 0.3s ease;
   --navbar-height: 70px;
   --radius: 8px;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', var(--sans), sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -40,16 +52,19 @@ a {
   height: var(--navbar-height);
   position: sticky;
   top: 0;
-  background: var(--bg-primary);
+  background: rgba(250, 248, 245, 0.92);
   z-index: 1000;
   transition: var(--transition);
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(212, 201, 184, 0.5);
   touch-action: manipulation;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .navbar.scrolled {
-  background: rgba(15, 15, 15, 0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(250, 248, 245, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom-color: var(--border);
 }
 
@@ -132,7 +147,7 @@ nav a:hover {
   font-size: 1.4rem;
   background: none;
   border: none;
-  color: var(--accent);
+  color: var(--primary);
   cursor: pointer;
   padding: 5px;
   line-height: 1;
@@ -263,12 +278,12 @@ section h2 {
 }
 
 .btn {
-  background: var(--accent);
-  color: #000;
+  background: var(--primary);
+  color: var(--pf);
 }
 
 .btn:hover {
-  background: #e0e0e0;
+  background: var(--accent);
   transform: translateY(-1px);
 }
 
@@ -277,13 +292,13 @@ section h2 {
 }
 
 .btn-outline {
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--border);
   color: var(--text-primary);
   background: transparent;
 }
 
 .btn-outline:hover {
-  border-color: var(--accent);
+  border-color: var(--primary);
   background: var(--accent-muted);
 }
 
