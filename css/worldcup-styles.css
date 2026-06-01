@@ -40,7 +40,7 @@
   padding: 24px 0;
 }
 
-/* ---------- BASE CARD ---------- */
+/* ---------- BASE CARD (dark/holographic — identity preserved) ---------- */
 .team-card {
   position: relative;
   aspect-ratio: 3 / 4.9;
@@ -371,14 +371,14 @@
   }
 }
 
-/* ===== FIXTURE SIDEBAR ===== */
+/* ===== FIXTURE SIDEBAR — light theme ===== */
 .fixture-sidebar {
   position: sticky;
   top: calc(var(--navbar-height) + 16px);
   max-height: calc(100vh - var(--navbar-height) - 32px);
   display: flex;
   flex-direction: column;
-  background: var(--bg-secondary);
+  background: var(--bg);
   border-radius: var(--radius);
   border: 1px solid var(--border);
   overflow: hidden;
@@ -392,6 +392,7 @@
   padding: 16px 18px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  background: var(--card);
 }
 
 .fixture-sidebar-header h3 {
@@ -399,12 +400,14 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--fg);
+  font-family: var(--sans);
 }
 
 .sidebar-close-btn {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--muted);
   cursor: pointer;
   font-size: 1rem;
   padding: 2px 6px;
@@ -414,11 +417,11 @@
 }
 
 .sidebar-close-btn:hover {
-  color: var(--text-primary);
-  background: var(--accent-muted);
+  color: var(--fg);
+  background: var(--border);
 }
 
-/* Fixture filters */
+/* Fixture filters — light */
 .fixture-filters {
   padding: 14px 18px;
   border-bottom: 1px solid var(--border);
@@ -426,12 +429,13 @@
   flex-direction: column;
   gap: 10px;
   flex-shrink: 0;
+  background: var(--bg);
 }
 
 .filter-tabs {
   display: flex;
   gap: 4px;
-  background: var(--bg-primary);
+  background: var(--card);
   border-radius: 6px;
   padding: 3px;
 }
@@ -441,9 +445,9 @@
   padding: 6px 10px;
   border: none;
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--muted);
   font-size: 0.78rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-weight: 500;
   cursor: pointer;
   border-radius: 4px;
@@ -452,12 +456,13 @@
 }
 
 .filter-tab.active {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--fg);
+  box-shadow: 0 1px 3px rgba(26, 18, 8, 0.08);
 }
 
 .filter-tab:hover:not(.active) {
-  color: var(--text-primary);
+  color: var(--fg);
 }
 
 .fixture-filter-row {
@@ -471,33 +476,33 @@
 .fixture-filters select {
   flex: 1;
   padding: 7px 10px;
-  background: var(--bg-primary);
+  background: var(--card);
   border: 1px solid var(--border);
-  color: white;
+  color: var(--fg);
   border-radius: 5px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 0.8rem;
   transition: var(--transition);
   min-width: 0;
 }
 
 .fixture-filters input::placeholder {
-  color: #555;
+  color: var(--muted);
 }
 
 .fixture-filters input:focus,
 .fixture-filters select:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: var(--accent);
 }
 
 .btn-download-filtered {
   padding: 8px 14px;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: var(--text-primary);
+  border: 1px solid var(--border);
+  color: var(--fg);
   border-radius: 5px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans);
   font-size: 0.78rem;
   font-weight: 500;
   cursor: pointer;
@@ -506,8 +511,8 @@
 }
 
 .btn-download-filtered:hover {
-  background: var(--accent-muted);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--card);
+  border-color: var(--accent);
 }
 
 /* Fixture list scroll area */
@@ -515,7 +520,8 @@
   overflow-y: auto;
   flex: 1;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: var(--border) transparent;
+  background: var(--bg);
 }
 
 .fixture-scroll::-webkit-scrollbar {
@@ -523,7 +529,7 @@
 }
 
 .fixture-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--border);
   border-radius: 2px;
 }
 
@@ -543,21 +549,24 @@
 }
 
 .fixture-scroll .match-card:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--card);
   transform: none;
 }
 
 .fixture-scroll .match-teams {
   font-size: 0.88rem;
+  color: var(--fg);
 }
 
 .fixture-scroll .match-info {
   font-size: 0.75rem;
   margin-bottom: 10px;
+  color: var(--muted);
 }
 
 .fixture-scroll .match-date {
   font-size: 0.75rem;
+  color: var(--muted);
 }
 
 /* Stage/day dividers in sidebar */
@@ -567,8 +576,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #555;
-  background: var(--bg-primary);
+  color: var(--muted);
+  background: var(--card);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -579,14 +588,15 @@
   padding: 32px 18px;
   text-align: center;
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  color: var(--muted);
+  font-family: var(--sans);
 }
 
-/* ===== ARTICLE PANEL (IN-PAGE) ===== */
+/* ===== ARTICLE PANEL — light theme ===== */
 .article-panel-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(26, 18, 8, 0.45);
   z-index: 3000;
   opacity: 0;
   visibility: hidden;
@@ -605,14 +615,14 @@
   right: 0;
   bottom: 0;
   width: min(680px, 100%);
-  background: #111;
+  background: var(--bg);
   z-index: 3001;
   overflow-y: auto;
   transform: translateX(100%);
   transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
   border-left: 1px solid var(--border);
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  scrollbar-color: var(--border) transparent;
 }
 
 .article-panel::-webkit-scrollbar {
@@ -620,7 +630,7 @@
 }
 
 .article-panel::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--border);
   border-radius: 2px;
 }
 
@@ -631,7 +641,7 @@
 .article-panel-header {
   position: sticky;
   top: 0;
-  background: rgba(17, 17, 17, 0.95);
+  background: rgba(250, 248, 245, 0.95);
   backdrop-filter: blur(8px);
   padding: 18px 28px;
   display: flex;
@@ -643,15 +653,16 @@
 
 .article-panel-header .back-label {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-family: var(--sans);
 }
 
 .article-close-btn {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--muted);
   font-size: 1.2rem;
   cursor: pointer;
   padding: 6px 10px;
@@ -661,15 +672,15 @@
 }
 
 .article-close-btn:hover {
-  color: var(--text-primary);
-  background: var(--accent-muted);
+  color: var(--fg);
+  background: var(--card);
 }
 
 .article-panel-content {
   padding: 40px 36px 60px;
 }
 
-/* Article typography */
+/* Article typography — light */
 .article-panel-content .article-flag {
   font-size: 3.5rem;
   display: block;
@@ -682,15 +693,18 @@
   line-height: 1.15;
   letter-spacing: -0.03em;
   margin-bottom: 8px;
+  color: var(--fg);
+  font-family: var(--serif);
 }
 
 .article-panel-content .article-meta {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin-bottom: 32px;
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  font-family: var(--sans);
 }
 
 .article-panel-content .article-meta span {
@@ -701,27 +715,30 @@
 
 .article-panel-content .article-lead {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--muted);
   line-height: 1.75;
   margin-bottom: 28px;
-  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  border-left: 2px solid var(--border);
   padding-left: 18px;
   font-style: italic;
+  font-family: var(--serif);
 }
 
 .article-panel-content h2 {
   font-size: 1.05rem;
   font-weight: 700;
   margin: 28px 0 10px;
-  color: var(--text-primary);
+  color: var(--fg);
   letter-spacing: -0.01em;
+  font-family: var(--sans);
 }
 
 .article-panel-content p {
   font-size: 0.93rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--muted);
   line-height: 1.8;
   margin-bottom: 14px;
+  font-family: var(--sans);
 }
 
 .article-panel-content .article-stat-grid {
@@ -732,7 +749,8 @@
 }
 
 .article-panel-content .stat-box {
-  background: var(--bg-secondary);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 14px;
   text-align: center;
@@ -743,13 +761,16 @@
   font-size: 1.4rem;
   font-weight: 800;
   margin-bottom: 4px;
+  color: var(--primary);
+  font-family: var(--serif);
 }
 
 .article-panel-content .stat-box .stat-lbl {
   font-size: 0.72rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  font-family: var(--sans);
 }
 
 .article-panel-content .player-list {
@@ -765,6 +786,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--fg);
+  font-family: var(--sans);
 }
 
 .article-panel-content .player-list li:last-child {
@@ -773,12 +796,12 @@
 
 .article-panel-content .player-list .player-role {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 .article-panel-content .article-verdict {
-  background: var(--bg-secondary);
-  border-left: 3px solid rgba(255, 255, 255, 0.4);
+  background: var(--card);
+  border-left: 3px solid var(--primary);
   border-radius: 0 6px 6px 0;
   padding: 18px 20px;
   margin: 24px 0;
@@ -789,13 +812,14 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin-bottom: 6px;
+  font-family: var(--sans);
 }
 
 .article-panel-content .article-verdict p {
   margin-bottom: 0;
-  color: var(--text-primary);
+  color: var(--fg);
   font-size: 0.92rem;
 }
 
@@ -809,12 +833,13 @@
   font-size: 3rem;
   display: block;
   margin-bottom: 16px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .article-coming-soon p {
-  color: var(--text-secondary);
+  color: var(--muted);
   font-size: 0.9rem;
+  font-family: var(--sans);
 }
 
 /* ===== RESPONSIVE WORLDCUP ===== */
@@ -844,7 +869,7 @@
   .fixture-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(26, 18, 8, 0.45);
     z-index: 2400;
     opacity: 0;
     visibility: hidden;
@@ -876,6 +901,7 @@
 }
 
 /* ===== MONETIZACIÓN — CAMISETAS ===== */
+/* Jersey buttons sit inside dark cards — keep their dark styling */
 .jersey-buy-btn {
   display: block;
   margin-top: 12px;
@@ -897,17 +923,18 @@
   border-color: rgba(255, 255, 255, 0.28);
 }
 
-/* Etiqueta discreta de afiliado en la sección de camisetas */
+/* Etiqueta discreta de afiliado */
 .jerseys-affiliate-note {
   font-size: 0.72rem;
-  color: #555;
+  color: var(--muted);
   margin-top: 12px;
   margin-bottom: -8px;
+  font-family: var(--sans);
 }
 
-/* ===== MONETIZACIÓN — KO-FI / FOOTER ===== */
+/* ===== MONETIZACIÓN — KO-FI / FOOTER — light theme ===== */
 .kofi-strip {
-  background: var(--bg-primary);
+  background: var(--card);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 20px 10%;
@@ -920,13 +947,14 @@
 
 .kofi-strip p {
   font-size: 0.88rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   max-width: 480px;
   line-height: 1.5;
+  font-family: var(--sans);
 }
 
 .kofi-strip p strong {
-  color: var(--text-primary);
+  color: var(--fg);
 }
 
 .btn-kofi {
