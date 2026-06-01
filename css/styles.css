@@ -875,6 +875,13 @@ section h2 {
     display: flex;
   }
 
+  @media (max-width: 768px) {
+    .nav-links.show {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
   .nav-toggle {
     display: block;
   }
