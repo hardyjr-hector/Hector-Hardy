@@ -113,6 +113,7 @@ a {
 .nav-links {
   display: flex;
   gap: 1024px;
+  margin-left: auto;
   /* Corrección: Espaciado elegante entre secciones en escritorio */
   align-items: center;
 }
