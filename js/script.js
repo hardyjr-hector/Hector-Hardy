@@ -1,45 +1,43 @@
 // ==========================
-// CONTROL DEL MENÚ MÓVIL (UNIFICADO)
-// ==========================
-document.addEventListener("DOMContentLoaded", () => {
-  const navToggle = document.querySelector('.nav-toggle') || document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', (e) => {
-      e.stopPropagation(); // Evita que el click cierre el menú inmediatamente
-      const isOpen = navLinks.classList.toggle('show');
-      navToggle.setAttribute('aria-expanded', isOpen);
-      navToggle.textContent = isOpen ? '✕' : '☰';
-    });
-
-    // Cerrar el menú automáticamente al hacer clic en cualquier enlace interno
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.textContent = '☰';
-      });
-    });
-
-    // Cerrar el menú si se hace clic fuera de él (en el fondo de la pantalla)
-    document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-        navLinks.classList.remove('show');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.textContent = '☰';
-      }
-    });
-  }
-});
-
-// ==========================
 // NAVBAR SCROLL EFFECT
 // ==========================
 const navbar = document.querySelector(".navbar");
 if (navbar) {
   window.addEventListener("scroll", () => {
     navbar.classList.toggle("scrolled", window.scrollY > 60);
+  });
+}
+
+// ==========================
+// CONTROL DEL MENÚ MÓVIL (SEGURO)
+// ==========================
+// Al estar dentro de un 'if', si borramos el botón del HTML, 
+// el script simplemente ignora esto y sigue ejecutando el resto de la web.
+const navToggle = document.querySelector('.nav-toggle') || document.querySelector('.menu-toggle');
+const navLinksEl = document.querySelector('.nav-links');
+
+if (navToggle && navLinksEl) {
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinksEl.classList.toggle('show');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.textContent = isOpen ? '✕' : '☰';
+  });
+
+  navLinksEl.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinksEl.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!navLinksEl.contains(e.target) && !navToggle.contains(e.target)) {
+      navLinksEl.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+    }
   });
 }
 
@@ -57,7 +55,7 @@ function observeFadeElements() {
 }
 
 // ==========================
-// SECTION NAVIGATION
+// SECTION NAVIGATION (SPA)
 // ==========================
 const SECTION_IDS = ['about', 'articles', 'proyectos', 'analisis', 'worldcup', 'jerseys'];
 const sectionInitialized = {};
@@ -66,16 +64,19 @@ function navigateTo(sectionId) {
   document.body.classList.add('panel-mode');
   SECTION_IDS.forEach(id => document.getElementById(id)?.classList.remove('active-section'));
   document.getElementById(sectionId)?.classList.add('active-section');
+
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', (a.getAttribute('href') || '').replace('#', '') === sectionId);
   });
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
   navLinksEl?.classList.remove('show');
+
   if (!sectionInitialized[sectionId]) {
     sectionInitialized[sectionId] = true;
-    if (sectionId === 'analisis') loadAnalysis();
-    if (sectionId === 'worldcup') initWorldCup();
-    if (sectionId === 'jerseys') initJerseys();
+    if (sectionId === 'analisis' && typeof loadAnalysis === 'function') loadAnalysis();
+    if (sectionId === 'worldcup' && typeof initWorldCup === 'function') initWorldCup();
+    if (sectionId === 'jerseys' && typeof initJerseys === 'function') initJerseys();
   }
   setTimeout(observeFadeElements, 50);
 }
@@ -91,10 +92,22 @@ function goHome() {
 document.addEventListener('click', e => {
   const a = e.target.closest('a[href^="#"]');
   if (!a) return;
-  const id = a.getAttribute('href').slice(1);
-  if (SECTION_IDS.includes(id)) { e.preventDefault(); navigateTo(id); }
+  const href = a.getAttribute('href');
+
+  // Evitar interceptar enlaces que no sean de navegación interna
+  if (!href || href === '#') return;
+
+  const id = href.slice(1);
+  if (SECTION_IDS.includes(id)) {
+    e.preventDefault();
+    navigateTo(id);
+  }
 });
-document.querySelector('.logo')?.addEventListener('click', e => { e.preventDefault(); goHome(); });
+
+document.querySelector('.logo')?.addEventListener('click', e => {
+  e.preventDefault();
+  goHome();
+});
 
 // ==========================
 // CAMISETAS
