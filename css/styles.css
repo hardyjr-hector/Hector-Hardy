@@ -1,4 +1,4 @@
-/* ===== RESET & ACCESIBILIDAD ===== */
+/* ===== RESET ==== */
 * {
   margin: 0;
   padding: 0;
@@ -509,7 +509,109 @@ section h2 {
   margin: 24px 0;
 }
 
-/* ===== RESPONSIVE GENERAL ===== */
+.btn-contacto,
+.btn-cv {
+  text-decoration: none;
+  color: var(--fg);
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.btn-contacto:hover {
+  background-color: var(--bg-tertiary);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-cv {
+  background-color: #1a6ef5;
+  border-color: #1a6ef5;
+  font-weight: 600;
+}
+
+.btn-cv:hover {
+  background-color: #1558cc;
+  border-color: #1558cc;
+}
+
+.footer-contacto .copyright,
+.footer-contacto>p:last-of-type,
+.footer-contacto>p:nth-last-of-type(2) {
+  font-size: 0.78rem;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* ===== FADE IN ANIMATION ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   CONTROL DE VISIBILIDAD DE NAVEGACIÓN
+========================================== */
+
+/* Por defecto (Escritorio): Ocultar menú del hero */
+.mobile-only {
+  display: none;
+}
+
+/* Modo Móvil */
+@media (max-width: 768px) {
+
+  /* 1. Ocultar los enlaces del navbar superior */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* 2. Asegurar que el botón hamburguesa desaparezca (por si quedó alguno) */
+  .nav-toggle,
+  .menu-toggle {
+    display: none !important;
+  }
+
+  /* 3. Mostrar y estilizar la navegación dentro del hero */
+  .mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 300px;
+    /* Para que no ocupe todo el ancho si la pantalla es muy grande */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-mobile-nav a {
+    display: block;
+    padding: 14px;
+    background-color: var(--card);
+    /* Fondo sutil usando tus variables */
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .hero-mobile-nav a:active {
+    background-color: var(--border);
+  }
+}
+
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   :root {
     --navbar-height: 64px;
@@ -520,8 +622,15 @@ section h2 {
   }
 
   .navbar {
-    padding: 0 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    height: var(--navbar-height);
+    top: 0;
+    position: sticky;
   }
+
 
   .hero {
     padding: 0 6%;
@@ -530,7 +639,65 @@ section h2 {
   }
 
   .hero h1 {
-    font-size: 2.1rem;
+    font-size: 2rem;
+  }
+
+  .hero .btn-row {
+    justify-content: center;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(15, 15, 15, 0.97);
+    backdrop-filter: blur(12px);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    z-index: 999;
+  }
+
+  .nav-links a {
+    padding: 12px 6%;
+    display: block;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a.active::after {
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .logo {
+    filter: invert(1) brightness(0);
+    width: 130px;
+    height: 50px;
+  }
+
+  .logo-full {
+    filter: invert(1) brightness(0);
+    height: 50px;
+  }
+
+  .logo-icon {
+    filter: invert(1) brightness(0);
+    height: 35px;
   }
 
   .match-header {
@@ -543,4 +710,26 @@ section h2 {
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+/* ==========================================
+   ENLACE DE REGRESO A SERVICIOS (NAVBAR)
+========================================== */
+.nav-home-link {
+  color: var(--fg) !important;
+  /* Fuerza el color principal de tu web (#1a1208) */
+  text-decoration: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-right: 16px;
+  /* Separa el texto del botón de idioma 'EN' */
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--transition);
+}
+
+.nav-home-link:hover {
+  color: var(--accent) !important;
+  /* Cambia al color de acento al pasar el cursor */
 }

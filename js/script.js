@@ -1,48 +1,47 @@
-const menuBtn = document.querySelector(".menu-toggle");
-const navLinksEl = document.querySelector(".nav-links");
+// ==========================
+// CONTROL DEL MENÚ MÓVIL (UNIFICADO)
+// ==========================
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.querySelector('.nav-toggle') || document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
 
-if (menuBtn && navLinksEl) {
-  menuBtn.addEventListener("click", () => {
-    navLinksEl.classList.toggle("open");
-  });
-}
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // Evita que el click cierre el menú inmediatamente
+      const isOpen = navLinks.classList.toggle('show');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // Cerrar el menú automáticamente al hacer clic en cualquier enlace interno
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      });
+    });
+
+    // Cerrar el menú si se hace clic fuera de él (en el fondo de la pantalla)
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+        navLinks.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      }
+    });
+  }
+});
 
 // ==========================
 // NAVBAR SCROLL EFFECT
 // ==========================
 const navbar = document.querySelector(".navbar");
-window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 60);
-});
-
-// ==========================
-// MENU MÓVIL
-// ==========================
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-navToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isOpen = navLinks.classList.toggle('show');
-  navToggle.setAttribute('aria-expanded', isOpen);
-  navToggle.textContent = isOpen ? '✕' : '☰';
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('show');
-    navToggle.setAttribute('aria-expanded', false);
-    navToggle.textContent = '☰';
+if (navbar) {
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 60);
   });
-});
-
-document.addEventListener('click', (e) => {
-  if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-    navLinks.classList.remove('show');
-    navToggle.setAttribute('aria-expanded', false);
-    navToggle.textContent = '☰';
-  }
-});
+}
 
 // ==========================
 // FADE IN
