@@ -828,7 +828,7 @@ section h2 {
   padding: 0 10%;
   height: var(--navbar-height);
   top: 0;
-  position: relative;
+  position: sticky;
 }
 
 
