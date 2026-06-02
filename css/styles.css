@@ -810,6 +810,57 @@ section h2 {
   transform: translateY(0);
 }
 
+/* ==========================================
+   CONTROL DE VISIBILIDAD DE NAVEGACIÓN
+========================================== */
+
+/* Por defecto (Escritorio): Ocultar menú del hero */
+.mobile-only {
+  display: none;
+}
+
+/* Modo Móvil */
+@media (max-width: 768px) {
+  /* 1. Ocultar los enlaces del navbar superior */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* 2. Asegurar que el botón hamburguesa desaparezca (por si quedó alguno) */
+  .nav-toggle, .menu-toggle {
+    display: none !important;
+  }
+
+  /* 3. Mostrar y estilizar la navegación dentro del hero */
+  .mobile-only {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 300px; /* Para que no ocupe todo el ancho si la pantalla es muy grande */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-mobile-nav a {
+    display: block;
+    padding: 14px;
+    background-color: var(--card); /* Fondo sutil usando tus variables */
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+
+  .hero-mobile-nav a:active {
+    background-color: var(--border);
+  }
+}
+
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   :root {
