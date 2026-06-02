@@ -75,7 +75,8 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 0 10%;
-  height: var(--navbar-height);
+  height: 76px;
+  /* Aumentado de 70px a 76px para que el logo y los enlaces respiren mejor */
   position: sticky;
   top: 0;
   background: rgba(250, 248, 245, 0.85);
@@ -83,8 +84,8 @@ a {
   transition: var(--transition);
   border-bottom: 1px solid rgba(212, 201, 184, 0.4);
   touch-action: manipulation;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .navbar.scrolled {
@@ -109,11 +110,11 @@ a {
   opacity: 1;
 }
 
-/* Enlaces de Navegación del Menú (Escritorio) */
+/* Contenedor del menú en Escritorio */
 .nav-links {
   display: flex;
-  gap: 4096px;
-  /* Corrección: Espaciado elegante entre secciones en escritorio */
+  gap: 44px;
+  /* El secreto: espacio generoso e intencional entre las secciones */
   align-items: center;
 }
 
@@ -703,18 +704,40 @@ section h2 {
     z-index: 999;
   }
 
+  /* Enlaces individuales del menú */
   .nav-links a {
-    padding: 12px 6%;
-    display: block;
-    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    /* Un toque sutil de tracking para darle un aire más elegante */
+    opacity: 0.6;
+    /* Atenuación por defecto para no saturar la vista */
+    transition: opacity var(--transition), color var(--transition);
+    position: relative;
+    padding: 6px 0;
   }
 
   .nav-links a:last-child {
     border-bottom: none;
   }
 
+  /* Estados activos y hover */
+  .nav-links a:hover,
+  .nav-links a.active {
+    opacity: 1;
+    color: var(--fg);
+  }
+
+  /* Línea sutil de sección activa ajustada al nuevo espaciado */
   .nav-links a.active::after {
-    display: none;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
   }
 
   .nav-links.show {
