@@ -208,30 +208,28 @@
     }
 
     .hero-meta {
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      /* El número ocupa lo justo, el texto el resto */
-      gap: 16px 20px;
-      /* 16px de separación entre filas, 20px entre número y texto */
-      align-items: center;
-      /* Alinea verticalmente el número con el centro de su texto */
+      display: flex;
+      flex-direction: column;
+      /* Fuerza a que se apilen en una sola columna */
+      gap: 4px;
+      /* Espacio corto entre el número y su propio texto */
       text-align: left;
-      width: 100%;
     }
 
     .hero-meta-item {
       font-size: 32px;
       line-height: 1;
-      font-family: var(--serif);
-      color: var(--fg);
     }
 
     .hero-meta-label {
+      margin-bottom: 20px;
+      /* Este margen separa cada bloque del siguiente */
+      font-size: 11px;
+    }
+
+    .hero-meta-label:last-child {
       margin-bottom: 0;
-      /* Eliminamos el margen para que lo controle el gap del grid */
-      font-size: 12px;
-      line-height: 1.3;
-      color: var(--muted);
+      /* El último elemento no necesita separación inferior */
     }
 
     /* SECTION SHARED */

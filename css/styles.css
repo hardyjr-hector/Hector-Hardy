@@ -109,10 +109,11 @@ a {
   opacity: 1;
 }
 
-/* Enlaces de Navegación del Menú */
+/* Enlaces de Navegación del Menú (Escritorio) */
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 28px;
+  /* Corrección: Espaciado elegante entre secciones en escritorio */
   align-items: center;
 }
 
@@ -139,6 +140,29 @@ nav a:hover,
   height: 2px;
   background: var(--accent);
   border-radius: 2px;
+}
+
+/* Botón "Servicios" destacado en la Navbar de escritorio */
+@media (min-width: 769px) {
+  .nav-links a[href="index.html"] {
+    background-color: var(--primary) !important;
+    color: var(--pf) !important;
+    padding: 8px 18px !important;
+    border-radius: var(--radius) !important;
+    font-weight: 500;
+    opacity: 1 !important;
+    text-decoration: none;
+    transition: opacity var(--transition) !important;
+  }
+
+  .nav-links a[href="index.html"]:hover {
+    opacity: 0.9 !important;
+  }
+
+  /* Desactiva la línea inferior animada solo para este botón-tarjeta */
+  .nav-links a[href="index.html"]::after {
+    display: none !important;
+  }
 }
 
 /* ===== LOGO ===== */
@@ -179,7 +203,7 @@ nav a:hover,
   opacity: 1;
 }
 
-/* ===== HERO & ENLACES MÓVILES ===== */
+/* ===== HERO & ENLACES ===== */
 .hero {
   min-height: calc(100vh - var(--navbar-height));
   display: flex;
@@ -216,50 +240,68 @@ nav a:hover,
   text-transform: uppercase;
 }
 
-/* Contenedor de los accesos en el móvil */
-.hero-mobile-nav.mobile-only {
+/* Contenedor global de Datos/Metas del Hero en Escritorio */
+.hero-meta {
   display: flex;
-  flex-direction: column;
-  /* Apila los botones uno debajo de otro */
-  gap: 12px;
-  /* Controla la separación exacta entre ellos */
-  align-items: flex-start;
-  /* ¡La clave! Los alinea a la izquierda y evita que se estiren */
-  width: 100%;
+  gap: 40px;
   margin-top: 24px;
-  /* Espacio respecto al texto del hero superior */
 }
 
-/* Los botones individuales (enlaces) */
+.hero-meta-item {
+  font-size: 2.5rem;
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1;
+}
+
+.hero-meta-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Contenedor de los accesos rápidos en Móvil (Fútbol / Secciones) */
+.hero-mobile-nav.mobile-only {
+  display: flex;
+  flex-direction: row;
+  /* Corrección: Uno al lado del otro */
+  flex-wrap: wrap;
+  /* Corrección: Salto de línea limpio si falta espacio */
+  gap: 10px;
+  /* Corrección: Separación uniforme */
+  align-items: center;
+  justify-content: flex-start;
+  /* Corrección: Alineados a la izquierda */
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* Los botones individuales de secciones */
 .hero-mobile-nav.mobile-only a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: auto;
-  /* El tamaño se adapta estrictamente al largo del texto */
-  padding: 10px 20px;
-  /* Espaciado interno para darle cuerpo de botón */
+  /* Corrección: Ancho adaptado estricto al texto */
+  padding: 10px 18px;
+  /* Corrección: Relleno balanceado */
   background-color: var(--primary);
-  /* Usa el marrón de tu paleta de marca */
   color: var(--pf);
-  /* Texto en tono claro de fondo */
   text-decoration: none;
   border-radius: var(--radius);
-  /* Bordes suaves consistentes con el resto de la web */
   font-size: 14px;
   font-weight: 500;
   transition: opacity var(--transition), transform var(--transition);
 }
 
-/* Efecto opcional al pulsar/pasar el cursor */
 .hero-mobile-nav.mobile-only a:active,
 .hero-mobile-nav.mobile-only a:hover {
   opacity: 0.9;
   transform: translateX(2px);
-  /* Un sutil desplazamiento a la izquierda al tocarlos */
 }
 
-/* Bloque Navegación Nativa para Móviles (Dentro del Hero) */
+/* Bloque Navegación Nativa Alternativa */
 .mobile-nav-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -314,7 +356,7 @@ nav a:hover,
   background: var(--bg-tertiary);
 }
 
-/* ===== SITEMA DE NAVEGACIÓN POR SECCIONES ===== */
+/* ===== SISTEMA DE NAVEGACIÓN POR SECCIONES ===== */
 section:not(.hero) {
   display: none;
   padding: 60px 10%;
@@ -586,44 +628,8 @@ section h2 {
 }
 
 /* ==========================================
-   CONTROL DE VISIBILIDAD DE NAVEGACIÓN
+   MEDIA QUERY: DISPOSITIVOS MÓVILES (<= 768px)
 ========================================== */
-
-/* Por defecto (Escritorio): Ocultar menú del hero */
-.mobile-only {
-  display: none;
-}
-
-/* Modo Móvil */
-@media (max-width: 768px) {
-
-  /* 1. Ocultar los enlaces del navbar superior */
-  .desktop-only {
-    display: none !important;
-  }
-
-  /* 2. Asegurar que el botón hamburguesa desaparezca (por si quedó alguno) */
-  .nav-toggle,
-  .menu-toggle {
-    display: none !important;
-  }
-
-  /* 3. Mostrar y estilizar la navegación dentro del hero */
-  .mobile-only {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 32px;
-    width: 100%;
-    max-width: 300px;
-    /* Para que no ocupe todo el ancho si la pantalla es muy grande */
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   :root {
     --navbar-height: 64px;
@@ -643,7 +649,6 @@ section h2 {
     position: sticky;
   }
 
-
   .hero {
     padding: 0 6%;
     text-align: left;
@@ -658,6 +663,31 @@ section h2 {
     justify-content: center;
   }
 
+  /* Corrección: Grid de 2 columnas para mitigar los saltos de línea caóticos en móvil */
+  .hero-meta {
+    display: grid !important;
+    grid-template-columns: max-content 1fr;
+    gap: 16px 20px;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .hero-meta-item {
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+
+  .hero-meta-label {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Menú desplegable hamburguesa por defecto */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -697,18 +727,15 @@ section h2 {
   }
 
   .logo {
-    filter: invert(1) brightness(0);
     width: 130px;
     height: 50px;
   }
 
   .logo-full {
-    filter: invert(1) brightness(0);
     height: 50px;
   }
 
   .logo-icon {
-    filter: invert(1) brightness(0);
     height: 35px;
   }
 
@@ -722,20 +749,29 @@ section h2 {
     flex-direction: column;
     align-items: stretch;
   }
+
+  /* Corrección: Forzar comportamiento horizontal fluido para los accesos del hero */
+  .hero-mobile-nav.mobile-only {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    max-width: 100% !important;
+    justify-content: flex-start !important;
+    margin-top: 32px;
+  }
 }
 
 /* ==========================================
-   ENLACE DE REGRESO A SERVICIOS (NAVBAR)
+   ENLACE DE REGRESO A SERVICIOS / IDIOMAS
 ========================================== */
 .nav-home-link {
   color: var(--fg) !important;
-  /* Fuerza el color principal de tu web (#1a1208) */
   text-decoration: none;
   font-family: var(--sans);
   font-weight: 500;
   font-size: 0.9rem;
   margin-right: 16px;
-  /* Separa el texto del botón de idioma 'EN' */
   display: inline-flex;
   align-items: center;
   transition: color var(--transition);
@@ -743,5 +779,4 @@ section h2 {
 
 .nav-home-link:hover {
   color: var(--accent) !important;
-  /* Cambia al color de acento al pasar el cursor */
 }
