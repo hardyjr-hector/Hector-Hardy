@@ -61,9 +61,17 @@ const SECTION_IDS = ['about', 'articles', 'proyectos', 'analisis', 'worldcup', '
 const sectionInitialized = {};
 
 function navigateTo(sectionId) {
+  const targetSection = document.getElementById(sectionId);
+  if (!targetSection) return;
+
   document.body.classList.add('panel-mode');
+
+  // ── ¡NUEVO! Ocultar el Hero al entrar en cualquier sección ──
+  const heroSection = document.querySelector('.hero');
+  if (heroSection) heroSection.style.display = 'none';
+
   SECTION_IDS.forEach(id => document.getElementById(id)?.classList.remove('active-section'));
-  document.getElementById(sectionId)?.classList.add('active-section');
+  targetSection.classList.add('active-section');
 
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', (a.getAttribute('href') || '').replace('#', '') === sectionId);
@@ -83,6 +91,11 @@ function navigateTo(sectionId) {
 
 function goHome() {
   document.body.classList.remove('panel-mode');
+
+  // ── ¡NUEVO! Mostrar el Hero de nuevo al volver a la página de inicio ──
+  const heroSection = document.querySelector('.hero');
+  if (heroSection) heroSection.style.display = ''; // Al dejarlo vacío, recupera su diseño original (flex/block) de CSS
+
   SECTION_IDS.forEach(id => document.getElementById(id)?.classList.remove('active-section'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   window.scrollTo({ top: 0, behavior: 'smooth' });
