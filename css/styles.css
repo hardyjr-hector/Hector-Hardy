@@ -216,21 +216,50 @@ nav a:hover,
   text-transform: uppercase;
 }
 
-/* Bloque Navegación Nativa para Móviles (Dentro del Hero) */
-.hero-mobile-nav {
+/* Contenedor de los accesos en el móvil */
+.hero-mobile-nav.mobile-only {
+  display: flex;
+  flex-direction: column;
+  /* Apila los botones uno debajo de otro */
+  gap: 12px;
+  /* Controla la separación exacta entre ellos */
+  align-items: flex-start;
+  /* ¡La clave! Los alinea a la izquierda y evita que se estiren */
+  width: 100%;
   margin-top: 24px;
-  border-top: 1px solid var(--border);
-  padding-top: 20px;
-  max-width: 500px;
+  /* Espacio respecto al texto del hero superior */
 }
 
-.hero-mobile-nav p {
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-  color: var(--accent);
+/* Los botones individuales (enlaces) */
+.hero-mobile-nav.mobile-only a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  /* El tamaño se adapta estrictamente al largo del texto */
+  padding: 10px 20px;
+  /* Espaciado interno para darle cuerpo de botón */
+  background-color: var(--primary);
+  /* Usa el marrón de tu paleta de marca */
+  color: var(--pf);
+  /* Texto en tono claro de fondo */
+  text-decoration: none;
+  border-radius: var(--radius);
+  /* Bordes suaves consistentes con el resto de la web */
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity var(--transition), transform var(--transition);
 }
 
+/* Efecto opcional al pulsar/pasar el cursor */
+.hero-mobile-nav.mobile-only a:active,
+.hero-mobile-nav.mobile-only a:hover {
+  opacity: 0.9;
+  transform: translateX(2px);
+  /* Un sutil desplazamiento a la izquierda al tocarlos */
+}
+
+/* Bloque Navegación Nativa para Móviles (Dentro del Hero) */
 .mobile-nav-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -590,23 +619,6 @@ section h2 {
     /* Para que no ocupe todo el ancho si la pantalla es muy grande */
     margin-left: auto;
     margin-right: auto;
-  }
-
-  .hero-mobile-nav a {
-    display: block;
-    padding: 14px;
-    background-color: var(--card);
-    /* Fondo sutil usando tus variables */
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--fg);
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-  }
-
-  .hero-mobile-nav a:active {
-    background-color: var(--border);
   }
 }
 

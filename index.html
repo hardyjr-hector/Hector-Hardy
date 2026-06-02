@@ -208,26 +208,30 @@
     }
 
     .hero-meta {
-      text-align: right;
-      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      /* El número ocupa lo justo, el texto el resto */
+      gap: 16px 20px;
+      /* 16px de separación entre filas, 20px entre número y texto */
+      align-items: center;
+      /* Alinea verticalmente el número con el centro de su texto */
+      text-align: left;
+      width: 100%;
     }
 
     .hero-meta-item {
-      display: block;
-      font-family: var(--serif);
-      font-size: 42px;
-      font-weight: 400;
-      color: var(--fg);
-      letter-spacing: -1px;
+      font-size: 32px;
       line-height: 1;
+      font-family: var(--serif);
+      color: var(--fg);
     }
 
     .hero-meta-label {
-      display: block;
-      font-size: 11px;
+      margin-bottom: 0;
+      /* Eliminamos el margen para que lo controle el gap del grid */
+      font-size: 12px;
+      line-height: 1.3;
       color: var(--muted);
-      letter-spacing: 0.05em;
-      margin-bottom: 24px;
     }
 
     /* SECTION SHARED */
