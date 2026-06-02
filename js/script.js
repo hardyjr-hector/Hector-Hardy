@@ -12,37 +12,41 @@ if (menuBtn && navLinksEl) {
 // ==========================
 const navbar = document.querySelector(".navbar");
 window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 60);
-});
+  navbar.classList.toggle("scrolled", window.scrollY > 
 
 // ==========================
-// MENU MÓVIL
+// MENU MÓVIL (CORREGIDO)
 // ==========================
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-navToggle.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isOpen = navLinks.classList.toggle('show');
-  navToggle.setAttribute('aria-expanded', isOpen);
-  navToggle.textContent = isOpen ? '✕' : '☰';
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('show');
-    navToggle.setAttribute('aria-expanded', false);
-    navToggle.textContent = '☰';
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // Evita que el click se propague al document
+    const isOpen = navLinks.classList.toggle('show');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.textContent = isOpen ? '✕' : '☰';
   });
-});
 
-document.addEventListener('click', (e) => {
-  if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
-    navLinks.classList.remove('show');
-    navToggle.setAttribute('aria-expanded', false);
-    navToggle.textContent = '☰';
-  }
-});
+  // Cerrar el menú al hacer clic en cualquier enlace
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+    });
+  });
+
+  // Cerrar el menú si se hace clic fuera de él
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+      navLinks.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.textContent = '☰';
+    }
+  });
+}
+
 
 // ==========================
 // FADE IN
