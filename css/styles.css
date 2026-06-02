@@ -112,8 +112,7 @@ a {
 /* Enlaces de Navegación del Menú (Escritorio) */
 .nav-links {
   display: flex;
-  gap: 1024px;
-  margin-left: auto;
+  gap: 4096px;
   /* Corrección: Espaciado elegante entre secciones en escritorio */
   align-items: center;
 }
