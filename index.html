@@ -208,28 +208,26 @@
     }
 
     .hero-meta {
-      display: flex;
-      flex-direction: column;
-      /* Fuerza a que se apilen en una sola columna */
-      gap: 4px;
-      /* Espacio corto entre el número y su propio texto */
-      text-align: left;
+      text-align: right;
+      flex-shrink: 0;
     }
 
     .hero-meta-item {
-      font-size: 32px;
+      display: block;
+      font-family: var(--serif);
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--fg);
+      letter-spacing: -1px;
       line-height: 1;
     }
 
     .hero-meta-label {
-      margin-bottom: 20px;
-      /* Este margen separa cada bloque del siguiente */
+      display: block;
       font-size: 11px;
-    }
-
-    .hero-meta-label:last-child {
-      margin-bottom: 0;
-      /* El último elemento no necesita separación inferior */
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
     }
 
     /* SECTION SHARED */
@@ -260,10 +258,26 @@
       overflow: hidden;
     }
 
+    /* Corrección: Permitir scroll libre manteniendo el degradado sutil */
     .marquee-wrap {
-      overflow: hidden;
+      overflow-x: auto;
+      scrollbar-width: none;
+      /* Oculta barra en Firefox */
+      -webkit-overflow-scrolling: touch;
+      /* Inercia fluida en iOS */
+      cursor: grab;
+      user-select: none;
       mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    }
+
+    .marquee-wrap::-webkit-scrollbar {
+      display: none;
+      /* Oculta barra en Chrome/Safari */
+    }
+
+    .marquee-wrap:active {
+      cursor: grabbing;
     }
 
     .marquee-track {
@@ -274,7 +288,11 @@
       padding: 0 8px;
     }
 
-    .marquee-track:hover {
+    /* Pausar de forma segura al interactuar con el contenedor */
+    .marquee-wrap:hover .marquee-track,
+    .marquee-wrap:active .marquee-track,
+    .marquee-wrap:hover .proj-track,
+    .marquee-wrap:active .proj-track {
       animation-play-state: paused;
     }
 
@@ -339,10 +357,6 @@
       width: max-content;
       animation: marquee-rev 32s linear infinite;
       padding: 0 8px;
-    }
-
-    .proj-track:hover {
-      animation-play-state: paused;
     }
 
     @keyframes marquee-rev {
@@ -659,7 +673,6 @@
 
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="#" class="logo"><img src="assets/images/logo.svg" alt="Hector Hardy"
         style="height:28px; display:block;"></a>
@@ -670,7 +683,6 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <div class="hero">
     <div>
       <div class="hero-label">Frontend Developer & AI Engineer · Barcelona</div>
@@ -683,7 +695,6 @@
       <div class="hero-actions">
         <a href="mailto:info@hectorhardy.com" class="btn-main">Hablemos →</a>
         <a href="#proyectos" class="btn-ghost">Ver proyectos</a>
-        <a href="#servicios" class="btn-ghost">Ver servicios</a>
       </div>
     </div>
     <div class="hero-meta">
@@ -696,7 +707,6 @@
     </div>
   </div>
 
-  <!-- SERVICIOS -->
   <section class="services" id="servicios">
     <div class="section-eyebrow">Servicios</div>
     <div class="marquee-wrap">
@@ -753,7 +763,6 @@
     </div>
   </section>
 
-  <!-- PROYECTOS -->
   <section class="projects" id="proyectos">
     <div class="section-eyebrow">Proyectos en producción</div>
     <div class="marquee-wrap">
@@ -906,13 +915,11 @@
     </div>
   </section>
 
-  <!-- BOOKING -->
   <section class="booking" id="booking">
     <div class="section-eyebrow">Primera llamada gratuita</div>
     <div id="my-cal-inline" style="width:100%; height:600px; overflow:scroll;"></div>
   </section>
 
-  <!-- CTA -->
   <div class="cta">
     <div class="cta-block">
       <div class="cta-left">
@@ -925,7 +932,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <a href="#" class="logo"><img src="assets/images/logo.svg" alt="Hector Hardy"
         style="height:20px; display:block; filter:invert(1) brightness(0);"></a>
@@ -946,9 +952,39 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    // ==========================================
+    // CONTROLADOR DRAG-TO-SCROLL (MARQUEES)
+    // ==========================================
+    document.querySelectorAll('.marquee-wrap').forEach(wrap => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      wrap.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - wrap.offsetLeft;
+        scrollLeft = wrap.scrollLeft;
+      });
+
+      wrap.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+
+      wrap.addEventListener('mouseup', () => {
+        isDown = false;
+      });
+
+      wrap.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - wrap.offsetLeft;
+        const walk = (x - startX) * 1.5; // Multiplicador de velocidad del scroll
+        wrap.scrollLeft = scrollLeft - walk;
+      });
+    });
   </script>
 
-  <!-- Cal.com inline embed -->
   <script type="text/javascript">
     (function (C, A, L) {
       let p = function (a, ar) { a.q.push(ar); };
