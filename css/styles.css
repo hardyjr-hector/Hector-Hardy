@@ -878,7 +878,8 @@ section h2 {
   }
 
   .nav-links.show {
-    display: flex;
+    display: flex !important;
+    flex-direction: column;
   }
 
   .nav-toggle {
