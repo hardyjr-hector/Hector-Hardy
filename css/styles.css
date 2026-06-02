@@ -985,3 +985,23 @@ section h2 {
     align-items: center;
   }
 }
+
+/* ==========================================
+   ENLACE DE REGRESO A SERVICIOS (NAVBAR)
+========================================== */
+.nav-home-link {
+  color: var(--fg) !important; /* Fuerza el color principal de tu web (#1a1208) */
+  text-decoration: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-right: 16px; /* Separa el texto del botón de idioma 'EN' */
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--transition);
+}
+
+.nav-home-link:hover {
+  color: var(--accent) !important; /* Cambia al color de acento al pasar el cursor */
+}
+
