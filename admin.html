@@ -741,6 +741,25 @@
       { id: 'R32_14', round: 'R32', h: 'Colombia',     hf: '🇨🇴', a: 'Ghana',        af: '🇬🇭', d: '3 Jul'  },
       { id: 'R32_15', round: 'R32', h: 'Australia',    hf: '🇦🇺', a: 'Egipto',       af: '🇪🇬', d: '3 Jul'  },
       { id: 'R32_16', round: 'R32', h: 'Argentina',    hf: '🇦🇷', a: 'Cabo Verde',   af: '🇨🇻', d: '3 Jul'  },
+      // Octavos de Final (Round of 16) — equipos a confirmar cuando avancen
+      { id: 'R16_1', round: 'R16', h: 'W R32_1', hf: '🏳️', a: 'W R32_2', af: '🏳️', d: '5 Jul'  },
+      { id: 'R16_2', round: 'R16', h: 'W R32_3', hf: '🏳️', a: 'W R32_4', af: '🏳️', d: '5 Jul'  },
+      { id: 'R16_3', round: 'R16', h: 'W R32_5', hf: '🏳️', a: 'W R32_6', af: '🏳️', d: '6 Jul'  },
+      { id: 'R16_4', round: 'R16', h: 'W R32_7', hf: '🏳️', a: 'W R32_8', af: '🏳️', d: '6 Jul'  },
+      { id: 'R16_5', round: 'R16', h: 'W R32_9', hf: '🏳️', a: 'W R32_10', af: '🏳️', d: '7 Jul' },
+      { id: 'R16_6', round: 'R16', h: 'W R32_11', hf: '🏳️', a: 'W R32_12', af: '🏳️', d: '7 Jul' },
+      { id: 'R16_7', round: 'R16', h: 'W R32_13', hf: '🏳️', a: 'W R32_14', af: '🏳️', d: '8 Jul' },
+      { id: 'R16_8', round: 'R16', h: 'W R32_15', hf: '🏳️', a: 'W R32_16', af: '🏳️', d: '8 Jul' },
+      // Cuartos de Final
+      { id: 'QF_1', round: 'QF', h: 'W R16_1', hf: '🏳️', a: 'W R16_2', af: '🏳️', d: '11 Jul' },
+      { id: 'QF_2', round: 'QF', h: 'W R16_3', hf: '🏳️', a: 'W R16_4', af: '🏳️', d: '11 Jul' },
+      { id: 'QF_3', round: 'QF', h: 'W R16_5', hf: '🏳️', a: 'W R16_6', af: '🏳️', d: '12 Jul' },
+      { id: 'QF_4', round: 'QF', h: 'W R16_7', hf: '🏳️', a: 'W R16_8', af: '🏳️', d: '12 Jul' },
+      // Semifinales
+      { id: 'SF_1', round: 'SF', h: 'W QF_1', hf: '🏳️', a: 'W QF_2', af: '🏳️', d: '15 Jul' },
+      { id: 'SF_2', round: 'SF', h: 'W QF_3', hf: '🏳️', a: 'W QF_4', af: '🏳️', d: '16 Jul' },
+      // Final
+      { id: 'F_1',  round: 'F',  h: 'W SF_1', hf: '🏳️', a: 'W SF_2', af: '🏳️', d: '19 Jul' },
     ];
 
     const KO_ROUND_LABELS = {
@@ -782,18 +801,33 @@
       let html = '';
       KMD.filter(m => m.round === round).forEach(m => {
         const r = results[m.id] || {}, sh = r.sh != null ? r.sh : '', sa = r.sa != null ? r.sa : '', played = r.played;
+        // For unplayed matches, show editable team name inputs so admin can fill in real teams
+        const homeField = played
+          ? `<div class="mr-t"><span class="mr-fl">${m.hf}</span><span>${m.h}</span></div>`
+          : `<div class="mr-t"><input class="ri" type="text" value="${m.h}" placeholder="Local" id="hn-${m.id}" style="width:110px;font-size:.75rem" onchange="updateTeamName('${m.id}','h',this.value)"></div>`;
+        const awayField = played
+          ? `<div class="mr-t aw"><span>${m.a}</span><span class="mr-fl">${m.af}</span></div>`
+          : `<div class="mr-t aw"><input class="ri" type="text" value="${m.a}" placeholder="Visitante" id="an-${m.id}" style="width:110px;font-size:.75rem" onchange="updateTeamName('${m.id}','a',this.value)"></div>`;
         html += `<div class="mr${played ? ' played' : ''}" id="mr-${m.id}">
       <span class="mr-d">${m.d}</span>
-      <div class="mr-t"><span class="mr-fl">${m.hf}</span><span>${m.h}</span></div>
+      ${homeField}
       <input class="ri" type="number" min="0" max="99" value="${sh}" placeholder="–" id="sh-${m.id}" ${played ? 'disabled' : ''}>
       <span class="sep">–</span>
       <input class="ri" type="number" min="0" max="99" value="${sa}" placeholder="–" id="sa-${m.id}" ${played ? 'disabled' : ''}>
-      <div class="mr-t aw"><span>${m.a}</span><span class="mr-fl">${m.af}</span></div>
+      ${awayField}
       <button class="pb${played ? ' done' : ''}" onclick="markPlayed('${m.id}')">${played ? '✓ Jugado' : 'Marcar jugado'}</button>
       ${played ? `<button class="upb" onclick="unmark('${m.id}')" title="Desmarcar">✕</button>` : ''}
     </div>`;
       });
       document.getElementById('ko-matches').innerHTML = html || '<p style="color:var(--m2);font-size:.8rem">Sin partidos</p>';
+    }
+
+    // Update team name in KMD live (so markPlayed uses the correct name)
+    function updateTeamName(mid, side, val) {
+      const m = KMD.find(x => x.id === mid);
+      if (!m) return;
+      if (side === 'h') m.h = val.trim();
+      else m.a = val.trim();
     }
 
     // Helper: detect if match_id belongs to knockout stage
@@ -816,7 +850,17 @@
     }
     async function adminLogout() { await sb.auth.signOut(); window.location.reload() }
     function showErr(m) { const e = document.getElementById('aerr'); e.textContent = m; e.style.display = 'block' }
-    async function loadResults() { const { data } = await sb.from('match_results').select('*'); if (data) data.forEach(r => { results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played } }) }
+    async function loadResults() {
+      const { data } = await sb.from('match_results').select('*');
+      if (data) data.forEach(r => {
+        results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played, h: r.home_team, a: r.away_team };
+        // Restore edited team names into KMD so the UI shows correct names after reload
+        if (r.home_team || r.away_team) {
+          const m = KMD.find(x => x.id === r.match_id);
+          if (m) { if (r.home_team) m.h = r.home_team; if (r.away_team) m.a = r.away_team; }
+        }
+      });
+    }
     async function loadSpRes() { const { data } = await sb.from('special_results').select('*').eq('id', 1).single(); if (data) { spRes.champion = data.champion || ''; spRes.top_scorer = data.top_scorer || ''; spRes.golden_ball = data.golden_ball || '' } }
 
     function renderTabs() {
@@ -848,11 +892,22 @@
     async function markPlayed(mid) {
       const sh = document.getElementById('sh-' + mid).value, sa = document.getElementById('sa-' + mid).value;
       if (sh === '' || sa === '') { toast('Introduce el marcador primero ⚠️'); return }
-      await sb.from('match_results').upsert({ match_id: mid, score_home: +sh, score_away: +sa, played: true, updated_at: new Date().toISOString() }, { onConflict: 'match_id' });
-      results[mid] = { sh: +sh, sa: +sa, played: true };
+      const m = KMD.find(x => x.id === mid);
+      // For KO matches, read the (possibly edited) team name inputs
+      const hnEl = document.getElementById('hn-' + mid), anEl = document.getElementById('an-' + mid);
+      const homeTeam = hnEl ? hnEl.value.trim() || m?.h : m?.h;
+      const awayTeam = anEl ? anEl.value.trim() || m?.a : m?.a;
+      if (m) { m.h = homeTeam; m.a = awayTeam; } // keep KMD in sync
+      await sb.from('match_results').upsert({
+        match_id: mid,
+        score_home: +sh, score_away: +sa, played: true,
+        home_team: homeTeam || null, away_team: awayTeam || null,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'match_id' });
+      results[mid] = { sh: +sh, sa: +sa, played: true, h: homeTeam, a: awayTeam };
       if (isKOMatch(mid)) { renderKORoundTabs(); renderKOMatches(curKORound) }
       else { renderTabs(); renderMatches(ag) }
-      toast(`${mid}: ${sh}–${sa} guardado ✓`);
+      toast(`${mid}: ${homeTeam} ${sh}–${sa} ${awayTeam} ✓`);
     }
     async function unmark(mid) {
       await sb.from('match_results').update({ played: false, updated_at: new Date().toISOString() }).eq('match_id', mid);
@@ -893,20 +948,16 @@
         const spR = spResData || {};
 
         // Build real KO winners: { R32_1: 'España', R32_2: 'Brasil', ... }
-        // Winner = home team if sh > sa, away team if sa > sh, null if draw (goes to pens — winner determined by who has higher score or we use a flag)
-        // For bracket purposes: if draw in regular time → we compare to what user predicted regardless
-        // The user picked who ADVANCES. A draw result could go either way via pens, so we just trust the played result.
-        // Admin enters final score including extra time if needed; we treat the team with higher goals as winner.
-        // If exact draw (pens): admin should enter a score reflecting the pens outcome OR we rely on a separate "winner" field.
-        // Simple approach: whoever has MORE goals in the entered result is the winner.
-        // If tied, we skip (admin should enter a score that reflects the actual outcome including ET/pens).
-        const koWinners = {}; // { matchId: winnerName }
+        // Uses home_team/away_team saved in match_results (set by admin when marking played)
+        const koWinners = {};
         KMD.forEach(m => {
           const r = results[m.id];
           if (!r?.played) return;
-          if (r.sh > r.sa) koWinners[m.id] = m.h;
-          else if (r.sa > r.sh) koWinners[m.id] = m.a;
-          // draw: skip (admin should enter result that reflects pens/ET winner via slightly different score or we skip)
+          const homeName = r.h || m.h;
+          const awayName = r.a || m.a;
+          if (r.sh > r.sa) koWinners[m.id] = homeName;
+          else if (r.sa > r.sh) koWinners[m.id] = awayName;
+          // exact draw: admin should enter ET/pens result with different scores
         });
 
         // Map bracket round arrays to KMD match ids in order
