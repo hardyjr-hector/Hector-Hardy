@@ -716,6 +716,17 @@
         automáticamente los puntos de campeón, goleador y balón de oro de todos los jugadores.</div>
       <div id="specials-admin"></div>
 
+      <!-- UNLOCK USER POOL -->
+      <div class="stitle" style="margin-top:2.25rem">🔓 Desbloquear quiniela por usuario</div>
+      <div class="info-box">Si un jugador ya envió su quiniela y necesita volver a editarla, selecciónalo aquí y pulsa <strong style="color:var(--text)">Desbloquear</strong>. Se eliminará su fecha de envío y podrá modificar sus predicciones de nuevo.</div>
+      <div class="admin-tools">
+        <select class="fi" id="unlock-user">
+          <option value="">Cargando jugadores...</option>
+        </select>
+        <button class="btn" id="btn-unlock-user" onclick="unlockUserPool()" style="background:var(--grn);min-width:160px">🔓 Desbloquear</button>
+      </div>
+      <div id="unlock-status" style="margin-top:.6rem;font-size:.78rem;color:var(--m2)"></div>
+
       <!-- DELETE USER POOL -->
       <div class="stitle" style="margin-top:2.25rem">🗑️ Borrar quiniela por usuario</div>
       <div class="info-box">Selecciona un jugador para borrar únicamente su quiniela guardada. Su cuenta seguirá existiendo, pero se eliminarán sus pronósticos, grupos, especiales y puntos.</div>
@@ -1037,7 +1048,7 @@
       document.getElementById('auth-screen').style.display = 'none';
       document.getElementById('admin').style.display = 'block';
       document.getElementById('a-un').textContent = data.user.email;
-      await loadResults(); await loadSpRes(); renderTabs(); renderMatches(ag); renderSpecialsAdmin(); await loadDeletableUsers(); renderLB();
+      await loadResults(); await loadSpRes(); renderTabs(); renderMatches(ag); renderSpecialsAdmin(); await loadDeletableUsers(); await loadUnlockableUsers(); renderLB();
     }
     async function adminLogout() { await sb.auth.signOut(); window.location.reload() }
     function showErr(m) { const e = document.getElementById('aerr'); e.textContent = m; e.style.display = 'block' }
@@ -1413,6 +1424,78 @@
       }
     }
 
+    // ── UNLOCK USER POOL ─────────────────────────
+    async function loadUnlockableUsers() {
+      const sel = document.getElementById('unlock-user');
+      const btn = document.getElementById('btn-unlock-user');
+      const status = document.getElementById('unlock-status');
+      if (!sel || !btn) return;
+      sel.innerHTML = '<option value="">Cargando jugadores...</option>';
+      sel.disabled = true;
+      btn.disabled = true;
+      if (status) status.textContent = '';
+
+      try {
+        // Only show users who have actually submitted (submitted_at is not null)
+        const { data, error } = await sb.from('profiles').select('id, username, submitted_at').not('submitted_at', 'is', null).order('username');
+        if (error) throw error;
+
+        if (!data || !data.length) {
+          sel.innerHTML = '<option value="">Ningún jugador ha enviado su quiniela aún</option>';
+          return;
+        }
+
+        sel.innerHTML = [
+          '<option value="">Selecciona un jugador bloqueado</option>',
+          ...data.map(u => {
+            const date = u.submitted_at ? new Date(u.submitted_at).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+            return `<option value="${u.id}">${u.username || 'Sin nombre'} — enviada el ${date}</option>`;
+          })
+        ].join('');
+        sel.disabled = false;
+        btn.disabled = false;
+      } catch (error) {
+        console.error('Error cargando usuarios para desbloquear:', error);
+        sel.innerHTML = '<option value="">No se pudieron cargar los jugadores</option>';
+        toast('Error cargando jugadores: ' + error.message);
+      }
+    }
+
+    async function unlockUserPool() {
+      const sel = document.getElementById('unlock-user');
+      const btn = document.getElementById('btn-unlock-user');
+      const status = document.getElementById('unlock-status');
+      const userId = sel?.value;
+      const username = sel?.options?.[sel.selectedIndex]?.text?.split(' —')[0] || 'este jugador';
+
+      if (!userId) { toast('Selecciona un jugador'); return; }
+      if (!confirm(`¿Desbloquear la quiniela de ${username}? Podrá volver a editar sus predicciones.`)) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Desbloqueando...';
+      if (status) status.textContent = '';
+
+      try {
+        const { error } = await sb.from('profiles').update({ submitted_at: null }).eq('id', userId);
+        if (error) throw error;
+
+        toast(`🔓 Quiniela desbloqueada: ${username}`);
+        if (status) {
+          status.textContent = `✓ ${username} puede volver a editar su quiniela.`;
+          status.style.color = 'var(--grn)';
+        }
+        sel.value = '';
+        await loadUnlockableUsers();
+      } catch (error) {
+        console.error('Error desbloqueando quiniela:', error);
+        toast('Error: ' + error.message);
+        if (status) { status.textContent = 'Error: ' + error.message; status.style.color = 'var(--red)'; }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔓 Desbloquear';
+      }
+    }
+
     // ── LEADERBOARD ──────────────────────────────
     async function renderLB() {
       const { data } = await sb.from('leaderboard').select('*');
@@ -1438,7 +1521,7 @@
       const { data: { session } } = await sb.auth.getSession();
       if (session?.user) {
         const { data: prof } = await sb.from('profiles').select('is_admin').eq('id', session.user.id).single();
-        if (prof?.is_admin) { CU = session.user; document.getElementById('auth-screen').style.display = 'none'; document.getElementById('admin').style.display = 'block'; document.getElementById('a-un').textContent = session.user.email; await loadResults(); await loadSpRes(); renderTabs(); renderMatches(ag); renderSpecialsAdmin(); await loadDeletableUsers(); renderLB(); return }
+        if (prof?.is_admin) { CU = session.user; document.getElementById('auth-screen').style.display = 'none'; document.getElementById('admin').style.display = 'block'; document.getElementById('a-un').textContent = session.user.email; await loadResults(); await loadSpRes(); renderTabs(); renderMatches(ag); renderSpecialsAdmin(); await loadDeletableUsers(); await loadUnlockableUsers(); renderLB(); return }
       }
       document.getElementById('auth-screen').style.display = 'flex';
     });
