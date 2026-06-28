@@ -931,6 +931,7 @@
         played: results[mid].played || false,
         home_team: m.h, away_team: m.a,
         home_flag: m.hf, away_flag: m.af,
+        home_src: m.srcH, away_src: m.srcA,
         winner: side,
         updated_at: new Date().toISOString()
       }, { onConflict: 'match_id' });
@@ -965,6 +966,7 @@
           played: results[t.id].played || false,
           home_team: t.h, away_team: t.a,
           home_flag: t.hf, away_flag: t.af,
+          home_src: t.srcH, away_src: t.srcA,
           winner: results[t.id].winner ?? null,
           updated_at: new Date().toISOString()
         }, { onConflict: 'match_id' });
@@ -997,6 +999,7 @@
           played: false,
           home_team: t.h, away_team: t.a,
           home_flag: t.hf, away_flag: t.af,
+          home_src: t.srcH, away_src: t.srcA,
           winner: null,
           updated_at: new Date().toISOString()
         }, { onConflict: 'match_id' });
@@ -1009,6 +1012,7 @@
         played: results[mid].played || false,
         home_team: m.h, away_team: m.a,
         home_flag: m.hf, away_flag: m.af,
+        home_src: m.srcH, away_src: m.srcA,
         winner: null,
         updated_at: new Date().toISOString()
       }, { onConflict: 'match_id' });
@@ -1041,16 +1045,23 @@
       const { data } = await sb.from('match_results').select('*');
       if (data) data.forEach(r => {
         results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played, h: r.home_team, a: r.away_team, winner: r.winner || null };
-        // Restore edited team names (and flags, for auto-filled KO pairings) into KMD after reload
-        if (r.home_team || r.away_team) {
-          const m = KMD.find(x => x.id === r.match_id);
-          if (m) {
-            if (r.home_team) m.h = r.home_team;
-            if (r.away_team) m.a = r.away_team;
-            if (r.home_flag) m.hf = r.home_flag;
-            if (r.away_flag) m.af = r.away_flag;
-          }
-        }
+        const m = KMD.find(x => x.id === r.match_id);
+        if (!m) return;
+        // Only trust a saved team name for a slot that's fed by a previous match (srcH/srcA set)
+        // if it was saved AGAINST that exact same source ("W R32_3", etc). If the bracket
+        // structure changed since that row was saved (e.g. a pairing fix) or it's leftover from
+        // the old free-text box, home_src/away_src won't match — ignore it, keep the placeholder,
+        // and also invalidate any winner/played tied to that stale pairing.
+        let stale = false;
+        if (r.home_team) {
+          if (!m.srcH || r.home_src === m.srcH) { m.h = r.home_team; if (r.home_flag) m.hf = r.home_flag }
+          else { results[r.match_id].h = m.h; stale = true }
+        } else { results[r.match_id].h = m.h }
+        if (r.away_team) {
+          if (!m.srcA || r.away_src === m.srcA) { m.a = r.away_team; if (r.away_flag) m.af = r.away_flag }
+          else { results[r.match_id].a = m.a; stale = true }
+        } else { results[r.match_id].a = m.a }
+        if (stale) { results[r.match_id].winner = null; results[r.match_id].played = false }
       });
     }
     async function loadSpRes() { const { data } = await sb.from('special_results').select('*').eq('id', 1).single(); if (data) { spRes.champion = data.champion || ''; spRes.top_scorer = data.top_scorer || ''; spRes.golden_ball = data.golden_ball || '' } }
@@ -1102,6 +1113,7 @@
         score_home: +sh, score_away: +sa, played: true,
         home_team: homeTeam || null, away_team: awayTeam || null,
         home_flag: m?.hf || null, away_flag: m?.af || null,
+        home_src: m?.srcH || null, away_src: m?.srcA || null,
         winner: results[mid].winner ?? null,
         updated_at: new Date().toISOString()
       }, { onConflict: 'match_id' });
