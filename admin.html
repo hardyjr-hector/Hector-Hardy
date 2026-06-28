@@ -635,8 +635,8 @@
       letter-spacing: .09em;
       text-transform: uppercase;
       padding: .2rem .55rem;
-      background: rgba(232, 184, 75, .08);
-      border: 1px solid rgba(232, 184, 75, .18);
+      background: rgba(232,184,75,.08);
+      border: 1px solid rgba(232,184,75,.18);
       border-radius: 5px;
       display: inline-block;
       margin-bottom: .6rem
@@ -669,8 +669,7 @@
     <div class="wrap">
       <!-- RESULTS -->
       <div class="stitle">📝 Introducir Resultados</div>
-      <div class="info-box">Selecciona la fase del torneo que quieres gestionar. Introduce el marcador real de cada
-        partido y haz clic en <strong style="color:var(--text)">Marcar jugado</strong>.</div>
+      <div class="info-box">Selecciona la fase del torneo que quieres gestionar. Introduce el marcador real de cada partido y haz clic en <strong style="color:var(--text)">Marcar jugado</strong>.</div>
 
       <!-- Phase selector -->
       <div class="phase-sel">
@@ -687,9 +686,7 @@
       <!-- KNOCKOUT STAGE -->
       <div id="section-knockout" style="display:none">
         <div class="info-box" style="border-left-color:var(--acc)">
-          Introduce el marcador real de cada partido eliminatorio y márcalo como jugado. Al recalcular puntos, se
-          compararán con las predicciones de llave de cada jugador. <strong style="color:var(--acc)">5 pts por acertar
-            el equipo que avanza</strong>, sin importar el marcador exacto.
+          Introduce el marcador real de cada partido eliminatorio y márcalo como jugado. Al recalcular puntos, se compararán con las predicciones de llave de cada jugador. <strong style="color:var(--acc)">5 pts por acertar el equipo que avanza</strong>, sin importar el marcador exacto.
         </div>
         <div class="gtabs" id="ko-round-tabs"></div>
         <div id="ko-matches"></div>
@@ -710,8 +707,7 @@
 
       <!-- DELETE USER POOL -->
       <div class="stitle" style="margin-top:2.25rem">🗑️ Borrar quiniela por usuario</div>
-      <div class="info-box">Selecciona un jugador para borrar únicamente su quiniela guardada. Su cuenta seguirá
-        existiendo, pero se eliminarán sus pronósticos, grupos, especiales y puntos.</div>
+      <div class="info-box">Selecciona un jugador para borrar únicamente su quiniela guardada. Su cuenta seguirá existiendo, pero se eliminarán sus pronósticos, grupos, especiales y puntos.</div>
       <div class="admin-tools">
         <select class="fi" id="del-user">
           <option value="">Cargando jugadores...</option>
@@ -772,31 +768,32 @@
     // ── KNOCKOUT MATCH DATA ─────────────────────
     const KMD = [
       // 16avos de Final (Round of 32)
-      { id: 'R32_1', round: 'R32', h: 'Sudáfrica', hf: '🇿🇦', a: 'Canadá', af: '🇨🇦', d: '28 Jun' },
-      { id: 'R32_2', round: 'R32', h: 'Brasil', hf: '🇧🇷', a: 'Japón', af: '🇯🇵', d: '29 Jun' },
-      { id: 'R32_3', round: 'R32', h: 'Alemania', hf: '🇩🇪', a: 'Paraguay', af: '🇵🇾', d: '29 Jun' },
-      { id: 'R32_4', round: 'R32', h: 'Países Bajos', hf: '🇳🇱', a: 'Marruecos', af: '🇲🇦', d: '29 Jun' },
-      { id: 'R32_5', round: 'R32', h: 'C. de Marfil', hf: '🇨🇮', a: 'Noruega', af: '🇳🇴', d: '30 Jun' },
-      { id: 'R32_6', round: 'R32', h: 'Francia', hf: '🇫🇷', a: 'Suecia', af: '🇸🇪', d: '30 Jun' },
-      { id: 'R32_7', round: 'R32', h: 'México', hf: '🇲🇽', a: 'Ecuador', af: '🇪🇨', d: '1 Jul' },
-      { id: 'R32_8', round: 'R32', h: 'Inglaterra', hf: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', a: 'RD Congo', af: '🇨🇩', d: '1 Jul' },
-      { id: 'R32_9', round: 'R32', h: 'Bélgica', hf: '🇧🇪', a: 'Senegal', af: '🇸🇳', d: '1 Jul' },
-      { id: 'R32_10', round: 'R32', h: 'EE.UU.', hf: '🇺🇸', a: 'Bosnia', af: '🇧🇦', d: '2 Jul' },
-      { id: 'R32_11', round: 'R32', h: 'España', hf: '🇪🇸', a: 'Austria', af: '🇦🇹', d: '2 Jul' },
-      { id: 'R32_12', round: 'R32', h: 'Portugal', hf: '🇵🇹', a: 'Croacia', af: '🇭🇷', d: '2 Jul' },
-      { id: 'R32_13', round: 'R32', h: 'Suiza', hf: '🇨🇭', a: 'Argelia', af: '🇩🇿', d: '2 Jul' },
-      { id: 'R32_14', round: 'R32', h: 'Colombia', hf: '🇨🇴', a: 'Ghana', af: '🇬🇭', d: '3 Jul' },
-      { id: 'R32_15', round: 'R32', h: 'Australia', hf: '🇦🇺', a: 'Egipto', af: '🇪🇬', d: '3 Jul' },
-      { id: 'R32_16', round: 'R32', h: 'Argentina', hf: '🇦🇷', a: 'Cabo Verde', af: '🇨🇻', d: '3 Jul' },
+      { id: 'R32_1',  round: 'R32', h: 'Sudáfrica',    hf: '🇿🇦', a: 'Canadá',      af: '🇨🇦', d: '28 Jun' },
+      { id: 'R32_2',  round: 'R32', h: 'Brasil',       hf: '🇧🇷', a: 'Japón',        af: '🇯🇵', d: '29 Jun' },
+      { id: 'R32_3',  round: 'R32', h: 'Alemania',     hf: '🇩🇪', a: 'Paraguay',     af: '🇵🇾', d: '29 Jun' },
+      { id: 'R32_4',  round: 'R32', h: 'Países Bajos', hf: '🇳🇱', a: 'Marruecos',   af: '🇲🇦', d: '29 Jun' },
+      { id: 'R32_5',  round: 'R32', h: 'C. de Marfil', hf: '🇨🇮', a: 'Noruega',     af: '🇳🇴', d: '30 Jun' },
+      { id: 'R32_6',  round: 'R32', h: 'Francia',      hf: '🇫🇷', a: 'Suecia',       af: '🇸🇪', d: '30 Jun' },
+      { id: 'R32_7',  round: 'R32', h: 'México',       hf: '🇲🇽', a: 'Ecuador',      af: '🇪🇨', d: '1 Jul'  },
+      { id: 'R32_8',  round: 'R32', h: 'Inglaterra',   hf: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', a: 'RD Congo',    af: '🇨🇩', d: '1 Jul'  },
+      { id: 'R32_9',  round: 'R32', h: 'Bélgica',      hf: '🇧🇪', a: 'Senegal',      af: '🇸🇳', d: '1 Jul'  },
+      { id: 'R32_10', round: 'R32', h: 'EE.UU.',       hf: '🇺🇸', a: 'Bosnia',       af: '🇧🇦', d: '2 Jul'  },
+      { id: 'R32_11', round: 'R32', h: 'España',       hf: '🇪🇸', a: 'Austria',      af: '🇦🇹', d: '2 Jul'  },
+      { id: 'R32_12', round: 'R32', h: 'Portugal',     hf: '🇵🇹', a: 'Croacia',      af: '🇭🇷', d: '2 Jul'  },
+      { id: 'R32_13', round: 'R32', h: 'Suiza',        hf: '🇨🇭', a: 'Argelia',      af: '🇩🇿', d: '2 Jul'  },
+      { id: 'R32_14', round: 'R32', h: 'Colombia',     hf: '🇨🇴', a: 'Ghana',        af: '🇬🇭', d: '3 Jul'  },
+      { id: 'R32_15', round: 'R32', h: 'Australia',    hf: '🇦🇺', a: 'Egipto',       af: '🇪🇬', d: '3 Jul'  },
+      { id: 'R32_16', round: 'R32', h: 'Argentina',    hf: '🇦🇷', a: 'Cabo Verde',   af: '🇨🇻', d: '3 Jul'  },
       // Octavos de Final (Round of 16) — equipos a confirmar cuando avancen
-      { id: 'R16_1', round: 'R16', h: 'W R32_1', hf: '🏳️', a: 'W R32_2', af: '🏳️', d: '5 Jul' },
-      { id: 'R16_2', round: 'R16', h: 'W R32_3', hf: '🏳️', a: 'W R32_4', af: '🏳️', d: '5 Jul' },
-      { id: 'R16_3', round: 'R16', h: 'W R32_5', hf: '🏳️', a: 'W R32_6', af: '🏳️', d: '6 Jul' },
-      { id: 'R16_4', round: 'R16', h: 'W R32_7', hf: '🏳️', a: 'W R32_8', af: '🏳️', d: '6 Jul' },
-      { id: 'R16_5', round: 'R16', h: 'W R32_9', hf: '🏳️', a: 'W R32_10', af: '🏳️', d: '7 Jul' },
-      { id: 'R16_6', round: 'R16', h: 'W R32_11', hf: '🏳️', a: 'W R32_12', af: '🏳️', d: '7 Jul' },
-      { id: 'R16_7', round: 'R16', h: 'W R32_13', hf: '🏳️', a: 'W R32_14', af: '🏳️', d: '8 Jul' },
-      { id: 'R16_8', round: 'R16', h: 'W R32_15', hf: '🏳️', a: 'W R32_16', af: '🏳️', d: '8 Jul' },
+      // Cruces corregidos según el cuadro oficial (SER Mundial 2026)
+      { id: 'R16_1', round: 'R16', h: 'W R32_3', hf: '🏳️', a: 'W R32_6', af: '🏳️', d: '5 Jul'  }, // Alemania/Paraguay vs Francia/Suecia
+      { id: 'R16_2', round: 'R16', h: 'W R32_1', hf: '🏳️', a: 'W R32_4', af: '🏳️', d: '5 Jul'  }, // Sudáfrica/Canadá vs Países Bajos/Marruecos
+      { id: 'R16_3', round: 'R16', h: 'W R32_12', hf: '🏳️', a: 'W R32_11', af: '🏳️', d: '6 Jul' }, // Portugal/Croacia vs España/Austria
+      { id: 'R16_4', round: 'R16', h: 'W R32_10', hf: '🏳️', a: 'W R32_9', af: '🏳️', d: '6 Jul' }, // EE.UU./Bosnia vs Bélgica/Senegal
+      { id: 'R16_5', round: 'R16', h: 'W R32_2', hf: '🏳️', a: 'W R32_5', af: '🏳️', d: '7 Jul' }, // Brasil/Japón vs Costa de Marfil/Noruega
+      { id: 'R16_6', round: 'R16', h: 'W R32_7', hf: '🏳️', a: 'W R32_8', af: '🏳️', d: '7 Jul' }, // México/Ecuador vs Inglaterra/RD Congo
+      { id: 'R16_7', round: 'R16', h: 'W R32_16', hf: '🏳️', a: 'W R32_15', af: '🏳️', d: '8 Jul' }, // Argentina/Cabo Verde vs Australia/Egipto
+      { id: 'R16_8', round: 'R16', h: 'W R32_13', hf: '🏳️', a: 'W R32_14', af: '🏳️', d: '8 Jul' }, // Suiza/Argelia vs Colombia/Ghana
       // Cuartos de Final
       { id: 'QF_1', round: 'QF', h: 'W R16_1', hf: '🏳️', a: 'W R16_2', af: '🏳️', d: '11 Jul' },
       { id: 'QF_2', round: 'QF', h: 'W R16_3', hf: '🏳️', a: 'W R16_4', af: '🏳️', d: '11 Jul' },
@@ -808,16 +805,16 @@
       // Partido por el 3er puesto — lo juegan los dos perdedores de semifinales
       { id: 'TP_1', round: 'TP', h: 'L SF_1', hf: '🏳️', a: 'L SF_2', af: '🏳️', d: '18 Jul' },
       // Final
-      { id: 'F_1', round: 'F', h: 'W SF_1', hf: '🏳️', a: 'W SF_2', af: '🏳️', d: '19 Jul' },
+      { id: 'F_1',  round: 'F',  h: 'W SF_1', hf: '🏳️', a: 'W SF_2', af: '🏳️', d: '19 Jul' },
     ];
 
     const KO_ROUND_LABELS = {
       R32: '16avos de Final',
       R16: 'Octavos de Final',
-      QF: 'Cuartos de Final',
-      SF: 'Semifinales',
-      TP: '3er Puesto',
-      F: 'Final'
+      QF:  'Cuartos de Final',
+      SF:  'Semifinales',
+      TP:  '3er Puesto',
+      F:   'Final'
     };
 
     // ── PHASE SWITCHING ──────────────────────────
@@ -835,7 +832,7 @@
       const rounds = [...new Set(KMD.map(m => m.round))];
       document.getElementById('ko-round-tabs').innerHTML = rounds.map(r => {
         const played = KMD.filter(m => m.round === r && results[m.id]?.played).length;
-        const total = KMD.filter(m => m.round === r).length;
+        const total  = KMD.filter(m => m.round === r).length;
         return `<div class="gtab${r === curKORound ? ' on' : ''}" onclick="switchKORound('${r}')">${KO_ROUND_LABELS[r] || r}<span class="bdg">${played}/${total}</span></div>`;
       }).join('');
     }
@@ -920,8 +917,8 @@
 
       const winnerName = side === 'h' ? m.h : m.a;
       const winnerFlag = side === 'h' ? m.hf : m.af;
-      const loserName = side === 'h' ? m.a : m.h;
-      const loserFlag = side === 'h' ? m.af : m.hf;
+      const loserName  = side === 'h' ? m.a : m.h;
+      const loserFlag  = side === 'h' ? m.af : m.hf;
       await propagateResult(mid, winnerName, winnerFlag, loserName, loserFlag);
 
       renderKORoundTabs(); renderKOMatches(curKORound);
@@ -1049,8 +1046,8 @@
           const side = results[mid].winner;
           const winnerName = side === 'h' ? homeTeam : awayTeam;
           const winnerFlag = side === 'h' ? m.hf : m.af;
-          const loserName = side === 'h' ? awayTeam : homeTeam;
-          const loserFlag = side === 'h' ? m.af : m.hf;
+          const loserName  = side === 'h' ? awayTeam : homeTeam;
+          const loserFlag  = side === 'h' ? m.af : m.hf;
           await propagateResult(mid, winnerName, winnerFlag, loserName, loserFlag);
         }
         renderKORoundTabs(); renderKOMatches(curKORound);
@@ -1120,10 +1117,10 @@
         // r32[i] corresponds to KMD match R32_{i+1}
         const R32_MATCH_IDS = KMD.filter(m => m.round === 'R32').map(m => m.id); // R32_1..R32_16
         const R16_MATCH_IDS = KMD.filter(m => m.round === 'R16').map(m => m.id);
-        const QF_MATCH_IDS = KMD.filter(m => m.round === 'QF').map(m => m.id);
-        const SF_MATCH_IDS = KMD.filter(m => m.round === 'SF').map(m => m.id);
-        const TP_MATCH_IDS = KMD.filter(m => m.round === 'TP').map(m => m.id);
-        const F_MATCH_IDS = KMD.filter(m => m.round === 'F').map(m => m.id);
+        const QF_MATCH_IDS  = KMD.filter(m => m.round === 'QF').map(m => m.id);
+        const SF_MATCH_IDS  = KMD.filter(m => m.round === 'SF').map(m => m.id);
+        const TP_MATCH_IDS  = KMD.filter(m => m.round === 'TP').map(m => m.id);
+        const F_MATCH_IDS   = KMD.filter(m => m.round === 'F').map(m => m.id);
 
         const playedKO = Object.keys(koWinners).length;
         addLog(`✓ Jugadores: ${profiles.length} | Partidos jugados KO: ${playedKO} | Predicciones brackets: ${(allBrackets || []).length}`);
