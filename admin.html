@@ -799,7 +799,7 @@
     // Helper: detect if match_id belongs to knockout stage
     function isKOMatch(mid) { return mid.startsWith('R'); }
 
-
+    async function adminLogin() {
       const em = document.getElementById('a-em').value.trim(), pw = document.getElementById('a-pw').value;
       if (!em || !pw) { showErr('Completa todos los campos'); return }
       const btn = document.getElementById('btn-a'); btn.disabled = true; btn.textContent = 'Verificando...';
