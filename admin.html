@@ -551,6 +551,53 @@
     .btn-danger:hover {
       background: #ef6666
     }
+
+    /* PHASE SELECTOR */
+    .phase-sel {
+      display: flex;
+      gap: .35rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--bdr);
+      padding-bottom: .75rem
+    }
+
+    .ptab {
+      padding: .35rem .85rem;
+      border-radius: 7px;
+      border: 1px solid var(--bdr);
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--m2);
+      transition: all .15s;
+      letter-spacing: .02em
+    }
+
+    .ptab.on {
+      background: var(--acc);
+      border-color: var(--acc);
+      color: #000
+    }
+
+    .ptab:not(.on):hover {
+      background: var(--surf2);
+      color: var(--text)
+    }
+
+    /* KNOCKOUT ROUND LABEL */
+    .ko-round-lbl {
+      font-size: .67rem;
+      font-weight: 700;
+      color: var(--acc);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      background: rgba(232,184,75,.08);
+      border: 1px solid rgba(232,184,75,.18);
+      border-radius: 5px;
+      display: inline-block;
+      margin-bottom: .6rem
+    }
   </style>
 </head>
 
@@ -578,12 +625,29 @@
 
     <div class="wrap">
       <!-- RESULTS -->
-      <div class="stitle">📝 Introducir Resultados Reales</div>
-      <div class="info-box">Escribe el marcador real de cada partido y haz clic en <strong
-          style="color:var(--text)">Marcar jugado</strong>. Esto bloqueará las predicciones de ese partido y sus puntos
-        se calcularán al pulsar el botón de recálculo.</div>
-      <div class="gtabs" id="admin-tabs"></div>
-      <div id="admin-matches"></div>
+      <div class="stitle">📝 Introducir Resultados</div>
+      <div class="info-box">Selecciona la fase del torneo que quieres gestionar. Introduce el marcador real de cada partido y haz clic en <strong style="color:var(--text)">Marcar jugado</strong>.</div>
+
+      <!-- Phase selector -->
+      <div class="phase-sel">
+        <div class="ptab on" id="ptab-groups" onclick="switchPhase('groups')">⚽ Fase de Grupos</div>
+        <div class="ptab" id="ptab-knockout" onclick="switchPhase('knockout')">🏆 Eliminatorias</div>
+      </div>
+
+      <!-- GROUP STAGE -->
+      <div id="section-groups">
+        <div class="gtabs" id="admin-tabs"></div>
+        <div id="admin-matches"></div>
+      </div>
+
+      <!-- KNOCKOUT STAGE -->
+      <div id="section-knockout" style="display:none">
+        <div class="info-box" style="border-left-color:var(--acc)">
+          Introduce el marcador real de cada partido eliminatorio y márcalo como jugado. Al recalcular puntos, se compararán con las predicciones de llave de cada jugador. <strong style="color:var(--acc)">5 pts por acertar el equipo que avanza</strong>, sin importar el marcador exacto.
+        </div>
+        <div class="gtabs" id="ko-round-tabs"></div>
+        <div id="ko-matches"></div>
+      </div>
 
       <!-- RECALCULATE -->
       <div class="stitle" style="margin-top:2.25rem">🧮 Calcular Puntos de Todos los Jugadores</div>
@@ -656,8 +720,86 @@
     ];
 
     let CU = null, results = {}, ag = 'A', spRes = { champion: '', top_scorer: '', golden_ball: '' };
+    let curPhase = 'groups', curKORound = 'R32';
 
-    async function adminLogin() {
+    // ── KNOCKOUT MATCH DATA ─────────────────────
+    const KMD = [
+      // 16avos de Final (Round of 32)
+      { id: 'R32_1',  round: 'R32', h: 'Sudáfrica',    hf: '🇿🇦', a: 'Canadá',      af: '🇨🇦', d: '28 Jun' },
+      { id: 'R32_2',  round: 'R32', h: 'Brasil',       hf: '🇧🇷', a: 'Japón',        af: '🇯🇵', d: '29 Jun' },
+      { id: 'R32_3',  round: 'R32', h: 'Alemania',     hf: '🇩🇪', a: 'Paraguay',     af: '🇵🇾', d: '29 Jun' },
+      { id: 'R32_4',  round: 'R32', h: 'Países Bajos', hf: '🇳🇱', a: 'Marruecos',   af: '🇲🇦', d: '29 Jun' },
+      { id: 'R32_5',  round: 'R32', h: 'C. de Marfil', hf: '🇨🇮', a: 'Noruega',     af: '🇳🇴', d: '30 Jun' },
+      { id: 'R32_6',  round: 'R32', h: 'Francia',      hf: '🇫🇷', a: 'Suecia',       af: '🇸🇪', d: '30 Jun' },
+      { id: 'R32_7',  round: 'R32', h: 'México',       hf: '🇲🇽', a: 'Ecuador',      af: '🇪🇨', d: '1 Jul'  },
+      { id: 'R32_8',  round: 'R32', h: 'Inglaterra',   hf: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', a: 'RD Congo',    af: '🇨🇩', d: '1 Jul'  },
+      { id: 'R32_9',  round: 'R32', h: 'Bélgica',      hf: '🇧🇪', a: 'Senegal',      af: '🇸🇳', d: '1 Jul'  },
+      { id: 'R32_10', round: 'R32', h: 'EE.UU.',       hf: '🇺🇸', a: 'Bosnia',       af: '🇧🇦', d: '2 Jul'  },
+      { id: 'R32_11', round: 'R32', h: 'España',       hf: '🇪🇸', a: 'Austria',      af: '🇦🇹', d: '2 Jul'  },
+      { id: 'R32_12', round: 'R32', h: 'Portugal',     hf: '🇵🇹', a: 'Croacia',      af: '🇭🇷', d: '2 Jul'  },
+      { id: 'R32_13', round: 'R32', h: 'Suiza',        hf: '🇨🇭', a: 'Argelia',      af: '🇩🇿', d: '2 Jul'  },
+      { id: 'R32_14', round: 'R32', h: 'Colombia',     hf: '🇨🇴', a: 'Ghana',        af: '🇬🇭', d: '3 Jul'  },
+      { id: 'R32_15', round: 'R32', h: 'Australia',    hf: '🇦🇺', a: 'Egipto',       af: '🇪🇬', d: '3 Jul'  },
+      { id: 'R32_16', round: 'R32', h: 'Argentina',    hf: '🇦🇷', a: 'Cabo Verde',   af: '🇨🇻', d: '3 Jul'  },
+    ];
+
+    const KO_ROUND_LABELS = {
+      R32: '16avos de Final',
+      R16: 'Octavos de Final',
+      QF:  'Cuartos de Final',
+      SF:  'Semifinales',
+      F:   'Final'
+    };
+
+    // ── PHASE SWITCHING ──────────────────────────
+    function switchPhase(phase) {
+      curPhase = phase;
+      document.getElementById('ptab-groups').classList.toggle('on', phase === 'groups');
+      document.getElementById('ptab-knockout').classList.toggle('on', phase === 'knockout');
+      document.getElementById('section-groups').style.display = phase === 'groups' ? '' : 'none';
+      document.getElementById('section-knockout').style.display = phase === 'knockout' ? '' : 'none';
+      if (phase === 'knockout') { renderKORoundTabs(); renderKOMatches(curKORound) }
+    }
+
+    // ── KNOCKOUT ROUND TABS ──────────────────────
+    function renderKORoundTabs() {
+      const rounds = [...new Set(KMD.map(m => m.round))];
+      document.getElementById('ko-round-tabs').innerHTML = rounds.map(r => {
+        const played = KMD.filter(m => m.round === r && results[m.id]?.played).length;
+        const total  = KMD.filter(m => m.round === r).length;
+        return `<div class="gtab${r === curKORound ? ' on' : ''}" onclick="switchKORound('${r}')">${KO_ROUND_LABELS[r] || r}<span class="bdg">${played}/${total}</span></div>`;
+      }).join('');
+    }
+
+    function switchKORound(round) {
+      curKORound = round;
+      renderKORoundTabs();
+      renderKOMatches(round);
+    }
+
+    // ── KNOCKOUT MATCHES ─────────────────────────
+    function renderKOMatches(round) {
+      let html = '';
+      KMD.filter(m => m.round === round).forEach(m => {
+        const r = results[m.id] || {}, sh = r.sh != null ? r.sh : '', sa = r.sa != null ? r.sa : '', played = r.played;
+        html += `<div class="mr${played ? ' played' : ''}" id="mr-${m.id}">
+      <span class="mr-d">${m.d}</span>
+      <div class="mr-t"><span class="mr-fl">${m.hf}</span><span>${m.h}</span></div>
+      <input class="ri" type="number" min="0" max="99" value="${sh}" placeholder="–" id="sh-${m.id}" ${played ? 'disabled' : ''}>
+      <span class="sep">–</span>
+      <input class="ri" type="number" min="0" max="99" value="${sa}" placeholder="–" id="sa-${m.id}" ${played ? 'disabled' : ''}>
+      <div class="mr-t aw"><span>${m.a}</span><span class="mr-fl">${m.af}</span></div>
+      <button class="pb${played ? ' done' : ''}" onclick="markPlayed('${m.id}')">${played ? '✓ Jugado' : 'Marcar jugado'}</button>
+      ${played ? `<button class="upb" onclick="unmark('${m.id}')" title="Desmarcar">✕</button>` : ''}
+    </div>`;
+      });
+      document.getElementById('ko-matches').innerHTML = html || '<p style="color:var(--m2);font-size:.8rem">Sin partidos</p>';
+    }
+
+    // Helper: detect if match_id belongs to knockout stage
+    function isKOMatch(mid) { return mid.startsWith('R'); }
+
+
       const em = document.getElementById('a-em').value.trim(), pw = document.getElementById('a-pw').value;
       if (!em || !pw) { showErr('Completa todos los campos'); return }
       const btn = document.getElementById('btn-a'); btn.disabled = true; btn.textContent = 'Verificando...';
@@ -707,11 +849,17 @@
       const sh = document.getElementById('sh-' + mid).value, sa = document.getElementById('sa-' + mid).value;
       if (sh === '' || sa === '') { toast('Introduce el marcador primero ⚠️'); return }
       await sb.from('match_results').upsert({ match_id: mid, score_home: +sh, score_away: +sa, played: true, updated_at: new Date().toISOString() }, { onConflict: 'match_id' });
-      results[mid] = { sh: +sh, sa: +sa, played: true }; renderTabs(); renderMatches(ag); toast(`${mid}: ${sh}–${sa} guardado ✓`);
+      results[mid] = { sh: +sh, sa: +sa, played: true };
+      if (isKOMatch(mid)) { renderKORoundTabs(); renderKOMatches(curKORound) }
+      else { renderTabs(); renderMatches(ag) }
+      toast(`${mid}: ${sh}–${sa} guardado ✓`);
     }
     async function unmark(mid) {
       await sb.from('match_results').update({ played: false, updated_at: new Date().toISOString() }).eq('match_id', mid);
-      if (results[mid]) results[mid].played = false; renderTabs(); renderMatches(ag); toast(`${mid} desmarcado`);
+      if (results[mid]) results[mid].played = false;
+      if (isKOMatch(mid)) { renderKORoundTabs(); renderKOMatches(curKORound) }
+      else { renderTabs(); renderMatches(ag) }
+      toast(`${mid} desmarcado`);
     }
 
     // ── RECALCULATE ALL POINTS ───────────────────
@@ -734,18 +882,49 @@
 
       try {
         addLog('Cargando datos...');
-        const [{ data: profiles }, { data: allPreds }, { data: allGRanks }, { data: allSpecials }, { data: spResData }] = await Promise.all([
+        const [{ data: profiles }, { data: allPreds }, { data: allGRanks }, { data: allSpecials }, { data: spResData }, { data: allBrackets }] = await Promise.all([
           sb.from('profiles').select('id,username'),
           sb.from('predictions').select('*'),
           sb.from('group_rankings').select('*'),
           sb.from('special_predictions').select('*'),
           sb.from('special_results').select('*').eq('id', 1).single(),
+          sb.from('bracket_predictions').select('user_id, bracket_data'),
         ]);
         const spR = spResData || {};
-        addLog(`✓ Jugadores: ${profiles.length} | Predicciones: ${allPreds.length} | Resultados jugados: ${Object.values(results).filter(r => r.played).length}`);
+
+        // Build real KO winners: { R32_1: 'España', R32_2: 'Brasil', ... }
+        // Winner = home team if sh > sa, away team if sa > sh, null if draw (goes to pens — winner determined by who has higher score or we use a flag)
+        // For bracket purposes: if draw in regular time → we compare to what user predicted regardless
+        // The user picked who ADVANCES. A draw result could go either way via pens, so we just trust the played result.
+        // Admin enters final score including extra time if needed; we treat the team with higher goals as winner.
+        // If exact draw (pens): admin should enter a score reflecting the pens outcome OR we rely on a separate "winner" field.
+        // Simple approach: whoever has MORE goals in the entered result is the winner.
+        // If tied, we skip (admin should enter a score that reflects the actual outcome including ET/pens).
+        const koWinners = {}; // { matchId: winnerName }
+        KMD.forEach(m => {
+          const r = results[m.id];
+          if (!r?.played) return;
+          if (r.sh > r.sa) koWinners[m.id] = m.h;
+          else if (r.sa > r.sh) koWinners[m.id] = m.a;
+          // draw: skip (admin should enter result that reflects pens/ET winner via slightly different score or we skip)
+        });
+
+        // Map bracket round arrays to KMD match ids in order
+        // bkt.r32[0..15] → R32_1..R32_16 (each is the predicted winner of that R32 match)
+        // bkt.r16[0..7]  → R16 (these don't have match_ids in KMD yet, but we compare by name)
+        // etc.
+        // For now: only R32 matches have KMD entries with results. Later rounds can be added.
+        // r32[i] corresponds to KMD match R32_{i+1}
+        const R32_MATCH_IDS = KMD.filter(m => m.round === 'R32').map(m => m.id); // R32_1..R32_16
+        const R16_MATCH_IDS = KMD.filter(m => m.round === 'R16').map(m => m.id);
+        const QF_MATCH_IDS  = KMD.filter(m => m.round === 'QF').map(m => m.id);
+        const SF_MATCH_IDS  = KMD.filter(m => m.round === 'SF').map(m => m.id);
+        const F_MATCH_IDS   = KMD.filter(m => m.round === 'F').map(m => m.id);
+
+        const playedKO = Object.keys(koWinners).length;
+        addLog(`✓ Jugadores: ${profiles.length} | Partidos jugados KO: ${playedKO} | Predicciones brackets: ${(allBrackets || []).length}`);
 
         // Build real group rankings from match results
-        // (simplified: use our match result data to compute standings)
         const realGroupRanks = {};
         GD.forEach(g => {
           const st = {}; g.t.forEach((t, i) => { st[i] = { pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0 } });
@@ -763,9 +942,53 @@
           if (sorted.some((_, i) => sorted[i] != null)) realGroupRanks[g.id] = sorted;
         });
 
+        // Helper: calc KO pts for a bracket and round
+        function calcKOPts(bkt) {
+          if (!bkt) return 0;
+          let pts = 0;
+          // R32: bkt.r32[i] should match koWinners[R32_MATCH_IDS[i]]
+          if (bkt.r32) {
+            bkt.r32.forEach((pred, i) => {
+              if (!pred) return;
+              const mid = R32_MATCH_IDS[i]; if (!mid) return;
+              if (koWinners[mid] && pred.n === koWinners[mid]) pts += 5;
+            });
+          }
+          // R16: bkt.r16[i] matches koWinners[R16_MATCH_IDS[i]]
+          if (bkt.r16 && R16_MATCH_IDS.length) {
+            bkt.r16.forEach((pred, i) => {
+              if (!pred) return;
+              const mid = R16_MATCH_IDS[i]; if (!mid) return;
+              if (koWinners[mid] && pred.n === koWinners[mid]) pts += 5;
+            });
+          }
+          // QF
+          if (bkt.qf && QF_MATCH_IDS.length) {
+            bkt.qf.forEach((pred, i) => {
+              if (!pred) return;
+              const mid = QF_MATCH_IDS[i]; if (!mid) return;
+              if (koWinners[mid] && pred.n === koWinners[mid]) pts += 5;
+            });
+          }
+          // SF
+          if (bkt.sf && SF_MATCH_IDS.length) {
+            bkt.sf.forEach((pred, i) => {
+              if (!pred) return;
+              const mid = SF_MATCH_IDS[i]; if (!mid) return;
+              if (koWinners[mid] && pred.n === koWinners[mid]) pts += 5;
+            });
+          }
+          // Final
+          if (bkt.final && F_MATCH_IDS.length) {
+            const mid = F_MATCH_IDS[0];
+            if (koWinners[mid] && bkt.final.n === koWinners[mid]) pts += 5;
+          }
+          return pts;
+        }
+
         let updated = 0;
         for (const prof of profiles) {
-          // Match points
+          // Match points (group stage)
           const userPreds = allPreds.filter(p => p.user_id === prof.id);
           let mPts = 0;
           userPreds.forEach(p => { const r = results[p.match_id]; if (r?.played) mPts += calcMatchPts({ s1: p.score_home, s2: p.score_away }, r) });
@@ -782,9 +1005,13 @@
           if (spR.top_scorer && userSp.top_scorer && userSp.top_scorer.toLowerCase() === spR.top_scorer.toLowerCase()) spPts += 10;
           if (spR.golden_ball && userSp.golden_ball && userSp.golden_ball.toLowerCase() === spR.golden_ball.toLowerCase()) spPts += 10;
 
-          const total = mPts + gPts + spPts;
-          await sb.from('user_points').upsert({ user_id: prof.id, match_pts: mPts, group_pts: gPts, special_pts: spPts, total_pts: total, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
-          addLog(`  ${prof.username?.padEnd(20) || '?'.padEnd(20)} partidos:${String(mPts).padStart(4)} grupos:${String(gPts).padStart(3)} especiales:${String(spPts).padStart(3)} = ${total} pts`);
+          // KO bracket points
+          const userBracket = (allBrackets || []).find(b => b.user_id === prof.id);
+          const koPts = calcKOPts(userBracket?.bracket_data);
+
+          const total = mPts + gPts + spPts + koPts;
+          await sb.from('user_points').upsert({ user_id: prof.id, match_pts: mPts, group_pts: gPts, special_pts: spPts, ko_pts: koPts, total_pts: total, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+          addLog(`  ${(prof.username || '?').padEnd(20)} partidos:${String(mPts).padStart(4)} grupos:${String(gPts).padStart(3)} especiales:${String(spPts).padStart(3)} elim:${String(koPts).padStart(3)} = ${total} pts`);
           updated++;
         }
         addLog(`\n✅ Listo — ${updated} jugadores actualizados`);
@@ -885,6 +1112,7 @@
           sb.from('group_rankings').delete().eq('user_id', userId),
           sb.from('special_predictions').delete().eq('user_id', userId),
           sb.from('user_points').delete().eq('user_id', userId),
+          sb.from('bracket_predictions').delete().eq('user_id', userId),
         ]);
 
         const failed = responses.find(r => r.error);
@@ -905,7 +1133,7 @@
     // ── LEADERBOARD ──────────────────────────────
     async function renderLB() {
       const { data } = await sb.from('leaderboard').select('*');
-      if (!data) { document.getElementById('admin-lb').innerHTML = `<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--m2)">Sin participantes aún</td></tr>`; return }
+      if (!data) { document.getElementById('admin-lb').innerHTML = `<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--m2)">Sin participantes aún</td></tr>`; return }
       const medals = ['🥇', '🥈', '🥉'];
       const rows = data.map((u, i) => `<tr>
     <td style="font-size:.9rem">${i < 3 ? medals[i] : i + 1}</td>
@@ -913,9 +1141,10 @@
     <td class="lbt-pts">${u.total_pts}</td>
     <td style="color:var(--m2);font-size:.78rem">${u.match_pts}</td>
     <td style="color:var(--m2);font-size:.78rem">${u.group_pts}</td>
+    <td style="color:var(--acc);font-size:.78rem;font-weight:600">${u.ko_pts ?? 0}</td>
     <td style="color:var(--m2);font-size:.78rem">${u.special_pts}</td>
   </tr>`).join('');
-      document.getElementById('admin-lb').innerHTML = `<thead><tr><th>#</th><th>Jugador</th><th>Total</th><th>Partidos</th><th>Grupos</th><th>Especiales</th></tr></thead><tbody>${rows}</tbody>`;
+      document.getElementById('admin-lb').innerHTML = `<thead><tr><th>#</th><th>Jugador</th><th>Total</th><th>Partidos</th><th>Grupos</th><th>Elim.</th><th>Especiales</th></tr></thead><tbody>${rows}</tbody>`;
     }
 
     // ── TOAST ────────────────────────────────────

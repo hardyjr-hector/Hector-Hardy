@@ -2331,8 +2331,12 @@
       CU = user;
       document.getElementById('auth-overlay').style.display = 'none';
       document.getElementById('app').classList.add('on');
-      await Promise.all([loadProfile(), loadPreds(), loadGRanks(), loadSpecials(), loadResults()]);
-      loadBkt();
+      await Promise.all([loadProfile(), loadPreds(), loadGRanks(), loadSpecials(), loadResults(), loadBkt()]);
+      // One-time migration: if bracket came from localStorage (not yet in Supabase), persist it now
+      if (bkt._migratedToSB !== true && (bkt.r32?.some(Boolean) || bkt.final)) {
+        bkt._migratedToSB = true;
+        saveBkt();
+      }
       // Auto-calc any group that's fully predicted but missing from gRanks
       GD.forEach(g => {
         if (groupComplete(g.id) && (!(gRanks[g.id] || []).length || gRanks[g.id].length < 4)) {
@@ -2377,8 +2381,19 @@
     async function loadGRanks() { const { data } = await sb.from('group_rankings').select('*').eq('user_id', CU.id); if (data) data.forEach(r => { gRanks[r.group_id] = r.rankings }) }
     async function loadSpecials() { const { data } = await sb.from('special_predictions').select('*').eq('user_id', CU.id).single(); if (data) specials = data; if (CU && !specials.golden_glove) { try { const v = localStorage.getItem('gg_' + CU.id); if (v) specials.golden_glove = v; } catch (e) { } } }
     async function loadResults() { const { data } = await sb.from('match_results').select('*'); if (data) data.forEach(r => { results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played } }) }
-    function loadBkt() { try { const s = localStorage.getItem('q26_bkt_' + CU?.id); if (s) bkt = JSON.parse(s) } catch (e) { } }
-    function saveBkt() { try { localStorage.setItem('q26_bkt_' + CU?.id, JSON.stringify(bkt)) } catch (e) { } }
+    async function loadBkt() {
+      // Try Supabase first (source of truth), fall back to localStorage
+      try {
+        const { data } = await sb.from('bracket_predictions').select('bracket_data').eq('user_id', CU.id).single();
+        if (data?.bracket_data) { bkt = data.bracket_data; try { localStorage.setItem('q26_bkt_' + CU.id, JSON.stringify(bkt)) } catch(e){} return; }
+      } catch(e) {}
+      // Fallback to localStorage
+      try { const s = localStorage.getItem('q26_bkt_' + CU?.id); if (s) bkt = JSON.parse(s) } catch(e) {}
+    }
+    async function saveBkt() {
+      try { localStorage.setItem('q26_bkt_' + CU?.id, JSON.stringify(bkt)) } catch(e) {}
+      try { await sb.from('bracket_predictions').upsert({ user_id: CU.id, bracket_data: bkt, updated_at: new Date().toISOString() }, { onConflict: 'user_id' }) } catch(e) { console.warn('saveBkt to Supabase failed:', e) }
+    }
 
     function renderNav() {
       const un = profile?.username || CU.email.split('@')[0]; const ini = un.slice(0, 2).toUpperCase();
@@ -3085,7 +3100,7 @@
       const { data } = await sb.from('leaderboard').select('*');
       if (!data) { document.getElementById('lb-t').innerHTML = `<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--m2)">${lang === 'es' ? 'Sin datos aún' : 'No data yet'}</td></tr>`; return }
       lb = data; const medals = ['🥇', '🥈', '🥉'];
-      const hdr = lang === 'es' ? ['#', 'Jugador', 'Total', 'Partidos', 'Grupos', 'Especiales'] : ['#', 'Player', 'Total', 'Matches', 'Groups', 'Specials'];
+      const hdr = lang === 'es' ? ['#', 'Jugador', 'Total', 'Partidos', 'Grupos', 'Elim.', 'Especiales'] : ['#', 'Player', 'Total', 'Matches', 'Groups', 'KO', 'Specials'];
       const rows = data.map((u, i) => {
         const isMe = u.id === CU?.id, ini = (u.username || '?').slice(0, 2).toUpperCase();
         return `<tr class="${isMe ? 'me' : ''}">
@@ -3094,6 +3109,7 @@
       <td class="lb-pts">${u.total_pts}</td>
       <td style="color:var(--m2);font-size:.75rem">${u.match_pts}</td>
       <td style="color:var(--m2);font-size:.75rem">${u.group_pts}</td>
+      <td style="color:var(--acc);font-size:.75rem;font-weight:600">${u.ko_pts ?? 0}</td>
       <td style="color:var(--m2);font-size:.75rem">${u.special_pts}</td>
     </tr>`;
       }).join('');
