@@ -402,6 +402,17 @@
       color: var(--acc)
     }
 
+    .wpb.undo {
+      flex: 0 0 auto;
+      color: var(--m2);
+      border-color: var(--bdr)
+    }
+
+    .wpb.undo:hover {
+      border-color: var(--red);
+      color: var(--red)
+    }
+
     /* CALC BTN */
     .calc-btn {
       display: inline-flex;
@@ -808,6 +819,14 @@
       { id: 'F_1',  round: 'F',  h: 'W SF_1', hf: '🏳️', a: 'W SF_2', af: '🏳️', d: '19 Jul' },
     ];
 
+    // Remember each slot's original placeholder ("W R32_3" / "L SF_1") permanently, separate from
+    // m.h/m.a (which get overwritten with real names once a winner is picked). This lets us undo
+    // a pick later and correctly restore the slot, even after it's been filled in.
+    KMD.forEach(m => {
+      m.srcH = /^[WL] /.test(m.h) ? m.h : null;
+      m.srcA = /^[WL] /.test(m.a) ? m.a : null;
+    });
+
     const KO_ROUND_LABELS = {
       R32: '16avos de Final',
       R16: 'Octavos de Final',
@@ -867,6 +886,7 @@
       <div class="ko-winner">
         <button class="wpb${r.winner === 'h' ? ' sel' : ''}" onclick="pickWinner('${m.id}','h')">${r.winner === 'h' ? '✓ ' : ''}${m.hf} ${m.h} ${advLabel}</button>
         <button class="wpb${r.winner === 'a' ? ' sel' : ''}" onclick="pickWinner('${m.id}','a')">${r.winner === 'a' ? '✓ ' : ''}${m.a} ${m.af} ${advLabel}</button>
+        ${r.winner ? `<button class="wpb undo" onclick="clearWinner('${m.id}')" title="Deshacer selección">↩ Deshacer</button>` : ''}
       </div>` : '';
         html += `<div class="mr${played ? ' played' : ''}" id="mr-${m.id}">
       <span class="mr-d">${m.d}</span>
@@ -930,12 +950,12 @@
     // loser. Keeps the same naming layout: bandera local + país local — país visitante + bandera visitante.
     async function propagateResult(mid, winnerName, winnerFlag, loserName, loserFlag) {
       const winPH = `W ${mid}`, losePH = `L ${mid}`;
-      const targets = KMD.filter(t => [t.h, t.a].includes(winPH) || [t.h, t.a].includes(losePH));
+      const targets = KMD.filter(t => [t.srcH, t.srcA].includes(winPH) || [t.srcH, t.srcA].includes(losePH));
       for (const t of targets) {
-        if (t.h === winPH) { t.h = winnerName; t.hf = winnerFlag }
-        else if (t.h === losePH) { t.h = loserName; t.hf = loserFlag }
-        if (t.a === winPH) { t.a = winnerName; t.af = winnerFlag }
-        else if (t.a === losePH) { t.a = loserName; t.af = loserFlag }
+        if (t.srcH === winPH) { t.h = winnerName; t.hf = winnerFlag }
+        else if (t.srcH === losePH) { t.h = loserName; t.hf = loserFlag }
+        if (t.srcA === winPH) { t.a = winnerName; t.af = winnerFlag }
+        else if (t.srcA === losePH) { t.a = loserName; t.af = loserFlag }
         if (!results[t.id]) results[t.id] = {};
         results[t.id].h = t.h; results[t.id].a = t.a;
         await sb.from('match_results').upsert({
@@ -949,6 +969,51 @@
           updated_at: new Date().toISOString()
         }, { onConflict: 'match_id' });
       }
+    }
+
+    // Undo a previously picked winner. If the winner was already propagated into the next
+    // round's slot, that slot gets reverted back to its placeholder ("W mid"/"L mid") too —
+    // unless that next match already has its own result/winner, in which case we stop and
+    // ask the admin to undo that one first (avoids silently breaking a later round).
+    async function clearWinner(mid) {
+      const m = KMD.find(x => x.id === mid);
+      if (!m || !results[mid]?.winner) return;
+      const winPH = `W ${mid}`, losePH = `L ${mid}`;
+      const targets = KMD.filter(t => [t.srcH, t.srcA].includes(winPH) || [t.srcH, t.srcA].includes(losePH));
+      for (const t of targets) {
+        if (results[t.id]?.winner || results[t.id]?.played) {
+          toast(`Primero deshacé el resultado de ${t.id}, que ya usa este cruce`);
+          return;
+        }
+      }
+      for (const t of targets) {
+        if (t.srcH === winPH || t.srcH === losePH) { t.h = t.srcH; t.hf = '🏳️' }
+        if (t.srcA === winPH || t.srcA === losePH) { t.a = t.srcA; t.af = '🏳️' }
+        if (results[t.id]) { results[t.id].h = t.h; results[t.id].a = t.a }
+        await sb.from('match_results').upsert({
+          match_id: t.id,
+          score_home: results[t.id]?.sh ?? null,
+          score_away: results[t.id]?.sa ?? null,
+          played: false,
+          home_team: t.h, away_team: t.a,
+          home_flag: t.hf, away_flag: t.af,
+          winner: null,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'match_id' });
+      }
+      results[mid].winner = null;
+      await sb.from('match_results').upsert({
+        match_id: mid,
+        score_home: results[mid].sh ?? null,
+        score_away: results[mid].sa ?? null,
+        played: results[mid].played || false,
+        home_team: m.h, away_team: m.a,
+        home_flag: m.hf, away_flag: m.af,
+        winner: null,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'match_id' });
+      renderKORoundTabs(); renderKOMatches(curKORound);
+      toast('Selección deshecha');
     }
 
     // Helper: detect if match_id belongs to knockout stage (any round in KMD)
