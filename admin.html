@@ -359,6 +359,49 @@
       color: var(--red)
     }
 
+    /* KO WINNER PICKER */
+    .mr {
+      flex-wrap: wrap
+    }
+
+    .ko-winner {
+      display: flex;
+      gap: .4rem;
+      width: 100%;
+      margin-top: .45rem;
+      padding-top: .45rem;
+      border-top: 1px dashed var(--bdr)
+    }
+
+    .wpb {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      padding: .32rem .5rem;
+      border: 1px solid var(--bdr2);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--m2);
+      font-size: .72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: inherit
+    }
+
+    .wpb:hover {
+      border-color: var(--acc);
+      color: var(--acc)
+    }
+
+    .wpb.sel {
+      background: rgba(232, 184, 75, .15);
+      border-color: var(--acc);
+      color: var(--acc)
+    }
+
     /* CALC BTN */
     .calc-btn {
       display: inline-flex;
@@ -592,8 +635,8 @@
       letter-spacing: .09em;
       text-transform: uppercase;
       padding: .2rem .55rem;
-      background: rgba(232,184,75,.08);
-      border: 1px solid rgba(232,184,75,.18);
+      background: rgba(232, 184, 75, .08);
+      border: 1px solid rgba(232, 184, 75, .18);
       border-radius: 5px;
       display: inline-block;
       margin-bottom: .6rem
@@ -626,7 +669,8 @@
     <div class="wrap">
       <!-- RESULTS -->
       <div class="stitle">📝 Introducir Resultados</div>
-      <div class="info-box">Selecciona la fase del torneo que quieres gestionar. Introduce el marcador real de cada partido y haz clic en <strong style="color:var(--text)">Marcar jugado</strong>.</div>
+      <div class="info-box">Selecciona la fase del torneo que quieres gestionar. Introduce el marcador real de cada
+        partido y haz clic en <strong style="color:var(--text)">Marcar jugado</strong>.</div>
 
       <!-- Phase selector -->
       <div class="phase-sel">
@@ -643,7 +687,9 @@
       <!-- KNOCKOUT STAGE -->
       <div id="section-knockout" style="display:none">
         <div class="info-box" style="border-left-color:var(--acc)">
-          Introduce el marcador real de cada partido eliminatorio y márcalo como jugado. Al recalcular puntos, se compararán con las predicciones de llave de cada jugador. <strong style="color:var(--acc)">5 pts por acertar el equipo que avanza</strong>, sin importar el marcador exacto.
+          Introduce el marcador real de cada partido eliminatorio y márcalo como jugado. Al recalcular puntos, se
+          compararán con las predicciones de llave de cada jugador. <strong style="color:var(--acc)">5 pts por acertar
+            el equipo que avanza</strong>, sin importar el marcador exacto.
         </div>
         <div class="gtabs" id="ko-round-tabs"></div>
         <div id="ko-matches"></div>
@@ -664,7 +710,8 @@
 
       <!-- DELETE USER POOL -->
       <div class="stitle" style="margin-top:2.25rem">🗑️ Borrar quiniela por usuario</div>
-      <div class="info-box">Selecciona un jugador para borrar únicamente su quiniela guardada. Su cuenta seguirá existiendo, pero se eliminarán sus pronósticos, grupos, especiales y puntos.</div>
+      <div class="info-box">Selecciona un jugador para borrar únicamente su quiniela guardada. Su cuenta seguirá
+        existiendo, pero se eliminarán sus pronósticos, grupos, especiales y puntos.</div>
       <div class="admin-tools">
         <select class="fi" id="del-user">
           <option value="">Cargando jugadores...</option>
@@ -725,27 +772,27 @@
     // ── KNOCKOUT MATCH DATA ─────────────────────
     const KMD = [
       // 16avos de Final (Round of 32)
-      { id: 'R32_1',  round: 'R32', h: 'Sudáfrica',    hf: '🇿🇦', a: 'Canadá',      af: '🇨🇦', d: '28 Jun' },
-      { id: 'R32_2',  round: 'R32', h: 'Brasil',       hf: '🇧🇷', a: 'Japón',        af: '🇯🇵', d: '29 Jun' },
-      { id: 'R32_3',  round: 'R32', h: 'Alemania',     hf: '🇩🇪', a: 'Paraguay',     af: '🇵🇾', d: '29 Jun' },
-      { id: 'R32_4',  round: 'R32', h: 'Países Bajos', hf: '🇳🇱', a: 'Marruecos',   af: '🇲🇦', d: '29 Jun' },
-      { id: 'R32_5',  round: 'R32', h: 'C. de Marfil', hf: '🇨🇮', a: 'Noruega',     af: '🇳🇴', d: '30 Jun' },
-      { id: 'R32_6',  round: 'R32', h: 'Francia',      hf: '🇫🇷', a: 'Suecia',       af: '🇸🇪', d: '30 Jun' },
-      { id: 'R32_7',  round: 'R32', h: 'México',       hf: '🇲🇽', a: 'Ecuador',      af: '🇪🇨', d: '1 Jul'  },
-      { id: 'R32_8',  round: 'R32', h: 'Inglaterra',   hf: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', a: 'RD Congo',    af: '🇨🇩', d: '1 Jul'  },
-      { id: 'R32_9',  round: 'R32', h: 'Bélgica',      hf: '🇧🇪', a: 'Senegal',      af: '🇸🇳', d: '1 Jul'  },
-      { id: 'R32_10', round: 'R32', h: 'EE.UU.',       hf: '🇺🇸', a: 'Bosnia',       af: '🇧🇦', d: '2 Jul'  },
-      { id: 'R32_11', round: 'R32', h: 'España',       hf: '🇪🇸', a: 'Austria',      af: '🇦🇹', d: '2 Jul'  },
-      { id: 'R32_12', round: 'R32', h: 'Portugal',     hf: '🇵🇹', a: 'Croacia',      af: '🇭🇷', d: '2 Jul'  },
-      { id: 'R32_13', round: 'R32', h: 'Suiza',        hf: '🇨🇭', a: 'Argelia',      af: '🇩🇿', d: '2 Jul'  },
-      { id: 'R32_14', round: 'R32', h: 'Colombia',     hf: '🇨🇴', a: 'Ghana',        af: '🇬🇭', d: '3 Jul'  },
-      { id: 'R32_15', round: 'R32', h: 'Australia',    hf: '🇦🇺', a: 'Egipto',       af: '🇪🇬', d: '3 Jul'  },
-      { id: 'R32_16', round: 'R32', h: 'Argentina',    hf: '🇦🇷', a: 'Cabo Verde',   af: '🇨🇻', d: '3 Jul'  },
+      { id: 'R32_1', round: 'R32', h: 'Sudáfrica', hf: '🇿🇦', a: 'Canadá', af: '🇨🇦', d: '28 Jun' },
+      { id: 'R32_2', round: 'R32', h: 'Brasil', hf: '🇧🇷', a: 'Japón', af: '🇯🇵', d: '29 Jun' },
+      { id: 'R32_3', round: 'R32', h: 'Alemania', hf: '🇩🇪', a: 'Paraguay', af: '🇵🇾', d: '29 Jun' },
+      { id: 'R32_4', round: 'R32', h: 'Países Bajos', hf: '🇳🇱', a: 'Marruecos', af: '🇲🇦', d: '29 Jun' },
+      { id: 'R32_5', round: 'R32', h: 'C. de Marfil', hf: '🇨🇮', a: 'Noruega', af: '🇳🇴', d: '30 Jun' },
+      { id: 'R32_6', round: 'R32', h: 'Francia', hf: '🇫🇷', a: 'Suecia', af: '🇸🇪', d: '30 Jun' },
+      { id: 'R32_7', round: 'R32', h: 'México', hf: '🇲🇽', a: 'Ecuador', af: '🇪🇨', d: '1 Jul' },
+      { id: 'R32_8', round: 'R32', h: 'Inglaterra', hf: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', a: 'RD Congo', af: '🇨🇩', d: '1 Jul' },
+      { id: 'R32_9', round: 'R32', h: 'Bélgica', hf: '🇧🇪', a: 'Senegal', af: '🇸🇳', d: '1 Jul' },
+      { id: 'R32_10', round: 'R32', h: 'EE.UU.', hf: '🇺🇸', a: 'Bosnia', af: '🇧🇦', d: '2 Jul' },
+      { id: 'R32_11', round: 'R32', h: 'España', hf: '🇪🇸', a: 'Austria', af: '🇦🇹', d: '2 Jul' },
+      { id: 'R32_12', round: 'R32', h: 'Portugal', hf: '🇵🇹', a: 'Croacia', af: '🇭🇷', d: '2 Jul' },
+      { id: 'R32_13', round: 'R32', h: 'Suiza', hf: '🇨🇭', a: 'Argelia', af: '🇩🇿', d: '2 Jul' },
+      { id: 'R32_14', round: 'R32', h: 'Colombia', hf: '🇨🇴', a: 'Ghana', af: '🇬🇭', d: '3 Jul' },
+      { id: 'R32_15', round: 'R32', h: 'Australia', hf: '🇦🇺', a: 'Egipto', af: '🇪🇬', d: '3 Jul' },
+      { id: 'R32_16', round: 'R32', h: 'Argentina', hf: '🇦🇷', a: 'Cabo Verde', af: '🇨🇻', d: '3 Jul' },
       // Octavos de Final (Round of 16) — equipos a confirmar cuando avancen
-      { id: 'R16_1', round: 'R16', h: 'W R32_1', hf: '🏳️', a: 'W R32_2', af: '🏳️', d: '5 Jul'  },
-      { id: 'R16_2', round: 'R16', h: 'W R32_3', hf: '🏳️', a: 'W R32_4', af: '🏳️', d: '5 Jul'  },
-      { id: 'R16_3', round: 'R16', h: 'W R32_5', hf: '🏳️', a: 'W R32_6', af: '🏳️', d: '6 Jul'  },
-      { id: 'R16_4', round: 'R16', h: 'W R32_7', hf: '🏳️', a: 'W R32_8', af: '🏳️', d: '6 Jul'  },
+      { id: 'R16_1', round: 'R16', h: 'W R32_1', hf: '🏳️', a: 'W R32_2', af: '🏳️', d: '5 Jul' },
+      { id: 'R16_2', round: 'R16', h: 'W R32_3', hf: '🏳️', a: 'W R32_4', af: '🏳️', d: '5 Jul' },
+      { id: 'R16_3', round: 'R16', h: 'W R32_5', hf: '🏳️', a: 'W R32_6', af: '🏳️', d: '6 Jul' },
+      { id: 'R16_4', round: 'R16', h: 'W R32_7', hf: '🏳️', a: 'W R32_8', af: '🏳️', d: '6 Jul' },
       { id: 'R16_5', round: 'R16', h: 'W R32_9', hf: '🏳️', a: 'W R32_10', af: '🏳️', d: '7 Jul' },
       { id: 'R16_6', round: 'R16', h: 'W R32_11', hf: '🏳️', a: 'W R32_12', af: '🏳️', d: '7 Jul' },
       { id: 'R16_7', round: 'R16', h: 'W R32_13', hf: '🏳️', a: 'W R32_14', af: '🏳️', d: '8 Jul' },
@@ -758,16 +805,19 @@
       // Semifinales
       { id: 'SF_1', round: 'SF', h: 'W QF_1', hf: '🏳️', a: 'W QF_2', af: '🏳️', d: '15 Jul' },
       { id: 'SF_2', round: 'SF', h: 'W QF_3', hf: '🏳️', a: 'W QF_4', af: '🏳️', d: '16 Jul' },
+      // Partido por el 3er puesto — lo juegan los dos perdedores de semifinales
+      { id: 'TP_1', round: 'TP', h: 'L SF_1', hf: '🏳️', a: 'L SF_2', af: '🏳️', d: '18 Jul' },
       // Final
-      { id: 'F_1',  round: 'F',  h: 'W SF_1', hf: '🏳️', a: 'W SF_2', af: '🏳️', d: '19 Jul' },
+      { id: 'F_1', round: 'F', h: 'W SF_1', hf: '🏳️', a: 'W SF_2', af: '🏳️', d: '19 Jul' },
     ];
 
     const KO_ROUND_LABELS = {
       R32: '16avos de Final',
       R16: 'Octavos de Final',
-      QF:  'Cuartos de Final',
-      SF:  'Semifinales',
-      F:   'Final'
+      QF: 'Cuartos de Final',
+      SF: 'Semifinales',
+      TP: '3er Puesto',
+      F: 'Final'
     };
 
     // ── PHASE SWITCHING ──────────────────────────
@@ -785,7 +835,7 @@
       const rounds = [...new Set(KMD.map(m => m.round))];
       document.getElementById('ko-round-tabs').innerHTML = rounds.map(r => {
         const played = KMD.filter(m => m.round === r && results[m.id]?.played).length;
-        const total  = KMD.filter(m => m.round === r).length;
+        const total = KMD.filter(m => m.round === r).length;
         return `<div class="gtab${r === curKORound ? ' on' : ''}" onclick="switchKORound('${r}')">${KO_ROUND_LABELS[r] || r}<span class="bdg">${played}/${total}</span></div>`;
       }).join('');
     }
@@ -797,17 +847,30 @@
     }
 
     // ── KNOCKOUT MATCHES ─────────────────────────
+    // A team name still pending confirmation looks like "W R32_1" (winner of) or "L SF_1" (loser of)
+    function isPendingTeam(name) { return /^[WL] /.test(name || ''); }
+
     function renderKOMatches(round) {
       let html = '';
       KMD.filter(m => m.round === round).forEach(m => {
         const r = results[m.id] || {}, sh = r.sh != null ? r.sh : '', sa = r.sa != null ? r.sa : '', played = r.played;
-        // For unplayed matches, show editable team name inputs so admin can fill in real teams
-        const homeField = played
+        const hKnown = !isPendingTeam(m.h), aKnown = !isPendingTeam(m.a);
+        // Team name shows with flag once known (either pre-set or auto-filled when the previous match's winner was chosen).
+        // If still pending (the previous match hasn't had its winner picked yet), allow a manual fallback text entry.
+        const homeField = hKnown
           ? `<div class="mr-t"><span class="mr-fl">${m.hf}</span><span>${m.h}</span></div>`
           : `<div class="mr-t"><input class="ri" type="text" value="${m.h}" placeholder="Local" id="hn-${m.id}" style="width:110px;font-size:.75rem" onchange="updateTeamName('${m.id}','h',this.value)"></div>`;
-        const awayField = played
+        const awayField = aKnown
           ? `<div class="mr-t aw"><span>${m.a}</span><span class="mr-fl">${m.af}</span></div>`
           : `<div class="mr-t aw"><input class="ri" type="text" value="${m.a}" placeholder="Visitante" id="an-${m.id}" style="width:110px;font-size:.75rem" onchange="updateTeamName('${m.id}','a',this.value)"></div>`;
+        // Once both teams are known, let the admin pick who advances directly (covers draws/penalties
+        // where the score alone doesn't tell you the winner). Picking it instantly fills the next round's pairing.
+        const advLabel = m.round === 'TP' ? 'se lleva el bronce 🥉' : 'avanza';
+        const winnerPicker = (hKnown && aKnown) ? `
+      <div class="ko-winner">
+        <button class="wpb${r.winner === 'h' ? ' sel' : ''}" onclick="pickWinner('${m.id}','h')">${r.winner === 'h' ? '✓ ' : ''}${m.hf} ${m.h} ${advLabel}</button>
+        <button class="wpb${r.winner === 'a' ? ' sel' : ''}" onclick="pickWinner('${m.id}','a')">${r.winner === 'a' ? '✓ ' : ''}${m.a} ${m.af} ${advLabel}</button>
+      </div>` : '';
         html += `<div class="mr${played ? ' played' : ''}" id="mr-${m.id}">
       <span class="mr-d">${m.d}</span>
       ${homeField}
@@ -817,12 +880,14 @@
       ${awayField}
       <button class="pb${played ? ' done' : ''}" onclick="markPlayed('${m.id}')">${played ? '✓ Jugado' : 'Marcar jugado'}</button>
       ${played ? `<button class="upb" onclick="unmark('${m.id}')" title="Desmarcar">✕</button>` : ''}
+      ${winnerPicker}
     </div>`;
       });
       document.getElementById('ko-matches').innerHTML = html || '<p style="color:var(--m2);font-size:.8rem">Sin partidos</p>';
     }
 
-    // Update team name in KMD live (so markPlayed uses the correct name)
+    // Update team name in KMD live (so markPlayed uses the correct name) — manual fallback only,
+    // used while the feeding match hasn't had its winner picked yet.
     function updateTeamName(mid, side, val) {
       const m = KMD.find(x => x.id === mid);
       if (!m) return;
@@ -830,8 +895,68 @@
       else m.a = val.trim();
     }
 
-    // Helper: detect if match_id belongs to knockout stage
-    function isKOMatch(mid) { return mid.startsWith('R'); }
+    // Admin explicitly chooses which team advances from a knockout match (works for normal
+    // results and for draws decided on penalties, where the scoreline alone isn't enough).
+    // This both records the winner for points and auto-creates the next round's pairing
+    // (and, for semifinals, feeds the loser into the 3rd place match).
+    async function pickWinner(mid, side) {
+      const m = KMD.find(x => x.id === mid);
+      if (!m) return;
+      if (isPendingTeam(m.h) || isPendingTeam(m.a)) { toast('Aún no se conocen los dos equipos de este cruce'); return }
+      if (!results[mid]) results[mid] = {};
+      results[mid].winner = side;
+      results[mid].h = m.h; results[mid].a = m.a;
+
+      await sb.from('match_results').upsert({
+        match_id: mid,
+        score_home: results[mid].sh ?? null,
+        score_away: results[mid].sa ?? null,
+        played: results[mid].played || false,
+        home_team: m.h, away_team: m.a,
+        home_flag: m.hf, away_flag: m.af,
+        winner: side,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'match_id' });
+
+      const winnerName = side === 'h' ? m.h : m.a;
+      const winnerFlag = side === 'h' ? m.hf : m.af;
+      const loserName = side === 'h' ? m.a : m.h;
+      const loserFlag = side === 'h' ? m.af : m.hf;
+      await propagateResult(mid, winnerName, winnerFlag, loserName, loserFlag);
+
+      renderKORoundTabs(); renderKOMatches(curKORound);
+      toast(`${winnerFlag} ${winnerName} avanza ✓`);
+    }
+
+    // Fills in the next slot(s) fed by this match: "W <mid>" placeholders get the winner,
+    // "L <mid>" placeholders (only used by the 3rd place match, fed by the SF losers) get the
+    // loser. Keeps the same naming layout: bandera local + país local — país visitante + bandera visitante.
+    async function propagateResult(mid, winnerName, winnerFlag, loserName, loserFlag) {
+      const winPH = `W ${mid}`, losePH = `L ${mid}`;
+      const targets = KMD.filter(t => [t.h, t.a].includes(winPH) || [t.h, t.a].includes(losePH));
+      for (const t of targets) {
+        if (t.h === winPH) { t.h = winnerName; t.hf = winnerFlag }
+        else if (t.h === losePH) { t.h = loserName; t.hf = loserFlag }
+        if (t.a === winPH) { t.a = winnerName; t.af = winnerFlag }
+        else if (t.a === losePH) { t.a = loserName; t.af = loserFlag }
+        if (!results[t.id]) results[t.id] = {};
+        results[t.id].h = t.h; results[t.id].a = t.a;
+        await sb.from('match_results').upsert({
+          match_id: t.id,
+          score_home: results[t.id].sh ?? null,
+          score_away: results[t.id].sa ?? null,
+          played: results[t.id].played || false,
+          home_team: t.h, away_team: t.a,
+          home_flag: t.hf, away_flag: t.af,
+          winner: results[t.id].winner ?? null,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'match_id' });
+      }
+    }
+
+    // Helper: detect if match_id belongs to knockout stage (any round in KMD)
+    const KO_IDS = new Set(KMD.map(m => m.id));
+    function isKOMatch(mid) { return KO_IDS.has(mid); }
 
     async function adminLogin() {
       const em = document.getElementById('a-em').value.trim(), pw = document.getElementById('a-pw').value;
@@ -853,11 +978,16 @@
     async function loadResults() {
       const { data } = await sb.from('match_results').select('*');
       if (data) data.forEach(r => {
-        results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played, h: r.home_team, a: r.away_team };
-        // Restore edited team names into KMD so the UI shows correct names after reload
+        results[r.match_id] = { sh: r.score_home, sa: r.score_away, played: r.played, h: r.home_team, a: r.away_team, winner: r.winner || null };
+        // Restore edited team names (and flags, for auto-filled KO pairings) into KMD after reload
         if (r.home_team || r.away_team) {
           const m = KMD.find(x => x.id === r.match_id);
-          if (m) { if (r.home_team) m.h = r.home_team; if (r.away_team) m.a = r.away_team; }
+          if (m) {
+            if (r.home_team) m.h = r.home_team;
+            if (r.away_team) m.a = r.away_team;
+            if (r.home_flag) m.hf = r.home_flag;
+            if (r.away_flag) m.af = r.away_flag;
+          }
         }
       });
     }
@@ -898,14 +1028,33 @@
       const homeTeam = hnEl ? hnEl.value.trim() || m?.h : m?.h;
       const awayTeam = anEl ? anEl.value.trim() || m?.a : m?.a;
       if (m) { m.h = homeTeam; m.a = awayTeam; } // keep KMD in sync
+      if (!results[mid]) results[mid] = {};
+      // If the admin hasn't explicitly picked a winner (e.g. via the "avanza" buttons) and the
+      // score isn't a draw, infer it automatically. Draws (decided on penalties) need the
+      // explicit picker since the scoreline alone can't tell who advances.
+      if (results[mid].winner == null && isKOMatch(mid) && +sh !== +sa) {
+        results[mid].winner = +sh > +sa ? 'h' : 'a';
+      }
       await sb.from('match_results').upsert({
         match_id: mid,
         score_home: +sh, score_away: +sa, played: true,
         home_team: homeTeam || null, away_team: awayTeam || null,
+        home_flag: m?.hf || null, away_flag: m?.af || null,
+        winner: results[mid].winner ?? null,
         updated_at: new Date().toISOString()
       }, { onConflict: 'match_id' });
-      results[mid] = { sh: +sh, sa: +sa, played: true, h: homeTeam, a: awayTeam };
-      if (isKOMatch(mid)) { renderKORoundTabs(); renderKOMatches(curKORound) }
+      results[mid] = { ...results[mid], sh: +sh, sa: +sa, played: true, h: homeTeam, a: awayTeam };
+      if (isKOMatch(mid)) {
+        if (results[mid].winner) {
+          const side = results[mid].winner;
+          const winnerName = side === 'h' ? homeTeam : awayTeam;
+          const winnerFlag = side === 'h' ? m.hf : m.af;
+          const loserName = side === 'h' ? awayTeam : homeTeam;
+          const loserFlag = side === 'h' ? m.af : m.hf;
+          await propagateResult(mid, winnerName, winnerFlag, loserName, loserFlag);
+        }
+        renderKORoundTabs(); renderKOMatches(curKORound);
+      }
       else { renderTabs(); renderMatches(ag) }
       toast(`${mid}: ${homeTeam} ${sh}–${sa} ${awayTeam} ✓`);
     }
@@ -948,16 +1097,19 @@
         const spR = spResData || {};
 
         // Build real KO winners: { R32_1: 'España', R32_2: 'Brasil', ... }
-        // Uses home_team/away_team saved in match_results (set by admin when marking played)
+        // Prefers the explicit "avanza" pick (needed for draws decided on penalties); falls
+        // back to comparing scores for matches resolved the old way (text-edited team names).
         const koWinners = {};
         KMD.forEach(m => {
           const r = results[m.id];
-          if (!r?.played) return;
+          if (!r) return;
           const homeName = r.h || m.h;
           const awayName = r.a || m.a;
-          if (r.sh > r.sa) koWinners[m.id] = homeName;
-          else if (r.sa > r.sh) koWinners[m.id] = awayName;
-          // exact draw: admin should enter ET/pens result with different scores
+          if (r.winner === 'h') koWinners[m.id] = homeName;
+          else if (r.winner === 'a') koWinners[m.id] = awayName;
+          else if (r.played && r.sh > r.sa) koWinners[m.id] = homeName;
+          else if (r.played && r.sa > r.sh) koWinners[m.id] = awayName;
+          // exact draw with no explicit winner pick: skip, can't award KO points yet
         });
 
         // Map bracket round arrays to KMD match ids in order
@@ -968,9 +1120,10 @@
         // r32[i] corresponds to KMD match R32_{i+1}
         const R32_MATCH_IDS = KMD.filter(m => m.round === 'R32').map(m => m.id); // R32_1..R32_16
         const R16_MATCH_IDS = KMD.filter(m => m.round === 'R16').map(m => m.id);
-        const QF_MATCH_IDS  = KMD.filter(m => m.round === 'QF').map(m => m.id);
-        const SF_MATCH_IDS  = KMD.filter(m => m.round === 'SF').map(m => m.id);
-        const F_MATCH_IDS   = KMD.filter(m => m.round === 'F').map(m => m.id);
+        const QF_MATCH_IDS = KMD.filter(m => m.round === 'QF').map(m => m.id);
+        const SF_MATCH_IDS = KMD.filter(m => m.round === 'SF').map(m => m.id);
+        const TP_MATCH_IDS = KMD.filter(m => m.round === 'TP').map(m => m.id);
+        const F_MATCH_IDS = KMD.filter(m => m.round === 'F').map(m => m.id);
 
         const playedKO = Object.keys(koWinners).length;
         addLog(`✓ Jugadores: ${profiles.length} | Partidos jugados KO: ${playedKO} | Predicciones brackets: ${(allBrackets || []).length}`);
@@ -1028,6 +1181,11 @@
               const mid = SF_MATCH_IDS[i]; if (!mid) return;
               if (koWinners[mid] && pred.n === koWinners[mid]) pts += 5;
             });
+          }
+          // 3er puesto — mismo criterio: 5 pts si adivina el equipo que se lleva el bronce
+          if (bkt.tp && TP_MATCH_IDS.length) {
+            const mid = TP_MATCH_IDS[0];
+            if (koWinners[mid] && bkt.tp.n === koWinners[mid]) pts += 5;
           }
           // Final
           if (bkt.final && F_MATCH_IDS.length) {
