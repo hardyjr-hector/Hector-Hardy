@@ -2344,7 +2344,7 @@
         }
       });
       autoCalcDone = GD.every(g => (gRanks[g.id] || []).length === 4);
-      // If gRanks full but thirds not populated (e.g. first load after predictions), rebuild them
+      // If gRanks full but thirds not populated (e.g. first load after predictions or manual ranking), rebuild them
       if (autoCalcDone && bkt.thirds.filter(Boolean).length < 8) {
         rebuildThirdsFromRanks();
       }
@@ -2363,8 +2363,12 @@
         if (ranks.length < 3) return null;
         const idx = ranks[2]; // 3rd place index
         const tm = g.t[idx];
-        const rows = calcGs(g.id);
-        const stats = rows.find(s => s.t.n === tm.n) || { pg: 0, pe: 0, gf: 0, gc: 0, pj: 0 };
+        // Try to get stats from match predictions if available; fall back to zeros
+        let stats = { pg: 0, pe: 0, gf: 0, gc: 0, pj: 0 };
+        try {
+          const rows = calcGs(g.id);
+          stats = rows.find(s => s.t.n === tm.n) || stats;
+        } catch (e) { /* no predictions available, use zero stats */ }
         return { gid: g.id, tm, i: idx, pg: stats.pg || 0, pe: stats.pe || 0, pj: stats.pj || 0, gf: stats.gf || 0, gc: stats.gc || 0 };
       }).filter(Boolean);
       bkt.thirds = assignThirdSlots(thirds);
@@ -2537,6 +2541,18 @@
       const el = document.getElementById('knockout-c');
       if (!el) return;
       try {
+        // If groups aren't ranked yet and we're on r32, show inline guide
+        if (!autoCalcDone && koRound === 'r32') {
+          const gDone = GD.filter(g => (gRanks[g.id] || []).length === 4).length;
+          const missing = GD.filter(g => (gRanks[g.id] || []).length < 4).map(g => `Grupo ${g.id}`);
+          el.innerHTML = `<div style="padding:1.1rem;background:rgba(232,184,75,.07);border:1px solid rgba(232,184,75,.25);border-radius:10px;margin-top:.5rem">
+            <div style="font-size:.85rem;font-weight:700;color:var(--acc);margin-bottom:.35rem">🏆 ${lang === 'es' ? 'Ordena las posiciones de grupo para ver la llave' : 'Rank group standings to unlock the bracket'}</div>
+            <p style="font-size:.76rem;color:var(--m2);margin-bottom:.6rem;line-height:1.5">${lang === 'es' ? 'Haz clic en los equipos de cada grupo para ordenarlos. Puedes hacerlo sin necesidad de predecir los partidos.' : 'Click the teams in each group to rank them. No need to predict matches first.'}</p>
+            <div style="font-size:.73rem;color:var(--m2);margin-bottom:.7rem">${lang === 'es' ? `${gDone}/12 grupos — faltan: ` : `${gDone}/12 groups — missing: `}<strong style="color:var(--text)">${missing.join(', ')}</strong></div>
+            <button onclick="goTo('groups')" style="padding:.45rem 1rem;background:var(--acc);color:#000;font-size:.8rem;font-weight:700;border:none;border-radius:7px;cursor:pointer;font-family:inherit">👆 ${lang === 'es' ? 'Ir a Posiciones de Grupo' : 'Go to Group Standings'}</button>
+          </div>`;
+          return;
+        }
         let thirdsHtml = '';
         if (koRound === 'r32') {
           if (autoCalcDone) {
@@ -2832,6 +2848,9 @@
     }
 
     // ══════════ GROUPS RANKING ══════════
+    // Track which groups are in "manual override" mode (user clicked edit on an auto-calc group)
+    const groupManualOverride = {};
+
     function renderGroups(gid) {
       const container = document.getElementById('groups-c');
       if (!container) return;
@@ -2839,32 +2858,42 @@
         const g = GD.find(x => x.id === gid), ranks = gRanks[gid] || [];
         const grpComplete = groupComplete(gid);
         const allFilled = allGroupsComplete();
+        const manualMode = groupManualOverride[gid] || !grpComplete;
 
         let header = '';
-        if (grpComplete) {
-          // All 6 matches predicted for this group → auto-sorted, show badge
-          const recalcBtn = !SUBMITTED ? `<button onclick="manualRecalcGroup('${gid}')" style="font-size:.68rem;padding:.24rem .6rem;border-radius:5px;border:1px solid var(--bdr2);background:transparent;color:var(--m2);cursor:pointer;font-family:inherit">↺</button>` : '';
-          header = `<div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem;padding:.5rem .8rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:7px;font-size:.77rem">
+        if (grpComplete && !manualMode) {
+          // All 6 matches predicted for this group → auto-sorted, show badge + edit button
+          const recalcBtn = !SUBMITTED ? `<button onclick="manualRecalcGroup('${gid}')" style="font-size:.68rem;padding:.24rem .6rem;border-radius:5px;border:1px solid var(--bdr2);background:transparent;color:var(--m2);cursor:pointer;font-family:inherit">↺ ${lang === 'es' ? 'Recalcular' : 'Recalc'}</button>` : '';
+          const editBtn = !SUBMITTED ? `<button onclick="groupManualOverride['${gid}']=true;renderGroups('${gid}')" style="font-size:.68rem;padding:.24rem .6rem;border-radius:5px;border:1px solid var(--bdr2);background:transparent;color:var(--m2);cursor:pointer;font-family:inherit">✏️ ${lang === 'es' ? 'Editar' : 'Edit'}</button>` : '';
+          header = `<div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem;padding:.5rem .8rem;background:rgba(59,186,110,.07);border:1px solid rgba(59,186,110,.2);border-radius:7px;font-size:.77rem;flex-wrap:wrap">
         <span>✅</span>
-        <span style="color:var(--grn);font-weight:600">${lang === 'es' ? 'Calculado desde tus partidos' : 'Calculated from your matches'}</span>
-        ${recalcBtn}
+        <span style="color:var(--grn);font-weight:600;flex:1">${lang === 'es' ? 'Calculado desde tus partidos' : 'Calculated from your matches'}</span>
+        <div style="display:flex;gap:.35rem">${recalcBtn}${editBtn}</div>
+      </div>`;
+        } else if (grpComplete && manualMode) {
+          // Auto-calc done but user wants to edit manually
+          const doneBtn = !SUBMITTED ? `<button onclick="groupManualOverride['${gid}']=false;renderGroups('${gid}')" style="font-size:.68rem;padding:.24rem .6rem;border-radius:5px;border:1px solid rgba(59,186,110,.3);background:transparent;color:var(--grn);cursor:pointer;font-family:inherit">✓ ${lang === 'es' ? 'Listo' : 'Done'}</button>` : '';
+          header = `<div style="display:flex;align-items:center;gap:.55rem;margin-bottom:.85rem;padding:.5rem .8rem;background:rgba(232,184,75,.07);border:1px solid rgba(232,184,75,.2);border-radius:7px;font-size:.77rem;flex-wrap:wrap">
+        <span>✏️</span>
+        <span style="color:var(--acc);font-weight:600;flex:1">${lang === 'es' ? 'Modo edición — haz clic para reordenar' : 'Edit mode — click to reorder'}</span>
+        ${doneBtn}
       </div>`;
         } else {
           const filled6 = MD.filter(m => m.g === gid).filter(m => { const p = preds[m.id]; return p && p.s1 != null && p.s2 != null }).length;
-          if (filled6 > 0 && !grpComplete) {
+          if (filled6 > 0) {
             header = `<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;font-size:.74rem;color:var(--m2)">
           <span>⏳</span><span>${lang === 'es' ? `${filled6}/6 partidos predichos — se ordenará al completar` : `${filled6}/6 matches predicted — will auto-sort when complete`}</span>
         </div>`;
           } else {
-            header = `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${t('grp_order')}</p>`;
+            header = `<p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem">${lang === 'es' ? '👆 Haz clic en los equipos para ordenarlos del 1° al 4°' : '👆 Click teams to rank them 1st to 4th'}</p>`;
           }
         }
 
         let html = header;
+        const clickable = !SUBMITTED && manualMode;
         g.t.forEach((tm, i) => {
           const pos = ranks.indexOf(i), rc = pos === 0 ? 'r1' : pos === 1 ? 'r2' : pos === 2 ? 'r3' : '';
-          const clickable = !SUBMITTED && !grpComplete;
-          html += `<div class="rk" ${clickable ? `onclick="clickRk('${gid}',${i})"` : ''} style="${grpComplete ? 'cursor:default' : ''}">
+          html += `<div class="rk" ${clickable ? `onclick="clickRk('${gid}',${i})"` : ''} style="${clickable ? '' : 'cursor:default'}">
         <div class="rkb ${rc}">${pos >= 0 ? pos + 1 + '°' : '?'}</div>
         <span style="font-size:1.05rem">${tm.f}</span>
         <span style="font-size:.82rem;font-weight:500">${tm.n}</span>
@@ -2889,6 +2918,32 @@
       pos !== -1 ? ranks.splice(pos, 1) : ranks.length < 4 && ranks.push(idx);
       gRanks[gid] = ranks; renderGroups(gid); updateDash();
       await sb.from('group_rankings').upsert({ user_id: CU.id, group_id: gid, rankings: ranks, updated_at: new Date().toISOString() }, { onConflict: 'user_id,group_id' });
+      // Check if all 12 groups now have 4 rankings → unlock the bracket
+      const allNowDone = GD.every(g => (gRanks[g.id] || []).length === 4);
+      if (allNowDone && !autoCalcDone) {
+        autoCalcDone = true;
+        if (bkt.thirds.filter(Boolean).length < 8) {
+          rebuildThirdsFromRanks();
+        }
+        toast(lang === 'es' ? '✅ ¡Los 12 grupos ordenados! Ahora completa la llave eliminatoria 🏆' : '✅ All 12 groups ranked! Now complete the bracket 🏆');
+        updateDash();
+        if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
+        if (currentScreen === 'bracket') renderBracket();
+      } else if (autoCalcDone) {
+        // Re-derive thirds if a group's 3rd place team changed
+        if (bkt.thirds.filter(Boolean).length < 8 || GD.every(g => (gRanks[g.id] || []).length === 4)) {
+          rebuildThirdsFromRanks();
+        }
+        // Clear downstream bracket since group order changed
+        bkt.r32 = Array(16).fill(null); bkt.r16 = Array(8).fill(null);
+        bkt.qf = Array(4).fill(null); bkt.sf = Array(2).fill(null);
+        bkt.final = null; bkt.third = null;
+        saveBkt();
+        toast(lang === 'es' ? `✅ Grupo ${gid} actualizado — llave reiniciada` : `✅ Group ${gid} updated — bracket reset`);
+        updateDash();
+        if (currentScreen === 'matches') { buildKoTabs(); renderKnockout(); }
+        if (currentScreen === 'bracket') renderBracket();
+      }
     }
 
     // ══════════ SPECIALS ══════════
@@ -2956,6 +3011,18 @@
       const el = document.getElementById('bracket-c');
       if (!el) return;
       try {
+        // If groups aren't all ranked yet, show a helpful guide to complete them first
+        if (!autoCalcDone) {
+          const gDone = GD.filter(g => (gRanks[g.id] || []).length === 4).length;
+          const missing = GD.filter(g => (gRanks[g.id] || []).length < 4).map(g => `Grupo ${g.id}`);
+          el.innerHTML = `<div style="padding:1.25rem;background:rgba(232,184,75,.07);border:1px solid rgba(232,184,75,.25);border-radius:12px;margin-bottom:1rem">
+            <div style="font-size:.88rem;font-weight:700;color:var(--acc);margin-bottom:.4rem">🏆 ${lang === 'es' ? 'Paso previo: ordena las posiciones de grupo' : 'First step: rank your group standings'}</div>
+            <p style="font-size:.78rem;color:var(--m2);margin-bottom:.7rem;line-height:1.55">${lang === 'es' ? 'Para completar la llave necesitas ordenar los 12 grupos (1° al 4°). Puedes hacerlo manualmente sin predecir partidos.' : 'To fill out the bracket you need to rank all 12 groups (1st to 4th). You can do it manually without predicting matches.'}</p>
+            <div style="font-size:.75rem;color:var(--m2);margin-bottom:.85rem">${lang === 'es' ? `${gDone}/12 grupos ordenados — faltan: ` : `${gDone}/12 groups ranked — missing: `}<strong style="color:var(--text)">${missing.join(', ')}</strong></div>
+            <button onclick="goTo('groups')" style="padding:.5rem 1.1rem;background:var(--acc);color:#000;font-size:.82rem;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit">👆 ${lang === 'es' ? 'Ir a Posiciones de Grupo' : 'Go to Group Standings'}</button>
+          </div>`;
+          return;
+        }
         const rounds = KO_ROUNDS;
         const tabs = rounds.map(r => `<div class="bkt-rtab${bktRound === r.key ? ' on' : ''}" onclick="swBktRound('${r.key}')">${lang === 'es' ? r.es : r.en}</div>`).join('');
         let body = '';
