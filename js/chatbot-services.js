@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   // ⚠️ Sustituye esta URL por la de tu backend desplegado (ver server-agente-ia/README.md)
-  const API_URL = 'https://mi-chatbot-khaki.vercel.app/';
+  const API_URL = 'https://www.hectorhardy.com/api/chat-servicios';
 
   const messages = [];
 
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="hs-messages" id="hs-messages">
         <div class="hs-msg bot">
           <div class="hs-msg-icon">🤖</div>
-          <div class="hs-bubble">¡Hola! Soy el agente IA de Hector. Puedo contarte qué servicios ofrece, precios orientativos, o ayudarte a dar el primer paso. ¿En qué puedo ayudarte?</div>
+          <div class="hs-bubble">¡Hola! Soy Alexito, el agente IA de Hector. Puedo contarte qué servicios ofrece, precios orientativos, o ayudarte a dar el primer paso. ¿En qué puedo ayudarte?</div>
         </div>
       </div>
 
