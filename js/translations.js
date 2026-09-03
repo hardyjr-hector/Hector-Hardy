@@ -123,6 +123,107 @@ const TRANSLATIONS = {
   "footer.body": { es: "Buscando mi primer rol como AI & Frontend Developer.", en: "I'm looking my new rol as AI & Frontend Developer." },
   "footer.privacy": { es: "🔒 Política de Privacidad", en: "🔒 Privacy Policy" },
 
+  // ── HOMEPAGE (index.html) — ES / CA / EN ────────────────
+  "nav.reservar": { es: "Reservar llamada", ca: "Reservar trucada", en: "Book a call" },
+  "nav.hablemos": { es: "Hablemos", ca: "Parlem-ne", en: "Let's talk" },
+
+  "hero.label.main": { es: "Agentes IA a medida · Barcelona", ca: "Agents IA a mida · Barcelona", en: "Custom AI agents · Barcelona" },
+  "hero.sub.pre": { es: "Diseño ", ca: "Dissenyo ", en: "I build " },
+  "hero.sub.strong": { es: "agentes de IA a medida", ca: "agents d'IA a mida", en: "custom AI agents" },
+  "hero.sub.post": {
+    es: " para negocios de cualquier sector — integrados en WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
+    ca: " per a negocis de qualsevol sector — integrats a WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
+    en: " for businesses in any sector — integrated into WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
+  },
+  "hero.btn.hablemos": { es: "Hablemos →", ca: "Parlem-ne →", en: "Let's talk →" },
+  "hero.btn.servicios": { es: "Ver servicios", ca: "Veure serveis", en: "See services" },
+  "hero.btn.proyectos": { es: "Ver proyectos", ca: "Veure projectes", en: "See projects" },
+  "hero.meta.projects": { es: "proyectos en producción", ca: "projectes en producció", en: "projects in production" },
+  "hero.meta.systems": { es: "tus sistemas funcionando", ca: "els teus sistemes funcionant", en: "your systems running" },
+  "hero.meta.consulta": { es: "consulta inicial", ca: "consulta inicial", en: "initial consultation" },
+
+  "services.eyebrow": { es: "Servicios", ca: "Serveis", en: "Services" },
+  "svc1.title": { es: "Web profesional", ca: "Web professional", en: "Professional website" },
+  "svc1.desc": {
+    es: "Diseño y desarrollo desde cero, pensada para convertir visitas en clientes, sea cual sea tu sector.",
+    ca: "Disseny i desenvolupament des de zero, pensada per convertir visites en clients, sigui quin sigui el teu sector.",
+    en: "Designed and built from scratch to turn visitors into customers, whatever your sector."
+  },
+  "svc2.title": { es: "Agente con IA a medida", ca: "Agent amb IA a mida", en: "Custom AI agent" },
+  "svc2.desc": {
+    es: "Entrenado con los datos de tu negocio. Integrado en tu web, WhatsApp, Telegram o Instagram — donde ya está tu cliente.",
+    ca: "Entrenat amb les dades del teu negoci. Integrat a la teva web, WhatsApp, Telegram o Instagram — allà on ja és el teu client.",
+    en: "Trained on your business's data. Integrated into your website, WhatsApp, Telegram or Instagram — wherever your customer already is."
+  },
+  "svc3.title": { es: "E-commerce", ca: "E-commerce", en: "E-commerce" },
+  "svc3.desc": {
+    es: "Tienda online, carrito de la compra y pago con Stripe. Cobras sin hacer nada.",
+    ca: "Botiga online, cistella de la compra i pagament amb Stripe. Cobres sense fer res.",
+    en: "Online store, shopping cart and Stripe payments. You get paid without lifting a finger."
+  },
+  "svc4.title": { es: "Automatización", ca: "Automatització", en: "Automation" },
+  "svc4.desc": {
+    es: "Elimina tareas repetitivas: formularios, avisos, notificaciones y flujos conectados entre tus herramientas.",
+    ca: "Elimina tasques repetitives: formularis, avisos, notificacions i fluxos connectats entre les teves eines.",
+    en: "Eliminate repetitive tasks: forms, alerts, notifications and workflows connected across your tools."
+  },
+  "svc5.title": { es: "Proyecto completo", ca: "Projecte complet", en: "Full project" },
+  "svc5.desc": {
+    es: "Web + agente IA + pagos + automatización. Todo integrado desde el primer día.",
+    ca: "Web + agent IA + pagaments + automatització. Tot integrat des del primer dia.",
+    en: "Website + AI agent + payments + automation. All integrated from day one."
+  },
+  "svc6.title": { es: "Mantenimiento", ca: "Manteniment", en: "Maintenance" },
+  "svc6.desc": {
+    es: "Tu web siempre actualizada, segura y funcionando. Soporte incluido.",
+    ca: "La teva web sempre actualitzada, segura i funcionant. Suport inclòs.",
+    en: "Your website always updated, secure and running. Support included."
+  },
+
+  "projects.eyebrow": { es: "Proyectos en producción", ca: "Projectes en producció", en: "Projects in production" },
+  "status.live": { es: "En producción", ca: "En producció", en: "Live" },
+  "status.dev": { es: "En desarrollo", ca: "En desenvolupament", en: "In development" },
+
+  "proj.cajacontrol.name": { es: "Control de Caja", ca: "Control de Caixa", en: "Cash Register Control" },
+  "proj.cajacontrol.desc": {
+    es: "App de gestión de caja para hostelería: login por PIN, aperturas y cierres con cálculo automático, seguridad a nivel de base de datos (RLS), notificaciones push y PWA instalable. Bilingüe ES/EN.",
+    ca: "App de gestió de caixa per a hostaleria: login per PIN, obertures i tancaments amb càlcul automàtic, seguretat a nivell de base de dades (RLS), notificacions push i PWA instal·lable. Bilingüe ES/EN.",
+    en: "Cash register management app for hospitality: PIN login, opening/closing with automatic calculation, database-level security (RLS), push notifications and installable PWA. Bilingual ES/EN."
+  },
+  "proj.magma.name": { es: "Magma Bakery Lab", ca: "Magma Bakery Lab", en: "Magma Bakery Lab" },
+  "proj.magma.desc": {
+    es: "E-commerce para obrador artesanal: carta completa, encargos online con carrito, pago con Stripe y trilingüe ES/CA/EN con CI/CD en Vercel.",
+    ca: "E-commerce per a obrador artesanal: carta completa, comandes online amb cistella, pagament amb Stripe i trilingüe ES/CA/EN amb CI/CD a Vercel.",
+    en: "E-commerce for an artisan bakery: full menu, online orders with cart, Stripe payments and trilingual ES/CA/EN with CI/CD on Vercel."
+  },
+  "proj.nutria.name": { es: "NutrIA", ca: "NutrIA", en: "NutrIA" },
+  "proj.nutria.desc": {
+    es: "App web con cálculo automático de macros mediante IA, análisis de platos por visión artificial y chatbot nutricional 24/7. Construida con Next.js y Supabase.",
+    ca: "App web amb càlcul automàtic de macros mitjançant IA, anàlisi de plats per visió artificial i chatbot nutricional 24/7. Construïda amb Next.js i Supabase.",
+    en: "Web app with automatic macro calculation via AI, dish analysis through computer vision, and a 24/7 nutrition chatbot. Built with Next.js and Supabase."
+  },
+  "proj.presupuesto.name": { es: "App de Presupuesto", ca: "App de Pressupost", en: "Budget App" },
+  "proj.presupuesto.desc": {
+    es: "Gestor financiero personal para seguimiento de ingresos y gastos.",
+    ca: "Gestor financer personal per al seguiment d'ingressos i despeses.",
+    en: "Personal finance manager for tracking income and expenses."
+  },
+  "proj.trading.name": { es: "Trading Bot Pro", ca: "Trading Bot Pro", en: "Trading Bot Pro" },
+  "proj.trading.desc": {
+    es: "Bot de trading algorítmico multi-mercado (spot, futuros y forex) con detección de régimen, ensemble ML y estrategia de reversión a la media. Circuit breakers, gestión de riesgo y reentrenamiento diario corriendo 24/7.",
+    ca: "Bot de trading algorítmic multi-mercat (spot, futurs i forex) amb detecció de règim, ensemble ML i estratègia de reversió a la mitjana. Circuit breakers, gestió de risc i reentrenament diari funcionant 24/7.",
+    en: "Multi-market algorithmic trading bot (spot, futures and forex) with regime detection, ML ensemble and mean-reversion strategy. Circuit breakers, risk management and daily retraining running 24/7."
+  },
+
+  "booking.eyebrow": { es: "Primera llamada gratuita", ca: "Primera trucada gratuïta", en: "First call is free" },
+  "cta.title.line1": { es: "Tu negocio merece", ca: "El teu negoci mereix", en: "Your business deserves" },
+  "cta.title.line2": { es: "un sistema que ", ca: "un sistema que ", en: "a system that " },
+  "cta.title.em": { es: "no duerme.", ca: "no dorm.", en: "never sleeps." },
+  "cta.sub": { es: "Consulta gratuita · Sin compromiso · Respondo en 24h", ca: "Consulta gratuïta · Sense compromís · Responc en 24h", en: "Free consultation · No obligation · I reply within 24h" },
+
+  "footer.privacidad": { es: "Privacidad", ca: "Privacitat", en: "Privacy" },
+  "footer.contacto": { es: "Contacto", ca: "Contacte", en: "Contact" },
+
 };
 
 // ── Idioma activo ──────────────────────────────────────────
@@ -149,7 +250,7 @@ function applyTranslations(lang) {
   });
 
   // Actualizar atributo lang en <html>
-  document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+  document.documentElement.lang = lang;
 
   // Actualizar el botón del toggle
   const btn = document.getElementById('langToggle');
