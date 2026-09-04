@@ -131,9 +131,9 @@ const TRANSLATIONS = {
   "hero.sub.pre": { es: "Diseño ", ca: "Dissenyo ", en: "I build " },
   "hero.sub.strong": { es: "agentes de IA a medida", ca: "agents d'IA a mida", en: "custom AI agents" },
   "hero.sub.post": {
-    es: " para negocios de cualquier sector — integrados en WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
-    ca: " per a negocis de qualsevol sector — integrats a WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
-    en: " for businesses in any sector — integrated into WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
+    es: " para negocios de cualquier sector — integrados en tu Web, WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
+    ca: " per a negocis de qualsevol sector — integrat a la teva web, WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
+    en: " for businesses in any sector — integrated into your website, WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
   },
   "hero.btn.hablemos": { es: "Hablemos →", ca: "Parlem-ne →", en: "Let's talk →" },
   "hero.btn.servicios": { es: "Ver servicios", ca: "Veure serveis", en: "See services" },
