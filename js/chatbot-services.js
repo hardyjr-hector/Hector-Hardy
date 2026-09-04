@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="hs-header-left">
           <div class="hs-avatar">🤖</div>
           <div class="hs-header-info">
-            <h4>Agente IA de Hector</h4>
+            <h4>Alexito, agente IA de Hector</h4>
             <p class="hs-status">Online · Responde al instante</p>
           </div>
         </div>
