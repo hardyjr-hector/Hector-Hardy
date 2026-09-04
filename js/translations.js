@@ -127,13 +127,13 @@ const TRANSLATIONS = {
   "nav.reservar": { es: "Reservar llamada", ca: "Reservar trucada", en: "Book a call" },
   "nav.hablemos": { es: "Hablemos", ca: "Parlem-ne", en: "Let's talk" },
 
-  "hero.label.main": { es: "Agentes IA a medida · Barcelona", ca: "Agents IA a mida · Barcelona", en: "Custom AI agents · Barcelona" },
+  "hero.label.main": { es: "AI Engineer · Agentes IA a Medida · Barcelona", ca: "AI Engineer · Agents IA a Mida · Barcelona", en: "AI Engineer · Custom AI Agents · Barcelona" },
   "hero.sub.pre": { es: "Diseño ", ca: "Dissenyo ", en: "I build " },
   "hero.sub.strong": { es: "agentes de IA a medida", ca: "agents d'IA a mida", en: "custom AI agents" },
   "hero.sub.post": {
-    es: " para negocios de cualquier sector — integrados en Webs, WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Si tu negocio necesita algo que nadie más ofrece, lo construyo.",
-    ca: " per a negocis de qualsevol sector — integrats a Webs, WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
-    en: " for businesses in any sector — integrated into Webs, WhatsApp, Telegram or Instagram, trained on your business's real data. If your business needs something no one else offers, I'll build it."
+    es: " para negocios de cualquier sector — integrados en WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
+    ca: " per a negocis de qualsevol sector — integrats a WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
+    en: " for businesses in any sector — integrated into WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
   },
   "hero.btn.hablemos": { es: "Hablemos →", ca: "Parlem-ne →", en: "Let's talk →" },
   "hero.btn.servicios": { es: "Ver servicios", ca: "Veure serveis", en: "See services" },
