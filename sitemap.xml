@@ -8,6 +8,42 @@
   </url>
 
   <url>
+    <loc>https://www.hectorhardy.com/agente-ia-whatsapp.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hectorhardy.com/web-a-medida.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hectorhardy.com/automatizacion-negocios.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hectorhardy.com/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hectorhardy.com/blog/cuanto-cuesta-chatbot-whatsapp.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hectorhardy.com/blog/agente-ia-automatizacion-pyme.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://www.hectorhardy.com/futbol.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>

@@ -223,6 +223,7 @@ const TRANSLATIONS = {
 
   "footer.privacidad": { es: "Privacidad", ca: "Privacitat", en: "Privacy" },
   "footer.contacto": { es: "Contacto", ca: "Contacte", en: "Contact" },
+  "footer.blog": { es: "Blog", ca: "Blog", en: "Blog" },
 
 };
 
