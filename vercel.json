@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/futbol.html", "destination": "https://futbol.hectorhardy.com/", "permanent": true },
+    { "source": "/quiniela.html", "destination": "https://futbol.hectorhardy.com/quiniela.html", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.(js|css)",
