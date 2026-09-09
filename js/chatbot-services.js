@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   // ⚠️ Sustituye esta URL por la de tu backend desplegado (ver server-agente-ia/README.md)
-  const API_URL = 'https://TU-BACKEND.vercel.app/api/chat-servicios';
+  const API_URL = 'https://www.hectorhardy.com/api/chat-servicios';
 
   const messages = [];
 
