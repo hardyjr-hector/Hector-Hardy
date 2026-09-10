@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   // ⚠️ Sustituye esta URL por la de tu backend desplegado (ver server-agente-ia/README.md)
-  const API_URL = 'https://www.hectorhardy.com/api/chat-servicios';
+  const API_URL = 'https://TU-BACKEND.vercel.app/api/chat-servicios';
 
   const messages = [];
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="hs-header-left">
           <div class="hs-avatar">🤖</div>
           <div class="hs-header-info">
-            <h4>Agente IA de Hector</h4>
+            <h4>Alexito 🤖</h4>
             <p class="hs-status">Online · Responde al instante</p>
           </div>
         </div>
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="hs-messages" id="hs-messages">
         <div class="hs-msg bot">
           <div class="hs-msg-icon">🤖</div>
-          <div class="hs-bubble">¡Hola! Soy el agente IA de Hector. Puedo contarte qué servicios ofrece, precios orientativos, o ayudarte a dar el primer paso. ¿En qué puedo ayudarte?</div>
+          <div class="hs-bubble">¡Hola! Soy Alexito, el agente IA de Hector 🤖. Puedo contarte qué servicios ofrece, precios orientativos, o ayudarte a dar el primer paso. ¿En qué puedo ayudarte?</div>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <textarea class="hs-input" id="hs-input" placeholder="Escribe tu pregunta..." rows="1"></textarea>
         <button class="hs-send" id="hs-send" aria-label="Enviar">➤</button>
       </div>
-      <div class="hs-footer">Agente IA · hectorhardy.com</div>
+      <div class="hs-footer">Alexito · hectorhardy.com</div>
     </div>
   `);
 
@@ -75,6 +75,26 @@ document.addEventListener('DOMContentLoaded', function () {
     input.style.height = Math.min(input.scrollHeight, 90) + 'px';
   });
 
+  // Convierte el markdown básico que devuelve el bot (negrita y enlaces) a HTML seguro.
+  // Escapa el texto primero para que nada de lo que devuelva el modelo pueda inyectar HTML.
+  function renderBotText(text) {
+    const escaped = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    return escaped
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) => {
+        const external = !url.startsWith('#');
+        const attrs = external ? ' target="_blank" rel="noopener"' : '';
+        return `<a href="${url}"${attrs}>${label}</a>`;
+      })
+      .replace(/\n/g, '<br>');
+  }
+
   function addMsg(role, text) {
     const div = document.createElement('div');
     div.className = `hs-msg ${role}`;
@@ -82,7 +102,19 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="hs-msg-icon">${role === 'bot' ? '🤖' : '🙂'}</div>
       <div class="hs-bubble"></div>
     `;
-    div.querySelector('.hs-bubble').textContent = text;
+    const bubble = div.querySelector('.hs-bubble');
+    if (role === 'bot') {
+      bubble.innerHTML = renderBotText(text);
+      // Si el enlace es un ancla de la propia página (ej. #booking), cierra el chat
+      // al hacer clic para que se vea la sección hacia la que acaba de saltar.
+      bubble.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          win.classList.remove('open');
+        });
+      });
+    } else {
+      bubble.textContent = text;
+    }
     messagesBox.appendChild(div);
     messagesBox.scrollTop = messagesBox.scrollHeight;
   }

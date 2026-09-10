@@ -406,6 +406,73 @@
       letter-spacing: 0.02em;
     }
 
+    /* ABOUT ME */
+    .about-me {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 56px 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-me-photo {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+    }
+
+    .about-me-photo::before,
+    .about-me-photo::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: var(--accent);
+      border-style: solid;
+      border-width: 0;
+    }
+
+    .about-me-photo::before {
+      top: -6px;
+      left: -6px;
+      border-top-width: 2px;
+      border-left-width: 2px;
+    }
+
+    .about-me-photo::after {
+      bottom: -6px;
+      right: -6px;
+      border-bottom-width: 2px;
+      border-right-width: 2px;
+    }
+
+    .about-me-photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+
+    .about-me-text p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    @media (max-width: 640px) {
+      .about-me {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 24px;
+        gap: 20px;
+      }
+    }
+
     /* PROJECTS MARQUEE */
     .projects {
       padding: 64px 0;
@@ -901,6 +968,20 @@
       border-bottom-right-radius: 4px;
     }
 
+    .hs-bubble a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .hs-bubble a:hover {
+      opacity: 0.8;
+    }
+
+    .hs-bubble strong {
+      color: var(--fg);
+    }
+
     .hs-typing {
       display: flex;
       gap: 4px;
@@ -1061,7 +1142,7 @@
       <div class="hero-label" data-i18n="hero.label.main">AI Engineer · Agentes IA a Medida · Barcelona</div>
       <h1>Hector<br><em>Hardy.</em></h1>
       <p class="hero-sub">
-        <span data-i18n="hero.sub.pre">Diseño </span><strong data-i18n="hero.sub.strong">agentes de IA a medida</strong><span data-i18n="hero.sub.post"> para negocios de cualquier sector — integrados en WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.</span>
+        <span data-i18n="hero.sub.pre">Diseño </span><strong data-i18n="hero.sub.strong">agentes de IA a medida</strong><span data-i18n="hero.sub.post"> para negocios de cualquier sector — integrados en tu web, WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.</span>
       </p>
       <div class="hero-actions">
         <a href="mailto:info@hectorhardy.com" class="btn-main" data-i18n="hero.btn.hablemos">Hablemos →</a>
@@ -1144,6 +1225,16 @@
           <div class="svc-price">Desde 50€/mes</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="about-me" id="sobre-mi">
+    <div class="about-me-photo">
+      <img src="assets/images/hector.jpg" alt="Hector Hardy">
+    </div>
+    <div class="about-me-text">
+      <div class="section-eyebrow" data-i18n="about.eyebrow">Quién hay detrás</div>
+      <p data-i18n="about.body">Soy Hector — diseño y construyo cada agente y cada web yo mismo, sin intermediarios. Antes de dedicarme a esto, pasé años en hostelería de cara al cliente, así que entiendo tan bien la parte de negocio como la técnica. Si trabajamos juntos, hablas directamente conmigo, de principio a fin.</p>
     </div>
   </section>
 

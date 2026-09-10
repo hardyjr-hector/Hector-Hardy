@@ -131,9 +131,9 @@ const TRANSLATIONS = {
   "hero.sub.pre": { es: "Diseño ", ca: "Dissenyo ", en: "I build " },
   "hero.sub.strong": { es: "agentes de IA a medida", ca: "agents d'IA a mida", en: "custom AI agents" },
   "hero.sub.post": {
-    es: " para negocios de cualquier sector — integrados en WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
-    ca: " per a negocis de qualsevol sector — integrats a WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
-    en: " for businesses in any sector — integrated into WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
+    es: " para negocios de cualquier sector — integrados en tu web, WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
+    ca: " per a negocis de qualsevol sector — integrats a la teva web, WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
+    en: " for businesses in any sector — integrated into your website, WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
   },
   "hero.btn.hablemos": { es: "Hablemos →", ca: "Parlem-ne →", en: "Let's talk →" },
   "hero.btn.servicios": { es: "Ver servicios", ca: "Veure serveis", en: "See services" },
@@ -181,6 +181,12 @@ const TRANSLATIONS = {
   },
 
   "projects.eyebrow": { es: "Proyectos en producción", ca: "Projectes en producció", en: "Projects in production" },
+  "about.eyebrow": { es: "Quién hay detrás", ca: "Qui hi ha darrere", en: "Who's behind this" },
+  "about.body": {
+    es: "Soy Hector — diseño y construyo cada agente y cada web yo mismo, sin intermediarios. Antes de dedicarme a esto, pasé años en hostelería de cara al cliente, así que entiendo tan bien la parte de negocio como la técnica. Si trabajamos juntos, hablas directamente conmigo, de principio a fin.",
+    ca: "Sóc en Hector — dissenyo i construeixo cada agent i cada web jo mateix, sense intermediaris. Abans de dedicar-m'hi, vaig passar anys en hostaleria de cara al client, així que entenc tan bé la part de negoci com la tècnica. Si treballem junts, parles directament amb mi, de principi a fi.",
+    en: "I'm Hector — I design and build every agent and every website myself, no middlemen. Before this, I spent years in hospitality dealing directly with customers, so I understand the business side as well as the technical one. If we work together, you talk to me directly, start to finish."
+  },
   "status.live": { es: "En producción", ca: "En producció", en: "Live" },
   "status.dev": { es: "En desarrollo", ca: "En desenvolupament", en: "In development" },
 

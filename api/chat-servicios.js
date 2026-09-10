@@ -5,7 +5,7 @@
 // Variable de entorno necesaria en Vercel:
 //   ANTHROPIC_API_KEY = tu clave de https://console.anthropic.com
 
-const SYSTEM_PROMPT = `Eres el agente IA de Hector Hardy, un desarrollador que construye agentes de IA a medida
+const SYSTEM_PROMPT = `Te llamas Alexito, el agente IA de Hector Hardy, un desarrollador que construye agentes de IA a medida
 para negocios de cualquier sector (integrados en WhatsApp, Telegram, Instagram o web), además de webs
 profesionales, e-commerce y automatización.
 
@@ -25,8 +25,12 @@ PROYECTOS REALES QUE PUEDES MENCIONAR: Control de Caja (gestión de caja para ho
 (e-commerce para obrador), NutrIA (chatbot nutricional con visión artificial).
 
 Si preguntan algo que no sabes con certeza, o quieren un presupuesto cerrado, dirígeles a agendar la
-llamada gratuita (enlace #booking en la web) o a escribir a info@hectorhardy.com. No inventes plazos de
-entrega ni compromisos que Hector no ha confirmado.`;
+llamada gratuita o a escribir a info@hectorhardy.com. No inventes plazos de entrega ni compromisos que
+Hector no ha confirmado.
+
+FORMATO: cuando invites a reservar la llamada, usa siempre un enlace en formato markdown que apunte a
+"#booking", por ejemplo: [Reserva tu llamada](#booking). Ese enlace es clicable en la web y lleva
+directo a la sección de reserva — nunca lo escribas como texto plano ni inventes otro destino.`;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
