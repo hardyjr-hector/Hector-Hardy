@@ -183,9 +183,9 @@ const TRANSLATIONS = {
   "projects.eyebrow": { es: "Proyectos en producción", ca: "Projectes en producció", en: "Projects in production" },
   "about.eyebrow": { es: "Quién hay detrás", ca: "Qui hi ha darrere", en: "Who's behind this" },
   "about.body": {
-    es: "Soy Hector — diseño y construyo cada agente y cada web yo mismo, sin intermediarios. Antes de dedicarme a esto, pasé años en hostelería de cara al cliente, así que entiendo tan bien la parte de negocio como la técnica. Si trabajamos juntos, hablas directamente conmigo, de principio a fin.",
-    ca: "Sóc en Hector — dissenyo i construeixo cada agent i cada web jo mateix, sense intermediaris. Abans de dedicar-m'hi, vaig passar anys en hostaleria de cara al client, així que entenc tan bé la part de negoci com la tècnica. Si treballem junts, parles directament amb mi, de principi a fi.",
-    en: "I'm Hector — I design and build every agent and every website myself, no middlemen. Before this, I spent years in hospitality dealing directly with customers, so I understand the business side as well as the technical one. If we work together, you talk to me directly, start to finish."
+    es: "Soy Hector. Antes de la programación, pasé años en hostelería, donde aprendí a trabajar de cara al cliente para entender lo que realmente necesita, no solo lo que pide. Cada proyecto nace de entender primero el negocio, no solo la tecnología. Esa mirada práctica es la que traigo a cada agente que construyo.",
+    ca: "Sóc en Hector. Abans de la programació, vaig passar anys en hostaleria, on vaig aprendre a treballar de cara al client per entendre el que realment necessita, no només el que demana. Cada projecte neix d'entendre primer el negoci, no només la tecnologia. Aquesta mirada pràctica és la que aporto a cada agent que construeixo.",
+    en: "I'm Hector. Before programming, I spent years in hospitality, where I learned to work face-to-face with customers to understand what they actually need, not just what they ask for. Every project starts with understanding the business first, not just the technology. That practical mindset is what I bring to every agent I build."
   },
   "status.live": { es: "En producción", ca: "En producció", en: "Live" },
   "status.dev": { es: "En desarrollo", ca: "En desenvolupament", en: "In development" },
