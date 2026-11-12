@@ -10,18 +10,78 @@
   <meta property="og:description" content="Mantenimiento y soporte directo para tu web o agente de IA: actualizaciones, revisiones y ajustes continuos. Desde 50€/mes. Barcelona.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.hectorhardy.com/mantenimiento.html">
+  <meta property="og:site_name" content="Hector Hardy">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image" content="https://www.hectorhardy.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.hectorhardy.com/assets/images/og-image.png">
   <link rel="canonical" href="https://www.hectorhardy.com/mantenimiento.html">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/site-shared.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Mantenimiento web y soporte continuo",
+      "description": "Mantenimiento y soporte directo para tu web o agente de IA: actualizaciones, revisiones y ajustes continuos. Desde 50€/mes. Barcelona.",
+      "url": "https://www.hectorhardy.com/mantenimiento.html",
+      "areaServed": "Barcelona, España",
+      "provider": {
+        "@type": "ProfessionalService",
+        "@id": "https://www.hectorhardy.com/#negocio",
+        "name": "Hector Hardy",
+        "url": "https://www.hectorhardy.com/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "minPrice": 50,
+          "priceCurrency": "EUR",
+          "unitText": "mes"
+        }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://www.hectorhardy.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Servicios",
+          "item": "https://www.hectorhardy.com/#servicios"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mantenimiento web y soporte continuo",
+          "item": "https://www.hectorhardy.com/mantenimiento.html"
+        }
+      ]
+    }
+  ]
+  </script>
 </head>
 <body>
-  <nav>
+  <nav aria-label="Principal">
     <a href="/" class="logo">Hector Hardy</a>
     <div class="nav-right">
-      <a href="/#booking">Reservar llamada</a>
-      <a href="mailto:info@hectorhardy.com" class="nav-cta">Hablemos</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#booking" class="nav-cta">Reservar llamada</a>
     </div>
   </nav>
 
@@ -49,8 +109,15 @@
     <div class="cta-box">
       <span class="price-tag">Desde 50€/mes</span>
       <p>El precio depende de la complejidad de tu sistema. Sin permanencia obligatoria.</p>
-      <a href="mailto:info@hectorhardy.com" class="btn-main">Consulta disponibilidad →</a>
+      <a href="/#booking" class="btn-main">Consulta disponibilidad →</a>
+      <p class="cta-alt">¿Prefieres escribir? <a href="mailto:info@hectorhardy.com">info@hectorhardy.com</a></p>
     </div>
+
+    <h2>También te puede interesar</h2>
+    <ul class="related">
+      <li><a href="/web-a-medida.html">Diseño y desarrollo web a medida</a></li>
+      <li><a href="/agente-ia-whatsapp.html">Agente de IA para WhatsApp, Telegram e Instagram</a></li>
+    </ul>
   </main>
   <footer>
     <a href="/" class="logo">Hector Hardy</a>
@@ -63,6 +130,6 @@
     </ul>
     <div class="footer-copy">© 2026 Hector Hardy · Barcelona</div>
   </footer>
-
+  <script src="js/chatbot-services.js" defer></script>
 </body>
 </html>

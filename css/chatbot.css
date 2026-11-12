@@ -1,0 +1,353 @@
+/* chatbot.css — estilos del widget de chat (Alexito), compartidos por todas las páginas */
+
+#hs-chat-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  background: var(--primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 6px 24px rgba(26, 18, 8, 0.25);
+  z-index: 9998;
+  transition: transform 0.2s;
+}
+
+#hs-chat-btn:hover {
+  transform: scale(1.08);
+}
+
+#hs-chat-window {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: 360px;
+  max-height: 520px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  box-shadow: 0 20px 60px rgba(26, 18, 8, 0.25);
+  transform: scale(0.92) translateY(16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
+  font-family: var(--sans);
+}
+
+#hs-chat-window.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hs-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.hs-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hs-avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.hs-header-info .hs-name {
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  font-family: var(--sans);
+}
+
+.hs-status {
+  color: var(--muted);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.hs-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #4caf6d;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hs-close {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+}
+
+.hs-close:hover {
+  color: var(--fg);
+}
+
+.hs-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hs-msg {
+  display: flex;
+  gap: 8px;
+}
+
+.hs-msg.user {
+  flex-direction: row-reverse;
+}
+
+.hs-msg-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 2px;
+  background: var(--card);
+}
+
+.hs-bubble {
+  max-width: 82%;
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.hs-msg.bot .hs-bubble {
+  background: var(--card);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+
+.hs-msg.user .hs-bubble {
+  background: var(--primary);
+  color: var(--pf);
+  border-bottom-right-radius: 4px;
+}
+
+.hs-bubble a {
+  color: var(--accent-text, var(--primary));
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.hs-bubble a:hover {
+  opacity: 0.8;
+}
+
+.hs-bubble strong {
+  color: var(--fg);
+}
+
+.hs-typing {
+  display: flex;
+  gap: 4px;
+  padding: 10px 13px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  width: fit-content;
+}
+
+.hs-typing span {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: hsBounce 1.2s infinite;
+}
+
+.hs-typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.hs-typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes hsBounce {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.hs-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 0 16px 10px;
+  flex-shrink: 0;
+}
+
+.hs-sugg {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+.hs-sugg:hover {
+  background: var(--card);
+}
+
+.hs-input-area {
+  border-top: 1px solid var(--border);
+  padding: 12px 14px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  flex-shrink: 0;
+  background: var(--bg);
+}
+
+.hs-input {
+  flex: 1;
+  background: var(--pf);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--fg);
+  font-size: 13px;
+  resize: none;
+  outline: none;
+  min-height: 38px;
+  max-height: 90px;
+  font-family: var(--sans);
+  line-height: 1.4;
+}
+
+.hs-input:focus {
+  border-color: var(--accent);
+}
+
+.hs-send {
+  width: 38px;
+  height: 38px;
+  background: var(--primary);
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pf);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.hs-send:disabled {
+  background: var(--border);
+  cursor: not-allowed;
+}
+
+.hs-footer {
+  text-align: center;
+  padding: 6px 12px 8px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+@media (max-width: 420px) {
+  #hs-chat-window {
+    width: calc(100vw - 24px);
+    right: 12px;
+    bottom: 80px;
+  }
+
+  #hs-chat-btn {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+.hs-footer a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+.hs-footer a:hover {
+  color: var(--fg);
+}
+
+#hs-chat-btn:focus-visible,
+.hs-close:focus-visible,
+.hs-send:focus-visible,
+.hs-sugg:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hs-chat-btn,
+  #hs-chat-window {
+    transition: none;
+  }
+
+  .hs-typing span {
+    animation: none;
+    opacity: 0.7;
+  }
+}

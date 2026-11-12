@@ -7,17 +7,18 @@
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://www.hectorhardy.com/privacidad.html">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/site-shared.css">
+  <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 
-  <nav>
+  <nav aria-label="Principal">
     <a href="/" class="logo">Hector Hardy</a>
     <div class="nav-right">
-      <a href="/#booking">Reservar llamada</a>
-      <a href="mailto:info@hectorhardy.com" class="nav-cta">Hablemos</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#booking" class="nav-cta">Reservar llamada</a>
     </div>
   </nav>
 
@@ -25,7 +26,7 @@
     <a href="/" class="back-link">← Volver a inicio</a>
 
     <h1>Política de Privacidad</h1>
-    <p class="meta">Última actualización: 2026 · hectorhardy.com</p>
+    <p class="meta">Última actualización: noviembre de 2026 · hectorhardy.com</p>
 
     <p>Esta política explica qué datos se recopilan cuando visitas <strong>hectorhardy.com</strong> y qué
     hago con ellos. No vendo ni cedo tus datos personales a terceros, y esta web no muestra publicidad.</p>
@@ -43,8 +44,15 @@
       <li><strong>Si reservas una llamada</strong> — tu nombre, email y la información que aportes a través
       del widget de reservas (Cal.com), un servicio de terceros que gestiona el propio calendario</li>
       <li><strong>Si usas el chat de la web</strong> — el contenido de la conversación, que se envía a un
-      servicio de IA para generar la respuesta</li>
+      servicio de IA (Anthropic) para generar la respuesta. No hace falta que des datos personales en el
+      chat, y te recomiendo no incluirlos</li>
+      <li><strong>Al navegar</strong> — como cualquier sitio web, el servidor que aloja la página puede
+      registrar datos técnicos de la visita (dirección IP, navegador, página solicitada) por motivos de
+      seguridad y funcionamiento</li>
     </ul>
+    <p>Esta web no usa cookies propias de analítica ni de publicidad. Las tipografías se sirven desde el
+    propio sitio, sin conexión a servicios externos. Solo se guarda en tu navegador el idioma que elijas
+    (almacenamiento local), para recordarlo en la siguiente visita.</p>
 
     <h2>3. Base legal del tratamiento</h2>
     <p>Trato estos datos para poder responder a tu consulta o gestionar la llamada que has solicitado —
@@ -52,9 +60,17 @@
     correcto funcionamiento de la web (Art. 6.1.f RGPD).</p>
 
     <h2>4. Servicios de terceros</h2>
-    <p>Uso Cal.com para gestionar reservas de llamada, y un proveedor de IA para el chat de la web. Ambos
-    procesan los datos que les envías directamente en el marco del servicio que estás usando, conforme a
-    sus propias políticas de privacidad.</p>
+    <p>Para que la web funcione uso estos proveedores, que tratan los datos en el marco del servicio que
+    estás usando y conforme a sus propias políticas de privacidad:</p>
+    <ul>
+      <li><strong><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel</a></strong> — alojamiento de la web</li>
+      <li><strong><a href="https://cal.com/privacy" target="_blank" rel="noopener">Cal.com</a></strong> — calendario de reservas. El
+      widget se carga cuando llegas a la sección de reserva y puede usar sus propias cookies técnicas</li>
+      <li><strong><a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic</a></strong> — modelo de IA
+      que genera las respuestas del chat</li>
+    </ul>
+    <p>Algunos de estos proveedores pueden tratar datos fuera del Espacio Económico Europeo. En ese caso,
+    la transferencia se realiza con las garantías que cada proveedor declara en su política de privacidad.</p>
 
     <h2>5. Conservación de datos</h2>
     <p>Conservo los emails y conversaciones el tiempo necesario para gestionar tu consulta o proyecto, y no
@@ -84,6 +100,6 @@
     </ul>
     <div class="footer-copy">© 2026 Hector Hardy · Barcelona</div>
   </footer>
-
+  <script src="js/chatbot-services.js" defer></script>
 </body>
 </html>

@@ -1,42 +1,88 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // ⚠️ Sustituye esta URL por la de tu backend desplegado (ver server-agente-ia/README.md)
-  const API_URL = 'https://TU-BACKEND.vercel.app/api/chat-servicios';
+  // El backend vive en este mismo proyecto de Vercel (api/chat-servicios.js),
+  // así que se llama con ruta relativa: funciona en producción, en previews y en local con `vercel dev`.
+  const API_URL = '/api/chat-servicios';
 
+  // Textos del widget por idioma. El idioma sale del selector de la home (localStorage 'hh_lang').
+  const TEXTS = {
+    es: {
+      open: 'Abrir chat',
+      close: 'Cerrar chat',
+      send: 'Enviar',
+      status: 'Online · Responde al instante',
+      greeting: '¡Hola! Soy Alexito, el agente IA de Hector 🤖. Puedo contarte qué servicios ofrece, precios orientativos, o ayudarte a dar el primer paso. ¿En qué puedo ayudarte?',
+      suggestions: ['¿Qué puede hacer un agente IA por mi negocio?', '¿Cuánto cuesta un proyecto?', '¿Cómo empezamos?'],
+      placeholder: 'Escribe tu pregunta...',
+      error: 'Ahora mismo no puedo responder — escríbeme directamente a info@hectorhardy.com.',
+      notice: 'Tus mensajes se envían a un servicio de IA para responderte.',
+      privacy: 'Privacidad'
+    },
+    ca: {
+      open: 'Obrir el xat',
+      close: 'Tancar el xat',
+      send: 'Enviar',
+      status: 'En línia · Respon a l\'instant',
+      greeting: 'Hola! Soc l\'Alexito, l\'agent d\'IA de l\'Hector 🤖. Et puc explicar quins serveis ofereix, preus orientatius, o ajudar-te a fer el primer pas. En què et puc ajudar?',
+      suggestions: ['Què pot fer un agent d\'IA pel meu negoci?', 'Quant costa un projecte?', 'Com comencem?'],
+      placeholder: 'Escriu la teva pregunta...',
+      error: 'Ara mateix no puc respondre — escriu-me directament a info@hectorhardy.com.',
+      notice: 'Els teus missatges s\'envien a un servei d\'IA per respondre\'t.',
+      privacy: 'Privacitat'
+    },
+    en: {
+      open: 'Open chat',
+      close: 'Close chat',
+      send: 'Send',
+      status: 'Online · Replies instantly',
+      greeting: 'Hi! I\'m Alexito, Hector\'s AI agent 🤖. I can tell you about his services, ballpark prices, or help you take the first step. How can I help?',
+      suggestions: ['What can an AI agent do for my business?', 'How much does a project cost?', 'How do we get started?'],
+      placeholder: 'Type your question...',
+      error: 'I can\'t reply right now — please email info@hectorhardy.com directly.',
+      notice: 'Your messages are sent to an AI service to generate the reply.',
+      privacy: 'Privacy'
+    }
+  };
+
+  function getLang() {
+    let lang = 'es';
+    try { lang = localStorage.getItem('hh_lang') || 'es'; } catch (e) { /* almacenamiento no disponible */ }
+    return TEXTS[lang] ? lang : 'es';
+  }
+
+  let T = TEXTS[getLang()];
   const messages = [];
 
   document.body.insertAdjacentHTML('beforeend', `
-    <button id="hs-chat-btn" aria-label="Abrir chat">💬</button>
+    <button id="hs-chat-btn" type="button" aria-label="${T.open}" aria-expanded="false" aria-controls="hs-chat-window">💬</button>
 
-    <div id="hs-chat-window">
+    <div id="hs-chat-window" role="dialog" aria-label="Alexito">
       <div class="hs-header">
         <div class="hs-header-left">
-          <div class="hs-avatar">🤖</div>
+          <div class="hs-avatar" aria-hidden="true">🤖</div>
           <div class="hs-header-info">
-            <h4>Alexito 🤖</h4>
-            <p class="hs-status">Online · Responde al instante</p>
+            <p class="hs-name">Alexito 🤖</p>
+            <p class="hs-status" id="hs-status">${T.status}</p>
           </div>
         </div>
-        <button class="hs-close" id="hs-close-btn" aria-label="Cerrar chat">✕</button>
+        <button class="hs-close" id="hs-close-btn" type="button" aria-label="${T.close}">✕</button>
       </div>
 
-      <div class="hs-messages" id="hs-messages">
+      <div class="hs-messages" id="hs-messages" aria-live="polite">
         <div class="hs-msg bot">
-          <div class="hs-msg-icon">🤖</div>
-          <div class="hs-bubble">¡Hola! Soy Alexito, el agente IA de Hector 🤖. Puedo contarte qué servicios ofrece, precios orientativos, o ayudarte a dar el primer paso. ¿En qué puedo ayudarte?</div>
+          <div class="hs-msg-icon" aria-hidden="true">🤖</div>
+          <div class="hs-bubble" id="hs-greeting">${T.greeting}</div>
         </div>
       </div>
 
       <div class="hs-suggestions" id="hs-suggestions">
-        <button class="hs-sugg">¿Qué puede hacer un agente IA por mi negocio?</button>
-        <button class="hs-sugg">¿Cuánto cuesta un proyecto?</button>
-        <button class="hs-sugg">¿Cómo empezamos?</button>
+        ${T.suggestions.map(s => `<button class="hs-sugg" type="button">${s}</button>`).join('')}
       </div>
 
       <div class="hs-input-area">
-        <textarea class="hs-input" id="hs-input" placeholder="Escribe tu pregunta..." rows="1"></textarea>
-        <button class="hs-send" id="hs-send" aria-label="Enviar">➤</button>
+        <textarea class="hs-input" id="hs-input" placeholder="${T.placeholder}" aria-label="${T.placeholder}" rows="1" maxlength="1000"></textarea>
+        <button class="hs-send" id="hs-send" type="button" aria-label="${T.send}">➤</button>
       </div>
-      <div class="hs-footer">Alexito · hectorhardy.com</div>
+      <div class="hs-footer"><span id="hs-notice">${T.notice}</span> <a href="/privacidad.html" id="hs-privacy">${T.privacy}</a></div>
     </div>
   `);
 
@@ -49,18 +95,48 @@ document.addEventListener('DOMContentLoaded', function () {
   const messagesBox = document.getElementById('hs-messages');
 
   function toggleChat() {
-    win.classList.toggle('open');
-    if (win.classList.contains('open')) input.focus();
+    const open = win.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) input.focus();
   }
   btn.addEventListener('click', toggleChat);
   closeBtn.addEventListener('click', toggleChat);
 
-  suggestionsBox.querySelectorAll('.hs-sugg').forEach(s => {
-    s.addEventListener('click', () => {
-      input.value = s.textContent;
-      suggestionsBox.style.display = 'none';
-      enviar();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && win.classList.contains('open')) {
+      toggleChat();
+      btn.focus();
+    }
+  });
+
+  function bindSuggestions() {
+    suggestionsBox.querySelectorAll('.hs-sugg').forEach(s => {
+      s.addEventListener('click', () => {
+        input.value = s.textContent;
+        suggestionsBox.style.display = 'none';
+        enviar();
+      });
     });
+  }
+  bindSuggestions();
+
+  // Si el visitante cambia de idioma en la home, el widget cambia con él
+  // (el saludo y las sugerencias solo mientras no haya empezado la conversación).
+  document.addEventListener('hh:lang', () => {
+    T = TEXTS[getLang()];
+    btn.setAttribute('aria-label', T.open);
+    closeBtn.setAttribute('aria-label', T.close);
+    sendBtn.setAttribute('aria-label', T.send);
+    input.placeholder = T.placeholder;
+    input.setAttribute('aria-label', T.placeholder);
+    document.getElementById('hs-status').textContent = T.status;
+    document.getElementById('hs-notice').textContent = T.notice;
+    document.getElementById('hs-privacy').textContent = T.privacy;
+    if (messages.length === 0) {
+      document.getElementById('hs-greeting').textContent = T.greeting;
+      suggestionsBox.innerHTML = T.suggestions.map(s => `<button class="hs-sugg" type="button">${s}</button>`).join('');
+      bindSuggestions();
+    }
   });
 
   input.addEventListener('keydown', (e) => {
@@ -88,7 +164,11 @@ document.addEventListener('DOMContentLoaded', function () {
     return escaped
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) => {
-        const external = !url.startsWith('#');
+        // Solo se enlazan anclas de la web, rutas internas, http(s) y mailto; cualquier otro esquema se deja como texto.
+        if (!/^(#|\/|https?:\/\/|mailto:)/i.test(url)) return label;
+        // Un ancla como #booking solo existe en la home: desde otras páginas se enlaza a /#booking.
+        if (url.startsWith('#') && !document.getElementById(url.slice(1))) url = '/' + url;
+        const external = /^https?:\/\//i.test(url);
         const attrs = external ? ' target="_blank" rel="noopener"' : '';
         return `<a href="${url}"${attrs}>${label}</a>`;
       })
@@ -99,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const div = document.createElement('div');
     div.className = `hs-msg ${role}`;
     div.innerHTML = `
-      <div class="hs-msg-icon">${role === 'bot' ? '🤖' : '🙂'}</div>
+      <div class="hs-msg-icon" aria-hidden="true">${role === 'bot' ? '🤖' : '🙂'}</div>
       <div class="hs-bubble"></div>
     `;
     const bubble = div.querySelector('.hs-bubble');
@@ -110,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
       bubble.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', () => {
           win.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
         });
       });
     } else {
@@ -123,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const div = document.createElement('div');
     div.className = 'hs-msg bot';
     div.id = 'hs-typing';
-    div.innerHTML = `<div class="hs-msg-icon">🤖</div><div class="hs-typing"><span></span><span></span><span></span></div>`;
+    div.innerHTML = `<div class="hs-msg-icon" aria-hidden="true">🤖</div><div class="hs-typing"><span></span><span></span><span></span></div>`;
     messagesBox.appendChild(div);
     messagesBox.scrollTop = messagesBox.scrollHeight;
   }
@@ -152,12 +233,21 @@ document.addEventListener('DOMContentLoaded', function () {
         body: JSON.stringify({ messages })
       });
       const data = await response.json();
+      if (!data || typeof data.reply !== 'string' || !data.reply) throw new Error('Respuesta sin texto');
       removeTyping();
       addMsg('bot', data.reply);
-      messages.push({ role: 'assistant', content: data.reply });
+      if (response.ok) {
+        messages.push({ role: 'assistant', content: data.reply });
+      } else {
+        // El backend ha devuelto un aviso de error: no se guarda en el historial.
+        messages.pop();
+      }
     } catch (e) {
+      // Queda registrado en la consola para poder diagnosticarlo (antes fallaba en silencio).
+      console.error('Chat: no se pudo obtener respuesta de ' + API_URL, e);
       removeTyping();
-      addMsg('bot', 'Ahora mismo no puedo responder — escríbeme directamente a info@hectorhardy.com.');
+      messages.pop();
+      addMsg('bot', T.error);
     }
 
     sendBtn.disabled = false;

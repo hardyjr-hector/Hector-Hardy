@@ -1,5 +1,5 @@
 // ============================================================
-// translations.js — Sistema ES / EN para hectorhardy.com
+// translations.js — Sistema ES / CA / EN para hectorhardy.com
 // ============================================================
 // Para añadir una traducción nueva:
 //   1. Añade data-i18n="clave" al elemento HTML
@@ -124,17 +124,34 @@ const TRANSLATIONS = {
   "footer.privacy": { es: "🔒 Política de Privacidad", en: "🔒 Privacy Policy" },
 
   // ── HOMEPAGE (index.html) — ES / CA / EN ────────────────
+  "meta.title": {
+    es: "Agentes de IA para WhatsApp y webs a medida en Barcelona | Hector Hardy",
+    ca: "Agents d'IA per a WhatsApp i webs a mida a Barcelona | Hector Hardy",
+    en: "Custom AI agents for WhatsApp and websites in Barcelona | Hector Hardy"
+  },
+  "meta.desc": {
+    es: "Agentes de IA para WhatsApp, Telegram, Instagram y web, además de webs, tiendas online y automatización a medida para negocios. Barcelona. Primera consulta gratis.",
+    ca: "Agents d'IA per a WhatsApp, Telegram, Instagram i web, a més de webs, botigues online i automatització a mida per a negocis. Barcelona. Primera consulta gratuïta.",
+    en: "Custom AI agents for WhatsApp, Telegram, Instagram and your website, plus websites, online stores and automation for businesses. Barcelona. Free first consultation."
+  },
+  "a11y.skip": { es: "Saltar al contenido", ca: "Ves al contingut", en: "Skip to content" },
+
   "nav.reservar": { es: "Reservar llamada", ca: "Reservar trucada", en: "Book a call" },
+  "nav.home.servicios": { es: "Servicios", ca: "Serveis", en: "Services" },
+  "nav.home.proyectos": { es: "Proyectos", ca: "Projectes", en: "Projects" },
   "nav.hablemos": { es: "Hablemos", ca: "Parlem-ne", en: "Let's talk" },
 
-  "hero.label.main": { es: "AI Engineer · Agentes IA a Medida · Barcelona", ca: "AI Engineer · Agents IA a Mida · Barcelona", en: "AI Engineer · Custom AI Agents · Barcelona" },
-  "hero.sub.pre": { es: "Diseño ", ca: "Dissenyo ", en: "I build " },
+  "hero.label.main": { es: "Hector Hardy · AI Engineer · Barcelona", ca: "Hector Hardy · AI Engineer · Barcelona", en: "Hector Hardy · AI Engineer · Barcelona" },
+  "hero.h1.main": { es: "Agentes de IA que atienden a tus clientes ", ca: "Agents d'IA que atenen els teus clients ", en: "AI agents that look after your customers " },
+  "hero.h1.em": { es: "mientras tú trabajas.", ca: "mentre tu treballes.", en: "while you work." },
+  "hero.sub.pre": { es: "Soy Hector Hardy. Diseño ", ca: "Soc l'Hector Hardy. Dissenyo ", en: "I'm Hector Hardy. I build " },
   "hero.sub.strong": { es: "agentes de IA a medida", ca: "agents d'IA a mida", en: "custom AI agents" },
   "hero.sub.post": {
-    es: " para negocios de cualquier sector — integrados en tu web, WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. Nada de software enlatado: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
-    ca: " per a negocis de qualsevol sector — integrats a la teva web, WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. Res de software enllaunat: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
-    en: " for businesses in any sector — integrated into your website, WhatsApp, Telegram or Instagram, trained on your business's real data. No off-the-shelf software: if your business needs something no one else offers, I'll build it."
+    es: " que responden dudas y toman reservas y pedidos 24/7 en tu web, WhatsApp, Telegram o Instagram, entrenados con los datos reales de tu negocio. También webs, tiendas online y automatizaciones: si tu negocio necesita algo que nadie más ofrece, lo construyo.",
+    ca: " que responen dubtes i gestionen reserves i comandes 24/7 a la teva web, WhatsApp, Telegram o Instagram, entrenats amb les dades reals del teu negoci. També webs, botigues online i automatitzacions: si el teu negoci necessita alguna cosa que ningú més ofereix, ho construeixo.",
+    en: " that answer questions and take bookings and orders 24/7 on your website, WhatsApp, Telegram or Instagram, trained on your business's real data. Websites, online stores and automation too: if your business needs something no one else offers, I'll build it."
   },
+  "hero.btn.reservar": { es: "Reservar llamada gratuita →", ca: "Reservar trucada gratuïta →", en: "Book a free call →" },
   "hero.btn.hablemos": { es: "Hablemos →", ca: "Parlem-ne →", en: "Let's talk →" },
   "hero.btn.servicios": { es: "Ver servicios", ca: "Veure serveis", en: "See services" },
   "hero.btn.proyectos": { es: "Ver proyectos", ca: "Veure projectes", en: "See projects" },
@@ -157,9 +174,9 @@ const TRANSLATIONS = {
   },
   "svc3.title": { es: "E-commerce", ca: "E-commerce", en: "E-commerce" },
   "svc3.desc": {
-    es: "Tienda online, carrito de la compra y pago con Stripe. Cobras sin hacer nada.",
-    ca: "Botiga online, cistella de la compra i pagament amb Stripe. Cobres sense fer res.",
-    en: "Online store, shopping cart and Stripe payments. You get paid without lifting a finger."
+    es: "Tienda online con carrito y pago con Stripe. Tus clientes pagan online y el pedido te llega confirmado.",
+    ca: "Botiga online amb cistella i pagament amb Stripe. Els teus clients paguen online i la comanda t'arriba confirmada.",
+    en: "Online store with cart and Stripe payments. Your customers pay online and the order reaches you confirmed."
   },
   "svc4.title": { es: "Automatización", ca: "Automatització", en: "Automation" },
   "svc4.desc": {
@@ -180,11 +197,15 @@ const TRANSLATIONS = {
     en: "Your website always updated, secure and running. Support included."
   },
 
-  "projects.eyebrow": { es: "Proyectos en producción", ca: "Projectes en producció", en: "Projects in production" },
+  "price.from": { es: "Desde", ca: "Des de", en: "From" },
+  "price.month": { es: "/mes", ca: "/mes", en: "/month" },
+  "svc.more": { es: "Ver detalle →", ca: "Veure'n el detall →", en: "See details →" },
+
+  "projects.eyebrow": { es: "Proyectos", ca: "Projectes", en: "Projects" },
   "about.eyebrow": { es: "Quién hay detrás", ca: "Qui hi ha darrere", en: "Who's behind this" },
   "about.body": {
     es: "Soy Hector. Antes de la programación, pasé años en hostelería, donde aprendí a trabajar de cara al cliente para entender lo que realmente necesita, no solo lo que pide. Cada proyecto nace de entender primero el negocio, no solo la tecnología. Esa mirada práctica es la que traigo a cada agente que construyo.",
-    ca: "Sóc en Hector. Abans de la programació, vaig passar anys en hostaleria, on vaig aprendre a treballar de cara al client per entendre el que realment necessita, no només el que demana. Cada projecte neix d'entendre primer el negoci, no només la tecnologia. Aquesta mirada pràctica és la que aporto a cada agent que construeixo.",
+    ca: "Soc l'Hector. Abans de la programació, vaig passar anys en hostaleria, on vaig aprendre a treballar de cara al client per entendre el que realment necessita, no només el que demana. Cada projecte neix d'entendre primer el negoci, no només la tecnologia. Aquesta mirada pràctica és la que aporto a cada agent que construeixo.",
     en: "I'm Hector. Before programming, I spent years in hospitality, where I learned to work face-to-face with customers to understand what they actually need, not just what they ask for. Every project starts with understanding the business first, not just the technology. That practical mindset is what I bring to every agent I build."
   },
   "status.live": { es: "En producción", ca: "En producció", en: "Live" },
@@ -222,6 +243,9 @@ const TRANSLATIONS = {
   },
 
   "booking.eyebrow": { es: "Primera llamada gratuita", ca: "Primera trucada gratuïta", en: "First call is free" },
+  "booking.note.pre": { es: "¿No encuentras un hueco que te vaya bien? Escríbeme a ", ca: "No trobes cap hora que et vagi bé? Escriu-me a ", en: "Can't find a slot that suits you? Email me at " },
+  "booking.note.post": { es: " y te respondo en 24 h.", ca: " i et responc en 24 h.", en: " and I'll reply within 24 hours." },
+  "cta.btn.reservar": { es: "Reservar llamada gratuita →", ca: "Reservar trucada gratuïta →", en: "Book a free call →" },
   "cta.title.line1": { es: "Tu negocio merece", ca: "El teu negoci mereix", en: "Your business deserves" },
   "cta.title.line2": { es: "un sistema que ", ca: "un sistema que ", en: "a system that " },
   "cta.title.em": { es: "no duerme.", ca: "no dorm.", en: "never sleeps." },
@@ -256,8 +280,17 @@ function applyTranslations(lang) {
     }
   });
 
+  // Atributos "content" traducibles (p. ej. la meta descripción): data-i18n-content="clave"
+  document.querySelectorAll('[data-i18n-content]').forEach(el => {
+    const t = TRANSLATIONS[el.getAttribute('data-i18n-content')];
+    if (t) el.setAttribute('content', t[lang] || t.es);
+  });
+
   // Actualizar atributo lang en <html>
   document.documentElement.lang = lang;
+
+  // Avisar al resto de scripts (el chat cambia sus textos con este evento)
+  document.dispatchEvent(new CustomEvent('hh:lang', { detail: { lang } }));
 
   // Actualizar el botón del toggle
   const btn = document.getElementById('langToggle');

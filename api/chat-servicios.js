@@ -32,14 +32,35 @@ FORMATO: cuando invites a reservar la llamada, usa siempre un enlace en formato 
 "#booking", por ejemplo: [Reserva tu llamada](#booking). Ese enlace es clicable en la web y lleva
 directo a la sección de reserva — nunca lo escribas como texto plano ni inventes otro destino.`;
 
+// Límites para que nadie pueda usar este endpoint público como acceso gratuito a la API
+// (cada llamada se factura a la cuenta de Anthropic): solo se reenvían los últimos mensajes,
+// con longitud acotada y únicamente con los roles que usa el widget.
+const MAX_MESSAGES = 12;
+const MAX_CHARS = 1500;
+
+function sanitizeMessages(raw) {
+  if (!Array.isArray(raw)) return null;
+
+  const clean = raw
+    .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim())
+    .map(m => ({ role: m.role, content: m.content.trim().slice(0, MAX_CHARS) }))
+    .slice(-MAX_MESSAGES);
+
+  // La API exige que la conversación empiece por un mensaje del usuario.
+  while (clean.length && clean[0].role !== 'user') clean.shift();
+
+  return clean.length ? clean : null;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
   }
 
-  const { messages } = req.body;
+  const body = req.body && typeof req.body === 'object' ? req.body : {};
+  const messages = sanitizeMessages(body.messages);
 
-  if (!Array.isArray(messages)) {
+  if (!messages) {
     return res.status(400).json({ error: 'Falta el array "messages"' });
   }
 
