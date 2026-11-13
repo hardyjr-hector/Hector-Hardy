@@ -153,6 +153,8 @@ const TRANSLATIONS = {
   },
   "hero.btn.reservar": { es: "Reservar llamada gratuita →", ca: "Reservar trucada gratuïta →", en: "Book a free call →" },
   "hero.btn.hablemos": { es: "Hablemos →", ca: "Parlem-ne →", en: "Let's talk →" },
+  "hero.btn.whatsapp": { es: "Escríbeme por WhatsApp", ca: "Escriu-me per WhatsApp", en: "Message me on WhatsApp" },
+  "cta.btn.whatsapp": { es: "Escríbeme por WhatsApp", ca: "Escriu-me per WhatsApp", en: "Message me on WhatsApp" },
   "hero.btn.servicios": { es: "Ver servicios", ca: "Veure serveis", en: "See services" },
   "hero.btn.proyectos": { es: "Ver proyectos", ca: "Veure projectes", en: "See projects" },
   "hero.meta.projects": { es: "proyectos en producción", ca: "projectes en producció", en: "projects in production" },
@@ -243,7 +245,8 @@ const TRANSLATIONS = {
   },
 
   "booking.eyebrow": { es: "Primera llamada gratuita", ca: "Primera trucada gratuïta", en: "First call is free" },
-  "booking.note.pre": { es: "¿No encuentras un hueco que te vaya bien? Escríbeme a ", ca: "No trobes cap hora que et vagi bé? Escriu-me a ", en: "Can't find a slot that suits you? Email me at " },
+  "booking.note.pre": { es: "¿No encuentras un hueco que te vaya bien? Escríbeme por ", ca: "No trobes cap hora que et vagi bé? Escriu-me per ", en: "Can't find a slot that suits you? Message me on " },
+  "booking.note.mid": { es: " o a ", ca: " o a ", en: " or email " },
   "booking.note.post": { es: " y te respondo en 24 h.", ca: " i et responc en 24 h.", en: " and I'll reply within 24 hours." },
   "cta.btn.reservar": { es: "Reservar llamada gratuita →", ca: "Reservar trucada gratuïta →", en: "Book a free call →" },
   "cta.title.line1": { es: "Tu negocio merece", ca: "El teu negoci mereix", en: "Your business deserves" },
