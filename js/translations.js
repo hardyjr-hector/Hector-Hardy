@@ -219,12 +219,6 @@ const TRANSLATIONS = {
     ca: "App de gestió de caixa per a hostaleria: login per PIN, obertures i tancaments amb càlcul automàtic, seguretat a nivell de base de dades (RLS), notificacions push i PWA instal·lable. Bilingüe ES/EN.",
     en: "Cash register management app for hospitality: PIN login, opening/closing with automatic calculation, database-level security (RLS), push notifications and installable PWA. Bilingual ES/EN."
   },
-  "proj.magma.name": { es: "Magma Bakery Lab", ca: "Magma Bakery Lab", en: "Magma Bakery Lab" },
-  "proj.magma.desc": {
-    es: "E-commerce para obrador artesanal: carta completa, encargos online con carrito, pago con Stripe y trilingüe ES/CA/EN con CI/CD en Vercel.",
-    ca: "E-commerce per a obrador artesanal: carta completa, comandes online amb cistella, pagament amb Stripe i trilingüe ES/CA/EN amb CI/CD a Vercel.",
-    en: "E-commerce for an artisan bakery: full menu, online orders with cart, Stripe payments and trilingual ES/CA/EN with CI/CD on Vercel."
-  },
   "proj.nutria.name": { es: "NutrIA", ca: "NutrIA", en: "NutrIA" },
   "proj.nutria.desc": {
     es: "App web con cálculo automático de macros mediante IA, análisis de platos por visión artificial y chatbot nutricional 24/7. Construida con Next.js y Supabase.",
